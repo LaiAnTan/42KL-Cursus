@@ -1,0 +1,465 @@
+!<arch>
+ft_isalpha.c/   0           0     0     644     166       `
+int ft_isalpha(int a);
+
+int ft_isalpha(int a)
+{
+	if (a >= 'A' && a <= 'Z')
+		return (1);
+	else if (a >= 'a' && a <= 'z')
+		return (2);
+	else
+		return (0);
+}ft_isdigit.c/   0           0     0     644     118       `
+int ft_isdigit(int a);
+
+int ft_isdigit(int a)
+{
+	if (a >= '0' && a <= '9')
+		return (1);
+	else
+		return (0);
+}ft_isalnum.c/   0           0     0     644     215       `
+int ft_isalnum(int a);
+
+int ft_isalnum(int a)
+{
+	if (a >= 'A' && a <= 'Z')
+		return (1);
+	else if (a >= 'a' && a <= 'z')
+		return (2);
+	else if (a >= '0' && a <= '9')
+		return (4);	
+	else
+		return (0);
+}
+ft_isascii.c/   0           0     0     644     120       `
+int ft_isascii(int a);
+
+int ft_isascii(int a)
+{
+	if (a >= 0x00 && a <= 0x7f)
+		return (1);
+	else
+		return (0);
+}ft_isprint.c/   0           0     0     644     426       `
+int ft_isprint(int a);
+
+int ft_isprint(int a)
+{
+	if (a >= ' ' && a <= '~')
+	{
+		if (a == ' ')
+			return (64);
+		else if ((a >= '!' && a <= '/') || (a >= ':' && a <= '@') || (a >= '[' && a <= '`') || (a >= '{' && a <= '~'))
+			return (16);
+		else if (a >= '0' && a <= '9')
+			return (4);
+		else if (a >= 'a' && a <= 'z')
+			return (2);
+		else if (a >= 'A' && a <= 'Z')
+			return (1);
+	}
+	else
+		return (0);
+}ft_strlen.c/    0           0     0     644     153       `
+unsigned int ft_strlen(char *str);
+
+unsigned int ft_strlen(char *str)
+{
+	unsigned int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+ft_memset.c/    0           0     0     644     146       `
+void *ft_memset(void *s, int c, int n);
+
+void *ft_memset(void *s, int c, int n)
+{
+	char *str = (char *) s;
+	while (n-- > 0)
+		str[n] = c;
+}ft_bzero.c/     0           0     0     644     178       `
+void ft_bzero(void *s, unsigned int n);
+
+void ft_bzero(void *s, unsigned int n)
+{
+	char *str = (char *) s;
+
+	while (n)
+	{
+		str[n] = '\0';
+		n--;
+	}
+	str[n] = '\0';
+}ft_memcpy.c/    0           0     0     644     249       `
+void *ft_memcpy(void *d, const void *s, unsigned int n);
+
+void *ft_memcpy(void *d, const void *s, unsigned int n)
+{
+	int i;
+	char *src = (char *) s;
+	char *dst = (char *) d;
+
+	i = 0;
+	while (n)
+	{
+		dst[i] = src[i];
+		n--;
+		i++;
+	}
+}
+ft_memmove.c/   0           0     0     644     199       `
+void *ft_memmove(void *d, const void *s, int n);
+
+void *ft_memmove(void *d, const void *s, int n)
+{
+	char * src = (char *) s;
+	char * dest = (char *) d;
+	while (n-- > 0)
+		dest[n] = src[n];
+}
+ft_strlcpy.c/   0           0     0     644     464       `
+unsigned int ft_strlcpy(char *dst, char *src, unsigned int size);
+unsigned int ft_strlen(char *str);
+
+unsigned int ft_strlcpy(char *dst, char *src, unsigned int size)
+{
+	int n;
+
+	n = 0;
+	if (size)
+	{
+		while((src[n] != '\0') && (n < size - 1))
+		{
+			dst[n] = src[n];
+			n++;
+		}
+		dst[n] = '\0';
+	}
+	return (ft_strlen(src));
+}
+
+unsigned int ft_strlen(char *str)
+{
+	unsigned int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}ft_strlcat.c/   0           0     0     644     496       `
+unsigned int ft_strlcat(char *dst, char *src, unsigned int size);
+unsigned int ft_strlen(char *str);
+
+unsigned int ft_strlcat(char *dst, char *src, unsigned int size)
+{
+	int n;
+	int m;
+	
+	n = ft_strlen(dst);
+	m = 0;
+	while ((n < size - 1) && (src[m] != '\0'))
+	{
+		dst[n] = src[m];
+		n++;
+		m++;
+	}
+	dst[n] = '\0';
+	return (ft_strlen(dst) + ft_strlen(src));
+}
+
+unsigned int ft_strlen(char *str)
+{
+	unsigned int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}ft_toupper.c/   0           0     0     644     124       `
+int ft_toupper(int a);
+
+int ft_toupper(int a)
+{
+	if ((a >= 97) && (a <= 122))
+		return(a - 32);
+	else
+		return(a);
+}ft_tolower.c/   0           0     0     644     123       `
+int ft_tolower(int a);
+
+int ft_tolower(int a)
+{
+	if ((a >= 65) && (a <= 90))
+		return(a + 32);
+	else
+		return(a);
+}
+ft_strchr.c/    0           0     0     644     222       `
+char *ft_strchr(char *s, int c);
+
+char *ft_strchr(char *s, int c)
+{
+	int n;
+	char *occ;
+
+	n = 0;
+	while (s[n] != '\0')
+	{
+		if (s[n] == c)
+		{
+			occ = &s[n];
+			return (occ);
+		}
+		n++;
+	}
+	return (0);
+}ft_strrchr.c/   0           0     0     644     379       `
+char *ft_strrchr(char *s, int c);
+unsigned int ft_strlen(char *str);
+
+char *ft_strrchr(char *s, int c)
+{
+	int n;
+	char *occ;
+
+	n = ft_strlen(s);
+	while (n)
+	{
+		if (s[n] == c)
+		{
+			occ = &s[n];
+			return (occ);
+		}
+		n--;
+	}
+	return (0);
+}
+
+unsigned int ft_strlen(char *str)
+{
+	unsigned int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+ft_strncmp.c/   0           0     0     644     322       `
+int ft_strncmp(char *s1, char *s2, unsigned int n);
+
+int ft_strncmp(char *s1, char *s2, unsigned int n)
+{
+	int i;
+
+	i = 0;
+	while ((n) && (s1[i] != '\0') && (s2[i] != '\0'))
+	{
+		if (s1[i] > s2[i])
+			return (1);
+		else if (s1[i] < s2[i])
+			return(-1);
+		else
+		{
+			i++;
+			n--;
+		}
+	}
+	return (0);
+}ft_memchr.c/    0           0     0     644     291       `
+void *ft_memchr(const void *s, int c, unsigned int n);
+
+void *ft_memchr(const void *s, int c, unsigned int n)
+{
+	int m;
+	char *occ;
+	char *src = (char *) s;
+	m = 0;
+	while (n)
+	{
+		if (src[n] == c)
+		{
+			occ = &src[n];
+			return (occ);
+		}
+		n--;
+		m++;
+	}
+	return (0);
+}
+ft_memcmp.c/    0           0     0     644     368       `
+int ft_memcmp(const void *s1, const void *s2, unsigned int n);
+
+int ft_memcmp(const void *s1, const void *s2, unsigned int n)
+{
+	int i;
+	char *str1 = (char *) s1;
+	char *str2 = (char *) s2;
+
+	i = 0;
+	while (n)
+	{
+		if (str1[i] > str2[i])
+			return (1);
+		else if (str1[i] < str2[i])
+			return(-1);
+		else
+		{
+			i++;
+			n--;
+		}
+	}
+	return (0);
+}ft_strnstr.c/   0           0     0     644     936       `
+char *ft_strnstr(char *big, char *little, unsigned int len);
+unsigned int check(char *big, char *little, int j);
+unsigned int ft_strlen(char *str);
+
+char *ft_strnstr(char *big, char *little, unsigned int len)
+{
+	int i;
+	int j;
+	char *occ;
+
+	i = 0;
+	j = 0;
+	if (!ft_strlen(little))
+		return (big);
+	while ((len) && (little[i] != '\0') && (big[j] != '\0'))
+	{
+		if(little[i] == big[j])
+		{
+			if (check(big, little, j))
+			{
+				occ = &big[j];
+				return (occ);
+			}
+			else
+				i = 0;
+		}
+		j++;
+		len--;
+	}
+	return (0);
+}
+
+unsigned int check(char *big, char *little, int j)
+{
+	int i;
+	int k;
+
+	i = 0;
+	k = j;
+	while ((big[j] != '\0') && (little[i] != '\0'))
+	{
+		if(little[i] == big[j])
+			i++;
+		j++;
+	}
+	if(i == ft_strlen(little))
+		return (1);
+	else
+		return (0);
+}
+
+unsigned int ft_strlen(char *str)
+{
+	unsigned int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}ft_atoi.c/      0           0     0     644     391       `
+int	ft_atoi(const char *s);
+
+int	ft_atoi(const char *s)
+{
+	int	n;
+	int	sign;
+	int	rtval;
+	char *str = (char *) s;
+
+	n = 0;
+	sign = 1;
+	rtval = 0;
+	while (str[n] == ' ' || (str[n] >= 9 && str[n] <= 13))
+		++n;
+	if (str[n] == '-')
+		sign *= -1;
+	++n;
+	while (str[n] >= '0' && str[n] <= '9')
+	{
+		rtval = (rtval * 10) + (str[n] - '0');
+		++n;
+	}
+	return (rtval * sign);
+}
+ft_calloc.c/    0           0     0     644     484       `
+void *ft_calloc(unsigned int nmemb, unsigned int size);
+void ft_bzero(void *s, unsigned int n);
+
+void *ft_calloc(unsigned int nmemb, unsigned int size)
+{
+	int i;
+	void *str;
+
+	i = 0;
+	if (!nmemb || !size)
+		return (0);
+	str = malloc(nmemb * size);
+	if (!str)
+		return (0);
+	ft_bzero(str, (nmemb * size - 1));
+	return (str);
+}
+
+void ft_bzero(void *s, unsigned int n)
+{
+	char *str = (char *) s;
+
+	while (n)
+	{
+		str[n] = '\0';
+		n--;
+	}
+	str[n] = '\0';
+}
+
+ft_strdup.c/    0           0     0     644     502       `
+char *ft_strdup(const char *s);
+unsigned int ft_strlen(char *str);
+
+char *ft_strdup(const char *s)
+{
+	int i;
+	char *str = (char *) s;
+	char *dest;
+
+	i = 0;
+	dest = (char *) malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (dest == 0)
+		return  (0);
+	while (str[i] != '\0')
+	{
+		dest[i] = str[i];
+		i++;
+	}
+	if (str[i] == '\0')
+		dest[i] = '\0';
+	return (dest);
+}
+
+unsigned int ft_strlen(char *str)
+{
+	unsigned int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
