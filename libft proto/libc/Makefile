@@ -21,9 +21,9 @@ libft.a	: ${SRCS_O}
 		ar rcs ${LIB} ${SRCS_O}
 
 clean :
-		rm -f {SRCS_O}
+		rm -f ${SRCS_O}
 
 fclean : clean
-		rm -f {LIB}
+		rm -f ${LIB}
 
 re : fclean all
