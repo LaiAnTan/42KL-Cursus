@@ -1,7 +1,5 @@
 #include "libft.h"
 
-int	ft_atoi(const char *s);
-
 int	ft_atoi(const char *s)
 {
 	int	n;

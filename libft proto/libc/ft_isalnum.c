@@ -1,7 +1,5 @@
 #include "libft.h"
 
-int ft_isalnum(int a);
-
 int ft_isalnum(int a)
 {
 	if (a >= 'A' && a <= 'Z')

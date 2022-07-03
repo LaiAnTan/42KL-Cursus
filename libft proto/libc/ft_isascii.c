@@ -1,7 +1,5 @@
 #include "libft.h"
 
-int ft_isascii(int a);
-
 int ft_isascii(int a)
 {
 	if (a >= 0x00 && a <= 0x7f)

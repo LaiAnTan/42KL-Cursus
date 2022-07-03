@@ -1,7 +1,5 @@
 #include "libft.h"
 
-void *ft_memmove(void *d, const void *s, size_t n);
-
 void *ft_memmove(void *d, const void *s, size_t n)
 {
 	char * src = (char *) s;

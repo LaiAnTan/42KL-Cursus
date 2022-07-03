@@ -1,7 +1,5 @@
 #include "libft.h"
 
-int ft_isprint(int a);
-
 int ft_isprint(int a)
 {
 	if (a >= ' ' && a <= '~')

@@ -1,7 +1,5 @@
 #include "libft.h"
 
-int ft_tolower(int a);
-
 int ft_tolower(int a)
 {
 	if ((a >= 65) && (a <= 90))

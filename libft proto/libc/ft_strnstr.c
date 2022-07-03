@@ -1,8 +1,6 @@
 #include "libft.h"
 
-char *ft_strnstr(const char *big, const char *little, size_t len);
-int check(char *big, char *little, int j);
-size_t ft_strlen(const char *str);
+static int check(char *big, char *little, int j);
 
 char *ft_strnstr(const char *big, const char *little, size_t len)
 {

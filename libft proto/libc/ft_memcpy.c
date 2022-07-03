@@ -1,7 +1,5 @@
 #include "libft.h"
 
-void *ft_memcpy(void *d, const void *s, size_t n);
-
 void *ft_memcpy(void *d, const void *s, size_t n)
 {
 	int i;

@@ -1,7 +1,5 @@
 #include "libft.h"
 
-int ft_toupper(int a);
-
 int ft_toupper(int a)
 {
 	if ((a >= 97) && (a <= 122))
