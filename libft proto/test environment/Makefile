@@ -4,4 +4,11 @@ compile :
 		gcc -Wall -Werror -Wextra *.c
 
 run :
-		.\a.exe
+		./a.out
+
+clean :
+		-rm -f *.c
+		-rm -f *.exe
+
+fclean : 
+		-rm -f *.h
