@@ -1,1 +1,1 @@
-# 42KL-Core
+# 42KL-Cursus
