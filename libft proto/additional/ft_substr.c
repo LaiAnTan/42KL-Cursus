@@ -18,6 +18,7 @@ char    *ft_substr(char const *s, unsigned int start, size_t len)
         start++;
         j--;
     }
+	str[i] = '\0';
     return (str);
 }
 

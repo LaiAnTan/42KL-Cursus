@@ -1,14 +1,16 @@
 all : compile run
 
 compile :
-		gcc -Wall -Werror -Wextra *.c
+		gcc -Wall -Wextra -Werror *.c
 
 run :
-		./a.out
+		.\a.exe
 
-clean :
+macclean :
 		-rm -f *.c
 		-rm -f *.exe
 
-fclean : 
-		-rm -f *.h
+winclean :
+		-del -f *.c
+		-del -f *.exe
+
