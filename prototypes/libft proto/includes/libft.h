@@ -9,6 +9,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <stddef.h>
+#include <fcntl.h>
 
 // boolean
 int 	ft_isalpha(int a);
@@ -21,6 +22,12 @@ int 	ft_isprint(int a);
 int 	ft_tolower(int a);
 int 	ft_toupper(int a);
 
+// file descriptor
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void 	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+
 // memory
 void 	ft_bzero(void *s, size_t n);
 void 	*ft_calloc(size_t nmemb, size_t size);
@@ -31,6 +38,7 @@ void 	*ft_memset(void *s, int c, size_t n);
 int 	ft_memcmp(const void *s1, const void *s2, size_t n);
 
 // string
+void 	ft_striteri(char *s, void (*f)(unsigned int, char*));
 int		ft_atoi(const char *s);
 int 	ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *str);
@@ -44,7 +52,9 @@ char 	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char 	*ft_strtrim(char const *s1, char const *set);
+char 	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char 	**ft_split(char const *s, char c);
+
 
 #endif
 
