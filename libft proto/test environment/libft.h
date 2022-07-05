@@ -9,6 +9,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <stddef.h>
+#include <fcntl.h>
 
 // boolean
 int 	ft_isalpha(int a);
@@ -20,6 +21,12 @@ int 	ft_isprint(int a);
 // character
 int 	ft_tolower(int a);
 int 	ft_toupper(int a);
+
+// file descriptor
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void 	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 // memory
 void 	ft_bzero(void *s, size_t n);
