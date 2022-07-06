@@ -8,9 +8,9 @@ void *ft_memchr(const void *s, int c, size_t n)
 	m = 0;
 	while (n)
 	{
-		if (src[n] == c)
+		if (src[m] == c)
 		{
-			occ = &src[n];
+			occ = &src[m];
 			return (occ);
 		}
 		n--;

@@ -3,18 +3,19 @@
 char *ft_strrchr(const char *s, int c)
 {
 	int n;
-	char *occ;
-	char *str = (char *) s;
+	char *str;
 
+	str = (char *) s;
 	n = ft_strlen(str);
-	while (n)
+	if (!str)
+		return (0);
+	while (n >= 0)
 	{
 		if (str[n] == c)
-		{
-			occ = &str[n];
-			return (occ);
-		}
+			return (&str[n]);
 		n--;
 	}
+	if (c == '\0')
+		return (&str[n]);
 	return (0);
 }

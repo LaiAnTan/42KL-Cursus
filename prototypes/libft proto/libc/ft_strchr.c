@@ -3,18 +3,21 @@
 char *ft_strchr(const char *s, int c)
 {
 	int n;
-	char *occ;
-	char *str = (char *) s;
-
+	char *str;
+	
 	n = 0;
+	str = (char *) s;
+	if (!str)
+		return (0);
 	while (str[n] != '\0')
 	{
 		if (str[n] == c)
 		{
-			occ = &str[n];
-			return (occ);
+			return (&str[n]);
 		}
 		n++;
 	}
+	if (c == '\0')
+		return (&str[n]);
 	return (0);
 }

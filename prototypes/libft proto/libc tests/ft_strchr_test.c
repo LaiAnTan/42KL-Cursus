@@ -1,28 +1,35 @@
 #include "libft.h"
 
-char *ft_strchr(const char *s, int c);
+static void		ft_print_result(char const *s)
+{
+	int		len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	write(1, s, len);
+}
+
+static void		check_strchr(char *s, int c, int offset)
+{
+	char		*str;
+
+	if (!(str = ft_strchr(s, c)))
+		ft_print_result("NULL");
+	else
+	{
+		ft_print_result(str);
+		if (str != (s + offset))
+			ft_print_result("\nReturn value is false");
+	}
+}
 
 int main(void)
 {
-	char s1[11] = "aaaabaaaab";
-	char s2[13] = "test testing";
-	char s3[5] = "abcde";
+	char *s1 = "bonjour";
+	char *s2 = "";
 
-	char *p1a = strchr(s1, 'b'); 
-	char *p1b = ft_strchr(s1, 'b');
-	char *p2a = strchr(s2, 'i');
-	char *p2b = ft_strchr(s2, 'i');
-	char *p3a = strchr(s3, 'f');
-	char *p3b = ft_strchr(s3, 'f');
-
-	printf("System: %p\n", p1a);
-	printf("My    : %p\n", p1b);
-	printf("\n");
-	printf("System: %p\n", p2a);
-	printf("My    : %p\n", p2b);
-	printf("\n");
-	printf("System: %p\n", p3a);
-	printf("My    : %p\n", p3b);
-
+	check_strchr(s1, '\0', 7);
+	check_strchr(s2, '\0', 0);
 	return(0);
 }

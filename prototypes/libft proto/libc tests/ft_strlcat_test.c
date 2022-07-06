@@ -1,49 +1,39 @@
 #include "libft.h"
 
-size_t ft_strlcat(char *dst, const char *src, size_t size);
+static void		ft_print_result(int n)
+{
+	char c;
+
+	if (n >= 10)
+		ft_print_result(n / 10);
+	c = n % 10 + '0';
+	write (1, &c, 1);
+}
+
+static void		check_strlcat(char *dest, char *src, int size, int dest_len)
+{
+	ft_print_result(ft_strlcat(dest, src, size));
+	write(1, "\n", 1);
+	write(1, dest, dest_len);
+	free(dest);
+}
 
 int main(void)
 {
 
-	char s1a[] = "hi";
-	char s1b[10] = "hello";
-	char s2a[] = "ing 1 2 3";
-	char s2b[20] = "test";
-	char s3a[] = "bbbbb";
-	char s3b[8] = "aaaaa";
-	char s4a[] = "";
-	char s4b[] = "";
+	char	*dest;
+	int		dest_len;
+
+	alarm(5);
+	dest_len = 15;
+	if (!(dest = (char *)malloc(sizeof(*dest) * dest_len)))
+		return (0);
+	memset(dest, 0, dest_len);
+	memset(dest, 'r', 6);
 	
-	int a;
-	int b;
-	int c;
-	int d;
+	dest[10] = 'a';
+	printf("String: %s\n", dest);
+	check_strlcat(dest, "lorem ipsum dolor sit amet", 0, dest_len);
 
-	printf("Src   : (%s)\n", s1a);
-	printf("Dest  : (%s)\n", s1b);
-	a = ft_strlcat(s1b, s1a, 10);
-	printf("My    : (%s)\n", s1b);
-	printf("Return: (%d)\n", a);
-	printf("\n");
-
-	printf("Src   : (%s)\n", s2a);
-	printf("Dest  : (%s)\n", s2b);
-	b = ft_strlcat(s2b, s2a, 14);
-	printf("My    : (%s)\n", s2b);
-	printf("Return: (%d)\n", b);
-	printf("\n");
-
-	printf("Src   : (%s)\n", s3a);
-	printf("Dest  : (%s)\n", s3b);
-	c = ft_strlcat(s3b, s3a, 7);
-	printf("My    : (%s)\n", s3b);
-	printf("Return: (%d)\n", c);
-	printf("\n");
-
-	printf("Src   : (%s)\n", s4a);
-	printf("Dest  : (%s)\n", s4b);
-	d = ft_strlcat(s4b, s4a, 10);
-	printf("My    : (%s)\n", s4b);
-	printf("Return: (%d)\n", d);
-	printf("\n");
+	return (0);
 }

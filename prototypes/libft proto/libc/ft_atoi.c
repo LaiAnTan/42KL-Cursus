@@ -13,8 +13,12 @@ int	ft_atoi(const char *s)
 	while (str[n] == ' ' || (str[n] >= 9 && str[n] <= 13))
 		++n;
 	if (str[n] == '-')
+	{
+		n++;
 		sign *= -1;
-	++n;
+	}
+	else if (str[n] == '+')
+		n++;
 	while (str[n] >= '0' && str[n] <= '9')
 	{
 		rtval = (rtval * 10) + (str[n] - '0');

@@ -1,28 +1,32 @@
 #include "libft.h"
 
-void *ft_memchr(const void *s, int c, unsigned int n);
+static void		ft_print_result(const char *s)
+{
+	int		len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	write(1, s, len);
+	write(1, "\n", 1);
+}
+
+static void		check_memchr(void *s, char c, int n)
+{
+	const char *str;
+
+	str = ft_memchr(s, c, n);
+	if (!str)
+		ft_print_result("NULL");
+	else
+		ft_print_result(str);
+}
 
 int main(void)
 {
-	char s1[11] = "aaaabaaaab";
-	char s2[13] = "test testing";
-	char s3[5] = "abcde";
-
-	char *p1a = memchr(s1, 'b', 5); 
-	char *p1b = ft_memchr(s1, 'b', 5);
-	char *p2a = memchr(s2, 'i', 13);
-	char *p2b = ft_memchr(s2, 'i', 13);
-	char *p3a = memchr(s3, 'f', 5);
-	char *p3b = ft_memchr(s3, 'f', 5);
-
-	printf("System: %p\n", p1a);
-	printf("My    : %p\n", p1b);
-	printf("\n");
-	printf("System: %p\n", p2a);
-	printf("My    : %p\n", p2b);
-	printf("\n");
-	printf("System: %p\n", p3a);
-	printf("My    : %p\n", p3b);
+	check_memchr("bonjour", 'b', 4);
+	check_memchr("bonjour", 'o', 7);
+	check_memchr("bonjourno", 'n', 2);
 
 	return(0);
 }

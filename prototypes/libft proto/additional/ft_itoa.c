@@ -1,44 +1,55 @@
 #include "libft.h"
 
-static int countdigit(int n);
+static int countchar(int n);
 
 char *ft_itoa(int n)
 {
 	int i;
 	int digit;
+	unsigned int num;
 	char *str;
 
-	i = countdigit(n);
+	i = countchar(n);
+	num = n;
+	if (n == 0)
+		i++;
 	str = (char *) malloc(sizeof(char) * i + 1);
 	if (n < 0)
 	{
 		str[0] = '-';
-		n = -n;
+		num = -num;
 	}
 	str[i--] = '\0';
-	while (n > 0)
+	if (num == 0)
+		str[0] = '0';
+	while (num > 0)
 	{
-		digit = n % 10;
-		n = n / 10;
+		digit = num % 10;
+		num = num / 10;
 		str[i--] = digit + '0';
 	}
 	return (str);
 }
 
-static int countdigit(int n)
+static int countchar(int n)
 {
 	int count;
+	unsigned int num;
 
 	count = 0;
+	num = n;
+
 	if (n < 0)
 	{
 		count++;
-		n = -(n);
+		num = -num;
 	}
-	while (n > 0)
+	while (num >= 0)
 	{
-		n = n / 10;
+		num = num / 10;
 		count++;
+		if (num == 0)
+			break;
 	}
 	return (count);
 }

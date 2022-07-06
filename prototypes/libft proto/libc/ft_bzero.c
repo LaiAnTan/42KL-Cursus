@@ -8,6 +8,10 @@ void ft_bzero(void *s, size_t n)
 	{
 		str[n] = '\0';
 		n--;
+		if (!n)
+		{
+			str[n] = '\0';
+			break;
+		}
 	}
-	str[n] = '\0';
 }

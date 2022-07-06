@@ -1,43 +1,50 @@
 #include "libft.h"
 
-static int check(char *big, char *little, int j);
+static int check(char *big, char *little, size_t j, size_t size);
 
 char *ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int j;
-	char *occ;
-	char *s1 = (char *) big;
-	char *s2 = (char *) little;
+	size_t j;
+	size_t size;
+	char *s1;
+	char *s2;
 
 	j = 0;
-	if (!ft_strlen(s2))
-		return (s1);
-	while ((len) && (s1[j] != '\0'))
+	size = len;
+	if (big && little && len)
 	{
-		if(s2[0] == s1[j])
+		s1 = (char *) big;
+		s2 = (char *) little;
+		if (!ft_strlen(s2))
+			return (s1);
+		while ((len) && (s1[j] != '\0'))
 		{
-			if (check(s2, s1, j))
+			if(s2[0] == s1[j])
 			{
-				occ = &s2[j];
-				return (occ);
+				if (check(s1, s2, j, size))
+					return (&s1[j]);
 			}
+			j++;
+			len--;
 		}
-		j++;
-		len--;
 	}
 	return (0);
 }
 
-int check(char *big, char *little, int j)
+int check(char *big, char *little, size_t j, size_t size)
 {
 	size_t i;
 
 	i = 0;
-	while ((big[j] != '\0') && (little[i] != '\0'))
+	while ((little[i] != '\0') && (j < size))
 	{
 		if(little[i] == big[j])
+		{
 			i++;
-		j++;
+			j++;
+		}
+		else
+			break;
 	}
 	if(i == ft_strlen(little))
 		return (1);

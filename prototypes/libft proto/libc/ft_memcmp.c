@@ -2,21 +2,22 @@
 
 int ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int i;
-	char *str1 = (char *) s1;
-	char *str2 = (char *) s2;
+	size_t i;
+	unsigned char *str1;
+	unsigned char *str2;
 
 	i = 0;
-	while (n)
+	if (s1 && s2 && n)
 	{
-		if (str1[i] > str2[i])
-			return (1);
-		else if (str1[i] < str2[i])
-			return(-1);
-		else
+		str1 = (char unsigned *) s1;
+		str2 = (char unsigned *) s2;
+		while (i < n)
 		{
+			if (str1[i] > str2[i])
+				return (1);
+			else if (str1[i] < str2[i])
+				return(-1);
 			i++;
-			n--;
 		}
 	}
 	return (0);

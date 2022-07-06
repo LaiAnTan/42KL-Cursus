@@ -1,7 +1,7 @@
 #include "libft.h"
 
 static int 		countwords(char const *s, char c);
-static int 		countletters(const char *s, char c, int start);
+static int 		countletters(const char *s, char c, size_t start);
 static char  	**memwords(const char *s, char c);
 static char 	**insertwords(char **strs, const char *s, char c, int nword);
 
@@ -41,11 +41,10 @@ static int countwords(char const *s, char c)
 			}
 		}
 	}
-	printf("no of words: %d\n", count);
 	return (count);
 }
 
-static int countletters(const char *s, char c, int start)
+static int countletters(const char *s, char c, size_t start)
 {
 	int count;
 
@@ -57,7 +56,6 @@ static int countletters(const char *s, char c, int start)
 		count++;
 		start++;
 	}
-	printf("no of letters: %d\n", count);
 	return (count);
 }
 
@@ -66,7 +64,7 @@ static char  **memwords(const char *s, char c)
 	int words;
 	int i;
 	int j;
-	int start;
+	size_t start;
 	char **strs;
 
 	words = countwords(s, c);
@@ -85,15 +83,14 @@ static char  **memwords(const char *s, char c)
 			return (0);
 		i++;
 	}
-	printf("mem allocated\n");
 	return (strs);
 }
 
 static char **insertwords(char **strs, const char *s, char c, int nword)
 {
 	int j;
-	int start;
-	int end;
+	size_t start;
+	size_t end;
 
 	j = 0;
 	start = 0;
@@ -101,19 +98,16 @@ static char **insertwords(char **strs, const char *s, char c, int nword)
 	{
 		while ((s[start] != '\0') || (s[end] != '\0'))
 		{
-			while (((s[start] == c) && (s[start + 1] == c)) 
+			while (((s[start] == c) && (s[start + 1] == c))
 						|| ((s[start] == c) && (s[start - 1] == c)) || (s[start] == c))
 			{
 				start++;
-				printf("start is now %d\n", start);
+				if ((s[start] == '\0'))
+					return (strs);
 			}
 			end = countletters(s, c, start) + start;
-			printf("wordlen: %d\n", countletters(s, c, start));
-			printf("end is now %d\n", end);
-			strs[j++] = ft_substr(s, start, end);
-			printf("substr\n");
+			strs[j++] = ft_substr(s, start, countletters(s, c, start));
 			start = end;
-			printf("start is now %d\n", start);
 		}
 	}
 	return (strs);

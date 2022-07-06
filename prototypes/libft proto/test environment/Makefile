@@ -4,7 +4,7 @@ compile :
 		gcc -Wall -Wextra -Werror *.c
 
 run :
-		.\a.exe
+		./a.out
 
 macclean :
 		-rm -f *.c
