@@ -1,73 +1,44 @@
 #include "libft.h"
 
-static int checkfront(const char *s, const char *set, size_t setlen);
-static int checkback(const char *s, const char *set, size_t slen, size_t setlen);
+static int charisvalid(char c, const char *set);
 
 char 	*ft_strtrim(char const *s1, char const *set)
 {
 	char *str;
-	int trimcnt;
-	size_t s1size;
-	size_t setsize;
+	size_t start;
+	size_t end;
+	size_t size;
 
-	trimcnt = 0;
-	s1size = ft_strlen(s1);
-	setsize = ft_strlen(set);
-	if (checkfront(s1, set, setsize))
+	start = -1;
+	size = ft_strlen(s1);
+	end = size;
+	if (!s1)
+		return (0);
+	if (!set)
+		return (ft_substr(s1, 0, size));
+	while (charisvalid(s1[++start], set))
+		size--;
+	if (start != end)
 	{
-		str = ft_substr(s1, setsize, s1size);
-		trimcnt = 1;
+		while(charisvalid(s1[--end], set))
+			size--;
+		str = ft_substr(s1, start, size);
 	}
-	if (checkback(s1, set, s1size, setsize))
-	{
-		trimcnt = 1;
-		str = ft_substr(str, 0, (s1size - setsize - setsize));
-	}
-	if (!trimcnt)
-		str = (char *) s1;
+	else
+		str = ft_substr("", 0, 0);
+	if (!str)
+		return (0);
 	return (str);
 	
 }
 
-static int checkfront(const char *s, const char *set, size_t setlen)
+static int charisvalid(char c, const char *set)
 {
 	int i;
 
-	i = 0;
-	while((setlen) && (set[i] != '\0'))
-	{
-		if (set[i] == s[i])
-		{
-			i++;
-			setlen--;
-		}
-		else
-			break;
-
-	}
-	if (!setlen)
-		return (1);
-	else	
-		return (0);
-}
-
-static int checkback(const char *s, const char *set, size_t slen, size_t setlen)
-{
-	size_t i;
-
-	i = slen - setlen;
-	while (slen > i)
-	{
-		if(s[slen] == set[setlen])
-		{
-			slen--;
-			setlen--;
-		}
-		else
-			break;
-	}
-	if (!setlen)
-		return (1);
-	else
-		return (0);
+	i = -1;
+	while (set[++i] != '\0')
+		if (set[i] == c)
+			return (1);
+	return (0);
 }
