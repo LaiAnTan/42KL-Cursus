@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/17 16:12:23 by tlai-an           #+#    #+#             */
+/*   Updated: 2022/07/17 16:31:55 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int charisvalid(char c, const char *set);
 
 char 	*ft_strtrim(char const *s1, char const *set)
 {
-	char *str;
-	int trimcnt;
-	size_t start;
-	size_t end;
-	size_t size;
+	char	*str;
+	int		trimcnt;
+	size_t	start;
+	size_t	end;
+	size_t	size;
 
 	trimcnt = 0;
 	start = -1;

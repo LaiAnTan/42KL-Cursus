@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/17 16:12:05 by tlai-an           #+#    #+#             */
+/*   Updated: 2022/07/17 16:31:30 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int check(char *big, char *little, size_t j, size_t size);
+static int	check(char *big, char *little, size_t j, size_t size);
 
-char *ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t j;
-	size_t size;
-	char *s1;
-	char *s2;
+	size_t	j;
+	size_t	size;
+	char	*s1;
+	char	*s2;
 
 	j = 0;
 	size = len;
@@ -19,7 +31,7 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 			return (s1);
 		while ((len) && (s1[j] != '\0'))
 		{
-			if(s2[0] == s1[j])
+			if (s2[0] == s1[j])
 			{
 				if (check(s1, s2, j, size))
 					return (&s1[j]);
@@ -31,22 +43,22 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 	return (0);
 }
 
-int check(char *big, char *little, size_t j, size_t size)
+int	check(char *big, char *little, size_t j, size_t size)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while ((little[i] != '\0') && (j < size))
 	{
-		if(little[i] == big[j])
+		if (little[i] == big[j])
 		{
 			i++;
 			j++;
 		}
 		else
-			break;
+			break ;
 	}
-	if(i == ft_strlen(little))
+	if (i == ft_strlen(little))
 		return (1);
 	else
 		return (0);

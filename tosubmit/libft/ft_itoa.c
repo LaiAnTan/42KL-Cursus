@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/17 16:13:45 by tlai-an           #+#    #+#             */
+/*   Updated: 2022/07/17 16:35:13 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int countchar(int n);
+static int	countchar(int n);
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	int i;
-	int digit;
-	unsigned int num;
-	char *str;
+	int				i;
+	int				digit;
+	unsigned int	num;
+	char			*str;
 
 	i = countchar(n);
 	num = n;
@@ -31,14 +43,13 @@ char *ft_itoa(int n)
 	return (str);
 }
 
-static int countchar(int n)
+static int	countchar(int n)
 {
-	int count;
-	unsigned int num;
+	int				count;
+	unsigned int	num;
 
 	count = 0;
 	num = n;
-
 	if (n < 0)
 	{
 		count++;
@@ -49,7 +60,7 @@ static int countchar(int n)
 		num = num / 10;
 		count++;
 		if (num == 0)
-			break;
+			break ;
 	}
 	return (count);
 }
