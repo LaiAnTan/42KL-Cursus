@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/17 16:14:23 by tlai-an           #+#    #+#             */
+/*   Updated: 2022/07/17 16:28:19 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int 		countwords(char const *s, char c);
@@ -16,8 +28,8 @@ static char	**ft_singlevalues(char const *s)
 
 char 	**ft_split(char const *s, char c)
 {
-	char **strs;
-	int words;
+	char	**strs;
+	int		words;
 
 	if (!s)
 		return (NULL);
@@ -30,10 +42,10 @@ char 	**ft_split(char const *s, char c)
 	return (strs);
 }
 
-static int countwords(char const *s, char c)
+static int	countwords(char const *s, char c)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	count = 0;
 	i = 0;
@@ -55,7 +67,14 @@ static int countwords(char const *s, char c)
 
 static int countletters(const char *s, char c, size_t start)
 {
+<<<<<<< HEAD
 	int count;
+=======
+	int	i;
+	int	j;
+	int	start;
+	int	let;
+>>>>>>> c146445c112bceebe15f9790bff01f311e5132b0
 
 	count = 0;
 	while (s[start] != '\0')
@@ -117,3 +136,26 @@ static char **insertwords(char **strs, const char *s, char c, int nword)
 	}
 	return (strs);
 }
+<<<<<<< HEAD
+=======
+
+static char **freemem(char **strs)
+{
+	int	i;
+
+	i = -1;
+	while (strs[++i])
+		free(strs[i]);
+	free(strs);
+	return (0);
+}
+
+static char		**single(void)
+{
+	char	**strs;
+
+	strs = (char **) malloc (sizeof(char *) * 1);
+	strs[0] = 0;
+	return (strs);
+}
+>>>>>>> c146445c112bceebe15f9790bff01f311e5132b0
