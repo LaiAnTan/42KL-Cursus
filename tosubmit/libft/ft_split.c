@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/07 16:32:32 by tlai-an           #+#    #+#             */
+/*   Updated: 2022/07/07 16:59:33 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static char 	**freemem(char **strs);
-static int 		countwords(char const *s, char c);
-static char 	**insertwords(char **strs, const char *s, char c, int nword);
+static char		**freemem(char **strs);
+static int		countwords(char const *s, char c);
+static char		**insertwords(char **strs, const char *s, char c, int nword);
 static char		**single(void);
 
-char 	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char **strs;
-	int words;
+	char	**strs;
+	int		words;
 
 	strs = 0;
 	if (!s)
@@ -25,10 +37,10 @@ char 	**ft_split(char const *s, char c)
 	return (strs);
 }
 
-static int countwords(char const *s, char c)
+static int	countwords(char const *s, char c)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	i = 0;
 	if (s[i] != c)
@@ -43,12 +55,12 @@ static int countwords(char const *s, char c)
 	return (count);
 }
 
-static char **insertwords(char **strs, const char *s, char c, int nword)
+static char	**insertwords(char **strs, const char *s, char c, int nword)
 {
-	int i;
-	int j;
-	int start;
-	int let;
+	int	i;
+	int	j;
+	int	start;
+	int	let;
 
 	i = -1;
 	j = 0;
@@ -72,9 +84,9 @@ static char **insertwords(char **strs, const char *s, char c, int nword)
 	return (strs);
 }
 
-static char **freemem(char **strs)
+static char	**freemem(char **strs)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (strs[++i])
@@ -83,9 +95,9 @@ static char **freemem(char **strs)
 	return (0);
 }
 
-static char		**single(void)
+static char	**single(void)
 {
-	char **strs;
+	char	**strs;
 
 	strs = (char **) malloc (sizeof(char *) * 1);
 	strs[0] = 0;

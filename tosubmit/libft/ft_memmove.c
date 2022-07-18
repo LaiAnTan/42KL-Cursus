@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/07 16:32:03 by tlai-an           #+#    #+#             */
+/*   Updated: 2022/07/07 16:55:27 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void *ft_memmove(void *d, const void *s, size_t n)
+void	*ft_memmove(void *d, const void *s, size_t n)
 {
-	char * src;
-	char * dest;
-	size_t i;
+	char	*src;
+	char	*dest;
+	size_t	i;
 
 	src = (char *) s;
 	dest = (char *) d;
