@@ -5,13 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
 /*   Created: 2022/07/07 16:33:13 by tlai-an           #+#    #+#             */
 /*   Updated: 2022/07/07 16:33:14 by tlai-an          ###   ########.fr       */
-=======
-/*   Created: 2022/07/17 16:14:50 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/17 16:31:02 by tlai-an          ###   ########.fr       */
->>>>>>> d78196510a6fbdf74318e16d89400981779984ba
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +14,9 @@
 
 int ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t			i;
-	unsigned char	*str1;
-	unsigned char	*str2;
+	size_t i;
+	unsigned char *str1;
+	unsigned char *str2;
 
 	i = 0;
 	if (s1 && s2 && n)

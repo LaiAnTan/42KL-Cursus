@@ -5,13 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
 /*   Created: 2022/07/07 16:33:03 by tlai-an           #+#    #+#             */
 /*   Updated: 2022/07/07 16:33:04 by tlai-an          ###   ########.fr       */
-=======
-/*   Created: 2022/07/17 16:14:43 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/17 16:30:32 by tlai-an          ###   ########.fr       */
->>>>>>> d78196510a6fbdf74318e16d89400981779984ba
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +14,10 @@
 
 size_t ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	n;
-	char *s;
+	size_t n;
+	char *s = (char *) src;
 
 	n = 0;
-	s = (char *) src;
 	if (size)
 	{
 		while((s[n] != '\0') && (n < size - 1))
