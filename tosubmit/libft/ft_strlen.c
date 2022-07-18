@@ -5,16 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2022/07/07 16:33:06 by tlai-an           #+#    #+#             */
 /*   Updated: 2022/07/07 16:33:07 by tlai-an          ###   ########.fr       */
+=======
+/*   Created: 2022/07/17 16:14:45 by tlai-an           #+#    #+#             */
+/*   Updated: 2022/07/17 16:30:40 by tlai-an          ###   ########.fr       */
+>>>>>>> d78196510a6fbdf74318e16d89400981779984ba
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] != '\0')
