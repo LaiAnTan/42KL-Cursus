@@ -6,21 +6,21 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:33:25 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/07 16:33:26 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/19 15:06:57 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int charisvalid(char c, const char *set);
+static int	charisvalid(char c, const char *set);
 
-char 	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char *str;
-	int trimcnt;
-	size_t start;
-	size_t end;
-	size_t size;
+	char	*str;
+	int		trimcnt;
+	size_t	start;
+	size_t	end;
+	size_t	size;
 
 	trimcnt = 0;
 	start = -1;
@@ -34,7 +34,7 @@ char 	*ft_strtrim(char const *s1, char const *set)
 		size--;
 	if (start != end)
 	{
-		while(charisvalid(s1[--end], set))
+		while (charisvalid(s1[--end], set))
 			size--;
 		str = ft_substr(s1, start, size);
 	}
@@ -43,12 +43,11 @@ char 	*ft_strtrim(char const *s1, char const *set)
 	if (!str)
 		return (0);
 	return (str);
-	
 }
 
-static int charisvalid(char c, const char *set)
+static int	charisvalid(char c, const char *set)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (set[++i] != '\0')

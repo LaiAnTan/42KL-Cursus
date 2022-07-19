@@ -6,17 +6,17 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:33:13 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/07 16:33:14 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/19 15:03:04 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t i;
-	unsigned char *str1;
-	unsigned char *str2;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
 	i = 0;
 	if (s1 && s2 && n)
@@ -28,10 +28,9 @@ int ft_strncmp(const char *s1, const char *s2, size_t n)
 			if (str1[i] > str2[i])
 				return (1);
 			else if (str1[i] < str2[i])
-				return(-1);
+				return (-1);
 			else
 				i++;
-
 		}
 	}
 	return (0);

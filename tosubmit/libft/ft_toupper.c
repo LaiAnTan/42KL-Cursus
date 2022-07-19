@@ -6,16 +6,16 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:33:40 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/07 16:33:41 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/19 15:12:10 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_toupper(int a)
+int	ft_toupper(int a)
 {
 	if ((a >= 97) && (a <= 122))
-		return(a - 32);
+		return (a - 32);
 	else
-		return(a);
+		return (a);
 }
