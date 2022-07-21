@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:31:10 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/07 16:39:53 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/21 16:29:49 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 void	ft_bzero(void *s, size_t n)
 {
 	char	*str;
+	size_t i;
 
 	str = (char *) s;
-	while (n)
+	i = 0;
+	while (i < n)
 	{
-		str[n] = '\0';
-		n--;
-		if (!n)
-		{
-			str[n] = '\0';
-			break ;
-		}
+		str[i] = '\0';
+		i++;
 	}
 }
