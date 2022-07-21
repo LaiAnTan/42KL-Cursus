@@ -23,12 +23,12 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	j = 0;
 	size = len;
+	if (!little)
+		return (big);
 	if (big && little && len)
 	{
 		s1 = (char *) big;
 		s2 = (char *) little;
-		if (!ft_strlen(s2))
-			return (s1);
 		while ((len) && (s1[j] != '\0'))
 		{
 			if (s2[0] == s1[j])
@@ -36,6 +36,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 				if (check(s1, s2, j, size))
 					return (&s1[j]);
 			}
+			else if (s1[j] == '\0')
+				return (0);
 			j++;
 			len--;
 		}
