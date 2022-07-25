@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:31:10 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/21 16:29:49 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/22 10:20:00 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_bzero(void *s, size_t n)
 {
 	char	*str;
-	size_t i;
+	size_t	i;
 
 	str = (char *) s;
 	i = 0;

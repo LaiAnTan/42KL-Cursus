@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:33:09 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/19 15:02:42 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/22 10:26:41 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int				len;
 	char			*str;
 
+	if (!s)
+		return (0);
 	i = 0;
 	len = ft_strlen(s);
 	str = (char *) malloc(sizeof(char) * len + 1);

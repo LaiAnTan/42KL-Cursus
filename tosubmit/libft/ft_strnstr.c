@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:33:16 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/19 15:03:40 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/22 14:22:15 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,21 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	j = 0;
 	size = len;
-	if (!little)
-		return (big);
-	if (big && little && len)
+	s1 = (char *) big;
+	s2 = (char *) little;
+	if (little[j] == '\0')
+		return (s1);
+	if (big[j] == '\0')
+		return (NULL);
+	while ((len) && (s1[j] != '\0'))
 	{
-		s1 = (char *) big;
-		s2 = (char *) little;
-		while ((len) && (s1[j] != '\0'))
-		{
-			if (s2[0] == s1[j])
-			{
-				if (check(s1, s2, j, size))
-					return (&s1[j]);
-			}
-			else if (s1[j] == '\0')
-				return (0);
-			j++;
-			len--;
-		}
+		if (s2[0] == s1[j])
+			if (check(s1, s2, j, size))
+				return (&s1[j]);
+		if (s1[j] == '\0')
+			return (0);
+		j++;
+		len--;
 	}
 	return (0);
 }

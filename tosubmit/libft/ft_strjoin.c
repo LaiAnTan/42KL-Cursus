@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:32:54 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/19 14:56:26 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/22 14:44:17 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!str)
 		return (0);
 	ft_strlcat(str, s1, (size1 + 1));
-	ft_strlcat(str, s2, (sizetotal + 1));
+	ft_strlcat(str, s2, (sizetotal + 2));
 	str[sizetotal] = '\0';
 	return (str);
 }

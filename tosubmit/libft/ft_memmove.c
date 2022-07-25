@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:32:03 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/07 16:55:27 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/22 14:59:19 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memmove(void *d, const void *s, size_t n)
 	src = (char *) s;
 	dest = (char *) d;
 	i = 0;
-	if ((!d && !s) || !n)
+	if (!d && !s)
 		return (0);
 	if (dest > src)
 	{

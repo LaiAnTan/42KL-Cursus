@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:31:56 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/07 16:53:05 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/22 14:39:04 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,15 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char	*str1;
 	unsigned char	*str2;
 
-	i = 0;
-	if (s1 && s2 && n)
+	if (n)
 	{
+		i = 0;
 		str1 = (char unsigned *) s1;
 		str2 = (char unsigned *) s2;
 		while (i < n)
 		{
-			if (str1[i] > str2[i])
-				return (1);
-			else if (str1[i] < str2[i])
-				return (-1);
+			if (str1[i] != str2[i])
+				return (str1[i] - str2[i]);
 			i++;
 		}
 	}
