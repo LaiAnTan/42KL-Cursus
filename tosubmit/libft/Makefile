@@ -6,7 +6,7 @@
 #    By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 16:33:49 by tlai-an           #+#    #+#              #
-#    Updated: 2022/07/21 15:59:22 by tlai-an          ###   ########.fr        #
+#    Updated: 2022/07/30 18:23:36 by tlai-an          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,3 +72,7 @@ fclean : clean
 		rm -f $(NAME)
 
 re : fclean all
+
+git :
+	git commit -am "e"
+	git push

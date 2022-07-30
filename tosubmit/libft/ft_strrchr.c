@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:33:20 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/19 15:06:33 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/30 18:16:50 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strrchr(const char *s, int c)
 		return (0);
 	while (n >= 0)
 	{
-		if (str[n] == c)
+		if (str[n] == (unsigned char) c)
 			return (&str[n]);
 		n--;
 	}

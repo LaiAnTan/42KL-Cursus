@@ -6,41 +6,39 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:31:49 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/07 16:50:44 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/30 17:51:14 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 static int	countchar(int n);
 
 char	*ft_itoa(int n)
 {
-	int				i;
 	int				digit;
+	int				i;
 	unsigned int	num;
 	char			*str;
 
-	i = countchar(n);
-	num = n;
-	if (n == 0)
-		i++;
-	str = (char *) malloc(sizeof(char) * i + 1);
+	digit = countchar(n);
+	i = -1;
+	str = (char *) malloc((digit + 1) * sizeof(char));
 	if (!str)
 		return (0);
+	str[digit] = '\0';
+	num = n;
 	if (n < 0)
 	{
 		str[0] = '-';
-		num = -num;
+		num *= -1;
+		i = 0;
 	}
-	str[i--] = '\0';
-	if (num == 0)
-		str[0] = '0';
-	while (num > 0)
+	while (--digit != i)
 	{
-		digit = num % 10;
-		num = num / 10;
-		str[i--] = digit + '0';
+		str[digit] = (char)((num % 10) + '0');
+		num /= 10;
 	}
 	return (str);
 }

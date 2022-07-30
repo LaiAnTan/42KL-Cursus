@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:31:04 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/22 16:10:31 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/07/30 16:43:03 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,18 @@ int	ft_atoi(const char *s)
 	int		sign;
 	long	rtval;
 	char	*str;
-	
+
 	sign = 1;
 	rtval = 0;
 	str = (char *) s;
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
 		++str;
-	if (*str == '-')
+	if (*str == '-' || *str == '+')
 	{
+		if (*str == '-')
+			sign *= -1;
 		++str;
-		sign *= -1;
 	}
-	else if (*str == '+')
-		++str;
 	while (*str >= '0' && *str <= '9')
 	{
 		if (rtval >= 214748364 && *str > '7' && sign == 1)
@@ -39,5 +38,5 @@ int	ft_atoi(const char *s)
 		rtval = (rtval * 10) + (*str - '0');
 		str++;
 	}
-	return ((int)(rtval) * sign);
+	return ((int)(rtval * sign));
 }
