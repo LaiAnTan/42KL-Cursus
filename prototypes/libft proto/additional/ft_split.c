@@ -1,33 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/22 14:00:30 by tlai-an           #+#    #+#             */
+/*   Updated: 2022/07/30 19:19:54 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int 		countwords(char const *s, char c);
-static int 		countletters(const char *s, char c, size_t start);
-static char		**singlevalues(void);
-static char 	**insertwords(char **strs, const char *s, char c, int nword);
+static int	countwords(char const *s, char c);
+static int	countletters(const char *s, char c, size_t start);
+static char	**insertwords(char **strs, const char *s, char c, int wordcount);
 
-
-char 	**ft_split(char const *s, char c)
+static char	**ft_singlevalues(void)
 {
-	char **strs;
-	int words;
+	char	**splitted;
+
+	splitted = (char **) malloc (sizeof(char *));
+	splitted[0] = 0;
+	return (splitted);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**strs;
+	int		words;
 
 	if (!s)
 		return (NULL);
 	if (s[0] == '\0')
-		return (singlevalues());
+		return (ft_singlevalues());
 	words = countwords(s, c);
-	strs = (char **) malloc(sizeof(char *) * (words + 1));
+	strs = (char **) ft_calloc((words + 1), sizeof(char *));
 	if (strs == 0)
 		return (0);
 	insertwords(strs, s, c, words);
-	strs[words] = 0;
 	return (strs);
 }
 
-static int countwords(char const *s, char c)
+static int	countwords(char const *s, char c)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	count = 0;
 	i = 0;
@@ -41,55 +59,46 @@ static int countwords(char const *s, char c)
 			if (s[i] == c)
 				count++;
 			else if (s[i] == '\0' && ++count)
-				break;
+				break ;
 		}
 	}
 	return (count);
 }
 
-static int countletters(const char *s, char c, size_t start)
+static int	countletters(const char *s, char c, size_t start)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (s[start] != '\0')
 	{
 		if (s[start] == c)
-			break;
+			break ;
 		count++;
 		start++;
 	}
 	return (count);
 }
 
-static char	**singlevalues(void)
+static char	**insertwords(char **strs, const char *s, char c, int wordcount)
 {
-	char	**strs;
-
-	strs = (char **) malloc (1 * sizeof(char *));
-	strs[0] = 0;
-	return (strs);
-}
-
-static char **insertwords(char **strs, const char *s, char c, int nword)
-{
-	int j;
-	size_t start;
-	size_t end;
+	int		j;
+	size_t	start;
 
 	j = 0;
 	start = 0;
-	while ((s[start] != '\0') || (s[end] != '\0'))
+	while (j < wordcount)
 	{
-		while (((s[start] == c) && (s[start + 1] == c)) || ((s[start] == c) && (s[start - 1] == c)) || (s[start] == c))
+		while (((s[start] == c) && (s[start + 1] == c))
+			|| ((s[start] == c) && (s[start - 1] == c)) || (s[start] == c))
 		{
 			start++;
 			if ((s[start] == '\0'))
 				return (strs);
 		}
-		end = countletters(s, c, start) + start;
-		strs[j++] = ft_substr(s, start, countletters(s, c, start));
-		start = end;
+		strs[j] = ft_substr(s, start, countletters(s, c, start));
+		j++;
+		start += countletters(s, c, start);
 	}
 	return (strs);
 }
