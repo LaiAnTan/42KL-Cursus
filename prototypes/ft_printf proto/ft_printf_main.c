@@ -52,36 +52,7 @@ static char *ft_something(char *str, int index)
 	return (ret);
 }
 
-void ft_printchr(char c)
-{
-	write(1, &c, 1);
-}
-void ft_printstr(char *s)
-{
-	int i;
 
-	i = 0;
-	while(s[i] != '\0')
-	{
-		ft_printchr(s[i]);
-		i++;
-	}
-}
-
-void ft_printptr(uintptr_t n)
-{
-	char *b16 = "0123456789abcdef";
-	if (n >= 16)
-		ft_printptr(n / 16);
-	ft_printchar(b16[n % 16]);
-}
-
-// ft_printdec
-// ft_printint
-// ft_printundec
-// ft_printhexlow
-// ft_printhexup
-// ft_printpercent
 
 
 //save flags in struct???
