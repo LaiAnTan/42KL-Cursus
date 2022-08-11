@@ -1,7 +1,7 @@
 all : compile run
 
 compile :
-		gcc -Wall -Wextra -Werror *.c
+		gcc *.c
 
 run :
 		.\a.exe

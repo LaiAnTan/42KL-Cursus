@@ -1,10 +1,12 @@
 #include "ft_printf.h"
 
-void	ft_printchr(char c)
+int	ft_printchr(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
-void	ft_printstr(char *s)
+
+size_t ft_printstr(char *s)
 {
 	int i;
 
@@ -14,6 +16,7 @@ void	ft_printstr(char *s)
 		ft_printchr(s[i]);
 		i++;
 	}
+	return (ft_strlen(s));
 }
 
 void	ft_printptr(uintptr_t n)
@@ -22,28 +25,5 @@ void	ft_printptr(uintptr_t n)
 	if (n >= 16)
 		ft_printptr(n / 16);
 	ft_printchr(b16[n % 16]);
-}
-
-void	ft_printdec(int n)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	str = ft_itoa(n);
-	while (str[i] != '\0')
-		write(1, &str[i], 1);
-	free(str);
-}
-void	ft_printint(int n)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	str = ft_itoa(n);
-	while (str[i] != '\0')
-		write(1, &str[i], 1);
-	free(str);
 }
 

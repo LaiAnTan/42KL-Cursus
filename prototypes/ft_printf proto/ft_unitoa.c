@@ -44,7 +44,7 @@ static int	countchar(unsigned int n)
 
 	count = 0;
 	num = n;
-	while (num >= 0)
+	while (num)
 	{
 		num = num / 10;
 		count++;

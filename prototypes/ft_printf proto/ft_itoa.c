@@ -55,7 +55,7 @@ static int	countchar(int n)
 		count++;
 		num = -num;
 	}
-	while (num >= 0)
+	while (num)
 	{
 		num = num / 10;
 		count++;

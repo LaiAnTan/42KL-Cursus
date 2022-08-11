@@ -34,6 +34,6 @@ int	main(void)
 	printf("% +d\n", n); // shows the sign
 	printf("%+ d\n", n); // + sign overrides space if both used
 
-	// undefined behaviour: "#+" "# "  
+	// undefined behaviour: "#+" "# "
 	return (0);
 }
