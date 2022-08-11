@@ -1,25 +1,24 @@
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int ft_printf(const char *format, ...)
 {
 	va_list	arglist;
 	int		i;
+	int		check;
 	int		pcount;
-	char	*s;
-	char	*val; // 0 - how many characters printed; 1 - how long the format specifier is
 
 	i = -1;
 	pcount = 0;
-	s = (char *) format;
+	va_start(arglist, format);
 	while(s[++i] != '\0')
 	{
 		if(s[i] == '%')
 		{
-			ft_foundpercent(s, i + 1);
+			check = ft_foundpercent(s, i, arglist);
 		}
 		else
 		{
-			ft_putchar(s[i]);
+			ft_printchr(s[i]);
 			++pcount;
 		}
 	}
@@ -31,9 +30,14 @@ int ft_printf(const char *format, ...)
 //	flags: +, ,#
 //	conversion specifiers: c,s,p,d,i,u,x,X,%
 
-static ft_foundpercent(char *s, int n)
+static ft_foundpercent(char *s, int n, va_list args)
 {
+	t_flags *flag;
 
+
+	flag = ft_genflag();
+
+	free(flag);
 }
 
 
