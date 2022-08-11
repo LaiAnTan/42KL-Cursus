@@ -15,9 +15,7 @@ int ft_printf(const char *format, ...)
 	{
 		if(s[i] == '%')
 		{
-			val = ft_something(s, i + 1);
-			pcount =  val[0];
-			i += val[1];
+			ft_foundpercent(s, i + 1);
 		}
 		else
 		{
@@ -33,23 +31,9 @@ int ft_printf(const char *format, ...)
 //	flags: +, ,#
 //	conversion specifiers: c,s,p,d,i,u,x,X,%
 
-static char *ft_something(char *str, int index)
+static ft_foundpercent(char *s, int n)
 {
-	int ret[2];
-	int	fcount;
-	int	pcount;
 
-	fcount = 0;
-	if (str[index])
-	{
-		while (str[index])
-		{
-
-		}
-	}
-	ret[0] = pcount;
-	ret[1] = fcount;
-	return (ret);
 }
 
 

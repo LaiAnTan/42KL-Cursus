@@ -5,12 +5,13 @@ int	main(void)
 {
 	int n = 15;
 	char a = 'e';
-	uint32_t s = &a;
+	//%% test
+	printf("%%\n");
+
 	//p test
 	printf("%p\n", (n));
 	printf("%p\n", (&n));
 	printf("%p\n", (&a));
-	
 	printf("\n");
 
 	//test if specifier is valid
