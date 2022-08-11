@@ -10,7 +10,7 @@ int ft_printf(const char *format, ...)
 	i = -1;
 	pcount = 0;
 	va_start(arglist, format);
-	while(s[++i] != '\0')
+	while(format[++i] != '\0')
 	{
 		if(s[i] == '%')
 		{
