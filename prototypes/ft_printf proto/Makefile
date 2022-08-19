@@ -4,7 +4,7 @@ compile :
 		gcc *.c
 
 run :
-		./a.out
+		./a.exe
 
 macclean :
 		-rm -f *.c
