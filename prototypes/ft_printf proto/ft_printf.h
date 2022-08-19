@@ -19,8 +19,14 @@ typedef struct s_flags
 	char			type;
 }					t_flags;
 
+
+//format struct functions
 t_flags	*ft_genflag(void);
 void	ft_resetflag(t_flags *flag);
+
+int ft_assignformat(t_flags *flag, char *str, int index, va_list args);
+
+int	ft_mainhandler(t_flags *flag, char *str, int index, va_list args);
 
 //print functions
 int		ft_printchr(char c);
