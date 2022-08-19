@@ -45,3 +45,13 @@ int	ft_inthandler(t_flags *flag, va_list args)
 	ft_printint(i);
 	return (rtv);
 }
+
+// void	ft_printflags(flag)
+// {
+// 	if(flag -> signflag == 1)
+// 	{
+// 		if(flag -> type == )
+// 	}
+// 	if(flag -> hashflag == 1)
+// 	if(flag -> spaceflag == 1)
+// }

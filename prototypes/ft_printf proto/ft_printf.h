@@ -15,7 +15,7 @@ typedef struct s_flags
 	int				signflag;
 	int				hashflag;
 	int				spaceflag;
-	char			type;
+	int				type;
 }					t_flags;
 
 //format struct functions
