@@ -2,6 +2,7 @@
 
 int main(void)
 {
-	ft_printf("testing testing");
+	char c = 'a';
+	int i = ft_printf("% c\n", c);
 	return (0);
 }

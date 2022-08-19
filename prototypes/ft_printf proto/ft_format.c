@@ -1,5 +1,9 @@
 #include "ft_printf.h"
 
+static int ft_validflag(char *str, int n);
+static int ft_assignflag(t_flags *flag, char *str, int n);
+static int ft_assigntype(t_flags *flag, char c);
+
 int ft_assignformat(t_flags *flag, char *str, int index, va_list args) // index = pos of %
 {
 	int	i;
@@ -10,7 +14,7 @@ int ft_assignformat(t_flags *flag, char *str, int index, va_list args) // index 
 		while (str[i] == ' ' || str[i] == '+' || str[i] == '#')
 		{
 			if (ft_assigntype(flag, str[i]))
-				return (ft_mainhandler(flag, str, index, args));
+				return (ft_mainhandler(flag, args));
 			i++;
 		}
 	}
@@ -27,7 +31,10 @@ static int ft_validflag(char *str, int n) // n = pos of char after %
 	while ((str[n] == '#') || (str[n] == '+') || (str[n] == ' '))
 	{
 		if (str[n] == '#')
+		{
 			hash++;
+			n++;
+		}
 		while (str[n] == '+' || str[n] == ' ')
 		{
 			if (str[n] == '+' && !hash)
@@ -44,8 +51,10 @@ static int ft_validflag(char *str, int n) // n = pos of char after %
 
 static int ft_assignflag(t_flags *flag, char *str, int n) //n = pos of char after %
 {
+	printf("assigning flag\n");
 	if(ft_validflag(str, n))
 	{
+		printf("flag valid\n");
 		if(str[n] == '#')
 		{
 			flag -> hashflag = 1;
@@ -65,12 +74,17 @@ static int ft_assignflag(t_flags *flag, char *str, int n) //n = pos of char afte
 		}
 	}
 	else
+	{
+		printf("invalid flag\n");
+		ft_resetflag(flag);
 		return (0);
+	}
 	return (1);
 }
 
 static int ft_assigntype(t_flags *flag, char c)
 {
+	printf("assigning type\n");
 	int	i;
 
 	i = 1;

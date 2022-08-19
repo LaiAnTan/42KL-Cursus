@@ -11,8 +11,19 @@ t_flags	*ft_genflag(void)
 
 void	ft_resetflag(t_flags *flag)
 {
-	flag -> type = '\0';
+	flag -> type = 0;
 	flag -> signflag = 0;
 	flag -> spaceflag = 0;
 	flag -> hashflag = 0;
+}
+
+
+int	ft_countflag(char *str, int i) //i = pos of char after %
+{
+	int	n;
+
+	n = i;
+	while ((str[n] == '#') || (str[n] == '+') || (str[n] == ' '))
+		n++;
+	return (n - i);
 }

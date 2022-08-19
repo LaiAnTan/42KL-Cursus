@@ -4,7 +4,7 @@ compile :
 		gcc *.c
 
 run :
-		.\a.exe
+		./a.out
 
 macclean :
 		-rm -f *.c
@@ -13,3 +13,6 @@ macclean :
 winclean :
 		-del -f *.c
 		-del -f *.exe
+	
+norm	:
+		norminette *.c

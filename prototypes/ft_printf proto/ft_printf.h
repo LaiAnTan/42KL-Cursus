@@ -4,8 +4,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-
+#include <stdio.h>
 
 //main
 int		ft_printf(const char *format, ...);
@@ -19,20 +18,21 @@ typedef struct s_flags
 	char			type;
 }					t_flags;
 
-
 //format struct functions
 t_flags	*ft_genflag(void);
 void	ft_resetflag(t_flags *flag);
+int		ft_countflag(char *str, int i);
 
-int ft_assignformat(t_flags *flag, char *str, int index, va_list args);
+int		ft_assignformat(t_flags *flag, char *str, int index, va_list args);
 
-int	ft_mainhandler(t_flags *flag, char *str, int index, va_list args);
+//handler functions
+int	ft_mainhandler(t_flags *flag, va_list args);
+int	ft_charhandler(t_flags *flag, va_list args);
 
 //print functions
 int		ft_printchr(char c);
 size_t	ft_printstr(char *s);
 void	ft_printptr(uintptr_t n);
-void	ft_printdec(int n);
 void	ft_printint(int n);
 void	ft_printundec(unsigned int n);
 void	ft_printhex(int n, char *b16);
