@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	ft_printint(int n)
+int	ft_printint(int n)
 {
 	int		i;
 	char	*str;
@@ -8,13 +8,17 @@ void	ft_printint(int n)
 	i = 0;
 	str = ft_itoa(n);
 	while (str[i] != '\0')
+	{
 		write(1, &str[i], 1);
+		i++;
+	}
 	free(str);
+	return (i);
 }
 
 //dec same as int
 
-void	ft_printundec(unsigned int n)
+int	ft_printundec(unsigned int n)
 {
 	int		i;
 	char	*str;
@@ -22,8 +26,12 @@ void	ft_printundec(unsigned int n)
 	i = 0;
 	str = ft_unitoa(n);
 	while (str[i] != '\0')
+	{
 		write(1, &str[i], 1);
+		i++;
+	}
 	free(str);
+	return (i);
 }
 
 void	ft_printhex(int n, char* b16)

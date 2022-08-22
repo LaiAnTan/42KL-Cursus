@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	char c = 'a';
+	char c = 'b';
 	// int i = ft_printf("% c\n", c);
 	return (0);
 }
