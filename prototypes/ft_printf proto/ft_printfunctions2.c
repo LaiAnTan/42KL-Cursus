@@ -34,3 +34,32 @@ void	ft_printhex(int n, char* b16)
 }
 
 // char *b16 = "0123456789abcdef" or "0123456789ABCDEF"
+
+int	ft_printflags(t_flags *flag)
+{
+	int	i;
+
+	i = 1;
+	if (flag -> spaceflag == 1)
+		write(1, " ", 1);
+	if (flag -> hashflag)
+		i = 2;
+	if (flag -> hashflag == 1 && type == 7)
+		write(1, "0x", 2);
+	else if (flag -> hashflag == 1 && type == 8)
+		write(1, "0X", 2);
+	return (i);
+}
+
+int	ft_printsignflag(t_flags *flag, int num)
+{
+	if (flag -> signflag == 1)
+	{
+		if (num >= 0)
+		{
+			write(1, "+", 1);
+			return (1);
+		}
+	}
+	return (0);
+}

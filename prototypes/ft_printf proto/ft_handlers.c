@@ -7,6 +7,7 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 	printedcount = 0;
 	if (flag -> type == 1)
 		printedcount = ft_charhandler(flag, args);
+	
 	return (printedcount);
 }
 
@@ -19,45 +20,30 @@ int	ft_charhandler(t_flags *flag, va_list args)
 	return (rtv);
 }
 
-int	ft_inthandler(t_flags *flag, va_list args)
+int ft_strhandler(t_flags *flag, va_list args)
 {
-	int		rtv;
-	int		i;
+	int	rtv;
 
-	rtv = 0;
-	i = va_arg(args, int);
-	if (flag -> signflag == 1)
-	{
-		if (i > 0)
-		write(1, " ", 1);
-		rtv++;
-	}
-	if (flag -> spaceflag == 1)
-	{
-		write(1, " ", 1);
-		rtv++;
-	}
-	ft_printint(i);
+	rtv = ft_printstr((char *) va_arg(args, char *));
 	return (rtv);
 }
 
-void	ft_printflags(t_flags *flag)
+int	ft_inthandler(t_flags *flag, va_list args)
 {
-	if (flag -> spaceflag == 1)
-		write(1, " ", 1);
-	if (flag -> hashflag == 1 && type == 7)
-		write(1, "0x", 2);
-	if (flag -> hashflag == 1 && type == 8)
-		write(1, "0X", 2);
+	int		rtv;
+
+	rtv = ft_printint((int) va_arg(args, int));
+	return (rtv);
 }
 
-void	ft_printsignflag(t_flags *flag, int num)
+int	ft_ptrhandler(t_flags *flag, va_list args)
 {
-	if (flag -> signflag == 1)
-	{
-		if (num >= 0)
-			write(1, "+", 1);
-	}
+	int	rtv;
+	int	i;
+
+	rtv = 0;
+
+	ft_printptr(uintptr_t n);
 }
 
 
