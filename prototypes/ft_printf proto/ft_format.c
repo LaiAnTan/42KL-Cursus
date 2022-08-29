@@ -14,7 +14,10 @@ int ft_assignformat(t_flags *flag, char *str, int index, va_list args) // index 
 		while (str[i] == ' ' || str[i] == '+' || str[i] == '#')
 		{
 			if (ft_assigntype(flag, str[i]))
-				return (ft_mainhandler(flag, args));
+			{
+				ft_mainhandler(flag, args);
+				return (i);
+			}
 			i++;
 		}
 	}
