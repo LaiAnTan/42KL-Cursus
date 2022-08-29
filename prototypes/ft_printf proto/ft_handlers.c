@@ -13,9 +13,11 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 		printedcount = ft_ptrhandler(flag, args);
 	else if (flag -> type == 4 || flag -> type == 5)
 		printedcount = ft_inthandler(flag, args);
-	else if (flag -> type == 6 || flag -> type == 7)
+	else if (flag -> type == 6)
+		printedcount = ft_undechandler(flag, args);
+	else if (flag -> type == 7 || flag -> type == 8)
 		printedcount = ft_hexhandler(flag, args);
-	else if (flag -> type == 8)
+	else if (flag -> type == 9)
 		printedcount = ft_percenthandler(flag, args);
 	return (printedcount);
 }
@@ -49,7 +51,7 @@ int	ft_ptrhandler(t_flags *flag, va_list args)
 {
 	int	rtv;
 
-	ft_printptr((uintptr_t) va_arg(args, uintptr_t));
+	rtv = ft_printptr(0, (uintptr_t) va_arg(args, uintptr_t), "0123456789abcdef");
 	return (rtv);
 }
 
@@ -66,18 +68,13 @@ int ft_hexhandler(t_flags *flag, va_list args)
 	int	rtv;
 
 	if (flag -> type == 7)
-		rtv = ft_printhex((int) va_arg(args, int), "0123456789abcdef");
-	if (flag -> type == 8)
-		rtv = ft_printhex((int) va_arg(args, int), "0123456789ABCDEF");
-	
+		rtv = ft_printhex(0, (int) va_arg(args, int), "0123456789abcdef");
+	else if (flag -> type == 8)
+		rtv = ft_printhex(0, (int) va_arg(args, int), "0123456789ABCDEF");
+	return (rtv);
 }
 
 int	ft_percenthandler(t_flags *flag, va_list args)
 {
-
+	return (ft_printchr('%'));
 }
-
-
-//to do
-// find a way to count length of ptr and hexa printed
-// test whole thing and fix bugs

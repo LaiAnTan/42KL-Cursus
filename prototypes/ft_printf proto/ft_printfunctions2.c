@@ -34,11 +34,12 @@ int	ft_printundec(unsigned int n)
 	return (i);
 }
 
-void	ft_printhex(int n, char* b16)
+int	ft_printhex(int count, int n, char* b16)
 {
 	if (n >= 16)
-		ft_printhex(n / 16, b16);
+		ft_printhex(count + 1, n / 16, b16);
 	ft_printchr(b16[n % 16]);
+	return (count + 1);
 }
 
 // char *b16 = "0123456789abcdef" or "0123456789ABCDEF"
@@ -52,9 +53,9 @@ int	ft_printflags(t_flags *flag)
 		write(1, " ", 1);
 	if (flag -> hashflag)
 		i = 2;
-	if (flag -> hashflag == 1 && type == 7)
+	if (flag -> hashflag == 1 && flag -> type == 7)
 		write(1, "0x", 2);
-	else if (flag -> hashflag == 1 && type == 8)
+	else if (flag -> hashflag == 1 && flag -> type == 8)
 		write(1, "0X", 2);
 	return (i);
 }

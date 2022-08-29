@@ -29,6 +29,8 @@ int	ft_mainhandler(t_flags *flag, va_list args);
 int	ft_charhandler(t_flags *flag, va_list args);
 int	ft_strhandler(t_flags *flag, va_list args);
 int	ft_ptrhandler(t_flags *flag, va_list args);
+int	ft_inthandler(t_flags *flag, va_list args);
+int	ft_undechandler(t_flags *flag, va_list args);
 int	ft_hexhandler(t_flags *flag, va_list args);
 int	ft_percenthandler(t_flags *flag, va_list args);
 
@@ -39,9 +41,8 @@ int	ft_printchr(char c);
 int	ft_printint(int n);
 int	ft_printundec(unsigned int n);
 size_t	ft_printstr(char *s);
-void	ft_printptr(uintptr_t n);
-void	ft_printhex(int n, char *b16);
-void	ft_printpercent(void);
+int	ft_printptr(int count, uintptr_t n, char *b16);
+int	ft_printhex(int count, int n, char *b16);
 
 //misc functions
 char	*ft_itoa(int n);
