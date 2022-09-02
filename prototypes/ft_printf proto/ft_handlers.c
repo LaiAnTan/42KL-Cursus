@@ -5,6 +5,7 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 	int	printedcount;
 
 	printedcount = 0;
+	ft_printflags(flag);
 	if (flag -> type == 1)
 		printedcount = ft_charhandler(flag, args);
 	else if (flag -> type == 2)

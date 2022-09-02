@@ -18,12 +18,12 @@ void	ft_resetflag(t_flags *flag)
 }
 
 
-int	ft_countflag(char *str, int i) //i = pos of char after %
+int	ft_countflag(char *str, int i) //i = pos of %
 {
 	int	n;
 
 	n = i;
-	while ((str[n] == '#') || (str[n] == '+') || (str[n] == ' '))
+	while ((str[n] == '%') || (str[n] == '#') || (str[n] == '+') || (str[n] == ' '))
 		n++;
 	return (n - i);
 }

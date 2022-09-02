@@ -8,15 +8,14 @@ int ft_assignformat(t_flags *flag, char *str, int index, va_list args) // index 
 {
 	int	i;
 
-	i = index + 1;
+	i = index;
 	if (ft_assignflag(flag, str, i))
 	{
-		while (str[i] == ' ' || str[i] == '+' || str[i] == '#')
+		while (str[i] == ' ' || str[i] == '+' || str[i] == '#' || str[i] == '%')
 		{
-			if (ft_assigntype(flag, str[i]))
+			if (ft_assigntype(flag, str[i + 1]) != 0)
 			{
-				ft_mainhandler(flag, args);
-				return (i);
+				return (ft_mainhandler(flag, args));
 			}
 			i++;
 		}
@@ -31,6 +30,7 @@ static int ft_validflag(char *str, int n) // n = pos of char after %
 
 	hash = 0;
 	sign = 0;
+	n++;
 	while ((str[n] == '#') || (str[n] == '+') || (str[n] == ' '))
 	{
 		if (str[n] == '#')
@@ -82,6 +82,9 @@ static int ft_assignflag(t_flags *flag, char *str, int n) //n = pos of char afte
 		ft_resetflag(flag);
 		return (0);
 	}
+	printf("hash: %d\n", flag -> hashflag);
+	printf("sign: %d\n", flag -> signflag);
+	printf("space: %d\n", flag -> spaceflag);
 	return (1);
 }
 
@@ -111,5 +114,6 @@ static int ft_assigntype(t_flags *flag, char c)
 		flag -> type = 9;
 	else
 		i = 0;
+	printf("type: %d\n", flag -> type);
 	return (i);
 }

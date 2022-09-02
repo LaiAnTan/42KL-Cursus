@@ -17,12 +17,12 @@ int ft_printf(const char *format, ...)
 		{
 			pcount += ft_foundpercent((char *)format, i, arglist);
 			i += ft_countflag((char *) format, i);
-			printf("pcount: %d, i: %d\n", pcount, i);
+			printf("index: %d\n", i);
 		}
 		else
 		{
 			pcount += ft_printchr(format[i]);
-			printf("pcount: %d\n", pcount);
+
 		}
 	}
 	va_end(arglist);
@@ -40,7 +40,7 @@ static int ft_foundpercent(char *s, int index, va_list args) // index = pos of %
 	flag = ft_genflag();
 	i = ft_assignformat(flag, s, index, args);
 	free(flag);
-	printf("flag len: %d\n", i);
+	printf("format len: %d\n", i);
 	return (i);
 }
 
