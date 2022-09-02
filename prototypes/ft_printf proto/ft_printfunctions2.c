@@ -46,18 +46,19 @@ int	ft_printhex(int count, int n, char* b16)
 
 int	ft_printflags(t_flags *flag)
 {
-	int	i;
-
-	i = 1;
 	if (flag -> spaceflag == 1)
+	{
 		write(1, " ", 1);
+		return (1);
+	}
 	if (flag -> hashflag)
-		i = 2;
-	if (flag -> hashflag == 1 && flag -> type == 7)
-		write(1, "0x", 2);
-	else if (flag -> hashflag == 1 && flag -> type == 8)
-		write(1, "0X", 2);
-	return (i);
+	{
+		if (flag -> hashflag == 1 && flag -> type == 7)
+			write(1, "0x", 2);
+		else if (flag -> hashflag == 1 && flag -> type == 8)
+			write(1, "0X", 2);
+		return (2);
+	}
 }
 
 int	ft_printsignflag(t_flags *flag, int num)

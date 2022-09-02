@@ -5,21 +5,21 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 	int	printedcount;
 
 	printedcount = 0;
-	ft_printflags(flag);
+	printedcount += ft_printflags(flag);
 	if (flag -> type == 1)
-		printedcount = ft_charhandler(flag, args);
+		printedcount += ft_charhandler(flag, args);
 	else if (flag -> type == 2)
-		printedcount = ft_strhandler(flag, args);
+		printedcount += ft_strhandler(flag, args);
 	else if (flag -> type == 3)
-		printedcount = ft_ptrhandler(flag, args);
+		printedcount += ft_ptrhandler(flag, args);
 	else if (flag -> type == 4 || flag -> type == 5)
-		printedcount = ft_inthandler(flag, args);
+		printedcount += ft_inthandler(flag, args);
 	else if (flag -> type == 6)
-		printedcount = ft_undechandler(flag, args);
+		printedcount += ft_undechandler(flag, args);
 	else if (flag -> type == 7 || flag -> type == 8)
-		printedcount = ft_hexhandler(flag, args);
+		printedcount += ft_hexhandler(flag, args);
 	else if (flag -> type == 9)
-		printedcount = ft_percenthandler(flag, args);
+		printedcount += ft_percenthandler(flag, args);
 	return (printedcount);
 }
 
@@ -69,9 +69,9 @@ int ft_hexhandler(t_flags *flag, va_list args)
 	int	rtv;
 
 	if (flag -> type == 7)
-		rtv = ft_printhex(0, (int) va_arg(args, int), "0123456789abcdef");
+		rtv = ft_printhex(1, (int) va_arg(args, int), "0123456789abcdef");
 	else if (flag -> type == 8)
-		rtv = ft_printhex(0, (int) va_arg(args, int), "0123456789ABCDEF");
+		rtv = ft_printhex(1, (int) va_arg(args, int), "0123456789ABCDEF");
 	return (rtv);
 }
 

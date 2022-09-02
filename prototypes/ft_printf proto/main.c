@@ -3,8 +3,8 @@
 int main(void)
 {
 	char a = 'a';
-	int b = 12345;
-	int i = ft_printf("ee%  cee%c%cee", a, a, a);
+	int b = 43;
+	int i = ft_printf("%#x", b);
 	printf("\n");
 	printf("return val: %d", i);
 	return (0);

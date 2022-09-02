@@ -23,7 +23,7 @@ int ft_assignformat(t_flags *flag, char *str, int index, va_list args) // index 
 	return (0);
 }
 
-static int ft_validflag(char *str, int n) // n = pos of char after %
+static int ft_validflag(char *str, int n) // n = pos of %
 {
 	int	hash;
 	int sign;
@@ -52,11 +52,12 @@ static int ft_validflag(char *str, int n) // n = pos of char after %
 	return (1);
 }
 
-static int ft_assignflag(t_flags *flag, char *str, int n) //n = pos of char after %
+static int ft_assignflag(t_flags *flag, char *str, int n) //n = pos of %
 {
 	printf("assigning flag\n");
 	if(ft_validflag(str, n))
 	{
+		n++;
 		printf("flag valid\n");
 		if(str[n] == '#')
 		{
