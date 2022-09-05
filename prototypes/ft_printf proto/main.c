@@ -6,14 +6,13 @@ int main(void)
 	int b = 424242;
 	char *c = "testing";
 	int d = 0;
-	int i = ft_printf("%p", &a);
+	int i = ft_printf("%%%%", b);
 	printf("return val: %d", i);
 	return (0);
 }
 
 /* 
-fix ptr ret val
+fix ptr & hex ret val
 fix consecutive %%
-value of b after a char is wrong
-string crashes when ft_printf("%c %d %s", a, b, c); 
+fix int not printing 0 char
 */

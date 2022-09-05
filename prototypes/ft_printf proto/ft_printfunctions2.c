@@ -59,6 +59,7 @@ int	ft_printflags(t_flags *flag)
 			write(1, "0X", 2);
 		return (2);
 	}
+	return (0);
 }
 
 int	ft_printsignflag(t_flags *flag, int num)

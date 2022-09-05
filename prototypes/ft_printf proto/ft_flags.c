@@ -21,9 +21,14 @@ void	ft_resetflag(t_flags *flag)
 int	ft_countflag(char *str, int i) //i = pos of %
 {
 	int	n;
+	int	percentcount;
 
 	n = i;
 	while ((str[n] == '%') || (str[n] == '#') || (str[n] == '+') || (str[n] == ' '))
+	{
+		if (str[n] == '%' && str[n + 1] == '%' )
+			break ;
 		n++;
+	}
 	return (n - i);
 }

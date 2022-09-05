@@ -37,7 +37,7 @@ static int ft_foundpercent(char *s, int index, va_list args) // index = pos of %
 	flag = ft_genflag();
 	i = ft_assignformat(flag, s, index, args);
 	free(flag);
-	printf("format len: %d\n", i);
+	printf("printed count: %d\n", i);
 	return (i);
 }
 

@@ -26,13 +26,13 @@ int		ft_assignformat(t_flags *flag, char *str, int index, va_list args);
 
 //handler functions
 int	ft_mainhandler(t_flags *flag, va_list args);
-int	ft_charhandler(t_flags *flag, va_list args);
-int	ft_strhandler(t_flags *flag, va_list args);
-int	ft_ptrhandler(t_flags *flag, va_list args);
+int	ft_charhandler(va_list args);
+int	ft_strhandler(va_list args);
+int	ft_ptrhandler(va_list args);
 int	ft_inthandler(t_flags *flag, va_list args);
-int	ft_undechandler(t_flags *flag, va_list args);
+int	ft_undechandler(va_list args);
 int	ft_hexhandler(t_flags *flag, va_list args);
-int	ft_percenthandler(t_flags *flag, va_list args);
+int	ft_percenthandler();
 
 //print functions
 int	ft_printflags(t_flags *flag);
