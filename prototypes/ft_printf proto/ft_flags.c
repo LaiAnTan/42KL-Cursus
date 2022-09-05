@@ -24,9 +24,12 @@ int	ft_countflag(char *str, int i) //i = pos of %
 	int	percentcount;
 
 	n = i;
+	percentcount = 0;
 	while ((str[n] == '%') || (str[n] == '#') || (str[n] == '+') || (str[n] == ' '))
 	{
-		if (str[n] == '%' && str[n + 1] == '%' )
+		if (str[n] == '%')
+			percentcount++;
+		if (str[n] == '%' && str[n + 1] == '%' && percentcount == 2)
 			break ;
 		n++;
 	}
