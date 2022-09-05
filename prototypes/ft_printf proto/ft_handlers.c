@@ -52,7 +52,7 @@ int	ft_ptrhandler(t_flags *flag, va_list args)
 {
 	int	rtv;
 
-	rtv = ft_printptr(0, (uintptr_t) va_arg(args, uintptr_t), "0123456789abcdef");
+	rtv = ft_printptr(1, (uintptr_t) va_arg(args, uintptr_t), "0123456789abcdef");
 	return (rtv);
 }
 

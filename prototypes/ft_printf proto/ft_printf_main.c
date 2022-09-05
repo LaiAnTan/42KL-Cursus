@@ -20,10 +20,7 @@ int ft_printf(const char *format, ...)
 			printf("index: %d\n", i);
 		}
 		else
-		{
 			pcount += ft_printchr(format[i]);
-
-		}
 	}
 	va_end(arglist);
 	return (pcount);
