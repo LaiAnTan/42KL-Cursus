@@ -19,7 +19,7 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 	else if (flag -> type == 7 || flag -> type == 8)
 		printedcount += ft_hexhandler(flag, args);
 	else if (flag -> type == 9)
-		printedcount += ft_percenthandler(args);
+		printedcount += ft_percenthandler();
 	return (printedcount);
 }
 
@@ -89,19 +89,3 @@ int	ft_percenthandler()
 	return (ft_printchr('%'));
 }
 
-int	ft_counthex(int n)
-{
-	int				count;
-	unsigned int	num;
-
-	count = 0;
-	num = n;
-	while (1)
-	{
-		num = num / 16;
-		count++;
-		if (num == 0)
-			break ;
-	}
-	return (count);
-}

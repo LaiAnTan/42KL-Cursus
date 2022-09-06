@@ -3,10 +3,11 @@
 int	ft_printint(t_flags *flag, int n)
 {
 	int		i;
+	int		rtv;
 	char	*str;
 
 	i = 0;
-	ft_printsignflag(flag, n);
+	rtv = ft_printsignflag(flag, n);
 	str = ft_itoa(n);
 	while (str[i] != '\0')
 	{
@@ -14,7 +15,7 @@ int	ft_printint(t_flags *flag, int n)
 		i++;
 	}
 	free(str);
-	return (i);
+	return (i + rtv);
 }
 
 //dec same as int
@@ -22,10 +23,11 @@ int	ft_printint(t_flags *flag, int n)
 int	ft_printundec(t_flags *flag, unsigned int n)
 {
 	int		i;
+	int		rtv;
 	char	*str;
 
 	i = 0;
-	ft_printsignflag(flag, n);
+	rtv = ft_printsignflag(flag, n);
 	str = ft_unitoa(n);
 	while (str[i] != '\0')
 	{
@@ -33,7 +35,7 @@ int	ft_printundec(t_flags *flag, unsigned int n)
 		i++;
 	}
 	free(str);
-	return (i);
+	return (i + rtv);
 }
 
 

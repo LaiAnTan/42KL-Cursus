@@ -7,12 +7,7 @@ int main(void)
 	int b = 424242;
 	char *c = "testing";
 	int d = 0;
-	int i = ft_printf("%#x", b);
+	int i = ft_printf("%+  d", b);
 	printf("return val: %d", i);
 	return (0);
 }
-
-/*
-add + sign
-fix ptr & hex ret val
-*/
