@@ -1,11 +1,12 @@
 #include "ft_printf.h"
 
-int	ft_printint(int n)
+int	ft_printint(t_flags *flag, int n)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
+	ft_printsignflag(flag, n);
 	str = ft_itoa(n);
 	while (str[i] != '\0')
 	{
@@ -18,12 +19,13 @@ int	ft_printint(int n)
 
 //dec same as int
 
-int	ft_printundec(unsigned int n)
+int	ft_printundec(t_flags *flag, unsigned int n)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
+	ft_printsignflag(flag, n);
 	str = ft_unitoa(n);
 	while (str[i] != '\0')
 	{
@@ -34,13 +36,7 @@ int	ft_printundec(unsigned int n)
 	return (i);
 }
 
-int	ft_printhex(int count, int n, char* b16)
-{
-	if (n >= 16)
-		ft_printhex(count + 1, n / 16, b16);
-	ft_printchr(b16[n % 16]);
-	return (count + 1);
-}
+
 
 // char *b16 = "0123456789abcdef" or "0123456789ABCDEF"
 

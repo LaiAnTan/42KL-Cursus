@@ -15,7 +15,7 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 	else if (flag -> type == 4 || flag -> type == 5)
 		printedcount += ft_inthandler(flag, args);
 	else if (flag -> type == 6)
-		printedcount += ft_undechandler(args);
+		printedcount += ft_undechandler(flag, args);
 	else if (flag -> type == 7 || flag -> type == 8)
 		printedcount += ft_hexhandler(flag, args);
 	else if (flag -> type == 9)
@@ -44,38 +44,64 @@ int	ft_inthandler(t_flags *flag, va_list args)
 {
 	int		rtv;
 
-	rtv = ft_printint((int) va_arg(args, int));
+	rtv = ft_printint(flag, (int) va_arg(args, int));
 	return (rtv);
 }
 
 int	ft_ptrhandler(va_list args)
 {
 	int	rtv;
+	uintptr_t	ptr;
 
-	rtv = ft_printptr(1, (uintptr_t) va_arg(args, uintptr_t), "0123456789abcdef");
-	return (rtv);
+	ptr = (uintptr_t) va_arg(args, uintptr_t);
+	ft_printptr(ptr, "0123456789abcdef");
+	return (ft_counthex(ptr));
 }
 
-int	ft_undechandler(va_list args)
+int	ft_undechandler(t_flags *flag, va_list args)
 {
 	int	rtv;
 
-	rtv = ft_printundec((unsigned int) va_arg(args, unsigned int));
+	rtv = ft_printundec(flag, (unsigned int) va_arg(args, unsigned int));
 	return (rtv);
 }
 
 int ft_hexhandler(t_flags *flag, va_list args)
 {
 	int	rtv;
+	int num;
 
+	num = (int) va_arg(args, int);
 	if (flag -> type == 7)
-		rtv = ft_printhex(1, (int) va_arg(args, int), "0123456789abcdef");
+	{
+		ft_printhex(num, "0123456789abcdef");
+		return (ft_counthex(num));
+	}
 	else if (flag -> type == 8)
-		rtv = ft_printhex(1, (int) va_arg(args, int), "0123456789ABCDEF");
-	return (rtv);
+	{
+		ft_printhex(num, "0123456789ABCDEF");
+		return (ft_counthex(num));
+	}
 }
 
 int	ft_percenthandler()
 {
 	return (ft_printchr('%'));
+}
+
+int	ft_counthex(int n)
+{
+	int				count;
+	unsigned int	num;
+
+	count = 0;
+	num = n;
+	while (1)
+	{
+		num = num / 16;
+		count++;
+		if (num == 0)
+			break ;
+	}
+	return (count);
 }

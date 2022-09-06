@@ -19,10 +19,17 @@ size_t ft_printstr(char *s)
 	return (ft_strlen(s));
 }
 
-int	ft_printptr(int count, uintptr_t n, char *b16)
+void	ft_printptr(uintptr_t n, char *b16)
 {
 	if (n >= 16)
-		ft_printptr(count + 1, n / 16, "0123456789abcdef");
+		ft_printptr(n / 16, "0123456789abcdef");
 	ft_printchr(b16[n % 16]);
-	return (count + 1);
 }
+
+void	ft_printhex(int n, char* b16)
+{
+	if (n >= 16)
+		ft_printhex(n / 16, b16);
+	ft_printchr(b16[n % 16]);
+}
+
