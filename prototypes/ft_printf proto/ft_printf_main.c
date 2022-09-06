@@ -16,7 +16,7 @@ int ft_printf(const char *format, ...)
 		if(format[i] == '%')
 		{
 			pcount += ft_foundpercent((char *)format, i, arglist);
-			i += ft_countflag((char *) format, i);
+			i += ft_countformat((char *) format, i);
 			printf("index: %d\n", i);
 		}
 		else

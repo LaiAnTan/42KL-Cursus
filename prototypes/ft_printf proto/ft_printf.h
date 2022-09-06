@@ -21,7 +21,7 @@ typedef struct s_flags
 //format struct functions
 t_flags	*ft_genflag(void);
 void	ft_resetflag(t_flags *flag);
-int		ft_countflag(char *str, int i);
+int		ft_countformat(char *str, int i);
 int		ft_assignformat(t_flags *flag, char *str, int index, va_list args);
 
 //handler functions
