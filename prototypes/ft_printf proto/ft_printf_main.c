@@ -17,7 +17,6 @@ int ft_printf(const char *format, ...)
 		{
 			pcount += ft_foundpercent((char *)format, i, arglist);
 			i += ft_countformat((char *) format, i);
-			printf("index: %d\n", i);
 		}
 		else
 			pcount += ft_printchr(format[i]);
@@ -26,16 +25,14 @@ int ft_printf(const char *format, ...)
 	return (pcount);
 }
 
-/* ft_foundpercent - index = position of % */
+/* ft_foundpercent - index = position of % - i = number of printed characters */
 static int ft_foundpercent(char *s, int index, va_list args)
 {
-	printf("percent found\n");
 	t_flags	*flag;
-	int		i; //no of printed chars
+	int		i;
 
 	flag = ft_genflag();
 	i = ft_assignformat(flag, s, index, args);
 	free(flag);
-	printf("printed count: %d\n", i);
 	return (i);
 }

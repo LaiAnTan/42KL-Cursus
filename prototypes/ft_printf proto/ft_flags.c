@@ -9,12 +9,13 @@ t_flags	*ft_genflag(void)
 	return (flag);
 }
 
-void	ft_resetflag(t_flags *flag)
+int	ft_resetflag(t_flags *flag)
 {
 	flag -> type = 0;
 	flag -> signflag = 0;
 	flag -> spaceflag = 0;
 	flag -> hashflag = 0;
+	return (0);
 }
 
 /* ft_countformat - i = position of % */

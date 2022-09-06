@@ -19,7 +19,7 @@ int		ft_printf(const char *format, ...);
 
 /* ft_flags.c */
 t_flags	*ft_genflag(void);
-void	ft_resetflag(t_flags *flag);
+int		ft_resetflag(t_flags *flag);
 int		ft_countformat(char *str, int i);
 
 /* ft_format.c */
@@ -38,7 +38,7 @@ int	ft_hexhandler(t_flags *flag, va_list args);
 int	ft_percenthandler();
 
 /* ft_printers1.c */
-int	ft_printchr(char c);
+int		ft_printchr(char c);
 size_t	ft_printstr(char *s);
 void	ft_printptr(uintptr_t n, char *b16);
 void	ft_printhex(int n, char *b16);
@@ -52,7 +52,7 @@ int	ft_printsignflag(t_flags *flag, int num);
 /* ft_misc.c */
 char	*ft_itoa(int n);
 char	*ft_unitoa(unsigned int n);
-int	ft_counthex(int n);
+int		ft_counthex(int n);
 size_t	ft_strlen(const char *str);
 
 #endif

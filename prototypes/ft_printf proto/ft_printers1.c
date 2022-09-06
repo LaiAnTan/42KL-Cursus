@@ -22,7 +22,7 @@ size_t ft_printstr(char *s)
 void	ft_printptr(uintptr_t n, char *b16)
 {
 	if (n >= 16)
-		ft_printptr(n / 16, "0123456789abcdef");
+		ft_printptr(n / 16, b16);
 	ft_printchr(b16[n % 16]);
 }
 

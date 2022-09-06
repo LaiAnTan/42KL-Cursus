@@ -57,11 +57,9 @@ static int ft_validflag(char *str, int n)
 /* ft_assignflag - n = position of % */
 static int ft_assignflag(t_flags *flag, char *str, int n)
 {
-	printf("assigning flag\n");
 	if(ft_validflag(str, n))
 	{
 		n++;
-		printf("flag valid\n");
 		if(str[n] == '#')
 		{
 			flag -> hashflag = 1;
@@ -81,20 +79,12 @@ static int ft_assignflag(t_flags *flag, char *str, int n)
 		}
 	}
 	else
-	{
-		printf("invalid flag\n");
-		ft_resetflag(flag);
-		return (0);
-	}
-	printf("hash: %d\n", flag -> hashflag);
-	printf("sign: %d\n", flag -> signflag);
-	printf("space: %d\n", flag -> spaceflag);
+		return (ft_resetflag(flag));
 	return (1);
 }
 
 static int ft_assigntype(t_flags *flag, char c)
 {
-	printf("assigning type\n");
 	int	i;
 
 	i = 1;
@@ -118,6 +108,5 @@ static int ft_assigntype(t_flags *flag, char c)
 		flag -> type = 9;
 	else
 		i = 0;
-	printf("type: %d\n", flag -> type);
 	return (i);
 }

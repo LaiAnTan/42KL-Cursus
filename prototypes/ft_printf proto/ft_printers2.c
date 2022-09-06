@@ -18,8 +18,6 @@ int	ft_printint(t_flags *flag, int n)
 	return (i + rtv);
 }
 
-//dec same as int
-
 int	ft_printundec(t_flags *flag, unsigned int n)
 {
 	int		i;
@@ -37,10 +35,6 @@ int	ft_printundec(t_flags *flag, unsigned int n)
 	free(str);
 	return (i + rtv);
 }
-
-
-
-// char *b16 = "0123456789abcdef" or "0123456789ABCDEF"
 
 int	ft_printflags(t_flags *flag)
 {
