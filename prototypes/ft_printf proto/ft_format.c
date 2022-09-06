@@ -4,7 +4,8 @@ static int ft_validflag(char *str, int n);
 static int ft_assignflag(t_flags *flag, char *str, int n);
 static int ft_assigntype(t_flags *flag, char c);
 
-int ft_assignformat(t_flags *flag, char *str, int index, va_list args) // index = pos of %
+/* ft_assignformat - index = position of % */
+int ft_assignformat(t_flags *flag, char *str, int index, va_list args)
 {
 	int	i;
 
@@ -23,7 +24,8 @@ int ft_assignformat(t_flags *flag, char *str, int index, va_list args) // index 
 	return (0);
 }
 
-static int ft_validflag(char *str, int n) // n = pos of %
+/* ft_validflag - n = position of % */
+static int ft_validflag(char *str, int n)
 {
 	int	hash;
 	int sign;
@@ -52,7 +54,8 @@ static int ft_validflag(char *str, int n) // n = pos of %
 	return (1);
 }
 
-static int ft_assignflag(t_flags *flag, char *str, int n) //n = pos of %
+/* ft_assignflag - n = position of % */
+static int ft_assignflag(t_flags *flag, char *str, int n)
 {
 	printf("assigning flag\n");
 	if(ft_validflag(str, n))

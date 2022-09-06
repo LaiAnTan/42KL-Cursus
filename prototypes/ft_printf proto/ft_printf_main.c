@@ -26,9 +26,8 @@ int ft_printf(const char *format, ...)
 	return (pcount);
 }
 
-//print and check for % while printing
-
-static int ft_foundpercent(char *s, int index, va_list args) // index = pos of %
+/* ft_foundpercent - index = position of % */
+static int ft_foundpercent(char *s, int index, va_list args)
 {
 	printf("percent found\n");
 	t_flags	*flag;
@@ -40,11 +39,3 @@ static int ft_foundpercent(char *s, int index, va_list args) // index = pos of %
 	printf("printed count: %d\n", i);
 	return (i);
 }
-
-
-
-//	flags: +, ,#
-//	conversion specifiers: c,s,p,d,i,u,x,X,%
-
-//handlers for all datatypes
-//handlers print and count printed

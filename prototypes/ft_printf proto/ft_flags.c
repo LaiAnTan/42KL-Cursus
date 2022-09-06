@@ -17,8 +17,8 @@ void	ft_resetflag(t_flags *flag)
 	flag -> hashflag = 0;
 }
 
-
-int	ft_countformat(char *str, int i) //i = pos of %
+/* ft_countformat - i = position of % */
+int	ft_countformat(char *str, int i)
 {
 	int	n;
 	int	percentcount;
