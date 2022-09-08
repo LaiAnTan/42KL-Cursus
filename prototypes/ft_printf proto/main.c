@@ -4,10 +4,10 @@
 int main(void)
 {
 	char a = 'a';
-	int b = 424242;
+	int b = -424242;
 	char *c = "testing";
 	int d = 0;
-	int i = ft_printf("ehehaehad\n");
+	int i = ft_printf("%d\n", b);
 	printf("return val: %d", i);
 	return (0);
 }

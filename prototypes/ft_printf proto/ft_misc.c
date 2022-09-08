@@ -1,12 +1,14 @@
 #include "ft_printf.h"
 
-static int	countchar(unsigned int n)
+static int	countchar(int n)
 {
-	int				count;
-	unsigned int	num;
+	int	count;
+	int	num;
 
 	count = 0;
 	num = n;
+	if (n < 0)
+		count++;
 	while (1)
 	{
 		num = num / 10;
