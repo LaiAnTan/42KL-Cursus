@@ -1,5 +1,17 @@
-#ifndef LIBFTPRINTF
-#define LIBFTPRINTF
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/12 13:20:56 by tlai-an           #+#    #+#             */
+/*   Updated: 2022/09/12 13:21:16 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FTPRINTF
+#define FTPRINTF
 
 #include <stdarg.h>
 #include <stdlib.h>
