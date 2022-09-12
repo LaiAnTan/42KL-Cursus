@@ -63,7 +63,7 @@ int		ft_printsignflag(t_flags *flag, int num);
 /* ft_misc.c */
 char	*ft_itoa(int n);
 char	*ft_unitoa(unsigned int n);
-int		ft_counthex(int n);
+int		ft_counthex(unsigned int n);
 size_t	ft_strlen(const char *str);
 
 #endif

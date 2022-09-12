@@ -68,5 +68,5 @@ int	ft_ptrhandler(va_list args)
 	write(1, "0x", 2);
 	ptr = (uintptr_t) va_arg(args, uintptr_t);
 	ft_printptr(ptr, "0123456789abcdef");
-	return ( + 2);
+	return (ft_counthex(ptr) + 2);
 }

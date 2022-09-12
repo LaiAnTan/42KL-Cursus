@@ -91,7 +91,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-int	ft_counthex(int n)
+int	ft_counthex(unsigned int n)
 {
 	int				count;
 	unsigned int	num;
