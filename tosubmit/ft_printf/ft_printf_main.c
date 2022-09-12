@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:52 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 16:58:52 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/12 13:44:34 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,3 @@ static int	ft_foundpercent(char *s, int index, va_list args)
 	free(flag);
 	return (i);
 }
-
-// fix ptr count wrong
-// fix 
