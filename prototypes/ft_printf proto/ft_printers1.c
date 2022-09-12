@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:44 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 13:20:45 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/12 13:29:41 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	ft_printchr(char c)
 	return (1);
 }
 
-size_t ft_printstr(char *s)
+size_t	ft_printstr(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(s[i] != '\0')
+	while (s[i] != '\0')
 	{
 		ft_printchr(s[i]);
 		i++;
@@ -38,10 +38,9 @@ void	ft_printptr(uintptr_t n, char *b16)
 	ft_printchr(b16[n % 16]);
 }
 
-void	ft_printhex(int n, char* b16)
+void	ft_printhex(int n, char *b16)
 {
 	if (n >= 16)
 		ft_printhex(n / 16, b16);
 	ft_printchr(b16[n % 16]);
 }
-

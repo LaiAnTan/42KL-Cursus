@@ -6,18 +6,18 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:27 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 13:20:28 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/12 13:24:06 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int ft_validflag(char *str, int n);
-static int ft_assignflag(t_flags *flag, char *str, int n);
-static int ft_assigntype(t_flags *flag, char c);
+static int	ft_validflag(char *str, int n);
+static int	ft_assignflag(t_flags *flag, char *str, int n);
+static int	ft_assigntype(t_flags *flag, char c);
 
 /* ft_assignformat - index = position of % */
-int ft_assignformat(t_flags *flag, char *str, int index, va_list args)
+int	ft_assignformat(t_flags *flag, char *str, int index, va_list args)
 {
 	int	i;
 
@@ -37,10 +37,10 @@ int ft_assignformat(t_flags *flag, char *str, int index, va_list args)
 }
 
 /* ft_validflag - n = position of % */
-static int ft_validflag(char *str, int n)
+static int	ft_validflag(char *str, int n)
 {
 	int	hash;
-	int sign;
+	int	sign;
 
 	hash = 0;
 	sign = 0;
@@ -67,12 +67,12 @@ static int ft_validflag(char *str, int n)
 }
 
 /* ft_assignflag - n = position of % */
-static int ft_assignflag(t_flags *flag, char *str, int n)
+static int	ft_assignflag(t_flags *flag, char *str, int n)
 {
-	if(ft_validflag(str, n))
+	if (ft_validflag(str, n))
 	{
 		n++;
-		if(str[n] == '#')
+		if (str[n] == '#')
 		{
 			flag -> hashflag = 1;
 			n++;
@@ -95,7 +95,7 @@ static int ft_assignflag(t_flags *flag, char *str, int n)
 	return (1);
 }
 
-static int ft_assigntype(t_flags *flag, char c)
+static int	ft_assigntype(t_flags *flag, char c)
 {
 	int	i;
 

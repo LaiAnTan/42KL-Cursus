@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:36 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 13:20:37 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/12 13:27:15 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	ft_undechandler(t_flags *flag, va_list args)
 	return (rtv);
 }
 
-int ft_hexhandler(t_flags *flag, va_list args)
+int	ft_hexhandler(t_flags *flag, va_list args)
 {
 	int	rtv;
-	int num;
+	int	num;
 
 	num = (int) va_arg(args, int);
 	if (flag -> type == 7)
@@ -38,7 +38,7 @@ int ft_hexhandler(t_flags *flag, va_list args)
 	}
 }
 
-int	ft_percenthandler()
+int	ft_percenthandler(void)
 {
 	return (ft_printchr('%'));
 }

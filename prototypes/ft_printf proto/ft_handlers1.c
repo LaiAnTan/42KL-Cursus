@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:32 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 13:20:33 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/12 13:26:14 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 
 int	ft_charhandler(va_list args)
 {
-	int		rtv;
+	int	rtv;
 
 	rtv = 0;
 	rtv += ft_printchr((char) va_arg(args, int));
 	return (rtv);
 }
 
-int ft_strhandler(va_list args)
+int	ft_strhandler(va_list args)
 {
 	int	rtv;
 
@@ -54,7 +54,7 @@ int ft_strhandler(va_list args)
 
 int	ft_inthandler(t_flags *flag, va_list args)
 {
-	int		rtv;
+	int	rtv;
 
 	rtv = ft_printint(flag, (int) va_arg(args, int));
 	return (rtv);
@@ -62,11 +62,10 @@ int	ft_inthandler(t_flags *flag, va_list args)
 
 int	ft_ptrhandler(va_list args)
 {
-	int	rtv;
+	int			rtv;
 	uintptr_t	ptr;
 
 	ptr = (uintptr_t) va_arg(args, uintptr_t);
 	ft_printptr(ptr, "0123456789abcdef");
 	return (ft_counthex(ptr));
 }
-
