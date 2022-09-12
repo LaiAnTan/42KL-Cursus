@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:32 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 16:28:41 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/12 15:57:24 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,9 @@ int	ft_inthandler(t_flags *flag, va_list args)
 
 int	ft_ptrhandler(va_list args)
 {
-	int			rtv;
 	uintptr_t	ptr;
-	
-	write(1, "0x", 2);
+
 	ptr = (uintptr_t) va_arg(args, uintptr_t);
 	ft_printptr(ptr, "0123456789abcdef");
-	return ( + 2);
+	return (ft_counthex(ptr));
 }
