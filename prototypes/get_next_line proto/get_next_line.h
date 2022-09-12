@@ -12,5 +12,6 @@
 #include <fcntl.h>
 
 char	*get_next_line(int fd);
+void	*realloc(void *ptr, size_t size);
 
 #endif
