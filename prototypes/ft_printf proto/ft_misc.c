@@ -31,6 +31,25 @@ static int	countchar(int n)
 	return (count);
 }
 
+static int	uncountchar(unsigned int n)
+{
+	int				count;
+	unsigned int	num;
+
+	count = 0;
+	num = n;
+	if (n < 0)
+		count++;
+	while (1)
+	{
+		num = num / 10;
+		count++;
+		if (num == 0)
+			break ;
+	}
+	return (count);
+}
+
 char	*ft_unitoa(unsigned int n)
 {
 	int				digit;
@@ -38,7 +57,7 @@ char	*ft_unitoa(unsigned int n)
 	unsigned int	num;
 	char			*str;
 
-	digit = countchar(n);
+	digit = uncountchar(n);
 	i = -1;
 	str = (char *) malloc((digit + 1) * sizeof(char));
 	if (!str)

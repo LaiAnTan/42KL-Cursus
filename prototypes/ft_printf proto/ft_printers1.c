@@ -38,7 +38,7 @@ void	ft_printptr(uintptr_t n, char *b16)
 	ft_printchr(b16[n % 16]);
 }
 
-void	ft_printhex(int n, char *b16)
+void	ft_printhex(unsigned int n, char *b16)
 {
 	if (n >= 16)
 		ft_printhex(n / 16, b16);

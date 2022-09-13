@@ -16,7 +16,7 @@ int	ft_undechandler(t_flags *flag, va_list args)
 {
 	int	rtv;
 
-	rtv = ft_printundec(flag, (unsigned int) va_arg(args, unsigned int));
+	rtv = ft_printundec(flag, va_arg(args, unsigned int));
 	return (rtv);
 }
 

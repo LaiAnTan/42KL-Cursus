@@ -52,7 +52,7 @@ int		ft_percenthandler(void);
 int		ft_printchr(char c);
 size_t	ft_printstr(char *s);
 void	ft_printptr(uintptr_t n, char *b16);
-void	ft_printhex(int n, char *b16);
+void	ft_printhex(unsigned int n, char *b16);
 
 /* ft_printers2.c */
 int		ft_printint(t_flags *flag, int n);

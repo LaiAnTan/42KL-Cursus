@@ -48,6 +48,3 @@ static int	ft_foundpercent(char *s, int index, va_list args)
 	free(flag);
 	return (i);
 }
-
-// fix ptr count wrong
-// fix 
