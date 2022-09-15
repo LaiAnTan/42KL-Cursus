@@ -6,7 +6,7 @@
 #    By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 16:33:49 by tlai-an           #+#    #+#              #
-#    Updated: 2022/09/12 16:11:25 by tlai-an          ###   ########.fr        #
+#    Updated: 2022/09/15 15:24:39 by tlai-an          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRCS_C =	ft_flags.c	\
 				ft_handlers2.c 		\
 				ft_printers1.c 		\
 				ft_printers2.c 		\
-				ft_misc.c 			\
+				ft_misc1.c 			\
+				ft_misc2.c			\
 				ft_printf_main.c	\
 
 SRCS_H = ft_printf.h

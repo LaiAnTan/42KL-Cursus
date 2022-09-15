@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_misc.c                                          :+:      :+:    :+:   */
+/*   ft_misc1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:40 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 13:28:12 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/15 15:21:06 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,25 @@ static int	countchar(int n)
 	return (count);
 }
 
+static int	uncountchar(unsigned int n)
+{
+	int				count;
+	unsigned int	num;
+
+	count = 0;
+	num = n;
+	if (n < 0)
+		count++;
+	while (1)
+	{
+		num = num / 10;
+		count++;
+		if (num == 0)
+			break ;
+	}
+	return (count);
+}
+
 char	*ft_unitoa(unsigned int n)
 {
 	int				digit;
@@ -38,7 +57,7 @@ char	*ft_unitoa(unsigned int n)
 	unsigned int	num;
 	char			*str;
 
-	digit = countchar(n);
+	digit = uncountchar(n);
 	i = -1;
 	str = (char *) malloc((digit + 1) * sizeof(char));
 	if (!str)
@@ -89,21 +108,4 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
-}
-
-int	ft_counthex(int n)
-{
-	int				count;
-	unsigned int	num;
-
-	count = 0;
-	num = n;
-	while (1)
-	{
-		num = num / 16;
-		count++;
-		if (num == 0)
-			break ;
-	}
-	return (count);
 }

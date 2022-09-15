@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:56 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 13:43:43 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/15 15:20:45 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ int		ft_printundec(t_flags *flag, unsigned int n);
 int		ft_printflags(t_flags *flag);
 int		ft_printsignflag(t_flags *flag, int num);
 
-/* ft_misc.c */
+/* ft_misc1.c */
 char	*ft_itoa(int n);
 char	*ft_unitoa(unsigned int n);
-int		ft_counthex(unsigned int n);
 size_t	ft_strlen(const char *str);
+
+/* ft_misc2.c */
+int		ft_counthex(unsigned int n);
 
 #endif
