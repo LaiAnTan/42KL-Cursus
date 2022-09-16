@@ -17,21 +17,20 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 	int	printedcount;
 
 	printedcount = 0;
-	// printedcount += ft_printflags(flag);
 	if (flag -> type == 1)
-		printedcount += ft_charhandler(args);
+		printedcount = ft_charhandler(args);
 	else if (flag -> type == 2)
-		printedcount += ft_strhandler(args);
+		printedcount = ft_strhandler(args);
 	else if (flag -> type == 3)
-		printedcount += ft_ptrhandler(args);
+		printedcount = ft_ptrhandler(args);
 	else if (flag -> type == 4 || flag -> type == 5)
-		printedcount += ft_inthandler(flag, args);
+		printedcount = ft_inthandler(flag, args);
 	else if (flag -> type == 6)
-		printedcount += ft_undechandler(flag, args);
+		printedcount = ft_undechandler(flag, args);
 	else if (flag -> type == 7 || flag -> type == 8)
-		printedcount += ft_hexhandler(flag, args);
+		printedcount = ft_hexhandler(flag, args);
 	else if (flag -> type == 9)
-		printedcount += ft_percenthandler();
+		printedcount = ft_percenthandler();
 	return (printedcount);
 }
 

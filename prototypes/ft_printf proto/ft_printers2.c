@@ -45,26 +45,3 @@ int	ft_printundec(t_flags *flag, unsigned int n)
 	free(str);
 	return (i);
 }
-
-int	ft_printflags(t_flags *flag)
-{
-	if (flag -> spaceflag == 1)
-	{
-		write(1, " ", 1);
-		return (1);
-	}
-	return (0);
-}
-
-int	ft_printsignflag(t_flags *flag, int num)
-{
-	if (flag -> signflag == 1)
-	{
-		if (num >= 0)
-		{
-			write(1, "+", 1);
-			return (1);
-		}
-	}
-	return (0);
-}

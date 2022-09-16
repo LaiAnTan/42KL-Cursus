@@ -57,8 +57,6 @@ void	ft_printhex(unsigned int n, char *b16);
 /* ft_printers2.c */
 int		ft_printint(t_flags *flag, int n);
 int		ft_printundec(t_flags *flag, unsigned int n);
-int		ft_printflags(t_flags *flag);
-int		ft_printsignflag(t_flags *flag, int num);
 
 /* ft_misc1.c */
 char	*ft_itoa(int n);

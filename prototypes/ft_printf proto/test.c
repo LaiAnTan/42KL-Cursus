@@ -7,8 +7,4 @@ int main(void)
 	ft_printf("% + i\n", (int)42);
 	ft_printf("%+i\n", (int)42);
 	ft_printf("%    i\n", (int)42);
-	/*
-	int c = ft_printf("--.%#xp", 0);
-	ft_printf("return: %d", c);
-	*/
 }
