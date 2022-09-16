@@ -1,6 +1,6 @@
-#ifndef GNL
+#ifndef GET_NEXT_LINE
 
-# define GNL
+# define GET_NEXT_LINE
 
 #ifndef BUFFER_SIZE
 
@@ -8,10 +8,14 @@
 # define BUFFER_SIZE 69
 #endif
 
-#include <stdlib.h>
-#include <fcntl.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
 char	*get_next_line(int fd);
-void	*realloc(void *ptr, size_t size);
+int		check_new_line(char *str);
+char	*ft_append(char *src, char *dst);
+
+size_t	ft_strlcat(char *d, const char *s, size_t size);
+size_t	ft_strlen(const char *str);
 
 #endif

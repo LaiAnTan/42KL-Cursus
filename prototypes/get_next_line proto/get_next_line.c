@@ -4,16 +4,16 @@ char	*get_next_line(int fd)
 {
 	static int	bytesread;
 	int			i;
-	char		*buffer[BUFFER_SIZE + 1];
+	char		buffer[BUFFER_SIZE + 1];
 	char		*content;
 
 	bytesread = 0;
 	i = 0;
 	while (!check_new_line(buffer))
 	{
-		bytestread += read(fd, &buffer, BUFFER_SIZE);
+		bytesread += read(fd, &buffer, BUFFER_SIZE);
 		buffer[BUFFER_SIZE + 1] = '\0';
-		content = transfer(buffer)
+		content = ft_append(buffer, content);
 	}
 	return (content);
 }
@@ -36,14 +36,4 @@ int	check_new_line(char *str)
 		i++;
 	}
 	return (0);
-}
-
-char	*transfer(char *str)
-{
-
-}
-
-void *realloc(void *ptr, size_t size);
-{
-	
 }

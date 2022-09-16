@@ -1,16 +1,37 @@
 #include "get_next_line.h"
 
-void	*ft_realloc(void *ptr, size_t size)
+char	*ft_append(char *src, char *dst)
 {
-	size_t osize;
+	int		srclen;
+	int		dstlen;
+	char	*append;
 
-	
+	srclen = ft_strlen(src);
+	dstlen = ft_strlen(dst);
+	append = (char *) malloc (sizeof(char) * (srclen + dstlen + 1));
+	if (!append)
+		return (0);
+	while (*src != '\0')
+	{
+		*append = *src;
+		append++;
+		src++;
+	}
+	while (*dst != '\0')
+	{
+		*append = *dst;
+		append++;
+		dst++;
+	}
+	return (append);
 }
 
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
 
-/* The realloc() function changes the size of the memory block pointed to by ptr to size bytes. 
-The contents will be unchanged in the range from the start of the region up to the minimum of 
-the old and new sizes. If the new size is larger than the old size, 
-the added memory will not be initialized. */
-// if ptr = NULL -> malloc(size)
-// if size = NULL -> free(ptr)
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
