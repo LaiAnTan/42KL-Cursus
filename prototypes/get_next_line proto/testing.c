@@ -13,9 +13,9 @@ int main(void)
 		// str[size] = '\0';
 		// printf("read:\n%s\n", str);
 
-	char *a = "foo";
-	char *b = " bar baz";
-	b = ft_append(a, b);
+	char a[3] = "foo";
+	char b[9] = " bar baz";
+	char *c = ft_append(a, b);
 
 	printf("%s ", b);
 }

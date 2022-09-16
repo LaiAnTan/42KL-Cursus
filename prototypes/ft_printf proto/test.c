@@ -3,9 +3,12 @@
 
 int main(void)
 {
-	char *test = "babdasbd";
-	int a = ft_printf("The address is %p, so what?\n", &test);
-	printf("return: %d\n", a);
-	int b = printf("The address is %p, so what?\n", &test);
-	printf("return: %d\n", b);
+	int a = ft_printf("%  i\n", (int)-42);
+	ft_printf("% + i\n", (int)42);
+	ft_printf("%+i\n", (int)42);
+	ft_printf("%    i\n", (int)42);
+	/*
+	int c = ft_printf("--.%#xp", 0);
+	ft_printf("return: %d", c);
+	*/
 }

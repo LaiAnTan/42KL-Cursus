@@ -19,7 +19,6 @@ int	ft_printint(t_flags *flag, int n)
 	char	*str;
 
 	i = 0;
-	rtv = ft_printsignflag(flag, n);
 	str = ft_itoa(n);
 	while (str[i] != '\0')
 	{
@@ -27,7 +26,7 @@ int	ft_printint(t_flags *flag, int n)
 		i++;
 	}
 	free(str);
-	return (i + rtv);
+	return (i);
 }
 
 int	ft_printundec(t_flags *flag, unsigned int n)
@@ -37,7 +36,6 @@ int	ft_printundec(t_flags *flag, unsigned int n)
 	char	*str;
 
 	i = 0;
-	rtv = ft_printsignflag(flag, n);
 	str = ft_unitoa(n);
 	while (str[i] != '\0')
 	{
@@ -45,7 +43,7 @@ int	ft_printundec(t_flags *flag, unsigned int n)
 		i++;
 	}
 	free(str);
-	return (i + rtv);
+	return (i);
 }
 
 int	ft_printflags(t_flags *flag)
@@ -54,14 +52,6 @@ int	ft_printflags(t_flags *flag)
 	{
 		write(1, " ", 1);
 		return (1);
-	}
-	if (flag -> hashflag)
-	{
-		if (flag -> hashflag == 1 && flag -> type == 7)
-			write(1, "0x", 2);
-		else if (flag -> hashflag == 1 && flag -> type == 8)
-			write(1, "0X", 2);
-		return (2);
 	}
 	return (0);
 }

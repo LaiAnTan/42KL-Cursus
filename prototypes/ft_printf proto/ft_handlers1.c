@@ -17,7 +17,7 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 	int	printedcount;
 
 	printedcount = 0;
-	printedcount += ft_printflags(flag);
+	// printedcount += ft_printflags(flag);
 	if (flag -> type == 1)
 		printedcount += ft_charhandler(args);
 	else if (flag -> type == 2)
@@ -55,8 +55,24 @@ int	ft_strhandler(va_list args)
 int	ft_inthandler(t_flags *flag, va_list args)
 {
 	int	rtv;
+	int	num;
 
-	rtv = ft_printint(flag, (int) va_arg(args, int));
+	num = (int) va_arg(args, int);
+	if (num > 0)
+	{
+		if (flag -> spaceflag == 1 && flag -> signflag == 0)
+		{
+			write(1, " ", 1);
+			rtv += 1;
+		}
+		else if ((flag -> spaceflag == 1 && flag -> signflag == 1) 
+			|| (flag -> spaceflag == 0 && flag -> signflag == 1))
+		{
+			write(1, "+", 1);
+			rtv += 1;
+		}
+	}
+	rtv += ft_printint(flag, num);
 	return (rtv);
 }
 

@@ -66,6 +66,6 @@ char	*ft_unitoa(unsigned int n);
 size_t	ft_strlen(const char *str);
 
 /* ft_misc2.c */
-int		ft_countptr(unsigned long long n);
+int		ft_counthex(unsigned long long n);
 
 #endif

@@ -23,19 +23,23 @@ int	ft_undechandler(t_flags *flag, va_list args)
 int	ft_hexhandler(t_flags *flag, va_list args)
 {
 	int	num;
+	int	count;
 
 	num = (int) va_arg(args, int);
+	count = 0;
+	if (flag -> hashflag && num != 0)
+	{
+		if (flag -> hashflag == 1 && flag -> type == 7)
+			write(1, "0x", 2);
+		else if (flag -> hashflag == 1 && flag -> type == 8)
+			write(1, "0X", 2);
+		count += 2;
+	}
 	if (flag -> type == 7)
-	{
 		ft_printhex(num, "0123456789abcdef");
-		return (ft_counthex(num));
-	}
 	else if (flag -> type == 8)
-	{
 		ft_printhex(num, "0123456789ABCDEF");
-		return (ft_counthex(num));
-	}
-	return (0);
+	return (ft_counthex(num) + count);
 }
 
 int	ft_percenthandler(void)
