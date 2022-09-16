@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_counthex(unsigned long long n)
+int	ft_countptr(unsigned long long n)
 {
 	int				count;
 
