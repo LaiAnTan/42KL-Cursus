@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:36 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 16:22:47 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/15 15:23:54 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	ft_undechandler(t_flags *flag, va_list args)
 
 int	ft_hexhandler(t_flags *flag, va_list args)
 {
-	int	rtv;
 	int	num;
 
 	num = (int) va_arg(args, int);

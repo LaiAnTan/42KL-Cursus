@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 13:20:36 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/09/12 15:57:58 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/09/15 15:23:54 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_undechandler(t_flags *flag, va_list args)
 {
 	int	rtv;
 
-	rtv = ft_printundec(flag, (unsigned int) va_arg(args, unsigned int));
+	rtv = ft_printundec(flag, va_arg(args, unsigned int));
 	return (rtv);
 }
 
