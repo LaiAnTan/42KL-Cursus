@@ -12,19 +12,15 @@
 
 #include "ft_printf.h"
 
-int	ft_counthex(unsigned int n)
+int	ft_counthex(unsigned long long n)
 {
 	int				count;
-	unsigned int	num;
 
 	count = 0;
-	num = n;
-	while (1)
+	while (n)
 	{
-		num = num / 16;
+		n = n / 16;
 		count++;
-		if (num == 0)
-			break ;
 	}
 	return (count);
 }

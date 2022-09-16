@@ -3,12 +3,9 @@
 
 int main(void)
 {
-	int val;
-	int rt1;
-	int rt2;
-
-	val = -1;
-	rt1 = ft_printf(" %u ", val);
-	rt2 = printf(" %u ", val);
-	printf("%d %d", rt1, rt2);
+	char *test = "babdasbd";
+	int a = ft_printf("The address is %p, so what?\n", &test);
+	printf("return: %d\n", a);
+	int b = printf("The address is %p, so what?\n", &test);
+	printf("return: %d\n", b);
 }

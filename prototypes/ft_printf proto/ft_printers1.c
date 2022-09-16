@@ -23,6 +23,8 @@ size_t	ft_printstr(char *s)
 	int	i;
 
 	i = 0;
+	if (s == 0)
+		return (ft_printstr("(null)"));
 	while (s[i] != '\0')
 	{
 		ft_printchr(s[i]);
