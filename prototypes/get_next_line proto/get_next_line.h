@@ -10,12 +10,12 @@
 
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 char	*get_next_line(int fd);
 int		check_new_line(char *str);
 char	*ft_append(char *src, char *dst);
 
-size_t	ft_strlcat(char *d, const char *s, size_t size);
 size_t	ft_strlen(const char *str);
 
 #endif

@@ -12,11 +12,11 @@
 
 #include "ft_printf.h"
 
-int	ft_undechandler(t_flags *flag, va_list args)
+int	ft_undechandler(va_list args)
 {
 	int	rtv;
 
-	rtv = ft_printundec(flag, va_arg(args, unsigned int));
+	rtv = ft_printundec(va_arg(args, unsigned int));
 	return (rtv);
 }
 
@@ -27,7 +27,7 @@ int	ft_hexhandler(t_flags *flag, va_list args)
 
 	num = (int) va_arg(args, int);
 	count = 0;
-	if (flag -> hashflag && num != 0)
+	if (flag -> hashflag == 1 && num != 0)
 	{
 		if (flag -> hashflag == 1 && flag -> type == 7)
 			write(1, "0x", 2);

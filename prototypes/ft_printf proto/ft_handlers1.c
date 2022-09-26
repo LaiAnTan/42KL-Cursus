@@ -26,7 +26,7 @@ int	ft_mainhandler(t_flags *flag, va_list args)
 	else if (flag -> type == 4 || flag -> type == 5)
 		printedcount = ft_inthandler(flag, args);
 	else if (flag -> type == 6)
-		printedcount = ft_undechandler(flag, args);
+		printedcount = ft_undechandler(args);
 	else if (flag -> type == 7 || flag -> type == 8)
 		printedcount = ft_hexhandler(flag, args);
 	else if (flag -> type == 9)
@@ -56,8 +56,9 @@ int	ft_inthandler(t_flags *flag, va_list args)
 	int	rtv;
 	int	num;
 
+	rtv = 0;
 	num = (int) va_arg(args, int);
-	if (num > 0)
+	if (num >= 0)
 	{
 		if (flag -> spaceflag == 1 && flag -> signflag == 0)
 		{
@@ -71,7 +72,7 @@ int	ft_inthandler(t_flags *flag, va_list args)
 			rtv += 1;
 		}
 	}
-	rtv += ft_printint(flag, num);
+	rtv += ft_printint(num);
 	return (rtv);
 }
 
@@ -82,5 +83,5 @@ int	ft_ptrhandler(va_list args)
 	write(1, "0x", 2);
 	ptr = (uintptr_t) va_arg(args, uintptr_t);
 	ft_printptr(ptr, "0123456789abcdef");
-	return (ft_counthex(ptr) + 2);
+	return (ft_countptr(ptr) + 2);
 }

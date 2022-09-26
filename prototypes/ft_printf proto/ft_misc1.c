@@ -38,8 +38,6 @@ static int	uncountchar(unsigned int n)
 
 	count = 0;
 	num = n;
-	if (n < 0)
-		count++;
 	while (1)
 	{
 		num = num / 10;

@@ -12,7 +12,22 @@
 
 #include "ft_printf.h"
 
-int	ft_counthex(unsigned long long n)
+int	ft_counthex(unsigned int n)
+{
+	int				count;
+
+	count = 0;
+	if (n == 0)
+		return (1);
+	while (n)
+	{
+		n = n / 16;
+		count++;
+	}
+	return (count);
+}
+
+int	ft_countptr(unsigned long long n)
 {
 	int				count;
 

@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct s_flags
 {
@@ -44,7 +45,7 @@ int		ft_ptrhandler(va_list args);
 int		ft_inthandler(t_flags *flag, va_list args);
 
 /* ft_handlers2.c */
-int		ft_undechandler(t_flags *flag, va_list args);
+int		ft_undechandler(va_list args);
 int		ft_hexhandler(t_flags *flag, va_list args);
 int		ft_percenthandler(void);
 
@@ -55,8 +56,8 @@ void	ft_printptr(uintptr_t n, char *b16);
 void	ft_printhex(unsigned int n, char *b16);
 
 /* ft_printers2.c */
-int		ft_printint(t_flags *flag, int n);
-int		ft_printundec(t_flags *flag, unsigned int n);
+int		ft_printint(int n);
+int		ft_printundec(unsigned int n);
 
 /* ft_misc1.c */
 char	*ft_itoa(int n);
@@ -64,6 +65,6 @@ char	*ft_unitoa(unsigned int n);
 size_t	ft_strlen(const char *str);
 
 /* ft_misc2.c */
-int		ft_counthex(unsigned long long n);
-
+int		ft_counthex(unsigned int n);
+int		ft_countptr(unsigned long long n);
 #endif

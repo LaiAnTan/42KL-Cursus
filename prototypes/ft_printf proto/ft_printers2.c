@@ -12,10 +12,9 @@
 
 #include "ft_printf.h"
 
-int	ft_printint(t_flags *flag, int n)
+int	ft_printint(int n)
 {
 	int		i;
-	int		rtv;
 	char	*str;
 
 	i = 0;
@@ -29,10 +28,9 @@ int	ft_printint(t_flags *flag, int n)
 	return (i);
 }
 
-int	ft_printundec(t_flags *flag, unsigned int n)
+int	ft_printundec(unsigned int n)
 {
 	int		i;
-	int		rtv;
 	char	*str;
 
 	i = 0;
