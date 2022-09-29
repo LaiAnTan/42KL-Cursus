@@ -15,16 +15,29 @@
 int	ft_counthex(unsigned int n)
 {
 	int				count;
-	unsigned int	num;
 
 	count = 0;
-	num = n;
-	while (1)
+	if (n == 0)
+		return (1);
+	while (n)
 	{
-		num = num / 16;
+		n = n / 16;
 		count++;
-		if (num == 0)
-			break ;
+	}
+	return (count);
+}
+
+int	ft_countptr(unsigned long long n)
+{
+	int				count;
+
+	count = 0;
+	if (n == 0)
+		return (1);
+	while (n)
+	{
+		n = n / 16;
+		count++;
 	}
 	return (count);
 }
