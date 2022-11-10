@@ -5,7 +5,7 @@
 #ifndef BUFFER_SIZE
 
 /* BUFFER_SIZE = size of temporary storage area */
-# define BUFFER_SIZE 69
+# define BUFFER_SIZE 2000
 #endif
 
 # include <stdlib.h>
@@ -13,9 +13,11 @@
 # include <stdio.h>
 
 char	*get_next_line(int fd);
-int		check_new_line(char *str);
-char	*ft_append(char *src, char *dst);
+int		check_nl(char *str);
+char	**seperate_nl(char *str);
 
-size_t	ft_strlen(const char *str);
+char	*ft_append(char *s1, char *s2);
+size_t	ft_strlen(char *str);
+char	*ft_strdup(const char *s);
 
 #endif

@@ -24,8 +24,7 @@ int	ft_hexhandler(t_flags *flag, va_list args)
 {
 	int	num;
 	int	count;
-
-	num = (int) va_arg(args, int);
+	num = (int)va_arg(args, int);
 	count = 0;
 	if (flag -> hashflag == 1 && num != 0)
 	{

@@ -1,10 +1,13 @@
 all : compile run
 
 compile :
-		gcc *.c
+		gcc -o compiled *.c
+
+debug :
+		gcc -o compiled *.c -g
 
 run :
-		./a.exe
+		.\compiled.exe
 
 macclean :
 		-rm -f *.c
