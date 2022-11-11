@@ -6,7 +6,7 @@
 #    By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 16:33:49 by tlai-an           #+#    #+#              #
-#    Updated: 2022/09/15 15:24:39 by tlai-an          ###   ########.fr        #
+#    Updated: 2022/09/29 11:21:18 by tlai-an          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,6 @@ all : $(NAME)
 .c.o :
 		gcc ${CFLAG} -c -I ${SRCS_H} $< -o ${<:.c=.o}
 
-bonus : fclean ${SRCS_O}
-	ar r ${NAME} ${SRCS_O}
-
 $(NAME): ${SRCS_O}
 		ar rcs $(NAME) ${SRCS_O}
 
@@ -48,6 +45,8 @@ clean :
 
 fclean : clean
 		rm -f $(NAME)
+
+bonus : re
 
 re : fclean all
 
