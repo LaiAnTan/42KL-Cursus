@@ -1,7 +1,7 @@
 all : compile run
 
 compile :
-		gcc -o compiled *.c
+		gcc -o  compiled *.c
 
 debug :
 		gcc -o compiled *.c -g

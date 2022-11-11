@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include "get_next_line.h"
 
 int main(void)
@@ -20,18 +21,6 @@ int main(void)
 	printf("file 2 line 2 output: %s", get_next_line(fd2));
 	printf("file 1 line 3 output: %s", get_next_line(fd1));
 	printf("file 2 line 3 output: %s", get_next_line(fd2));
-
-	// char *str = (char *) malloc (sizeof(char) * 100);
-	// int	size;
-	// size += read(fd, str, 5);
-	// printf("size = %d\n", size);
-	// str[size] = '\0';
-	// printf("read:\n%s\n", str);
-
-	// size = read(fd, str, 10);
-	// printf("size = %d\n", size);
-	// str[size] = '\0';
-	// printf("read:\n%s\n", str);
 
 	return (0);
 }
