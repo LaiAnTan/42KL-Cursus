@@ -1,32 +1,32 @@
 #include "get_next_line.h"
 
-char    *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-    int			i;
-	int			bytesread;
-    char		buffer[BUFFER_SIZE + 1];
-    char		*output;
-    char		**temp;
-	static char	*content;
+    char			*buffer;
+    char			*output;
+    char			**temp;
+	static char		*content;
 
-	i = -1;
-    while (i == -1)
-    {
-        bytesread = read(fd, &buffer, BUFFER_SIZE);
-		if (!bytesread)
-			break ;
-        buffer[bytesread] = '\0';
-        content = ft_append(content, buffer);
-		i = check_nl(buffer);
-    }
-    temp = seperate_nl(content);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = (char *) malloc (sizeof(char) * (BUFFER_SIZE + 1));
+    content = transfer(fd, content, buffer);
+	if (!content)
+		return (NULL);
+	else
+		temp = seperate_nl(content);
     output = ft_strdup(temp[0]);
     content = ft_strdup(temp[1]);
+	if (*content == '\0')
+	{
+		free(content);
+		content = NULL;
+	}
     free(temp);
     return (output);
 }
 
-int	check_nl(char *str) //locates new line in a string of text
+int	check_nl(char *str)
 {
 	int	i;
 
@@ -53,8 +53,8 @@ char	**seperate_nl(char *str)
 		i = len;
 	j = 0;
 	arr = (char**) malloc (sizeof(char) * 2);
-	arr[0] = (char *) malloc (sizeof(char) * (i + 1)); // arr[0] = output
-	arr[1] = (char *) malloc (sizeof(char) * (len - i + 1)); // arr[1] = content
+	arr[0] = (char *) malloc (sizeof(char) * (i + 1));
+	arr[1] = (char *) malloc (sizeof(char) * (len - i + 1));
 	while (i)
 	{
 		arr[0][j++] = *str++;
@@ -67,3 +67,20 @@ char	**seperate_nl(char *str)
 	return (arr);
 }
 
+char *transfer(int fd, char *content, char *buffer)
+{
+	int	bytesread;
+
+	while (check_nl(buffer) == -1)
+    {
+        bytesread = read(fd, buffer, BUFFER_SIZE);
+		if (!bytesread)
+			break ;
+		if (bytesread == -1)
+			break ;
+        buffer[bytesread] = '\0';
+        content = ft_append(content, buffer);
+    }
+	free(buffer);
+	return (content);
+}

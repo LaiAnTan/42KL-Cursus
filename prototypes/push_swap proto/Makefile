@@ -1,13 +1,13 @@
 all : compile run
 
 compile :
-		gcc -Wall -Wextra -Werror *.c -o compiled
+		gcc -Wall -Wextra -Werror *.c 
 
 debug :
 		gcc -o compiled *.c -g
 
 run :
-		./compiled.exe
+		./a.out
 
 macclean :
 		-rm -f *.c

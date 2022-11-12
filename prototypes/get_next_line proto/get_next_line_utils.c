@@ -1,5 +1,17 @@
 #include "get_next_line.h"
 
+size_t	ft_strlen(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
 char    *ft_append(char *s1, char *s2) // join 2 string
 {
 	int		i;
@@ -22,18 +34,6 @@ char    *ft_append(char *s1, char *s2) // join 2 string
 	temp[i] = '\0';
 	free(s1);
 	return (temp);
-}
-
-size_t	ft_strlen(char *str) // working
-{
-	size_t	i;
-
-	i = 0;
-	if (str == NULL)
-		return (0);
-	while (str[i] != '\0')
-		i++;
-	return (i);
 }
 
 char	*ft_strdup(const char *s)
