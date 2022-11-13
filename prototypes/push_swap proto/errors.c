@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	error(int code, int *arr) // arr = stack to be freed
+int	error(int code, t_stack *stack)
 {
 	if (code == 1)
 		printf("Error, Arguement not an integer\n");
@@ -8,7 +8,7 @@ int	error(int code, int *arr) // arr = stack to be freed
 		printf("Error, Arguement overflow\n");
 	else if (code == 3)
 		printf("Error, Duplicate arguements found\n");
-	free(arr);
+	free(stack);
 	exit(code);
 	return (0);
 }

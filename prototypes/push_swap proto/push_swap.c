@@ -5,35 +5,64 @@
 
 int main(int argc, char *argv[])
 {
-	int		*stack_a;
-	// int		*stack_b;
+	t_stack		*stack;
+	int			max_size;
 
-	stack_a = arg_to_stack(argc, argv);
-	// stack_b = (int *) malloc (sizeof(int) * (argc - 1));
-	for(int i = 0; i < argc - 1; i++)
-		printf("%d ", stack_a[i]);
-	if (check_duplicate(stack_a, (argc - 1)) == -1)
-		error(3, stack_a);
-	swap('a', stack_a);
-	for(int i = 0; i < argc - 1; i++)
-		printf("%d ", stack_a[i]);
+	max_size = argc - 1;
+	printf("max_size = %d\n", max_size);
+	stack = genstack();
+	initstack(stack, max_size, argv);
+	if (check_duplicate(stack ->stack_a, stack ->size_a) == -1)
+		error(3, stack);
+	check_sort(stack ->stack_a, stack ->size_a, stack);
+	free(stack);
+	return (0);
 }
 
-int	*arg_to_stack(int argc, char **argv)
+int *arg_to_stack(int size, char **argv, t_stack *stack)
 {
 	int		i;
-	int		*stack;
+	int		*arr;
 
 	i = 0;
-	stack = (int *) malloc (sizeof(int) * argc);
-	if (!stack)
+	arr = (int *) malloc (sizeof(int) * size);
+	if (!arr)
 		return (NULL);
 	argv++;
-	while (argc - 1)
+	while (size--)
 	{
-		stack[i++] = ft_atoi(*argv, stack);
+		arr[i] = ft_atoi(*argv, stack);
+		i++;
 		argv++;
-		argc--;
 	}
-	return (stack);
+	return (arr);
+}
+
+void	print_stack(int *stack, int size)
+{
+	int		i;
+	
+	i = 0;
+	while (i < size)
+	{
+		printf("%d ", stack[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+void	check_sort(int *arr, int size, t_stack *stack)
+{
+	int		i;
+
+	i = 0;
+	while (i < (size - 1))
+	{
+		if (arr[i] > arr[i + 1])
+			return ;
+		i++;
+	}
+	free(stack);
+	exit(0);
+	return ;
 }

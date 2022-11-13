@@ -12,7 +12,7 @@ static int	overflow_check(int val, char lastdigit, int sign)
 	}
 }
 
-int	ft_atoi(const char *s, int	*arr)
+int	ft_atoi(const char *s, t_stack *stack)
 {
 	int		sign;
 	long	rtval;
@@ -32,9 +32,9 @@ int	ft_atoi(const char *s, int	*arr)
 	while (*str != '\0')
 	{
 		if (*str < '0' || *str > '9')
-			return(error(1, arr));
+			return(error(1, stack));
 		if (overflow_check(rtval, *str, sign) == -1)
-			return (error(2, arr));
+			return (error(2, stack));
 		rtval = (rtval * 10) + (*str - '0');
 		str++;
 	}
