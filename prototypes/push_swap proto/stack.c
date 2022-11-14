@@ -27,3 +27,11 @@ void initstack(t_stack *stack, int max_size, char **argv)
 	return ;
 }
 
+void	deinitstack(t_stack *stack)
+{
+	free(stack ->stack_a);
+	free(stack ->stack_b);
+	free(stack);
+	return ;
+}
+

@@ -25,6 +25,7 @@ void	check_sort(int *arr, int size, t_stack *stack);
 t_stack	*genstack(void);
 void	resetstack(t_stack *stack);
 void	initstack(t_stack *stack, int max_size, char **argv);
+void	deinitstack(t_stack *stack);
 
 // swap
 void	sa(t_stack *stack);

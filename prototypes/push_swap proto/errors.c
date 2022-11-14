@@ -8,7 +8,7 @@ int	error(int code, t_stack *stack)
 		printf("Error, Arguement overflow\n");
 	else if (code == 3)
 		printf("Error, Duplicate arguements found\n");
-	free(stack);
+	deinitstack(stack);
 	exit(code);
 	return (0);
 }
@@ -24,8 +24,11 @@ int	check_duplicate(int	*arr, int len)
 	{
 		while (j < len)
 		{
-			if (i == j++)
+			if (i == j)
+			{
+				j++;
 				continue ;
+			}
 			if (arr[i] == arr[j])
 				return (-1);
 			j++;

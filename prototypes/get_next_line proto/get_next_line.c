@@ -10,7 +10,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = (char *) malloc (sizeof(char) * (BUFFER_SIZE + 1));
-    content = transfer(fd, content, buffer);
+    content = transfer(fd, content, buffer); //!!
 	if (!content)
 		return (NULL);
 	else
@@ -22,7 +22,9 @@ char	*get_next_line(int fd)
 		free(content);
 		content = NULL;
 	}
-    free(temp);
+	free(temp[0]);
+	free(temp[1]);
+	free(temp);
     return (output);
 }
 
@@ -44,6 +46,7 @@ char	**seperate_nl(char *str)
 {
 	int		i;
 	int		j;
+	int		k;
 	int		len;
 	char	**arr;
 
@@ -52,18 +55,20 @@ char	**seperate_nl(char *str)
 	if (!i)
 		i = len;
 	j = 0;
+	k = 0;
 	arr = (char**) malloc (sizeof(char) * 2);
 	arr[0] = (char *) malloc (sizeof(char) * (i + 1));
 	arr[1] = (char *) malloc (sizeof(char) * (len - i + 1));
 	while (i)
 	{
-		arr[0][j++] = *str++;
+		arr[0][j++] = str[k++];
 		i--;
 	}
 	arr[0][j] = '\0';
-	while (*str != '\0')
-		arr[1][i++] = *str++;
+	while (str[k] != '\0')
+		arr[1][i++] = str[k++];
 	arr[1][i] = '\0';
+	free(str);
 	return (arr);
 }
 

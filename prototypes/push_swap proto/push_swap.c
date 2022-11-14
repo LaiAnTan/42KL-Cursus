@@ -15,25 +15,26 @@ int main(int argc, char *argv[])
 	if (check_duplicate(stack ->stack_a, stack ->size_a) == -1)
 		error(3, stack);
 	check_sort(stack ->stack_a, stack ->size_a, stack);
-	free(stack);
+	deinitstack(stack);
 	return (0);
 }
 
 int *arg_to_stack(int size, char **argv, t_stack *stack)
 {
 	int		i;
+	int		j;
 	int		*arr;
 
 	i = 0;
+	j = 1;
 	arr = (int *) malloc (sizeof(int) * size);
 	if (!arr)
 		return (NULL);
-	argv++;
 	while (size--)
 	{
-		arr[i] = ft_atoi(*argv, stack);
+		arr[i] = ft_atoi(argv[j], stack);
 		i++;
-		argv++;
+		j++;
 	}
 	return (arr);
 }
@@ -62,7 +63,7 @@ void	check_sort(int *arr, int size, t_stack *stack)
 			return ;
 		i++;
 	}
-	free(stack);
+	deinitstack(stack);
 	exit(0);
 	return ;
 }
