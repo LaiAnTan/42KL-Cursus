@@ -13,28 +13,27 @@ int	error(int code, t_stack *stack)
 	return (0);
 }
 
-int	check_duplicate(int	*arr, int len)
+int	check_duplicate(t_stack *stack)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (i < len)
+	while (i < stack ->size_a)
 	{
-		while (j < len)
+		while (j < stack ->size_a)
 		{
 			if (i == j)
 			{
 				j++;
 				continue ;
 			}
-			if (arr[i] == arr[j])
-				return (-1);
+			if (stack ->stack_a[i] == stack ->stack_a[j])
+				return (error(3, stack));
 			j++;
 		}
 		i++;
-
 	}
 	return (0);
 }

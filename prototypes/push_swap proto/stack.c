@@ -15,6 +15,7 @@ void resetstack(t_stack *stack)
 	stack ->stack_b = 0;
 	stack ->size_a = 0;
 	stack ->size_b = 0;
+	stack ->op_num = 0;
 	return ;
 }
 
@@ -24,6 +25,7 @@ void initstack(t_stack *stack, int max_size, char **argv)
 	stack ->stack_b = (int *) malloc (sizeof(int) * max_size);
 	stack ->size_a = max_size;
 	stack ->size_b = 0;
+	stack ->op_num = 0;
 	return ;
 }
 
@@ -35,3 +37,11 @@ void	deinitstack(t_stack *stack)
 	return ;
 }
 
+void	status_stack(t_stack *stack)
+{
+	printf("size_a: %d\n", stack ->size_a);
+	print_stack('a', stack);
+	printf("size_b: %d\n", stack ->size_b);
+	print_stack('b', stack);
+	return ;
+}

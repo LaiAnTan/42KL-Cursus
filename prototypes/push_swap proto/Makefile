@@ -1,4 +1,4 @@
-parameters = 2 +01 3 4 5 6 7 2
+parameters = 7 4 9 3 1 10 2 5 8 6
 
 all : compile run
 
@@ -12,9 +12,6 @@ debug :
 
 leaks :
 		valgrind --leak-check=full --show-leak-kinds=all ./a.out $(parameters)
-
-debug :
-		gcc -o compiled *.c -g
 
 run :
 		./a.out $(parameters)

@@ -10,7 +10,7 @@ static int	push(int fsize, int tsize, int *from, int *to)
 	i = 0;
 	
 	if (!fsize)
-		return (0);
+		return (-1);
 	temp = from[0];
 	while (tsize)
 	{
@@ -23,7 +23,7 @@ static int	push(int fsize, int tsize, int *from, int *to)
 		i++;
 	}
 	to[0] = temp;
-	return (1);
+	return (0);
 }
 
 void	pa(t_stack *stack)
@@ -31,11 +31,12 @@ void	pa(t_stack *stack)
 	int	i;
 
 	i = push(stack ->size_b, stack ->size_a, stack ->stack_b, stack ->stack_a);
-	if (i)
+	if (!i)
 	{
 		printf("pa\n");
 		stack ->size_a += 1;
 		stack ->size_b -= 1;
+		stack ->op_num++;
 	}
 	return ;
 }
@@ -45,11 +46,12 @@ void	pb(t_stack *stack)
 	int	i;
 
 	i = push(stack ->size_a, stack ->size_b, stack ->stack_a, stack ->stack_b);
-	if (i)
+	if (!i)
 	{
 		printf("pb\n");
 		stack ->size_a -= 1;
 		stack ->size_b += 1;
+		stack ->op_num++;
 	}
 	return ;
 }

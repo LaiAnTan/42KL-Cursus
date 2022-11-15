@@ -12,22 +12,45 @@ static void	swap(int *stack)
 
 void	sa(t_stack *stack)
 {
-	printf("sa\n");
-	swap(stack ->stack_a);
+	if(stack ->size_a > 1)
+	{
+		printf("sa\n");
+		swap(stack ->stack_a);
+		stack ->op_num++;
+	}
 	return ;
 }
 
 void	sb(t_stack *stack)
 {
-	printf("sb\n");
-	swap(stack ->stack_b);
+	if(stack ->size_b > 1)
+	{
+		printf("sb\n");
+		swap(stack ->stack_b);
+		stack ->op_num++;
+	}
 	return ;
 }
 
 void	ss(t_stack *stack)
 {
-	printf("ss\n");
-	swap(stack ->stack_a);
-	swap(stack ->stack_b);
+	int	i;
+
+	i = 0;
+	if(stack ->size_a > 1)
+	{
+		swap(stack ->stack_a);
+		i++;
+	}
+	if(stack ->size_b > 1)
+	{
+		swap(stack ->stack_b);
+		i++;
+	}
+	if (i)
+	{
+		stack ->op_num++;
+		printf("ss\n");
+	}
 	return ;
 }

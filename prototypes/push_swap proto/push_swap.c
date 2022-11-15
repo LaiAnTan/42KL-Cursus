@@ -12,9 +12,9 @@ int main(int argc, char *argv[])
 	printf("max_size = %d\n", max_size);
 	stack = genstack();
 	initstack(stack, max_size, argv);
-	if (check_duplicate(stack ->stack_a, stack ->size_a) == -1)
-		error(3, stack);
-	check_sort(stack ->stack_a, stack ->size_a, stack);
+	check_duplicate(stack);
+	check_sort(stack);
+	sort(stack);
 	deinitstack(stack);
 	return (0);
 }
@@ -39,31 +39,53 @@ int *arg_to_stack(int size, char **argv, t_stack *stack)
 	return (arr);
 }
 
-void	print_stack(int *stack, int size)
+void	print_stack(char c, t_stack *stack)
 {
 	int		i;
+	int		size;
+	int		*arr;
 	
 	i = 0;
+	if (c == 'a')
+	{
+		size = stack ->size_a;
+		arr = stack ->stack_a;
+	}
+	else if (c == 'b')
+	{
+		size = stack ->size_b;
+		arr = stack ->stack_b;
+	}
+	else
+		return ;
+	printf("stack %c: ", c);
 	while (i < size)
 	{
-		printf("%d ", stack[i]);
+		printf("%d ", arr[i]);
 		i++;
 	}
 	printf("\n");
 }
 
-void	check_sort(int *arr, int size, t_stack *stack)
+void	check_sort(t_stack *stack)
 {
 	int		i;
+	int		size;
 
 	i = 0;
-	while (i < (size - 1))
+	size = stack ->size_a - 1;
+	if (stack ->size_b)
+		return ;
+	while (i < (size))
 	{
-		if (arr[i] > arr[i + 1])
+		if (stack ->stack_a[i] > stack ->stack_a[i + 1])
 			return ;
 		i++;
 	}
+	status_stack(stack);
+	printf("op_num: %d\n", stack ->op_num);
 	deinitstack(stack);
 	exit(0);
 	return ;
 }
+
