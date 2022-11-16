@@ -5,7 +5,7 @@
 #  ifndef BUFFER_SIZE
 
 /* BUFFER_SIZE = size of temporary storage area */
-#   define BUFFER_SIZE 3
+#   define BUFFER_SIZE 42
 #  endif
 
 # include <stdlib.h>

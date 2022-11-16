@@ -34,7 +34,7 @@ int	check_nl(char *str, int	size)
 	i = 0;
 	if (!str)
 		return (-1);
-	while (i < size)
+	while (i < size && str[i] != '\0')
 	{
 		if (str[i] == '\n')
 			return (i);
@@ -47,18 +47,20 @@ char	**seperate_nl(char *str)
 {
 	int		i;
 	int		j;
+	int		k;
 	int		len;
 	char	**arr;
 
 	len = ft_strlen(str);
-	i = check_nl(str, BUFFER_SIZE) + 1;
-	if (i == 0)
+	i = check_nl(str, len); // index of nl
+	if (i == -1)
 		i = len;
 	j = 0;
+	k = len - i;
 	arr = (char **) malloc (sizeof(char *) * 2);
-	arr[0] = (char *) malloc (sizeof(char) * i + 1);
-	arr[1] = (char *) malloc (sizeof(char) * (len - i + 1));
-	while (j < i)
+	arr[0] = (char *) malloc (sizeof(char) * (i + 2));
+	arr[1] = (char *) malloc (sizeof(char) * (k + 1));
+	while (j <= i && str[j])
 	{
 		arr[0][j] = str[j];
 		j++;
@@ -66,8 +68,11 @@ char	**seperate_nl(char *str)
 	arr[0][j] = '\0';
 	i = 0;
 	while (str[j] != '\0')
-
-		arr[1][i++] = str[j++];
+	{
+		arr[1][i] = str[j];
+		i++;
+		j++;
+	}
 	arr[1][i] = '\0';
 	return (arr);
 }
