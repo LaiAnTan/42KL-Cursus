@@ -5,11 +5,16 @@
 int main(void)
 {
 	int fd1;
+	char *test;
 	fd1 = open("test.txt", O_RDONLY);
 	printf("fd1 = %d\n", fd1);
-	
-	char *arr = get_next_line(fd1);
-	printf("output: %s\n", arr);
-	free(arr);
+	test = NULL;
+	for (int i = 0; i < 6; i++)
+	{
+		if (test)
+			free(test);
+		test = get_next_line(fd1);
+		printf("output: %s\n", test);
+	}
 	return (0);
 }

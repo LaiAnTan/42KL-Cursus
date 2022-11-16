@@ -6,13 +6,13 @@ compile :
 		gcc -g -O1 -Wall -Wextra -Werror *.c
 
 leaks :
-		valgrind --leak-check=full --show-leak-kinds=all ./a.out
+		valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./a.out
 
 debug :
 		gcc -o compiled *.c -g
 
 run :
-		./compiled.exe
+		./a.out
 
 macclean :
 		-rm -f *.c

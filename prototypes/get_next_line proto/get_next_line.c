@@ -4,36 +4,37 @@ char	*get_next_line(int fd)
 {
     char			*buffer;
     char			*output;
-    char			**temp;
+	char			**temp;
 	static char		*content;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = (char *) malloc (sizeof(char) * (BUFFER_SIZE + 1));
-    content = transfer(fd, content, buffer); //!!
+    content = transfer(fd, content, buffer);
 	if (!content)
 		return (NULL);
-	else
-		temp = seperate_nl(content);
+	temp = seperate_nl(content);
     output = ft_strdup(temp[0]);
-    content = ft_strdup(temp[1]);
+	if (content)
+		free(content);
+	content = ft_strdup(temp[1]);
 	if (*content == '\0')
 	{
 		free(content);
 		content = NULL;
 	}
-	free(temp[0]);
-	free(temp[1]);
 	free(temp);
     return (output);
 }
 
-int	check_nl(char *str)
+int	check_nl(char *str, int	size)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	if (!str)
+		return (-1);
+	while (i < size)
 	{
 		if (str[i] == '\n')
 			return (i);
@@ -46,29 +47,28 @@ char	**seperate_nl(char *str)
 {
 	int		i;
 	int		j;
-	int		k;
 	int		len;
 	char	**arr;
 
 	len = ft_strlen(str);
-	i = check_nl(str) + 1;
-	if (!i)
+	i = check_nl(str, BUFFER_SIZE) + 1;
+	if (i == 0)
 		i = len;
 	j = 0;
-	k = 0;
-	arr = (char**) malloc (sizeof(char) * 2);
-	arr[0] = (char *) malloc (sizeof(char) * (i + 1));
+	arr = (char **) malloc (sizeof(char *) * 2);
+	arr[0] = (char *) malloc (sizeof(char) * i + 1);
 	arr[1] = (char *) malloc (sizeof(char) * (len - i + 1));
-	while (i)
+	while (j < i)
 	{
-		arr[0][j++] = str[k++];
-		i--;
+		arr[0][j] = str[j];
+		j++;
 	}
 	arr[0][j] = '\0';
-	while (str[k] != '\0')
-		arr[1][i++] = str[k++];
+	i = 0;
+	while (str[j] != '\0')
+
+		arr[1][i++] = str[j++];
 	arr[1][i] = '\0';
-	free(str);
 	return (arr);
 }
 
@@ -76,7 +76,8 @@ char *transfer(int fd, char *content, char *buffer)
 {
 	int	bytesread;
 
-	while (check_nl(buffer) == -1)
+	bytesread = 0;
+	while (check_nl(buffer, bytesread) == -1)
     {
         bytesread = read(fd, buffer, BUFFER_SIZE);
 		if (!bytesread)

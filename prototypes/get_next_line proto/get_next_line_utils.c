@@ -12,7 +12,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char    *ft_append(char *s1, char *s2) // join 2 string
+char    *ft_append(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -36,23 +36,23 @@ char    *ft_append(char *s1, char *s2) // join 2 string
 	return (temp);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *str)
 {
 	int		i;
-	char	*str;
 	char	*dest;
 
 	i = 0;
-	str = (char *) s;
-	dest = (char *) malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (dest == 0)
-		return (0);
+	if (!str)
+		return (NULL);
+	dest = (char *) malloc (sizeof(char) * (ft_strlen(str) + 1));
+	if (!dest)
+		return (NULL);
 	while (str[i] != '\0')
 	{
 		dest[i] = str[i];
 		i++;
 	}
-	if (str[i] == '\0')
-		dest[i] = '\0';
+	dest[i] = '\0';
+	free(str);
 	return (dest);
 }
