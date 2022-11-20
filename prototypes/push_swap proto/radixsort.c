@@ -35,19 +35,14 @@ void	radix_sort(t_stack *stack)
 	shift = 0;
 	max_binary_digit = max_binary_shift(stack ->stack_a, stack ->size_a);
 	size = stack ->size_a;
-	while (shift <= max_binary_digit)
+	while (shift <= max_binary_digit && !check_sort(stack, stack ->stack_a, size))
 	{
-		while (i < size - 1)
+		while (i < size)
 		{
 			bit = stack ->stack_a[0];
-			// printf("current: %d shift by %d\n", bit, shift);
 			bit = (bit >> shift) & 1;
 			if (bit == 0)
-			{
-				if (stack ->size_a == 0)
-					break ;
 				pb(stack);
-			}
 			else if (bit == 1)
 				ra(stack);
 			i++;
