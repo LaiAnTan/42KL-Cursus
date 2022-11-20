@@ -40,3 +40,20 @@ int	ft_atoi(const char *s, t_stack *stack)
 	}
 	return ((int)(rtval * sign));
 }
+
+int	*ft_intarrdup(int *arr, int size)
+{
+	int		i;
+	int		*dest;
+
+	i = 0;
+	dest = (int *) malloc(sizeof(int) * size);
+	if (dest == 0)
+		return (0);
+	while (i < size)
+	{
+		dest[i] = arr[i];
+		i++;
+	}
+	return (dest);
+}

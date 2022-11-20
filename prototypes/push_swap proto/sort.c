@@ -1,65 +1,49 @@
 #include "push_swap.h"
 
-void	smallest_sort(t_stack *stack)
+void	sort_3a(t_stack *stack)
 {
 	int *a;
 
 	a = stack ->stack_a;
-	while (1)
+	while (!check_sort(stack, stack ->stack_a, 3))
 	{
-		check_sort(stack);
+		if (stack ->size_a > 2)
+		{
+			if (a[1] > a[2] && a[1] > a[0])
+				rra(stack);
+			else if (a[1] < a[2] && a[1] < a[0])
+				ra(stack);
+		}
 		if (a[0] > a[1])
 			sa(stack);
-		else
-			ra(stack);
 	}
 }
 
-void	insertion_sort(t_stack *stack) //garbage
+void	sort_3b(t_stack *stack)
 {
-	int		i;
-	int		size;
-	int		*a;
-	int		*b;
+	int *b;
 
-	i = 0;
-	size = stack ->size_a;
-	a = stack ->stack_a;
-	b = stack ->stack_b;
-	while (1)
+	b = stack ->stack_a;
+	while (!check_sort(stack, stack ->stack_b, 3))
 	{
-		check_sort(stack);
-		if (a[0] < a[1])
-			rra(stack);
-		else
+		if (stack ->size_b > 2)
 		{
-			pb(stack);
-			while (i < size)
-			{
-				if (a[0] > b[0])
-				{
-					pa(stack);
-					i = 0;
-					break ;
-				}
-				else if (a[0] < b[0])
-				{
-					rra(stack);
-					i++;
-				}
-			}
-			i = 0;
-			pa(stack);
-			rra(stack);
+			if (b[1] < b[2] && b[1] < b[0])
+				rrb(stack);
+			else if (b[1] > b[2] && b[1] > b[0])
+				rb(stack);
 		}
+		if (b[0] < b[1])
+			sb(stack);
 	}
-	return ;
 }
 
 void	sort(t_stack *stack)
 {
-	if (stack ->size_a <= 3)
-		smallest_sort(stack);
-	insertion_sort(stack);
+	if (stack ->size_a <= 100)
+	{
+		if (stack ->size_a <= 3)
+			sort_3a(stack);
+	}
 	return ;
 }
