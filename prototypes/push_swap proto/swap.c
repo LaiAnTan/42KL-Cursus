@@ -1,21 +1,11 @@
 #include "push_swap.h"
 
-static void	swap(int *stack)
-{
-	int		temp;
-
-	temp = stack[0];
-	stack[0] = stack[1];
-	stack[1] = temp;
-	return ;
-}
-
 void	sa(t_stack *stack)
 {
 	if(stack ->size_a > 1)
 	{
 		printf("sa\n");
-		swap(stack ->stack_a);
+		ft_swap(&stack ->stack_a[0], &stack ->stack_a[1]);
 		stack ->op_num++;
 	}
 	return ;
@@ -26,7 +16,7 @@ void	sb(t_stack *stack)
 	if(stack ->size_b > 1)
 	{
 		printf("sb\n");
-		swap(stack ->stack_b);
+		ft_swap(&stack ->stack_b[0], &stack ->stack_b[1]);
 		stack ->op_num++;
 	}
 	return ;
@@ -39,12 +29,12 @@ void	ss(t_stack *stack)
 	i = 0;
 	if(stack ->size_a > 1)
 	{
-		swap(stack ->stack_a);
+		ft_swap(&stack ->stack_a[0], &stack ->stack_a[1]);
 		i++;
 	}
 	if(stack ->size_b > 1)
 	{
-		swap(stack ->stack_b);
+		ft_swap(&stack ->stack_b[0], &stack ->stack_b[1]);
 		i++;
 	}
 	if (i)

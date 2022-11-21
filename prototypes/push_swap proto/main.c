@@ -9,7 +9,6 @@ int main(int argc, char *argv[])
 	int			max_size;
 
 	max_size = argc - 1;
-	printf("max_size = %d\n", max_size);
 	stack = genstack();
 	initstack(stack, max_size, argv);
 	check_duplicate(stack);
@@ -18,8 +17,7 @@ int main(int argc, char *argv[])
 		deinitstack(stack);
 		return (0);
 	}
-	radix_sort(stack);
-	status_stack(stack);
+	sort(stack);
 	deinitstack(stack);
 	return (0);
 }
@@ -83,8 +81,7 @@ int	check_sort(t_stack *stack, int *arr, int size)
 			return (0);
 		i++;
 	}
-	status_stack(stack);
-	printf("op_num: %d\n", stack ->op_num);
+	// printf("op_num: %d\n", stack ->op_num);
 	return (1);
 }
 

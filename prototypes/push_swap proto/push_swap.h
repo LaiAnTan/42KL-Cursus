@@ -22,7 +22,6 @@ int		*arg_to_stack(int size, char **argv, t_stack *stack);
 int		check_sort(t_stack *stack, int *arr, int size);
 void	print_stack(char c, t_stack *stack);
 
-
 // stacks
 t_stack	*genstack(void);
 void	resetstack(t_stack *stack);
@@ -43,9 +42,13 @@ void	rra(t_stack *stack);
 void	rrb(t_stack *stack);
 void	rrr(t_stack *stack);
 
+// operation helpers
+int		rotate(int size, int *stack);
+int		revrotate(int size, int *stack);
+
 //sort
 void	sort(t_stack *stack);
-void	sort_3a(t_stack *stack);
+void	small_sort(t_stack *stack);
 void	radix_sort(t_stack *stack);
 
 // error
@@ -53,6 +56,7 @@ int		error(int code, t_stack *stack);
 int		check_duplicate(t_stack *stack);
 
 // utils
+void	ft_swap(int *a, int *b);
 int		ft_atoi(const char *s, t_stack *stack);
 int		*ft_intarrdup(int *arr, int size);
 

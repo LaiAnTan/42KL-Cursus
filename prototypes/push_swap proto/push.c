@@ -17,7 +17,7 @@ static int	push(int fsize, int tsize, int *from, int *to)
 		to[tsize] = to[tsize - 1];
 		tsize--;
 	}
-	while (i < fsize)
+	while (i < fsize - 1)
 	{
 		from[i] = from[i + 1];
 		i++;

@@ -1,23 +1,17 @@
 #include "push_swap.h"
 
-static int	rotate(int stacksize, int *stack)
+int	rotate(int size, int *stack)
 {
-	int		temp;
 	int		i;
-	int		size;
 
-	i = 1;
-	if (stacksize <= 1)
+	i = 0;
+	if (size <= 1)
 		return (-1);
-	else
-		size = stacksize;
-	temp = stack[0];
-	while (size--)
+	while (i < size - 1)
 	{
-		stack[i - 1] = stack [i];
+		ft_swap(&stack[i], &stack[i + 1]);
 		i++;
 	}
-	stack[stacksize - 1] = temp;
 	return (0);
 }
 

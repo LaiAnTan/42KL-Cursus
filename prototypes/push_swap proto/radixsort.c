@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void insertion_sort(int *arr, int size)
+static void	insertion_sort(int *arr, int size)
 {
     int		i;
 	int		key;
@@ -21,7 +21,7 @@ void insertion_sort(int *arr, int size)
     }
 }
 
-void	simplify_a(t_stack *stack)
+static void	simplify_a(t_stack *stack)
 {
 	int		i;
 	int		j;
@@ -33,8 +33,6 @@ void	simplify_a(t_stack *stack)
 	size = stack ->size_a;
 	copy = ft_intarrdup(stack ->stack_a, size);
 	insertion_sort(copy, size);
-	for (int i = 0; i < size; i++)
-		printf("%d ", copy[i]);
 	while (i < size)
 	{
 		while (j < size)
@@ -52,29 +50,6 @@ void	simplify_a(t_stack *stack)
 	free(copy);
 }
 
-int	max_binary_shift(int *arr, int size)
-{
-	int		i;
-	int		num;
-
-	i = 0;
-	num = 0;
-	printf("size = %d\n", size);
-	while (i < size)
-	{
-		if (num < arr[i])
-			num = arr[i];
-		i++;
-	}
-	i = 0;
-	while (num)
-	{
-		num = num / 10;
-		i++;
-	}
-	return (i * 4);
-}
-
 void	radix_sort(t_stack *stack)
 {
 	int		i;
@@ -85,9 +60,7 @@ void	radix_sort(t_stack *stack)
 	i = 0;
 	shift = 0;
 	size = stack ->size_a;
-	status_stack(stack);
 	simplify_a(stack);
-	status_stack(stack);
 	while (!check_sort(stack, stack ->stack_a, size))
 	{
 		while (i < size)

@@ -1,20 +1,15 @@
 #include "push_swap.h"
 
-static int	revrotate(int stacksize, int *stack)
+int	revrotate(int size, int *stack)
 {
-	int		temp;
-	int		size;
-
-	if (stacksize <= 1)
+	if (size <= 1)
 		return (-1);
-	size = stacksize - 1;
-	temp = stack[size];
+	size--;
 	while (size)
 	{
-		stack[size] = stack[size - 1];
+		ft_swap(&stack[size], &stack[size - 1]);
 		size--;
 	}
-	stack[0] = temp;
 	return (0);
 }
 
