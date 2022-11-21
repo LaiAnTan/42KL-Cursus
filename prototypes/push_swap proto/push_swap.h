@@ -46,17 +46,7 @@ void	rrr(t_stack *stack);
 //sort
 void	sort(t_stack *stack);
 void	sort_3a(t_stack *stack);
-void	sort_3b(t_stack *stack);
-
 void	radix_sort(t_stack *stack);
-
-void	quick_sort(t_stack *stack);
-int		find_median(int *arr, int size);
-int		qs_a(t_stack *stack, int len);
-int		qs_b(t_stack *stack, int len);
-
-void	insertion_sort(int *str, int size);
-void	logic(int *str, int pointer, int marker);
 
 // error
 int		error(int code, t_stack *stack);
