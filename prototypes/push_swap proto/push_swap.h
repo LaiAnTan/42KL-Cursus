@@ -53,7 +53,7 @@ void	radix_sort(t_stack *stack);
 
 // error
 int		error(int code, t_stack *stack);
-int		check_duplicate(t_stack *stack);
+void	check_duplicate(t_stack *stack);
 
 // utils
 void	ft_swap(int *a, int *b);
