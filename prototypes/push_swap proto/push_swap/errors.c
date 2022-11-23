@@ -14,24 +14,15 @@ void	check_duplicate(t_stack *stack)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < stack ->size_a)
 	{
+		j = i + 1;
 		while (j < stack ->size_a)
 		{
-			if (i == j)
-				j++;
 			if (stack ->stack_a[i] == stack ->stack_a[j])
-			{
 				error(3, stack);
-				return ;
-			}
-			else
-				j++;
+			j++;
 		}
 		i++;
 	}
-	return ;
 }
-
-// duplicates in the middle are not found

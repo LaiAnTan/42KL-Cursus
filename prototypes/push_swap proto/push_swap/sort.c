@@ -79,7 +79,6 @@ void	small_sort(t_stack *stack)
 	sort_3(stack);
 	while (stack ->size_b > 0)
 		rotate_and_push(stack);
-	status_stack(stack);
 	return ;
 } 
 
