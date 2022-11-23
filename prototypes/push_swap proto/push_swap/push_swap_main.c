@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
 	int			max_size;
 
 	max_size = argc - 1;
+	if (!max_size)
+		return (0);
 	stack = genstack();
 	initstack(stack, max_size, argv);
 	check_duplicate(stack);
