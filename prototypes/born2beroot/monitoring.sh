@@ -1,5 +1,3 @@
-test cpu load - for i in 1 2 3 4; do while : ; do : ; done & done | bash monitoring.sh
-
 #!/bin/bash
 arc=$(uname -a)
 pproc=$(cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l)
@@ -11,7 +9,7 @@ diskpercent=$(df -Bm | grep '^/dev/' | grep -v '^/boot$' | awk '{total += $2} {u
 cpuload=$(top -bn1 | grep '^%Cpu' | awk '$1 == "%Cpu(s):" {printf("%.1f%%", $2+$4)}')
 rbt=$(who -b | awk '$1 == "system" {print $3 " " $4}')
 lvm=$(lsblk | grep "lvm" | wc -l)
-ac=$(netstat -ant | grep "ESTABLISHED" | wc -l)
+ac=$(ss -ant | grep "ESTABLISHED" | wc -l)
 users=$(users | wc -w)
 ivp4=$(hostname -I)
 mac=$(cat /sys/class/net/*/address | head -1)
