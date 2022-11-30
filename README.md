@@ -1,5 +1,9 @@
-# 42KL-Cursus
+# laian's 42KL-Cursus projects
 
-passed Libft + bonus (125 marks)
+|Projects | Score |
+|---------|-------|
+|Libft    |125    |
+|Printf   |110    |
+|get_next_line|112|
 
-passed Printf + bonus2 (110 marks)
+
