@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
 static int	countwords(char const *s, char c);
 static int	countletters(const char *s, char c, size_t start);
@@ -35,10 +35,11 @@ char	**ft_split(char const *s, char c)
 	if (s[0] == '\0')
 		return (ft_singlevalues());
 	words = countwords(s, c);
-	strs = (char **) ft_calloc((words + 1), sizeof(char *));
+	strs = (char **) malloc(sizeof(char *) * (words + 1));
 	if (strs == 0)
 		return (0);
 	insertwords(strs, s, c, words);
+	strs[words] = NULL;
 	return (strs);
 }
 
