@@ -6,7 +6,7 @@ all: compile run
 lc: debug leaks
 
 compile :
-		gcc *.c -o checker
+		gcc *.c -o a.out
 
 debug :
 		gcc -g -O1 *.c
@@ -15,7 +15,7 @@ leaks :
 		valgrind --leak-check=full --show-leak-kinds=all ./a.out $(parameters)
 
 run :
-		./checker $(parameters)
+		./a.out $(parameters)
 
 macclean :
 		-rm -f *.c

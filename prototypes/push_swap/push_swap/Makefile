@@ -12,7 +12,7 @@ debug :
 		gcc -g -O1 *.c
 
 leaks :
-		valgrind --leak-check=full --show-leak-kinds=all ./a.out $(parameters)
+		valgrind --leak-check=full --show-leak-kinds=all ./push_swap $(parameters)
 
 run :
 		./push_swap $(parameters)

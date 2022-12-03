@@ -52,7 +52,7 @@ void	rrb(t_stack *stack);
 void	rrr(t_stack *stack);
 
 // error
-int		error(int code, t_stack *stack);
+int	error(int code, t_stack *stack, char *op);
 void	check_duplicate(t_stack *stack);
 
 // utils

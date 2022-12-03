@@ -32,9 +32,9 @@ int	ft_atoi(const char *s, t_stack *stack)
 	while (*str != '\0')
 	{
 		if (*str < '0' || *str > '9')
-			return(error(1, stack));
+			return(error(1, stack, NULL));
 		if (overflow_check(rtval, *str, sign) == -1)
-			return (error(2, stack));
+			return (error(2, stack, NULL));
 		rtval = (rtval * 10) + (*str - '0');
 		str++;
 	}

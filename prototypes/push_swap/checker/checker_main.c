@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 		if (!op)
 			break ;
 		run_operation(stack, op);
+		free(op);
 	}
 	validate_sort(stack);
 	deinitstack(stack);
@@ -61,7 +62,10 @@ void	validate_sort(t_stack *stack)
 	while (i < (size - 1))
 	{
 		if (arr[i] > arr[i + 1])
+		{
 			printf("KO\n");
+			return ;
+		}
 		i++;
 	}
 	printf("OK\n");

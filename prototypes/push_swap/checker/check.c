@@ -3,8 +3,8 @@
 int		run_operation(t_stack *stack, char *op)
 {
 	if (ft_strlen(op) > 4)
-		error(4, stack);
-	if (!ft_strcmp(op, "pa\n"))
+		error(4, stack, op);
+	if (!ft_strcmp("pa\n", op))
 		pa(stack);
 	else if (!ft_strcmp("pb\n", op))
 		pb(stack);
@@ -27,6 +27,6 @@ int		run_operation(t_stack *stack, char *op)
 	else if (!ft_strcmp("rrr\n", op))
 		rrr(stack);
 	else
-		error(4, stack);
+		error(4, stack, op);
 	return (0);
 }
