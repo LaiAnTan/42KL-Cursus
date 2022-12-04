@@ -5,42 +5,41 @@ call 			: ./pipex infile "ls -l" "wc -l" outfile
 behaves like 	: < infile ls -l | wc -l > outfile
 */
 
-// char *args[3] = {"/bin/ls", "-l", NULL};
-// if (execve(args[0], args, envp))
-// 	perror("error");
-
 int	main(int argc, char **argv, char **envp)
 {
-	char	*cmd;
-	char	**str;
+	int		pipefd[2];
+	int		pid1;
+	int		pid2;
 
-	str = ft_split(argv[2], ' ');
-	cmd = ft_strdup(str[0]);
-	char **cmd_path = get_cmd_path(envp, cmd);
-	run_cmd(cmd_path, str, envp);
-	free(cmd);
-	for(int i = 0; str[i]; i++)
-		free(str[i]);
-	free(str);
-	for(int i = 0; cmd_path[i]; i++)
-		free(cmd_path[i]);
-	free(cmd_path);
-}
-
-int	run_cmd(char **cmd_paths, char **args, char **envp)
-{
-	int		i;
-	int		status;
-
-	i = 0;
-	while (cmd_paths[i])
+	if (argc != 5)
+		return (-1);
+	if (pipe(pipefd) == -1)
+		perror("Pipe creation failed");
+	pid1 = fork();
+	if (pid1 < 0)
+		perror("Fork 1 failed");
+	if (pid1 == 0) //child process for command 1
 	{
-		free(args[0]);
-		args[0] = ft_strdup(cmd_paths[i]);
-		printf("now checking %s path\n", args[0]);
-		status = execve(cmd_paths[i], args, envp);
-		if (status)
-			i++;
+		redirect_infile(argv[1]);
+		dup2(pipefd[1], STDOUT_FILENO); // STDOUT is now the write end of pipe
+		close(pipefd[0]);
+		close(pipefd[1]);
+		run_cmd(argv[2], envp);
 	}
-	return (-1);
+	pid2 = fork();
+	if (pid2 < 0)
+		perror("Fork 2 failed");
+	if (pid2 == 0) //child process for command 2
+	{
+		redirect_outfile(argv[4]);
+		dup2(pipefd[0], STDIN_FILENO); // STDIN is now the read end of pipe
+		close(pipefd[0]);
+		close(pipefd[1]);
+		run_cmd(argv[3], envp);
+	}
+	close(pipefd[0]);
+	close(pipefd[1]);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
+	return (0);
 }

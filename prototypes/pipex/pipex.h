@@ -5,17 +5,27 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 # include <fcntl.h>
+# include <errno.h>
+# include <wait.h>
 
-int	run_cmd(char **cmd_paths, char **args, char **envp);
 
-//command paths
+// command execution
+void	run_cmd(char *cmd_with_params, char **envp);
+int		exec_cmd(char **cmd_paths, char **args, char **envp);
+
+//command path locating
 char	*get_path_envp(char **envp);
 char	**get_cmd_path(char **envp, char *cmd);
 char	*trim_path(char *path);
 void	append_stuff(char **paths, char *cmd);
 
-//error
+// file redirection
+int		redirect_infile(char *infile_name);
+int		redirect_outfile(char *outfile_name);
+
+//errors
 int		error(void);
 
 //utils

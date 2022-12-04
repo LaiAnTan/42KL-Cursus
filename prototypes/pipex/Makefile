@@ -1,5 +1,5 @@
 
-params = test1.txt "ls -l"
+params = test1.txt "grep among" "cat -e" test2.txt
 
 all: compile run
 
@@ -12,7 +12,7 @@ debug :
 		gcc -g -O1 *.c
 
 leaks :
-		valgrind --leak-check=full --show-leak-kinds=all ./pipex $(parameters)
+		valgrind --leak-check=full --show-leak-kinds=all ./a.out $(params)
 
 run :
 		./pipex $(params)
