@@ -72,3 +72,17 @@ char	*ft_append(char *s1, char *s2)
 	free(s1);
 	return (temp);
 }
+
+int	ft_strcmp(char *line, char *limiter)
+{
+	int		i;
+
+	i = 0;
+	while (line[i] != '\0' && line[i] != '\n' && limiter[i] != '\0')
+	{
+		if (line[i] != limiter[i])
+			return (-1);
+		i++;
+	}
+	return (0);
+}

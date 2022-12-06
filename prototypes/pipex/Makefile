@@ -1,5 +1,5 @@
 
-params = test1.txt "grep among" "cat -e" test2.txt
+params = test1.txt "cat -e" "ls -la" test2.txt
 
 all: compile run
 
