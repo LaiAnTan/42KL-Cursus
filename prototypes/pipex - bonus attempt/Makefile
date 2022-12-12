@@ -1,7 +1,7 @@
 
-params = here_doc "gay" "cat" "grep sus" "cat -e" test2.txt
+params = here_doc "gay" "cat" "grep sus" "cat -e" outfile.txt
 
-# test1.txt "cat -e" "pizza" "ls" "wc -l" "cat" "pizza" "ls" test2.txt
+# infile.txt "cat -e" "pizza" "ls" "wc -l" "cat" "pizza" "ls" infile.txt
 
 all: compile run
 
@@ -14,7 +14,7 @@ debug :
 		gcc -g -O1 *.c
 
 leaks :
-		valgrind --leak-check=full --show-leak-kinds=all ./a.out $(params)
+		valgrind --leak-check=full --show-leak-kinds=all ./pipex $(params)
 
 run :
 		./pipex $(params)

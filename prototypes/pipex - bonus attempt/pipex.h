@@ -31,7 +31,6 @@ typedef struct s_pipex
 
 void	manage_child(t_pipex pipex, char **argv, int out, int index);
 
-int		exec_cmd(char **cmd_paths, char **args, char **envp);
 void	run_next_cmd(t_pipex pipex, char **argv, int i);
 
 //command path locating

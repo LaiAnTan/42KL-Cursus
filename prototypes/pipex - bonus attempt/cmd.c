@@ -1,15 +1,6 @@
 #include "pipex.h"
 
-void	run_next_cmd(t_pipex pipex, char **argv, int i)
-{
-		pipex.currcmd = argv[i];
-		pipex.currcmdargs = ft_split(pipex.currcmd, ' ');
-		append_cmd(pipex.paths, pipex.currcmdargs[0]);
-		if (exec_cmd(pipex.paths, pipex.currcmdargs, pipex.envp))
-			exit (0);
-}
-
-int	exec_cmd(char **cmd_paths, char **args, char **envp)
+int	test_and_exec(char **cmd_paths, char **args, char **envp)
 {
 	int		i;
 	int		status;
@@ -27,4 +18,13 @@ int	exec_cmd(char **cmd_paths, char **args, char **envp)
 	}
 	perror("Command not found");
 	return (-1);
+}
+
+void	run_next_cmd(t_pipex pipex, char **argv, int i)
+{
+		pipex.currcmd = argv[i];
+		pipex.currcmdargs = ft_split(pipex.currcmd, ' ');
+		append_cmd(pipex.paths, pipex.currcmdargs[0]);
+		if (test_and_exec(pipex.paths, pipex.currcmdargs, pipex.envp))
+			exit (0);
 }
