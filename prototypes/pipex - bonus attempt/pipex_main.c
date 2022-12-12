@@ -4,19 +4,21 @@
 * call				: ./pipex infile "ls -l" "wc -l" outfile
 * behaves like		: < infile ls -l | wc -l > outfile
 
-TODO call			: ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
-TODO behaves like	: < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2
+* call			: ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
+* behaves like	: < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2
 
-TODO call			: ./pipex here_doc LIMITER cmd cmd1 file
-TODO behaves like	: cmd << LIMITER | cmd1 >> file
+* call			: ./pipex here_doc LIMITER cmd cmd1 file
+* behaves like	: cmd << LIMITER | cmd1 >> file
 
-! restructure time ! setup everything (files/paths) -> fork -> run cmd
+! NEEDS ERROR HANDLING
+! NEEDS LEAKS HANDLING free()
 
 */
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex pipex;
+	int		first_cp;
 	int		hd_pipe[2];
 	int		i;
 
@@ -25,24 +27,23 @@ int	main(int argc, char **argv, char **envp)
 	pipex.envp = envp;
 	pipex.fullpathstr = get_path_envp(envp);
 	pipex.paths = get_cmd_path(envp);
-	pipex.cmdnum = argc - 3;
 	if (!ft_strcmp(argv[1], "here_doc"))
 	{
+		pipex.heredoc = 1;
+		pipex.cmdnum = argc - 4;
 		if (pipe(hd_pipe) == -1)
 			perror("pipe failed");
-		redirect_heredoc(&pipex, argv, argc, hd_pipe);
+		heredoc(&pipex, argv, argc, hd_pipe);
 		i = 3;
-		pipex.cmdnum--;
 	}
 	else
 	{
-		i = 2;
+		pipex.cmdnum = argc - 3;
 		pipex.infilefd = open(argv[1], O_RDONLY, 0777);
-		pipex.outfilefd = open(argv[argc - 1], O_WRONLY, 0777);
+		pipex.outfilefd = open(argv[argc - 1], O_WRONLY | O_TRUNC, 0777);
+		i = 2;
 	}
 	pipex.currcmd = argv[i];
-
-	int		first_cp;
 	first_cp = fork();
 	if (first_cp == 0);
 		manage_child(pipex, argv, pipex.outfilefd, 0);
@@ -52,8 +53,9 @@ int	main(int argc, char **argv, char **envp)
 
 void	manage_child(t_pipex pipex, char **argv, int out, int index)
 {
-	int		new_pipe[2];
+	int		n;
 	int		new_pid;
+	int		new_pipe[2];
 
 	index++;
 	dup2(out, STDOUT_FILENO);
@@ -75,5 +77,9 @@ void	manage_child(t_pipex pipex, char **argv, int out, int index)
 		dup2(pipex.infilefd, STDIN_FILENO);
 		close(pipex.infilefd);
 	}
-	run_next_cmd(pipex, argv, pipex.cmdnum - index);
+	if (pipex.heredoc)
+		n = 3;
+	else
+		n = 2;
+	run_next_cmd(pipex, argv, pipex.cmdnum - index + n);
 }

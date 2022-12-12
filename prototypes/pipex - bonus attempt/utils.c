@@ -18,32 +18,27 @@ char    *ft_substr(char const *s, unsigned int start, size_t len)
     return (str);
 }
 
-char	*ft_strdup(const char *s)
+int	ft_strcmp(char *line, char *limiter)
 {
 	int		i;
-	char	*str;
-	char	*dest;
 
 	i = 0;
-	str = (char *) s;
-	dest = (char *) malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (dest == 0)
-		return (0);
-	while (str[i] != '\0')
+	while (line[i] != '\0' && line[i] != '\n' && limiter[i] != '\0')
 	{
-		dest[i] = str[i];
+		if (line[i] != limiter[i])
+			return (-1);
 		i++;
 	}
-	if (str[i] == '\0')
-		dest[i] = '\0';
-	return (dest);
+	return (0);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
 	i = 0;
+	if (str == NULL)
+		return (0);
 	while (str[i] != '\0')
 		i++;
 	return (i);
@@ -73,16 +68,22 @@ char	*ft_append(char *s1, char *s2)
 	return (temp);
 }
 
-int	ft_strcmp(char *line, char *limiter)
+char	*ft_strdup(char *str)
 {
 	int		i;
+	char	*dest;
 
 	i = 0;
-	while (line[i] != '\0' && line[i] != '\n' && limiter[i] != '\0')
+	if (!str)
+		return (NULL);
+	dest = (char *) malloc (sizeof(char) * (ft_strlen(str) + 1));
+	if (!dest)
+		return (NULL);
+	while (str[i] != '\0')
 	{
-		if (line[i] != limiter[i])
-			return (-1);
+		dest[i] = str[i];
 		i++;
 	}
-	return (0);
+	dest[i] = '\0';
+	return (dest);
 }

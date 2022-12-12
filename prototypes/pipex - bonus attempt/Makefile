@@ -1,5 +1,7 @@
 
-params = test1.txt "cat -e" "cat -e" "cat -e" "cat -e" "cat -e" "wc -l" "cat -e" test2.txt
+params = here_doc "gay" "cat" "grep sus" "cat -e" test2.txt
+
+# test1.txt "cat -e" "pizza" "ls" "wc -l" "cat" "pizza" "ls" test2.txt
 
 all: compile run
 

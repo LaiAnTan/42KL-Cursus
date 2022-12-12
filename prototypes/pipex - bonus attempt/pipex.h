@@ -18,7 +18,7 @@
 
 typedef struct s_pipex
 {
-	int		argc;
+	int		heredoc;
 	int		cmdnum;
 	int		infilefd;
 	int		outfilefd;
@@ -31,8 +31,8 @@ typedef struct s_pipex
 
 void	manage_child(t_pipex pipex, char **argv, int out, int index);
 
-void	run_next_cmd(t_pipex pipex, char **argv, int i);
 int		exec_cmd(char **cmd_paths, char **args, char **envp);
+void	run_next_cmd(t_pipex pipex, char **argv, int i);
 
 //command path locating
 char	*get_path_envp(char **envp);
@@ -41,14 +41,8 @@ char	*trim_path(char *path);
 void	append_slash(char **paths);
 void	append_cmd(char **paths, char *cmd);
 
-
-// file redirection
-int		redirect_infile(char *infile_name);
-int		redirect_outfile(char *outfile_name, char c);
-int		redirect_heredoc(t_pipex *pipex, char **argv, int argc, int pipe[2]);
-
 //heredoc
-void	heredoc(int outfd, char *limiter);
+int		heredoc(t_pipex *pipex, char **argv, int argc, int pipe[2]);
 
 //errors
 int		error(void);
@@ -57,9 +51,9 @@ int		error(void);
 char	*get_next_line(int fd);
 
 //utils
-size_t	ft_strlen(const char *str);
+size_t	ft_strlen(char *str);
 int		ft_strcmp(char *line, char *limiter);
-char	*ft_strdup(const char *s);
+char	*ft_strdup(char *s);
 char	*ft_append(char *s1, char *s2);
 char    *ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);

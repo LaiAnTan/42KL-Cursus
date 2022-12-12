@@ -13,15 +13,12 @@ int	exec_cmd(char **cmd_paths, char **args, char **envp)
 {
 	int		i;
 	int		status;
-	int		log = open("log.log", O_RDWR, 0777);
 
 	i = 0;
 	while (cmd_paths[i])
 	{
 		free(args[0]);
 		args[0] = ft_strdup(cmd_paths[i]);
-		write(log, cmd_paths[i], ft_strlen(cmd_paths[i]));
-		write(log, "\n", 1);
 		status = access(args[0], X_OK);
 		if (!status)
 			execve(cmd_paths[i], args, envp);
