@@ -44,34 +44,6 @@ int *arg_to_stack(int size, char **argv, t_stack *stack)
 	return (arr);
 }
 
-void	print_stack(char c, t_stack *stack)
-{
-	int		i;
-	int		size;
-	int		*arr;
-	
-	i = 0;
-	if (c == 'a')
-	{
-		size = stack ->size_a;
-		arr = stack ->stack_a;
-	}
-	else if (c == 'b')
-	{
-		size = stack ->size_b;
-		arr = stack ->stack_b;
-	}
-	else
-		return ;
-	printf("stack %c: ", c);
-	while (i < size)
-	{
-		printf("%d ", arr[i]);
-		i++;
-	}
-	printf("\n");
-}
-
 int	check_sort(int *arr, int size)
 {
 	int	i;

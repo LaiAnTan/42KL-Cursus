@@ -2,7 +2,7 @@
 
 int	error(int code, t_stack *stack)
 {
-	printf("Error\n");
+	write(STDOUT_FILENO, "Error\n", 6);
 	deinitstack(stack);
 	exit(code);
 	return (0);

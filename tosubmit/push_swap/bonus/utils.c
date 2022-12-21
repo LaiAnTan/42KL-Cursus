@@ -1,15 +1,18 @@
 #include "checker.h"
 
-static int	overflow_check(int val, char lastdigit, int sign)
+static int    overflow_check(int val, char lastdigit, int sign)
 {
-	if (val <= 214748364)
-		return (0);
-	else
-	{
-		if (val >= 214748364 && ((lastdigit > '7' && sign == 1) || (lastdigit > '8' && sign == -1)))
-			return (-1);
-		return (0);
-	}
+    if (val <= 214748364)
+    {
+        if (val == 214748364)
+        {
+            if ((lastdigit <= '7' && sign == 1) || (lastdigit <= '8' && sign == -1))
+                return (0);
+        }
+        else
+            return (0);
+    }
+    return (-1);
 }
 
 int	ft_atoi(const char *s, t_stack *stack)

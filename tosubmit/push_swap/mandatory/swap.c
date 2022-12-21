@@ -4,7 +4,7 @@ void	sa(t_stack *stack)
 {
 	if(stack ->size_a > 1)
 	{
-		printf("sa\n");
+		write(STDOUT_FILENO, "sa\n", 3);
 		ft_swap(&stack ->stack_a[0], &stack ->stack_a[1]);
 		stack ->op_num++;
 	}
@@ -15,7 +15,7 @@ void	sb(t_stack *stack)
 {
 	if(stack ->size_b > 1)
 	{
-		printf("sb\n");
+		write(STDOUT_FILENO, "sb\n", 3);
 		ft_swap(&stack ->stack_b[0], &stack ->stack_b[1]);
 		stack ->op_num++;
 	}
@@ -39,8 +39,8 @@ void	ss(t_stack *stack)
 	}
 	if (i)
 	{
+		write(STDOUT_FILENO, "ss\n", 3);
 		stack ->op_num++;
-		printf("ss\n");
 	}
 	return ;
 }

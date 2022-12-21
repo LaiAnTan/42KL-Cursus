@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-
-
 static int	push(int fsize, int tsize, int *from, int *to)
 {
 	int		i;
@@ -33,7 +31,7 @@ void	pa(t_stack *stack)
 	i = push(stack ->size_b, stack ->size_a, stack ->stack_b, stack ->stack_a);
 	if (!i)
 	{
-		printf("pa\n");
+		write(STDOUT_FILENO, "pa\n", 3);
 		stack ->size_a += 1;
 		stack ->size_b -= 1;
 		stack ->op_num++;
@@ -48,7 +46,7 @@ void	pb(t_stack *stack)
 	i = push(stack ->size_a, stack ->size_b, stack ->stack_a, stack ->stack_b);
 	if (!i)
 	{
-		printf("pb\n");
+		write(STDOUT_FILENO, "pb\n", 3);
 		stack ->size_a -= 1;
 		stack ->size_b += 1;
 		stack ->op_num++;

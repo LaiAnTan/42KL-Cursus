@@ -17,7 +17,7 @@ void	rra(t_stack *stack)
 {
 	if (!(revrotate(stack ->size_a, stack ->stack_a)))
 	{
-		printf("rra\n");
+		write(STDOUT_FILENO, "rra\n", 4);
 		stack ->op_num++;
 	}
 	return ;
@@ -27,8 +27,8 @@ void	rrb(t_stack *stack)
 {
 	if(!(revrotate(stack ->size_b, stack ->stack_b)))
 	{
+		write(STDOUT_FILENO, "rrb\n", 4);
 		stack ->op_num++;
-		printf("rb\n");
 	}
 	return ;
 }
@@ -40,10 +40,10 @@ void	rrr(t_stack *stack)
 	i = 0;
 	i += revrotate(stack ->size_a, stack ->stack_a);
 	i += revrotate(stack ->size_b, stack ->stack_b);
-	if (!i)
+	if (i != -2)
 	{
+		write(STDOUT_FILENO, "rrr\n", 4);
 		stack ->op_num++;
-		printf("rrr\n");
 	}
 	return ;
 }

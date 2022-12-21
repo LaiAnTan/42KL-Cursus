@@ -20,14 +20,12 @@ typedef struct s_stack
 // main
 int		*arg_to_stack(int size, char **argv, t_stack *stack);
 int		check_sort(int *arr, int size);
-void	print_stack(char c, t_stack *stack);
 
 // stacks
 t_stack	*genstack(void);
 void	resetstack(t_stack *stack);
 void	initstack(t_stack *stack, int max_size, char **argv);
 void	deinitstack(t_stack *stack);
-void	status_stack(t_stack *stack);
 
 // operations
 void	sa(t_stack *stack);
@@ -51,7 +49,7 @@ void	sort(t_stack *stack);
 void	small_sort(t_stack *stack);
 void	radix_sort(t_stack *stack);
 
-// error
+// error handling
 int		error(int code, t_stack *stack);
 void	check_duplicate(t_stack *stack);
 

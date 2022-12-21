@@ -25,14 +25,12 @@ typedef struct s_stack
 // main
 int		*arg_to_stack(int size, char **argv, t_stack *stack);
 void	validate_sort(t_stack *stack);
-void	print_stack(char c, t_stack *stack);
 
 // stacks
 t_stack	*genstack(void);
 void	resetstack(t_stack *stack);
 void	initstack(t_stack *stack, int max_size, char **argv);
 void	deinitstack(t_stack *stack);
-void	status_stack(t_stack *stack);
 
 // check
 char	*get_operation(t_stack *stack);

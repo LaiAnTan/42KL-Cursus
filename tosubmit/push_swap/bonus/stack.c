@@ -36,12 +36,3 @@ void	deinitstack(t_stack *stack)
 	free(stack);
 	return ;
 }
-
-void	status_stack(t_stack *stack)
-{
-	printf("size_a: %d\n", stack ->size_a);
-	print_stack('a', stack);
-	printf("size_b: %d\n", stack ->size_b);
-	print_stack('b', stack);
-	return ;
-}
