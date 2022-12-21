@@ -70,9 +70,6 @@ void	rotate_and_push(t_stack *stack)
 
 void	small_sort(t_stack *stack)
 {
-	int		i;
-
-	i = 0;
 	while (stack ->size_a > 3)
 		pb(stack);
 	sort_3(stack);

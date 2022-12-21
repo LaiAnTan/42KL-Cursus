@@ -1,4 +1,6 @@
-SRCS = fdf_main.c
+SRCS = fdf_main.c	\
+		events.c	\
+		render.c	\
  
 OBJ = $(SRCS:.c=.o)
 

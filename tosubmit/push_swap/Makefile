@@ -10,6 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
+CFLAG = -Wall -Wextra -Werror
+
+NAME = push_swap
+
 SRCS_C =	mandatory/sort.c				\
 			mandatory/swap.c				\
 			mandatory/push.c				\
@@ -20,6 +24,12 @@ SRCS_C =	mandatory/sort.c				\
 			mandatory/revrotate.c			\
 			mandatory/radixsort.c			\
 			mandatory/push_swap_main.c		\
+
+SRCS_H = mandatory/push_swap.h
+
+SRCS_O = $(SRCS_C:.c=.o)
+
+BONUS = checker
 
 BONUS_C =	bonus/check.c					\
 			bonus/checker_main.c			\
@@ -33,47 +43,33 @@ BONUS_C =	bonus/check.c					\
 			bonus/swap.c					\
 			bonus/utils.c					\
 
-
-BONUS_H = checker.h
-			
-SRCS_H = push_swap.h
-
-SRCS_C_PATH = ./
-
-SRCS = ${addprefix ${SRC_C_PATH}, ${SRCS_C}}
-
-SRCS_O = $(SRCS_C:.c=.o)
+BONUS_H = bonus/checker.h
 
 BONUS_O = $(BONUS_C:.c=.o)
 
-CFLAG = -Wall -Wextra -Werror
-
-NAME = push_swap
-
-BONUS = checker
-
 all : $(NAME)
 
-.c.o :
-		gcc ${CFLAG} -c -I ${SRCS_H} $< -o ${<:.c=.o}
+%.o: %.c
+		@gcc $(CFLAG) -c $< -o $(<:.c=.o)
 
-$(NAME): ${SRCS_O}
-		gcc $(CFLAG) -o $(NAME) $(SRCS_O)
+$(NAME): $(SRCS_O)
+		@gcc $(CFLAG) -o $(NAME) $(SRCS_O)
 
-bonus : ${BONUS_O}
-		gcc $(CFLAG) -o $(BONUS) $(BONUS_O)
+bonus : re $(BONUS_O)
+		@gcc $(CFLAG) -o $(BONUS) $(BONUS_O)
 
 clean :
-		rm -f ${SRCS_O}
+		@rm -f ${SRCS_O}
+		@rm -f ${BONUS_O}
 
 fclean : clean
-		rm -f $(NAME)
-
-bonus : re
-	
+		@rm -f $(NAME)
+		@rm -f $(BONUS)
 
 re : fclean all
 
 git :
 	git commit -am "e"
 	git push
+
+.PHONY: all clean fclean re bonus git $(NAME)
