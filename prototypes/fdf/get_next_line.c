@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 18:19:52 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/23 17:12:50 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/12/23 22:14:47 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ char	*get_next_line(int fd)
 	if (!content)
 		return (NULL);
 	temp = seperate_nl(content);
-	output = ft_strdup(temp[0]);
-	free(temp[0]);
+	output = ft_strdup_gnl(temp[0]);
 	if (content)
 		free(content);
-	content = ft_strdup(temp[1]);
-	free(temp[1]);
+	content = ft_strdup_gnl(temp[1]);
 	if (*content == '\0')
 	{
 		free(content);
@@ -47,6 +45,7 @@ int	check_nl(char *str, int size)
 
 	i = 0;
 	if (!str)
+	
 		return (-1);
 	while (i < size && str[i] != '\0')
 	{

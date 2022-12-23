@@ -61,7 +61,7 @@ void	malloc_map(t_map *map)
 	eg: points[2][3] = col 1, row 2
 	*/
 	map ->points = (t_point **) malloc (sizeof(t_point *) * map ->cols);
-	while (i++ < map ->cols)
+	while (++i <= map ->cols)
 		map ->points[i] = (t_point *) malloc (sizeof(t_point) * map ->rows);
 }
 
@@ -74,20 +74,20 @@ void	extract_insert_data(t_point	**points, char *line, int row, int col)
 	i = 0;
 	// splits the line into chunks of z values (15) or z values and color (15,0xFF0000)
 	split = ft_split((char *) line, ' ');
-	for (int x = 0; x <= col; x++)
+	for (int x = 0; x <= col + 1; x++)
 		printf("split[%d] = %s\n",x , split[x]);
-	while (i < row)
+	while (i < col)
 	{
 		// splits every chunk again and check if it was splitted to seperate z value and color
-		// split_2 = ft_split(split[i], ',');
-		// for (int x = 0; x < 2; x++)
-		// 	printf("split_2 = %s\n", split_2[x]);
-		points[i][row].z = ft_atoi(split[0]);
+		split_2 = ft_split(split[i], ',');
+		for (int x = 0; x < 2; x++)
+			printf("split_2 = %s\n", split_2[x]);
+		points[i][row].z = atoi(ft_strdup(split[0]));
 		printf("i = %d, row = %d, val = %d\n", i, row, points[i][row].z);
-		// points[i][row].color = atoi(ft_strdup(split_2[1]));
-		// free(split_2[0]);
-		// free(split_2[1]);
-		// free(split_2);
+		points[i][row].color = atoi(ft_strdup(split_2[1]));
+		free(split_2[0]);
+		free(split_2[1]);
+		free(split_2);
 		free(split[i]);
 		i++;
 	}
@@ -104,16 +104,21 @@ void	get_map(t_map *map, char *filename)
 	printf("row = %ld, col = %ld\n",map ->rows, map ->cols);
 	if (map ->rows == -1)
 		return ;
+	printf("break -1");
 	malloc_map(map);
+	printf("break 0");
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
 	while (i < map ->rows)
 	{
+		printf("break 1");
 		line = get_next_line(fd);
+		printf("break 2");
 		if (!line)
 			break;
 		extract_insert_data(map ->points, line, i, map ->cols);
+		printf("break 3");
 		free(line);
 		i++;
 	}

@@ -44,7 +44,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strdup(char *str)
+char	*ft_strdup_gnl(char *str)
 {
 	int		i;
 	char	*dest;
@@ -61,6 +61,28 @@ char	*ft_strdup(char *str)
 		i++;
 	}
 	dest[i] = '\0';
+	free(str);
+	return (dest);
+}
+
+char	*ft_strdup(char *s)
+{
+	int		i;
+	char	*str;
+	char	*dest;
+
+	i = 0;
+	str = (char *) s;
+	dest = (char *) malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (dest == 0)
+		return (0);
+	while (str[i] != '\0')
+	{
+		dest[i] = str[i];
+		i++;
+	}
+	if (str[i] == '\0')
+		dest[i] = '\0';
 	return (dest);
 }
 
