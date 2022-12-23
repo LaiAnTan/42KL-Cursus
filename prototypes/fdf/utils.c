@@ -32,39 +32,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (str);
 }
 
-size_t	ft_strlen(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	if (str == NULL)
-		return (0);
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strdup_gnl(char *str)
-{
-	int		i;
-	char	*dest;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	dest = (char *) malloc (sizeof(char) * (ft_strlen(str) + 1));
-	if (!dest)
-		return (NULL);
-	while (str[i] != '\0')
-	{
-		dest[i] = str[i];
-		i++;
-	}
-	dest[i] = '\0';
-	free(str);
-	return (dest);
-}
-
 char	*ft_strdup(char *s)
 {
 	int		i;

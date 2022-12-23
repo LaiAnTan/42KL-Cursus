@@ -5,7 +5,7 @@ SRCS = fdf_main.c				\
 		get_next_line.c			\
 		ft_split.c				\
 		utils.c					\
-		utils_2.c				\
+		utils_gnl.c				\
  
 OBJ = $(SRCS:.c=.o)
 

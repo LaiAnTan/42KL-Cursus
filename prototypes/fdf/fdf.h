@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <X11/X.h>
-#include <stdint.h>
+# include <stdint.h>
 
 typedef struct s_point
 {
@@ -84,18 +84,18 @@ int		countwords(char const *s, char c);
 
 // get_next_line
 char	*get_next_line(int fd);
+size_t	ft_strlen(char *str);
 int		check_nl(char *str, int size);
 char	*transfer(int fd, char *buffer, char *content);
 char	**seperate_nl(char *str);
 char	*ft_append(char *s1, char *s2);
+char	*ft_strdup_gnl(char *str);
 
 // utils
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_atoi(const char *s);
 int		ft_strcmp(char *s1, char *s2);
-size_t	ft_strlen(char *str);
-char	*ft_strdup_gnl(char *str);
 char	*ft_strdup(char *str);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 

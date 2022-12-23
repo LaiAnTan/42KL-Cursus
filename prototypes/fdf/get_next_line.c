@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 18:19:52 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/23 22:14:47 by tlai-an          ###   ########.fr       */
+/*   Updated: 2022/12/23 22:29:47 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	check_nl(char *str, int size)
 
 	i = 0;
 	if (!str)
-	
 		return (-1);
 	while (i < size && str[i] != '\0')
 	{
@@ -101,28 +100,4 @@ char	*transfer(int fd, char *content, char *buffer)
 	}
 	free(buffer);
 	return (content);
-}
-
-char	*ft_append(char *s1, char *s2)
-{
-	int		i;
-	int		j;
-	char	*temp;
-
-	i = 0;
-	j = 0;
-	temp = (char *) malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (s1 != NULL)
-	{
-		while (s1[j] != '\0')
-			temp[i++] = s1[j++];
-	}
-	if (s2 != NULL)
-	{
-		while (*s2 != '\0')
-			temp[i++] = *s2++;
-	}
-	temp[i] = '\0';
-	free(s1);
-	return (temp);
 }

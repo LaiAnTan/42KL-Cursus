@@ -85,14 +85,17 @@ void	extract_insert_data(t_point	**points, char *line, int row, int col)
 		points[i][row].z = atoi(ft_strdup(split[0]));
 		printf("i = %d, row = %d, val = %d\n", i, row, points[i][row].z);
 		points[i][row].color = atoi(ft_strdup(split_2[1]));
-		free(split_2[0]);
-		free(split_2[1]);
-		free(split_2);
-		free(split[i]);
+		// free(split_2[0]);
+		// free(split_2[1]);
+		// free(split_2);
+		// free(split[i]);
 		i++;
 	}
-	free(split);
+	// free(split);
 }
+
+// need to remove  \n char after each line
+// need to make shit work
 
 void	get_map(t_map *map, char *filename)
 {	
@@ -104,21 +107,18 @@ void	get_map(t_map *map, char *filename)
 	printf("row = %ld, col = %ld\n",map ->rows, map ->cols);
 	if (map ->rows == -1)
 		return ;
-	printf("break -1");
 	malloc_map(map);
-	printf("break 0");
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
+	printf("fd = %d\n", fd);
 	while (i < map ->rows)
 	{
-		printf("break 1");
 		line = get_next_line(fd);
-		printf("break 2");
+		printf("%s\n", line);
 		if (!line)
 			break;
 		extract_insert_data(map ->points, line, i, map ->cols);
-		printf("break 3");
 		free(line);
 		i++;
 	}
