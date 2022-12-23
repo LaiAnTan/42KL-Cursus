@@ -2,6 +2,8 @@
 
 # define FDF_H
 
+#  define BUFFER_SIZE 42
+
 # define WIDTH 1080
 
 # define HEIGHT 720
@@ -12,17 +14,33 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <mlx.h>
 # include <X11/X.h>
+#include <stdint.h>
 
-typedef struct s_line
+typedef struct s_point
 {
-	int		x0;
-	int		y0;
-	int		x1;
-	int		y1;
-	int		color;
-}			t_line;
+	int			x;
+	int			y;
+	int			z;
+	int			x_proj;
+	int			y_proj;
+	int			color;
+}				t_point;
+
+typedef struct s_matrix
+{
+	int			matrix[4][4];
+}				t_matrix;
+
+typedef struct s_map
+{
+	size_t		rows;
+	size_t		cols;
+	t_point		**points;
+	t_matrix	transform;
+}				t_map;
 
 typedef struct s_img
 {
@@ -35,10 +53,12 @@ typedef struct s_img
 
 typedef struct s_data
 {
+
 	void		*mlx_ptr;
 	void		*win_ptr;
+
 	t_img		img;
-	t_line		line;
+	t_map		map;
 }				t_data;
 
 /* 
@@ -54,5 +74,28 @@ int		keyrelease_event(int key_symbol, void *data);
 
 // render
 int		render(t_data *data);
+
+// map parsing
+void	get_map(t_map *map, char *filename);
+
+// ft_split
+char	**ft_split(char const *s, char c);
+int		countwords(char const *s, char c);
+
+// get_next_line
+char	*get_next_line(int fd);
+int		check_nl(char *str, int size);
+char	*transfer(int fd, char *buffer, char *content);
+char	**seperate_nl(char *str);
+char	*ft_append(char *s1, char *s2);
+
+// utils
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
+int		ft_atoi(const char *s);
+int		ft_strcmp(char *s1, char *s2);
+size_t	ft_strlen(char *str);
+char	*ft_strdup(char *str);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
 
 #endif

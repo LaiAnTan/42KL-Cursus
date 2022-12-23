@@ -1,26 +1,16 @@
 #include "fdf.h"
 
-int encode_trgb(int transparency, int red, int green, int blue)
-{
-	return (transparency << 24 | red << 16 | green << 8 | blue);
-}
-
-void	mlx_img_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x < 0 || x > WIDTH || y > HEIGHT || y < 0)
-		return;
-	dst = img ->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
 int main(void)
 {
-	t_data		data;
+	t_map map;
 
-	data.line.x0 = WIDTH / 2;
-	data.line.y0 = HEIGHT / 2;
+	get_map(&map, "small.fdf");
+}
+
+// stuff
+
+/*
+	t_data		data;
 
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
@@ -36,14 +26,13 @@ int main(void)
 	data.img.img_ptr = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 
-	/* hooks */
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
+	// mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &keypress_event, &data);
 	mlx_loop(data.mlx_ptr);
 
-	if (!data.win_ptr)
-		exit(0);
+	if (data.win_ptr == NULL);
+		exit(1);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
 	return (0);
-}
+*/

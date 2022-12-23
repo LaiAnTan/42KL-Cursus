@@ -1,5 +1,20 @@
 #include "fdf.h"
 
+int encode_trgb(int transparency, int red, int green, int blue)
+{
+	return (transparency << 24 | red << 16 | green << 8 | blue);
+}
+
+void	mlx_img_put(t_img *img, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x > WIDTH || y > HEIGHT || y < 0)
+		return;
+	dst = img ->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
 int	render_background(t_img *img, int color)
 {
 	int		i;
@@ -20,10 +35,10 @@ int	render_background(t_img *img, int color)
 	return (0);
 }
 
-int	render_pixel(t_data *data)
-{
-	mlx_img_put(&data ->img, data ->pixel.x, data ->pixel.y, data ->pixel.color);
-}
+// int	render_pixel(t_data *data)
+// {
+// 	mlx_img_put(&data ->img, data ->pixel.x, data ->pixel.y, data ->pixel.color);
+// }
 
 int	render(t_data *data)
 {
