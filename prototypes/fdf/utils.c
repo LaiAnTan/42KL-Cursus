@@ -32,14 +32,14 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (str);
 }
 
-char	*ft_strdup(char *s)
+char	*ft_strdup(char *str)
 {
 	int		i;
-	char	*str;
 	char	*dest;
 
 	i = 0;
-	str = (char *) s;
+	if (!str)
+		return (0);
 	dest = (char *) malloc(sizeof(char) * (ft_strlen(str) + 1));
 	if (dest == 0)
 		return (0);
