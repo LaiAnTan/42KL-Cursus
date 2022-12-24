@@ -8,7 +8,7 @@
 
 # define HEIGHT 720
 
-# define PI 3.1415
+# define WHITE 0x00FFFFFF;
 
 # include <math.h>
 # include <stdio.h>

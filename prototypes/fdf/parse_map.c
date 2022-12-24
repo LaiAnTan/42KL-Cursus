@@ -19,6 +19,28 @@ char	*trim_nl(char *line)
 	return (ret);
 }
 
+int		get_color(char *str_color)
+{
+	// eg: 0xFF00FF
+	int		len;
+	int		base;
+	int		hex_color;
+
+	len = ft_strlen(str_color);
+	base = 1;
+	hex_color = 0;
+	while (len >= 2)
+	{
+		if (str_color[len] >= 'A' && str_color[len] <= 'F')
+			hex_color += (str_color[len] - 55) * base;
+		else if (str_color[len] >= '0' && str_color[len] <= '9')
+			hex_color += (str_color[len] - 48) * base;
+		base *= 16;
+		len--;
+	}
+	return (hex_color);
+}
+
 int		*count_dimension(char *filename)
 {
 	int		fd;
@@ -113,9 +135,14 @@ void	extract_insert_data(t_point	**points, char *line, int row, int col)
 		for (int x = 0; x < 2; x++)
 			printf("split_2 = %s\n", split_2[x]);
 		z_val = atoi(split_2[0]);
+		printf("color = %s\n", split_2[1]);
+		if (split_2[1] != NULL)
+			color = get_color(split_2[1]);
+		else
+			color = WHITE;
 		points[i][row].z = z_val;
-		printf("col = %d, row = %d, val = %d\n", i, row, points[i][row].z);
-		// points[i][row].color = atoi(split_2[1]);
+		points[i][row].color = color;
+		printf("col = %d, row = %d, val = %d, color = %x\n", i, row, points[i][row].z, points[i][row].color);
 		free(split[i]);
 		i++;
 	}
