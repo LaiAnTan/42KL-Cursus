@@ -112,6 +112,7 @@ void	get_map(t_map *map, char *filename)
 	i = 0;
 	fd = open(filename, O_RDONLY);
 	printf("fd = %d\n", fd);
+
 	while (i < map ->rows)
 	{
 		line = get_next_line(fd);
