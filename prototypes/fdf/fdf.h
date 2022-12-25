@@ -96,6 +96,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_atoi(const char *s);
 int		ft_strcmp(char *s1, char *s2);
+int		is_present(char *str, char c);
 char	*ft_strdup(char *str);
 char	*trim_nl(char *line);
 char	*ft_substr(const char *s, unsigned int start, size_t len);

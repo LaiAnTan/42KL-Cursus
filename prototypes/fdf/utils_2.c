@@ -43,4 +43,18 @@ int	ft_strcmp(char *s1, char *s2)
 	return (0);
 }
 
+int	is_present(char *str, char c)
+{
+	int		n;
 
+	n = ft_strlen(str);
+	if (!str)
+		return (0);
+	while (n >= 0)
+	{
+		if (str[n] == c)
+			return (1);
+		n--;
+	}
+	return (0);
+}

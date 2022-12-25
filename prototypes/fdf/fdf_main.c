@@ -1,12 +1,12 @@
 #include "fdf.h"
 
-int main(int argc, char **argv)
+int main()
 {
 	t_map	map;
 
-	if (argc != 2)
-		return (-1);
-	get_map(&map, argv[1]);
+	// if (argc != 2)
+	// 	return (-1);
+	get_map(&map, "42.fdf");
 
 	printf("%d\n", map.points[2][2].z);
 	printf("%X\n", map.points[2][2].color);

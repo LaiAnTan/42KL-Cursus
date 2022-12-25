@@ -7,6 +7,8 @@ char	*trim_nl(char *line)
 	char	*ret;
 
 	i = 0;
+	if (line == NULL || is_present(line, '\n') == 0)
+		return (NULL);
 	len = ft_strlen(line);
 	ret = (char *) malloc (sizeof(char) * len);
 	while (line[i] != '\n')
@@ -120,33 +122,33 @@ void	malloc_map(t_map *map)
 void	extract_insert_data(t_point	**points, char *line, int row, int col)
 {
 	int		i;
-	int		z_val;
-	unsigned int	color;
 	char	**split;
 	char	**split_2;
 
 	i = 0;
-	// splits the line into chunks of z values (15) or z values and color (15,0xFF0000)
 	split = ft_split((char *) line, ' ');
 	while (i < col)
 	{
-		// splits every chunk again and check if it was splitted to seperate z value and color
-		split_2 = ft_split(split[i], ',');
-		z_val = ft_atoi(split_2[0]);
-		if (split_2[1] != NULL)
-			color = get_color(split_2[1]);
+		if (is_present(split[i], ',') == 1)
+		{
+			split_2 = ft_split(split[i], ',');
+			points[i][row].z = ft_atoi(split_2[0]);
+			if (split_2[1] != NULL)
+				points[i][row].color = get_color(split_2[1]);
+			else
+				points[i][row].color = WHITE;
+		}
 		else
-			color = WHITE;
-		points[i][row].z = z_val;
-		points[i][row].color = color;
+		{
+			points[i][row].z = ft_atoi(split[i]);
+			points[i][row].color = WHITE;
+		}
 		i++;
 	}
 	while (col)
 		free(split[col--]);
 	free(split);
 }
-
-// fix segfault
 
 void	get_map(t_map *map, char *filename)
 {	
@@ -161,12 +163,15 @@ void	get_map(t_map *map, char *filename)
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
-	while (i < map ->rows)
+	while (i <= map ->rows)
 	{
+		printf("before gnl\n");
 		line = get_next_line(fd);
+		printf("after gnl\n");
 		if (!line)
 			break;
 		line = trim_nl(line);
+		printf("%s\n", line);
 		extract_insert_data(map ->points, line, i, map ->cols);
 		free(line);
 		i++;
