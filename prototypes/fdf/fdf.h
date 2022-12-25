@@ -8,7 +8,7 @@
 
 # define HEIGHT 720
 
-# define WHITE 0x00FFFFFF;
+# define WHITE 0xFFFFFFFF;
 
 # include <math.h>
 # include <stdio.h>
@@ -26,7 +26,7 @@ typedef struct s_point
 	int			z;
 	int			x_proj;
 	int			y_proj;
-	int			color;
+	unsigned int	color;
 }				t_point;
 
 typedef struct s_matrix

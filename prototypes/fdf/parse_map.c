@@ -21,22 +21,24 @@ char	*trim_nl(char *line)
 
 int		get_color(char *str_color)
 {
-	// eg: 0xFF00FF
-	int		len;
+	// eg: 0xFFFF00FF
 	int		base;
-	int		hex_color;
+	int		index;
+	unsigned int	hex_color;
 
-	len = ft_strlen(str_color);
 	base = 1;
+	index = ft_strlen(str_color) - 1;
 	hex_color = 0;
-	while (len >= 2)
+	while (index >= 2)
 	{
-		if (str_color[len] >= 'A' && str_color[len] <= 'F')
-			hex_color += (str_color[len] - 55) * base;
-		else if (str_color[len] >= '0' && str_color[len] <= '9')
-			hex_color += (str_color[len] - 48) * base;
+		if (str_color[index] >= 'A' && str_color[index] <= 'F')
+			hex_color += (str_color[index] - 55) * base;
+		else if (str_color[index] >= 'a' && str_color[index] <= 'f')
+			hex_color += (str_color[index] - 87) * base;
+		else if (str_color[index] >= '0' && str_color[index] <= '9')
+			hex_color += (str_color[index] - 48) * base;
 		base *= 16;
-		len--;
+		index--;
 	}
 	return (hex_color);
 }
@@ -50,7 +52,6 @@ int		*count_dimension(char *filename)
 	int		*rc;
 
 	fd = open(filename, O_RDONLY);
-	printf("fd = %d\n", fd);
 	line = get_next_line(fd);
 	col_len = countwords((char *) line, ' ');
 	row_len = 1;
@@ -87,11 +88,6 @@ void	get_dimension(t_map *map, char *filename)
 	free(rc);
 }
 
-void	malloc_map(t_map *map)
-{
-	int		i;
-
-	i = 0;
 	/*
 					col_0	col_1	col_2	col_3
 	map ->points = {"	",	"	",	"	",	"	"}
@@ -107,6 +103,12 @@ void	malloc_map(t_map *map)
 	Therefore, points[col][row]
 	eg: points[2][3] = col 1, row 2
 	*/
+
+void	malloc_map(t_map *map)
+{
+	int		i;
+
+	i = 0;
 	map ->points = (t_point **) malloc (sizeof(t_point *) * map ->cols);
 	while (i < map ->cols)
 	{
@@ -119,42 +121,32 @@ void	extract_insert_data(t_point	**points, char *line, int row, int col)
 {
 	int		i;
 	int		z_val;
-	int		color;
+	unsigned int	color;
 	char	**split;
 	char	**split_2;
 
 	i = 0;
 	// splits the line into chunks of z values (15) or z values and color (15,0xFF0000)
 	split = ft_split((char *) line, ' ');
-	for (int x = 0; x < col + 1; x++)
-		printf("split[%d] = %s\n",x , split[x]);
 	while (i < col)
 	{
 		// splits every chunk again and check if it was splitted to seperate z value and color
 		split_2 = ft_split(split[i], ',');
-		for (int x = 0; x < 2; x++)
-			printf("split_2 = %s\n", split_2[x]);
-		z_val = atoi(split_2[0]);
-		printf("color = %s\n", split_2[1]);
+		z_val = ft_atoi(split_2[0]);
 		if (split_2[1] != NULL)
 			color = get_color(split_2[1]);
 		else
 			color = WHITE;
 		points[i][row].z = z_val;
 		points[i][row].color = color;
-		printf("col = %d, row = %d, val = %d, color = %x\n", i, row, points[i][row].z, points[i][row].color);
-		free(split[i]);
 		i++;
 	}
-	free(split_2[0]);
-	free(split_2[1]);
-	free(split_2);
+	while (col)
+		free(split[col--]);
 	free(split);
-	printf("split end\n");
 }
 
-// need to remove  \n char after each line
-// need to make shit work
+// fix segfault
 
 void	get_map(t_map *map, char *filename)
 {	
@@ -169,16 +161,12 @@ void	get_map(t_map *map, char *filename)
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
-	printf("fd = %d\n", fd);
-
 	while (i < map ->rows)
 	{
-		printf("next\n");
 		line = get_next_line(fd);
 		if (!line)
 			break;
 		line = trim_nl(line);
-		printf("curr line: %s\n", line);
 		extract_insert_data(map ->points, line, i, map ->cols);
 		free(line);
 		i++;

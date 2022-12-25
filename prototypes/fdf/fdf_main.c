@@ -1,10 +1,15 @@
 #include "fdf.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
-	t_map map;
+	t_map	map;
 
-	get_map(&map, "small.fdf");
+	if (argc != 2)
+		return (-1);
+	get_map(&map, argv[1]);
+
+	printf("%d\n", map.points[2][2].z);
+	printf("%X\n", map.points[2][2].color);
 }
 
 // stuff
