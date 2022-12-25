@@ -1,15 +1,45 @@
 #include "fdf.h"
 
-int main()
+void	free_map(t_map *map)
+{
+	int		i;
+
+	i = 0;
+	while (i < map ->cols)
+		free(map ->points[i++]);
+	free(map ->points);
+}
+
+void	point_status(t_point **points, int rows, int cols)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	printf("rows: %d, cols: %d\n", rows, cols);
+	while (j < rows)
+	{
+		while (i < cols)
+		{
+			printf("col: %d, row: %d, z: %d, color: %X\n", i, j, points[i][j].z, points[i][j].color);
+			i++;
+		}
+		printf("\n");
+		i = 0;
+		j++;
+	}
+}
+
+int main(int argc, char **argv)
 {
 	t_map	map;
 
-	// if (argc != 2)
-	// 	return (-1);
-	get_map(&map, "42.fdf");
-
-	printf("%d\n", map.points[2][2].z);
-	printf("%X\n", map.points[2][2].color);
+	if (argc != 2)
+		return (-1);
+	get_map(&map, argv[1]);
+	point_status(map.points, map.rows, map.cols);
+	free_map(&map);
 }
 
 // stuff

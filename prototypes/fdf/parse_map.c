@@ -7,8 +7,10 @@ char	*trim_nl(char *line)
 	char	*ret;
 
 	i = 0;
-	if (line == NULL || is_present(line, '\n') == 0)
+	if (line == NULL)
 		return (NULL);
+	if (is_present(line, '\n') == 0)
+		return (line);
 	len = ft_strlen(line);
 	ret = (char *) malloc (sizeof(char) * len);
 	while (line[i] != '\n')
@@ -86,7 +88,7 @@ void	get_dimension(t_map *map, char *filename)
 	rc = count_dimension(filename);
 	map ->rows = rc[0];
 	map ->cols = rc[1];
-	printf("row = %ld, col = %ld\n",map ->rows, map ->cols);
+	printf("rows: %ld, cols: %ld\n", map ->rows, map ->cols);
 	free(rc);
 }
 
@@ -119,19 +121,32 @@ void	malloc_map(t_map *map)
 	}
 }
 
+void	free_2d_array(char **arr)
+{
+	int		i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
+
 void	extract_insert_data(t_point	**points, char *line, int row, int col)
 {
 	int		i;
+	int		split_2_status;
 	char	**split;
 	char	**split_2;
 
 	i = 0;
+	split_2_status = 0;
 	split = ft_split((char *) line, ' ');
 	while (i < col)
 	{
 		if (is_present(split[i], ',') == 1)
 		{
 			split_2 = ft_split(split[i], ',');
+			split_2_status = 1;
 			points[i][row].z = ft_atoi(split_2[0]);
 			if (split_2[1] != NULL)
 				points[i][row].color = get_color(split_2[1]);
@@ -145,9 +160,9 @@ void	extract_insert_data(t_point	**points, char *line, int row, int col)
 		}
 		i++;
 	}
-	while (col)
-		free(split[col--]);
-	free(split);
+	free_2d_array(split);
+	if (split_2_status)
+		free_2d_array(split_2);
 }
 
 void	get_map(t_map *map, char *filename)
@@ -163,14 +178,12 @@ void	get_map(t_map *map, char *filename)
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
-	while (i <= map ->rows)
+	while (i < map ->rows)
 	{
-		printf("before gnl\n");
 		line = get_next_line(fd);
-		printf("after gnl\n");
+		line = trim_nl(line);
 		if (!line)
 			break;
-		line = trim_nl(line);
 		printf("%s\n", line);
 		extract_insert_data(map ->points, line, i, map ->cols);
 		free(line);
