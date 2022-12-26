@@ -64,10 +64,10 @@ void	draw_horizontal_lines(t_data *data)
 	{
 		while (i + 1 < data ->map.cols)
 		{
-			data ->line.x0 = data->map.points[i][j].x;
-			data ->line.y0 = data->map.points[i][j].y;
-			data ->line.x1 = data->map.points[i + 1][j].x;
-			data ->line.y1 = data->map.points[i + 1][j].y;
+			data ->line.x0 = data->map.points[i][j].x_proj;
+			data ->line.y0 = data->map.points[i][j].y_proj;
+			data ->line.x1 = data->map.points[i + 1][j].x_proj;
+			data ->line.y1 = data->map.points[i + 1][j].y_proj;
 			data ->line.color0 = data ->map.points[i][j].color;
 			data ->line.color1 = data ->map.points[i + 1][j].color;
 			bressenham(data);
@@ -89,13 +89,13 @@ void	draw_vertical_lines(t_data *data)
 	{
 		while (j + 1 < data ->map.rows)
 		{
-			data ->line.x0 = data->map.points[i][j].x;
-			data ->line.y0 = data->map.points[i][j].y;
-			data ->line.x1 = data->map.points[i][j + 1].x;
-			data ->line.y1 = data->map.points[i][j + 1].y;
+			data ->line.x0 = data->map.points[i][j].x_proj;
+			data ->line.y0 = data->map.points[i][j].y_proj;
+			data ->line.x1 = data->map.points[i][j + 1].x_proj;
+			data ->line.y1 = data->map.points[i][j + 1].y_proj;
 			data ->line.color0 = data ->map.points[i][j].color;
 			data ->line.color1 = data ->map.points[i][j + 1].color;
-			bressenham(data);
+			vertical(data);
 			j++;
 		}
 		j = 0;
@@ -107,9 +107,8 @@ void	draw_vertical_lines(t_data *data)
 int	render(t_data *data)
 {
 	// place_points(data);
-	// draw_horizontal_lines(data);
-	// draw_vertical_lines(data);
-	bressenham(data);
+	draw_horizontal_lines(data);
+	draw_vertical_lines(data);
 	if (data ->win_ptr && data ->mlx_ptr && data ->img.img_ptr)
 		mlx_put_image_to_window(data ->mlx_ptr, data ->win_ptr, data ->img.img_ptr, 0, 0);
 	return (0);

@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void	assign_xy(t_map *map, int offset)
+void	assign_xy(t_map *map, int distance, int offset)
 {
 	int		x;
 	int		y;
@@ -11,13 +11,36 @@ void	assign_xy(t_map *map, int offset)
 	{
 		while (x < map ->cols)
 		{
-			map ->points[x][y].x = x * offset;
-			map ->points[x][y].y = y * offset;
+			map ->points[x][y].x = x * distance + offset;
+			map ->points[x][y].y = y * distance + offset;
 			x++;
 		}
 		x = 0;
 		y++;
 	}
+	return;
+}
+
+void	iso_project(t_map *map, float angle)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (j < map ->rows);
+	{
+		while (i < map ->cols)
+		{
+			map ->points[i][j].x_proj = (map ->points[i][j].x - map ->points[i][j].y) * cos(angle);
+			map ->points[i][j].y_proj = (map ->points[i][j].x + map ->points[i][j].y) * sin(angle) - map ->points[i][j].z;
+			printf("col: %d, row: %d, xp: %f, yp: %f, color: %X\n", i, j, map ->points[i][j].x_proj, map ->points[i][j].y_proj, map ->points[i][j].color);
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+	return;
 }
 
 void	free_map(t_map *map)
@@ -42,7 +65,7 @@ void	point_status(t_point **points, int rows, int cols)
 	{
 		while (i < cols)
 		{
-			printf("col: %d, row: %d, x: %d, y: %d, z: %d, color: %X\n", i, j, points[i][j].x, points[i][j].y, points[i][j].z, points[i][j].color);
+			printf("col: %d, row: %d, x: %d, y: %d, z: %d, xp: %f, yp: %f, color: %X\n", i, j, points[i][j].x, points[i][j].y, points[i][j].z, points[i][j].x_proj, points[i][j].y_proj, points[i][j].color);
 			i++;
 		}
 		printf("\n");
@@ -59,15 +82,10 @@ int main(int argc, char **argv)
 		return (-1);
 	if (get_map(&data.map, argv[1]))
 		return (-1);
-	assign_xy(&data.map, 25);
-	// point_status(data.map.points, data.map.rows, data.map.cols);
-
-	data.line.x0 = 50;
-	data.line.x1 = 50;
-	data.line.y0 = 0;
-	data.line.y1 = HEIGHT;
-	data.line.color0 = 0x00FFFF00;
-	data.line.color1 = 0x000000FF;
+	assign_xy(&data.map, 10, 100);
+	point_status(data.map.points, data.map.rows, data.map.cols);
+	iso_project(&data.map, 0.8);
+	point_status(data.map.points, data.map.rows, data.map.cols);
 
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)

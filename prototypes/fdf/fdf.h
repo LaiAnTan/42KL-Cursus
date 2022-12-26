@@ -26,8 +26,8 @@ typedef struct s_point
 	int			x;
 	int			y;
 	int			z;
-	int			x_proj;
-	int			y_proj;
+	float		x_proj;
+	float		y_proj;
 	unsigned int	color;
 }				t_point;
 
@@ -89,6 +89,8 @@ int		keyrelease_event(int key_symbol, void *data);
 uses the variables in the t_line struct found inside t_data to draw line
 */
 void	bressenham(t_data *data);
+// edge case for bresenhams line drawing algorithm
+void	vertical(t_data *data);
 
 // render
 int		render(t_data *data);

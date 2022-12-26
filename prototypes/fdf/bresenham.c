@@ -20,7 +20,8 @@ int		get_gradient(t_line *line, float x, float y)
 	int		rgb1[3];
 	int		result_rgb[3];
 
-	percent = (x - line ->x0) / (line ->x1 - line ->x0);
+
+	percent = ((x - line ->x0) + (y - line ->y0)) / ((line ->x1 - line ->x0) +(line ->y1 - line ->y0));
 	dec_to_rgb(rgb0, line ->color0);
 	dec_to_rgb(rgb1, line ->color1);
 	result_rgb[0] = rgb0[0] + percent * (rgb1[0] - rgb0[0]);
@@ -30,12 +31,12 @@ int		get_gradient(t_line *line, float x, float y)
 	return(encode_trgb(0, result_rgb[0], result_rgb[1], result_rgb[2]));
 }
 
-// float	abs(float n)
-// {
-// 	if (n < 0)
-// 	n = -n;
-// 	return (n);
-// }
+float	ft_abs(float n)
+{
+	if (n < 0)
+	n = -n;
+	return (n);
+}
 
 int		ft_max(float a, float b)
 {
@@ -55,7 +56,7 @@ void	bressenham(t_data *data)
 	coords[1] = data ->line.y0;
 	increment[0] = data->line.x1 -  data ->line.x0;
 	increment[1] =  data ->line.y1 - data ->line.y0;
-	max = ft_max(abs(increment[0]), abs(increment[1]));
+	max = ft_max(ft_abs(increment[0]), ft_abs(increment[1]));
 	increment[0] /= max;
 	increment[1] /= max;
 
@@ -66,4 +67,20 @@ void	bressenham(t_data *data)
 		coords[0] += increment[0];
 		coords[1] += increment[1];
 	}
+}
+
+void	vertical(t_data *data)
+{
+	float	x;
+	float	y;
+	unsigned int	color;
+
+	x = data ->line.x0;
+	y = data ->line.y0;
+    while (y <= data ->line.y1)
+	{
+		color = get_gradient(&data ->line, x, y);
+        mlx_img_put(&data->img, x, y, color);
+        y++;
+    }
 }
