@@ -81,7 +81,7 @@ int		*count_dimension(char *filename)
 	return (rc);
 }
 
-void	get_dimension(t_map *map, char *filename)
+int		get_dimension(t_map *map, char *filename)
 {
 	int		*rc;
 
@@ -134,38 +134,37 @@ void	free_2d_array(char **arr)
 void	extract_insert_data(t_point	**points, char *line, int row, int col)
 {
 	int		i;
-	int		split_2_status;
 	char	**split;
 	char	**split_2;
 
 	i = 0;
-	split_2_status = 0;
 	split = ft_split((char *) line, ' ');
 	while (i < col)
 	{
 		if (is_present(split[i], ',') == 1)
 		{
 			split_2 = ft_split(split[i], ',');
-			split_2_status = 1;
-			points[i][row].z = ft_atoi(split_2[0]);
+			if (split_2[0] != NULL)
+				points[i][row].z = ft_atoi(split_2[0]);
 			if (split_2[1] != NULL)
 				points[i][row].color = get_color(split_2[1]);
 			else
 				points[i][row].color = WHITE;
+			free_2d_array(split_2);
 		}
 		else
 		{
-			points[i][row].z = ft_atoi(split[i]);
+			if (split[i] != NULL)
+				points[i][row].z = ft_atoi(split[i]);
 			points[i][row].color = WHITE;
 		}
 		i++;
 	}
 	free_2d_array(split);
-	if (split_2_status)
-		free_2d_array(split_2);
+	
 }
 
-void	get_map(t_map *map, char *filename)
+int		get_map(t_map *map, char *filename)
 {	
 	int		i;
 	int		fd;
@@ -173,7 +172,7 @@ void	get_map(t_map *map, char *filename)
 
 	get_dimension(map, filename);
 	if (map ->rows == -1 && map ->cols == -1)
-		return ;
+		return (-1);
 	malloc_map(map);
 
 	i = 0;
@@ -184,11 +183,11 @@ void	get_map(t_map *map, char *filename)
 		line = trim_nl(line);
 		if (!line)
 			break;
-		printf("%s\n", line);
 		extract_insert_data(map ->points, line, i, map ->cols);
 		free(line);
 		i++;
 	}
 	close(fd);
+	return (0);
 }
 

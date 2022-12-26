@@ -2,13 +2,15 @@
 
 # define FDF_H
 
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 10000
 
-# define WIDTH 1080
+# define WIDTH 1920
 
-# define HEIGHT 720
+# define HEIGHT 1080
 
-# define WHITE 0xFFFFFFFF;
+# define WHITE 0x00FFFFFF;
+
+# define GREEN 0x0000FF00;
 
 # include <math.h>
 # include <stdio.h>
@@ -28,6 +30,16 @@ typedef struct s_point
 	int			y_proj;
 	unsigned int	color;
 }				t_point;
+
+typedef struct s_line
+{
+	float		x0;
+	float		y0;
+	float		x1;
+	float		y1;
+	unsigned int color0;
+	unsigned int color1;
+}				t_line;
 
 typedef struct s_matrix
 {
@@ -59,6 +71,7 @@ typedef struct s_data
 
 	t_img		img;
 	t_map		map;
+	t_line		line;
 }				t_data;
 
 /* 
@@ -72,11 +85,22 @@ void	mlx_img_put(t_img *img, int x, int y, int color);
 int		keypress_event(int key_symbol, t_data *data);
 int		keyrelease_event(int key_symbol, void *data);
 
+/*
+uses the variables in the t_line struct found inside t_data to draw line
+*/
+void	bressenham(t_data *data);
+
 // render
 int		render(t_data *data);
 
 // map parsing
-void	get_map(t_map *map, char *filename);
+/*
+function that reads a file line by line,
+extracts the contents (z pos and color) in the line, then
+inputs them into the struct t_map
+returns 0 on success and -1 on fail
+*/
+int		get_map(t_map *map, char *filename);
 
 // ft_split
 char	**ft_split(char const *s, char c);

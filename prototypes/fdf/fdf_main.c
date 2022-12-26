@@ -1,5 +1,25 @@
 #include "fdf.h"
 
+void	assign_xy(t_map *map, int offset)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	while (y < map ->rows)
+	{
+		while (x < map ->cols)
+		{
+			map ->points[x][y].x = x * offset;
+			map ->points[x][y].y = y * offset;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
 void	free_map(t_map *map)
 {
 	int		i;
@@ -22,7 +42,7 @@ void	point_status(t_point **points, int rows, int cols)
 	{
 		while (i < cols)
 		{
-			printf("col: %d, row: %d, z: %d, color: %X\n", i, j, points[i][j].z, points[i][j].color);
+			printf("col: %d, row: %d, x: %d, y: %d, z: %d, color: %X\n", i, j, points[i][j].x, points[i][j].y, points[i][j].z, points[i][j].color);
 			i++;
 		}
 		printf("\n");
@@ -33,25 +53,27 @@ void	point_status(t_point **points, int rows, int cols)
 
 int main(int argc, char **argv)
 {
-	t_map	map;
+	t_data	data;
 
 	if (argc != 2)
 		return (-1);
-	get_map(&map, argv[1]);
-	point_status(map.points, map.rows, map.cols);
-	free_map(&map);
-}
+	if (get_map(&data.map, argv[1]))
+		return (-1);
+	assign_xy(&data.map, 25);
+	// point_status(data.map.points, data.map.rows, data.map.cols);
 
-// stuff
-
-/*
-	t_data		data;
+	data.line.x0 = 50;
+	data.line.x1 = 50;
+	data.line.y0 = 0;
+	data.line.y1 = HEIGHT;
+	data.line.color0 = 0x00FFFF00;
+	data.line.color1 = 0x000000FF;
 
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (-1);
 	
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "test");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, argv[1]);
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
@@ -61,7 +83,7 @@ int main(int argc, char **argv)
 	data.img.img_ptr = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 
-	// mlx_loop_hook(data.mlx_ptr, &render, &data);
+	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &keypress_event, &data);
 	mlx_loop(data.mlx_ptr);
 
@@ -69,5 +91,6 @@ int main(int argc, char **argv)
 		exit(1);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
+	free_map(&data.map);
 	return (0);
-*/
+}

@@ -7,10 +7,13 @@ SRCS = fdf_main.c				\
 		utils.c					\
 		utils_2.c				\
 		utils_gnl.c				\
+		bresenham.c				\
  
 OBJ = $(SRCS:.c=.o)
 
 NAME = fdf
+
+MAP = maps/pyramide.fdf
 
 CC = gcc
 
@@ -39,4 +42,4 @@ run	: $(NAME)
 	./$(NAME) $(MAP)
 
 leaks : $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(MAP)
