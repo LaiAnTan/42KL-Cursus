@@ -10,8 +10,6 @@
 
 # define WHITE 0x00FFFFFF;
 
-# define GREEN 0x0000FF00;
-
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -41,17 +39,11 @@ typedef struct s_line
 	unsigned int color1;
 }				t_line;
 
-typedef struct s_matrix
-{
-	int			matrix[4][4];
-}				t_matrix;
-
 typedef struct s_map
 {
 	size_t		rows;
 	size_t		cols;
 	t_point		**points;
-	t_matrix	transform;
 }				t_map;
 
 typedef struct s_img
@@ -83,11 +75,16 @@ void	mlx_img_put(t_img *img, int x, int y, int color);
 
 // events
 int		keypress_event(int key_symbol, t_data *data);
-int		keyrelease_event(int key_symbol, void *data);
 
-/*
-uses the variables in the t_line struct found inside t_data to draw line
-*/
+// coordinates related stuff
+void	assign_xy(t_map *map, int distance, int x_offset, int y_offset);
+void	translate(t_map *map, int x_offset, int y_offset);
+void	zoom(t_map *map, float zoom);
+void	rotate(t_map *map);
+void	iso_project(t_map *map, float cos_angle, float sin_angle);
+
+// line drawing
+// uses the variables in the t_line struct found inside t_data to draw line
 void	bressenham(t_data *data);
 // edge case for bresenhams line drawing algorithm
 void	vertical(t_data *data);
@@ -126,5 +123,7 @@ int		is_present(char *str, char c);
 char	*ft_strdup(char *str);
 char	*trim_nl(char *line);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
+
+void	clean_exit(t_data *data);
 
 #endif

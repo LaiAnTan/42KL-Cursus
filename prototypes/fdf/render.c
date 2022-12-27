@@ -10,7 +10,7 @@ void	mlx_img_put(t_img *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	render_background(t_img *img, int color)
+int	clear_screen(t_data *data)
 {
 	int		i;
 	int		j;
@@ -21,7 +21,7 @@ int	render_background(t_img *img, int color)
 	{
 		while (j < HEIGHT)
 		{
-			mlx_img_put(img, i, j, color);
+			mlx_img_put(&data ->img, i, j, 0x00000000);
 			j++;
 		}
 		j = 0;
@@ -95,7 +95,10 @@ void	draw_vertical_lines(t_data *data)
 			data ->line.y1 = data->map.points[i][j + 1].y_proj;
 			data ->line.color0 = data ->map.points[i][j].color;
 			data ->line.color1 = data ->map.points[i][j + 1].color;
-			vertical(data);
+			if (data ->line.x0 != data ->line.x1)
+				bressenham(data);
+			else
+				vertical(data);
 			j++;
 		}
 		j = 0;
@@ -106,7 +109,7 @@ void	draw_vertical_lines(t_data *data)
 
 int	render(t_data *data)
 {
-	// place_points(data);
+	clear_screen(data);
 	draw_horizontal_lines(data);
 	draw_vertical_lines(data);
 	if (data ->win_ptr && data ->mlx_ptr && data ->img.img_ptr)

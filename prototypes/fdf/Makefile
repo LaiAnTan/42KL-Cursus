@@ -8,12 +8,13 @@ SRCS = fdf_main.c				\
 		utils_2.c				\
 		utils_gnl.c				\
 		bresenham.c				\
+		coordinates.c			\
  
 OBJ = $(SRCS:.c=.o)
 
 NAME = fdf
 
-MAP = maps/pyramide.fdf
+MAP = maps/42.fdf
 
 CC = gcc
 
