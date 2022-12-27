@@ -8,8 +8,6 @@ int	keypress_event(int key_symbol, t_data *data)
 {
 	if (key_symbol == 0xff1b) // 'ESC'
 	{
-		mlx_destroy_window(data ->mlx_ptr, data ->win_ptr);
-		mlx_destroy_display(data ->mlx_ptr);
 		clean_exit(data);
 	}
 	if (key_symbol == 0xff52) // 'up arrow'
