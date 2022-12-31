@@ -8,6 +8,6 @@
 |Born2beRoot|100  |
 |Push_swap|pending|
 |Pipex|pending    |
-
+|FDF|pending      |
 
 
