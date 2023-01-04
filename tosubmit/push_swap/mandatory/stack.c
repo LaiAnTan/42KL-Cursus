@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:36:28 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:36:29 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 15:50:07 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_stack	*genstack(void)
 	return (stack);
 }
 
-void resetstack(t_stack *stack)
+void	resetstack(t_stack *stack)
 {
 	stack ->stack_a = 0;
 	stack ->stack_b = 0;
@@ -31,7 +31,7 @@ void resetstack(t_stack *stack)
 	return ;
 }
 
-void initstack(t_stack *stack, int max_size, char **argv)
+void	initstack(t_stack *stack, int max_size, char **argv)
 {
 	stack ->stack_a = arg_to_stack(max_size, argv, stack);
 	stack ->stack_b = (int *) malloc (sizeof(int) * max_size);

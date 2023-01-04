@@ -3,19 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:32:52 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:32:53 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 17:25:26 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		run_operation(t_stack *stack, char *op)
+void	check_strlen(t_stack *stack, char *op)
 {
 	if (ft_strlen(op) > 4)
 		error(4, stack, op);
+}
+
+void	run_operation(t_stack *stack, char *op)
+{
+	check_strlen(stack, op);
 	if (!ft_strcmp("pa\n", op))
 		pa(stack);
 	else if (!ft_strcmp("pb\n", op))
@@ -40,5 +45,4 @@ int		run_operation(t_stack *stack, char *op)
 		rrr(stack);
 	else
 		error(4, stack, op);
-	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:33:09 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:33:10 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 17:29:06 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	error(int code, t_stack *stack, char *op)
 {
 	write(STDOUT_FILENO, "Error\n", 6);
+	printf("code : %d\n", code);
 	if (op)
 		free(op);
 	deinitstack(stack);

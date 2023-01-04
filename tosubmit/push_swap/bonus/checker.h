@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:33:05 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:33:06 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 17:44:56 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	deinitstack(t_stack *stack);
 
 // check
 char	*get_operation(t_stack *stack);
-int		run_operation(t_stack *stack, char *op);
+void	run_operation(t_stack *stack, char *op);
 
 // operations
 void	sa(t_stack *stack);
@@ -62,17 +62,22 @@ void	rrb(t_stack *stack);
 void	rrr(t_stack *stack);
 
 // error
-int	error(int code, t_stack *stack, char *op);
+int		error(int code, t_stack *stack, char *op);
 void	check_duplicate(t_stack *stack);
 
 // utils
 void	ft_swap(int *a, int *b);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_atoi(const char *s, t_stack *stack);
 int		*ft_intarrdup(int *arr, int size);
 int		ft_strcmp(char *s1, char *s2);
+int		has_space(char *str);
 size_t	ft_strlen(char *str);
 char	*ft_append(char *s1, char *s2);
 char	*ft_strdup(char *str);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
 
 // get_next_line
 char	*get_next_line(int fd);
@@ -81,4 +86,3 @@ char	*transfer(int fd, char *buffer, char *content);
 char	**seperate_nl(char *str);
 
 #endif
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:32:58 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:32:59 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 17:45:53 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	while (1)
 	{
 		op = get_next_line(0);
-		if (!op)
+		if (!op || (op[0] == '\n'))
 			break ;
 		run_operation(stack, op);
 		free(op);
@@ -37,11 +37,12 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-int *arg_to_stack(int size, char **argv, t_stack *stack)
+int	*arg_to_stack(int size, char **argv, t_stack *stack)
 {
 	int		i;
 	int		j;
 	int		*arr;
+	char	**temp;
 
 	i = 0;
 	j = 1;
@@ -50,6 +51,9 @@ int *arg_to_stack(int size, char **argv, t_stack *stack)
 		return (NULL);
 	while (size--)
 	{
+		if (has_space(argv[j]))
+			temp = ft_split(argv[j]);
+			
 		arr[i] = ft_atoi(argv[j], stack);
 		i++;
 		j++;

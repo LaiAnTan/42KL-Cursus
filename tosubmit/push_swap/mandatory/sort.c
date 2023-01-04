@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:36:23 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:36:24 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 15:50:42 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_3(t_stack *stack)
 {
-	int *a;
+	int	*a;
 
 	a = stack ->stack_a;
 	while (!check_sort(stack ->stack_a, 3))
@@ -32,7 +32,7 @@ void	sort_3(t_stack *stack)
 	return ;
 }
 
-int		find_index_max( int *arr, int size)
+int	find_index_max( int *arr, int size)
 {
 	int		i;
 	int		max;
@@ -88,8 +88,7 @@ void	small_sort(t_stack *stack)
 	while (stack ->size_b > 0)
 		rotate_and_push(stack);
 	return ;
-} 
-
+}
 
 void	sort(t_stack *stack)
 {

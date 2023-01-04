@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:20 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:35:21 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 16:11:23 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	ra(t_stack *stack)
 
 void	rb(t_stack *stack)
 {
-	
-	if(!(rotate(stack ->size_b, stack ->stack_b)))
+	if (!(rotate(stack ->size_b, stack ->stack_b)))
 	{
 		stack ->op_num++;
 	}

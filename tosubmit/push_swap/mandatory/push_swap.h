@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:59 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:36:00 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 16:09:32 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_stack
 	int			size_b;
 	int			op_num;
 }				t_stack;
-
 
 // main
 int		*arg_to_stack(int size, char **argv, t_stack *stack);

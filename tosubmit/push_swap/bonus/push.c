@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:08 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:35:09 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 16:12:08 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int	push(int fsize, int tsize, int *from, int *to)
 	int		temp;
 
 	i = 0;
-	
 	if (!fsize)
 		return (-1);
 	temp = from[0];
