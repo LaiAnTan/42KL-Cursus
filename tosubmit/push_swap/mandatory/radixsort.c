@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radixsort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:36:08 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:36:09 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 16:07:46 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 static void	insertion_sort(int *arr, int size)
 {
-    int		i;
-	int		key;
-	int		j;
+	int	i;
+	int	key;
+	int	j;
 
 	i = 1;
-   	while (i < size)
+	while (i < size)
 	{
-        key = arr[i];
-        j = i - 1;
-        while (j >= 0 && arr[j] > key) 
+		key = arr[i];
+		j = i - 1;
+		while (j >= 0 && arr[j] > key)
 		{
-            arr[j + 1] = arr[j];
-            j = j - 1;
-        }
-        arr[j + 1] = key;
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
 		i++;
-    }
+	}
 }
 
 static void	simplify_a(t_stack *stack)
@@ -62,6 +62,12 @@ static void	simplify_a(t_stack *stack)
 	free(copy);
 }
 
+static void	push_all_b_to_a(t_stack *stack)
+{
+	while (stack ->size_b > 0)
+		pa(stack);
+}
+
 void	radix_sort(t_stack *stack)
 {
 	int		i;
@@ -70,7 +76,7 @@ void	radix_sort(t_stack *stack)
 	int		shift;
 
 	i = 0;
-	shift = 0;
+	shift = -1;
 	size = stack ->size_a;
 	simplify_a(stack);
 	while (!check_sort(stack ->stack_a, size))
@@ -86,8 +92,7 @@ void	radix_sort(t_stack *stack)
 			i++;
 		}
 		i = 0;
-		while (stack ->size_b > 0)
-			pa(stack);
+		push_all_b_to_a(stack);
 		shift++;
 	}
 }

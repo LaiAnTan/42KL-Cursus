@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:33 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:35:34 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 16:10:37 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static int    overflow_check(int val, char lastdigit, int sign)
+static int	overflow_check(int val, char lastdigit, int sign)
 {
-    if (val <= 214748364)
-    {
-        if (val == 214748364)
-        {
-            if ((lastdigit <= '7' && sign == 1) || (lastdigit <= '8' && sign == -1))
-                return (0);
-        }
-        else
-            return (0);
-    }
-    return (-1);
+	if (val <= 214748364)
+	{
+		if (val == 214748364)
+		{
+			if ((lastdigit <= '7' && sign == 1)
+				|| (lastdigit <= '8' && sign == -1))
+				return (0);
+		}
+		else
+			return (0);
+	}
+	return (-1);
 }
 
 int	ft_atoi(const char *s, t_stack *stack)
@@ -47,7 +48,7 @@ int	ft_atoi(const char *s, t_stack *stack)
 	while (*str != '\0')
 	{
 		if (*str < '0' || *str > '9')
-			return(error(1, stack, NULL));
+			return (error(1, stack, NULL));
 		if (overflow_check(rtval, *str, sign) == -1)
 			return (error(2, stack, NULL));
 		rtval = (rtval * 10) + (*str - '0');

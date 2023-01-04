@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   revrotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:16 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:35:17 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 16:11:33 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rra(t_stack *stack)
 
 void	rrb(t_stack *stack)
 {
-	if(!(revrotate(stack ->size_b, stack ->stack_b)))
+	if (!(revrotate(stack ->size_b, stack ->stack_b)))
 	{
 		stack ->op_num++;
 	}

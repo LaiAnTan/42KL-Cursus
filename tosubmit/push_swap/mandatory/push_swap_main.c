@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:54 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/22 17:35:55 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 16:27:44 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 /* (top of stack) "int arr" (bottom of stack) */
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_stack		*stack;
 	int			max_size;
@@ -36,7 +35,7 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-int *arg_to_stack(int size, char **argv, t_stack *stack)
+int	*arg_to_stack(int size, char **argv, t_stack *stack)
 {
 	int		i;
 	int		j;
@@ -69,4 +68,3 @@ int	check_sort(int *arr, int size)
 	}
 	return (1);
 }
-

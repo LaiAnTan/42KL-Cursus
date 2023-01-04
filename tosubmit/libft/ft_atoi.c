@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:31:04 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/07/30 16:43:03 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/04 17:41:44 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(const char *s)
 	sign = 1;
 	rtval = 0;
 	str = (char *) s;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
+	while ()
 		++str;
 	if (*str == '-' || *str == '+')
 	{
