@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:33 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/04 16:10:37 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/05 01:16:09 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	overflow_check(int val, char lastdigit, int sign)
 	return (-1);
 }
 
-int	ft_atoi(const char *s, t_stack *stack)
+int	ft_atoi(const char *s, t_stack *stack_tofree, char *str_tofree, char **arr_tofree)
 {
 	int		sign;
 	long	rtval;
@@ -48,9 +48,9 @@ int	ft_atoi(const char *s, t_stack *stack)
 	while (*str != '\0')
 	{
 		if (*str < '0' || *str > '9')
-			return (error(1, stack, NULL));
+			return (error(1, stack_tofree, str_tofree, arr_tofree));
 		if (overflow_check(rtval, *str, sign) == -1)
-			return (error(2, stack, NULL));
+			return (error(2, stack_tofree, str_tofree, arr_tofree));
 		rtval = (rtval * 10) + (*str - '0');
 		str++;
 	}

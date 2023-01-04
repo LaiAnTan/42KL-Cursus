@@ -1,7 +1,7 @@
-pb$
-pb$
-rra$
-sa$
-pa$
-ra$
-pa$
+pb
+pb
+rra
+sa
+pa
+ra
+pa

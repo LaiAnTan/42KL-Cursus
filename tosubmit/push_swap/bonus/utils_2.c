@@ -1,6 +1,6 @@
 #include "checker.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char		*str;
 	size_t		i;
@@ -67,4 +67,17 @@ int	has_space(char *str)
 		i++;
 	}
 	return (0);
+}
+
+void	free_2d_array(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

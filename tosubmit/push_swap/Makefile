@@ -6,7 +6,7 @@
 #    By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 16:33:49 by tlai-an           #+#    #+#              #
-#    Updated: 2022/12/22 17:36:46 by tlai-an          ###   ########.fr        #
+#    Updated: 2023/01/05 00:40:58 by tlai-an          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ BONUS = checker
 BONUS_C =	bonus/check.c					\
 			bonus/checker_main.c			\
 			bonus/errors.c					\
+			bonus/ft_split.c				\
 			bonus/get_next_line.c			\
 			bonus/gnl_utils.c				\
 			bonus/push.c					\
@@ -41,6 +42,7 @@ BONUS_C =	bonus/check.c					\
 			bonus/rotate.c					\
 			bonus/stack.c					\
 			bonus/swap.c					\
+			bonus/utils_2.c					\
 			bonus/utils.c					\
 
 BONUS_H = bonus/checker.h
