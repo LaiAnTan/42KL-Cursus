@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:59 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/05 10:19:10 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/05 10:40:21 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ size_t	ft_strlen(char *str);
 int		has_space(char *str);
 int		countwords(char const *s, char c);
 int		get_max_size(int argc, char **argv);
-int		ft_atoi(const char *s, t_stack *stack_tofree, char *str_tofree, char **arr_tofree);
+int		ft_atoi(const char *s, t_stack *stack_tofree,
+			char *str_tofree, char **arr_tofree);
 int		*ft_intarrdup(int *arr, int size);
 
 char	*ft_strdup(char *str);
