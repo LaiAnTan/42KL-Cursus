@@ -6,19 +6,19 @@
 /*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:33:09 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/05 00:59:54 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/05 10:12:59 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int	error(int code, t_stack *stack, char *op, char **temp)
+int	error(int code, t_stack *stack, char *tab, char **arr)
 {
 	write(STDOUT_FILENO, "Error\n", 6);
-	if (op)
-		free(op);
-	if (temp)
-		free_2d_array(temp);
+	if (tab)
+		free(tab);
+	if (arr)
+		free_2d_array(arr);
 	deinitstack(stack);
 	exit(code);
 	return (0);
