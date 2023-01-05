@@ -6,31 +6,11 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:36:23 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/04 15:50:42 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/05 15:51:14 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	sort_3(t_stack *stack)
-{
-	int	*a;
-
-	a = stack ->stack_a;
-	while (!check_sort(stack ->stack_a, 3))
-	{
-		if (stack ->size_a > 2)
-		{
-			if (a[1] > a[2] && a[1] > a[0])
-				rra(stack);
-			else if (a[1] < a[2] && a[1] < a[0])
-				ra(stack);
-		}
-		if (a[0] > a[1])
-			sa(stack);
-	}
-	return ;
-}
 
 int	find_index_max( int *arr, int size)
 {
@@ -87,16 +67,5 @@ void	small_sort(t_stack *stack)
 	sort_3(stack);
 	while (stack ->size_b > 0)
 		rotate_and_push(stack);
-	return ;
-}
-
-void	sort(t_stack *stack)
-{
-	if (stack ->size_a <= 3)
-		sort_3(stack);
-	else if (stack ->size_a < 100)
-		small_sort(stack);
-	else
-		radix_sort(stack);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:59 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/05 10:40:21 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/05 15:52:05 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int		revrotate(int size, int *stack);
 
 //sort
 void	sort(t_stack *stack);
+void	sort_2(t_stack *stack);
+void	sort_3(t_stack *stack);
 void	small_sort(t_stack *stack);
 void	radix_sort(t_stack *stack);
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+         #
+#    By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 16:33:49 by tlai-an           #+#    #+#              #
-#    Updated: 2023/01/05 10:24:20 by tlai-an          ###   ########.fr        #
+#    Updated: 2023/01/05 15:49:10 by tlai-an          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME = push_swap
 
 SRCS_C =	mandatory/push_swap_main.c		\
 			mandatory/sort.c				\
+			mandatory/sort_2.c				\
 			mandatory/radixsort.c			\
 			mandatory/stack.c				\
 			mandatory/errors.c				\
