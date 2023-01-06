@@ -10,22 +10,20 @@ no access to command
 
 */
 
-int	error(char *topic, char *msg)
+int	error(char *topic, char *msg, int tbool)
 {
 	if (topic)
 	{
 		write(STDERR_FILENO, topic, ft_strlen(topic));
 		write(STDERR_FILENO, ": ", 2);
-		free(topic);
+		if (tbool)
+			free(topic);
 	}
 	else
 		write(STDERR_FILENO, "pipex: ", 7);
 	
 	if (msg)
-	{
 		write(STDERR_FILENO, msg, ft_strlen(msg));
-		free(msg);
-	}
 	else
 		write(STDERR_FILENO, strerror(errno), ft_strlen(strerror(errno)));
 	

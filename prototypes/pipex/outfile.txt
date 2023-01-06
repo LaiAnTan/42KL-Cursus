@@ -11,18 +11,3 @@ pipex
 pipex.h
 pipex_main.c
 utils.c
-ils.c
-   355 Jan  6 15:25 Makefile
--rw-r--r--  1 laian laian   129 Jan  6 15:27 b.txt
--rw-r--r--  1 laian laian   668 Jan  6 15:41 cmd.c
--rw-r--r--  1 laian laian   392 Jan  6 15:39 error.c
--rw-r--r--  1 laian laian   548 Jan  6 15:42 file.c
--rw-r--r--  1 laian laian  2491 Dec  3 23:15 ft_split.c
--rw-r--r--  1 laian laian  1711 Dec  5 12:08 get_next_line.c
--rw-r--r--  1 laian laian    80 Dec  5 14:35 infile.txt
--rwxr-xr-x  1 laian laian   129 Jan  6 15:37 outfile.txt
--rw-r--r--  1 laian laian  1422 Dec  4 13:17 paths.c
--rwxr-xr-x  1 laian laian 21864 Jan  6 15:42 pipex
--rw-r--r--  1 laian laian  1136 Jan  6 15:39 pipex.h
--rw-r--r--  1 laian laian  1123 Jan  6 15:42 pipex_main.c
--rw-r--r--  1 laian laian  1295 Dec  5 14:04 utils.c

@@ -13,7 +13,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 5)
 		return (0);
 	if (pipe(pipefd) == -1)
-		error(NULL, "pipe failed");
+		error(NULL, "pipe failed", 0);
 	pid[0] = infile_cp(argv, envp, pipefd);
 	pid[1] = outfile_cp(argc, argv, envp, pipefd);
 	close(pipefd[0]);
@@ -29,7 +29,7 @@ pid_t	infile_cp(char **argv, char **envp, int *pipefd)
 
 	pid = fork();
 	if (pid == -1)
-		error(NULL, "fork failed");
+		error(NULL, "fork failed", 0);
 	if (pid == 0)
 	{
 		redirect_infile(argv[1]);
@@ -47,7 +47,7 @@ pid_t	outfile_cp(int argc, char **argv, char **envp, int *pipefd)
 
 	pid = fork();
 	if (pid == -1)
-		error(NULL, "fork failed");
+		error(NULL, "fork failed", 0);
 	if (pid == 0)
 	{
 		redirect_outfile(argv[argc - 1]);

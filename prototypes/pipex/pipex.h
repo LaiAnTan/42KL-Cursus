@@ -37,7 +37,7 @@ int		redirect_infile(char *infile_name);
 int		redirect_outfile(char *outfile_name);
 
 //errors
-int		error(char *topic, char *msg);
+int		error(char *topic, char *msg, int tbool);
 
 // gnl
 char	*get_next_line(int fd);
