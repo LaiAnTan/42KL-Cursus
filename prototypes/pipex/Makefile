@@ -1,5 +1,5 @@
 
-params = test1.txt "cat -e" "ls -la" test2.txt
+params = infile.txt pizza ls outfile.txt
 
 all: compile run
 
@@ -12,7 +12,7 @@ debug :
 		gcc -g -O1 *.c
 
 leaks :
-		valgrind --leak-check=full --show-leak-kinds=all ./a.out $(params)
+		valgrind --leak-check=full --show-leak-kinds=all ./pipex $(params)
 
 run :
 		./pipex $(params)

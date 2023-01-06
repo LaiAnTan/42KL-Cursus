@@ -1,7 +1,5 @@
 
-params = here_doc "gay" "cat" "grep sus" "cat -e" outfile.txt
-
-# infile.txt "cat -e" "pizza" "ls" "wc -l" "cat" "pizza" "ls" infile.txt
+params = infile.txt "cat -e" "cat -e" "ls" outfile.txt
 
 all: compile run
 

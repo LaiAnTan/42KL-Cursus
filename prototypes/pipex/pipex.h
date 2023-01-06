@@ -19,24 +19,25 @@
 // child processes
 pid_t	infile_cp(char **argv, char **envp, int *pipefd);
 pid_t	outfile_cp(int argc, char **argv, char **envp, int *pipefd);
-pid_t	heredoc_cp(char **argv, char **envp, int *pipefd);
 
 // command execution
 void	run_cmd(char *cmd_with_params, char **envp);
-int		exec_cmd(char **cmd_paths, char **args, char **envp);
+
+int		exec_cmd(char *cmd, char **cmd_paths, char **args, char **envp);
 
 //command path locating
+void	append_stuff(char **paths, char *cmd);
+
 char	*get_path_envp(char **envp);
 char	**get_cmd_path(char **envp, char *cmd);
 char	*trim_path(char *path);
-void	append_stuff(char **paths, char *cmd);
 
 // file redirection
 int		redirect_infile(char *infile_name);
-int		redirect_outfile(char *outfile_name, char c);
+int		redirect_outfile(char *outfile_name);
 
 //errors
-int		error(void);
+int		error(char *topic, char *msg);
 
 // gnl
 char	*get_next_line(int fd);
