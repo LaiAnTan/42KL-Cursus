@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:00:30 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/05 10:09:49 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/05 13:57:02 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,3 @@ char	**ft_split(char const *s, char c)
 	insertwords(strs, s, c, words);
 	return (strs);
 }
-
-

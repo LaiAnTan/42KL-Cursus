@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:35:33 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/05 01:16:09 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/05 13:55:28 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	overflow_check(int val, char lastdigit, int sign)
 	return (-1);
 }
 
-int	ft_atoi(const char *s, t_stack *stack_tofree, char *str_tofree, char **arr_tofree)
+int	ft_atoi(const char *s, t_stack *stack_tofree,
+		char *str_tofree, char **arr_tofree)
 {
 	int		sign;
 	long	rtval;

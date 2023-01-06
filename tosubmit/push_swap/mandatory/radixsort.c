@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 17:36:08 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/04 16:07:46 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/05 14:10:38 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	radix_sort(t_stack *stack)
 	int		shift;
 
 	i = 0;
-	shift = -1;
+	shift = 0;
 	size = stack ->size_a;
 	simplify_a(stack);
 	while (!check_sort(stack ->stack_a, size))
