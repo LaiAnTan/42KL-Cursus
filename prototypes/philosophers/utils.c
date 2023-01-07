@@ -37,10 +37,10 @@ int	ft_atoi(const char *s)
 	return ((int)(rtval));
 }
 
-unsigned int get_curr_time(t_data *data)
+long unsigned int get_curr_time(long unsigned int start_time)
 {
-	t_val	tv;
+	t_val		tv;
 
 	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000 + tv.tv_usec * 0.001) - data ->start_time);
+	return (((tv.tv_sec * 1000000) + tv.tv_usec - start_time) / 1000);
 }

@@ -1,5 +1,5 @@
 
-params = 5 800 200 200
+params = 4 800 200 200 7
 
 all: compile run
 

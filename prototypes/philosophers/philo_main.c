@@ -11,15 +11,24 @@ void	create_all_threads(t_data *p, void *(*f)(), void *args)
 		pthread_create(&p->threads[i++], NULL, f, args);
 }
 
-void	*thread_func(void *args)
+void	join_all_threads(t_data *p)
 {
-	int		x;
+	int		i;
 
-	x = *(int *) args;
-	if (x == 0)
-		printf("eat\n");
-	else if( x== 1)
-		printf("sleep\n");
+	i = 0;
+	while (i < p->no_of_philosophers)
+		pthread_join(p->threads[i++], NULL);
+}
+
+int	thread_func(void *args)
+{
+	t_data	*data;
+
+	data = (t_data *) args;
+
+	pthread_mutex_init(&data->mtx, NULL);
+	simulation(data);
+	pthread_mutex_destroy(&data->mtx);
 }
 
 int	main(int argc, char **argv)
@@ -31,11 +40,11 @@ int	main(int argc, char **argv)
 	else if (argc > 6)
 		exit(0);
 	init_struct(&data, argc, argv);
-	pthread_mutex_init(&data.mtx, NULL);
-	// create_all_threads(&data, thread_func, &val);
-	pthread_mutex_destroy(&data.mtx);
-}
+	create_all_threads(&data, (void *) thread_func,(void *) &data);
+	join_all_threads(&data);
 
+	return (0);
+}
 
 /*
 gettimeofday
