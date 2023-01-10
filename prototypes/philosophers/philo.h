@@ -7,6 +7,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <string.h>
 
 typedef struct timeval t_val;
 
