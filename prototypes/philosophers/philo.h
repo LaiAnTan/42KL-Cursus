@@ -16,14 +16,14 @@ typedef struct s_data
 	pthread_mutex_t		mtx;
 	pthread_t			*threads; // threads
 
-	
+	// time in microseconds
 	unsigned int		no_of_philosophers;
 	unsigned int		time_to_eat;
 	unsigned int		time_to_sleep;
 	unsigned int		time_to_die;
 	unsigned int		no_of_eats;
 	unsigned int		death;
-	long unsigned int	start_time; // in microseconds
+	long unsigned int	start_time;
 	
 	int					*forks; // track fork possesion by a philosopher
 	// fork[philo_num] = left fork,  fork[philo_num + 1] = right fork

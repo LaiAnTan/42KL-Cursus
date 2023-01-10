@@ -6,9 +6,9 @@ void	init_struct(t_data *p, int argc, char **argv)
 	t_val		tv;
 
 	p->no_of_philosophers = ft_atoi(argv[1]);
-	p->time_to_die = ft_atoi(argv[2]);
-	p->time_to_eat = ft_atoi(argv[3]);
-	p->time_to_sleep = ft_atoi(argv[4]);
+	p->time_to_die = ft_atoi(argv[2]) * 1000;
+	p->time_to_eat = ft_atoi(argv[3]) * 1000;
+	p->time_to_sleep = ft_atoi(argv[4]) * 1000;
 	if (argc == 6)
 		p->no_of_eats = ft_atoi(argv[5]);
 	else
