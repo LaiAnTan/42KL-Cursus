@@ -1,9 +1,16 @@
-#include "pipex.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex_main.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 14:13:34 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/10 14:15:00 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-* call				: ./pipex infile "ls -l" "wc -l" outfile
-* behaves like		: < infile ls -l | wc -l > outfile
-*/
+#include "pipex.h"
 
 int	main(int argc, char **argv, char **envp)
 {

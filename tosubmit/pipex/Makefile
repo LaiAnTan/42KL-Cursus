@@ -1,29 +1,50 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/07/07 16:33:49 by tlai-an           #+#    #+#              #
+#    Updated: 2023/01/10 14:36:09 by tlai-an          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-params = infile.txt pizza ls outfile.txt
+CFLAG = -Wall -Wextra -Werror
 
-all: compile run
+NAME = pipex
 
-lc: debug leaks
+SRCS_C =	pipex_main.c	\
+			cmd.c			\
+			file.c			\
+			error.c			\
+			utils.c			\
+			paths.c			\
+			ft_split.c		\
+			get_next_line.c	\
 
-compile :
-		gcc *.c -o pipex
+SRCS_H = pipex.h
 
-debug :
-		gcc -g -O1 *.c
+SRCS_O = $(SRCS_C:.c=.o)
 
-leaks :
-		valgrind --leak-check=full --show-leak-kinds=all ./pipex $(params)
+all : $(NAME)
 
-run :
-		./pipex $(params)
+%.o: %.c
+		@gcc $(CFLAG) -c $< -o $(<:.c=.o)
 
-macclean :
-		-rm -f *.c
-		-rm -f *.exe
+$(NAME): $(SRCS_O)
+		@gcc $(CFLAG) -o $(NAME) $(SRCS_O)
 
-winclean :
-		-del -f *.c
-		-del -f *.exe
-	
-norm	:
-		norminette *.c
+clean :
+		@rm -f ${SRCS_O}
+
+fclean : clean
+		@rm -f $(NAME)
+
+re : fclean all
+
+git :
+	git commit -am "e"
+	git push
+
+.PHONY: all clean fclean re git $(NAME)

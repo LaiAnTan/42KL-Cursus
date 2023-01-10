@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 14:12:45 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/10 14:34:25 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	run_cmd(char *cmd_with_params, char **envp)
@@ -12,14 +24,18 @@ void	run_cmd(char *cmd_with_params, char **envp)
 	exec_cmd(cmd, cmd_paths, args, envp);
 }
 
-void	free_2d_array(char **a)
+void	free_2d_arrays(char **a, char **b)
 {
 	int		i;
 
 	i = 0;
 	while (a[i])
 		free(a[i++]);
+	i = 0;
+	while (b[i])
+		free(b[i++]);
 	free(a);
+	free(b);
 }
 
 int	exec_cmd(char *cmd, char **cmd_paths, char **args, char **envp)
@@ -38,16 +54,14 @@ int	exec_cmd(char *cmd, char **cmd_paths, char **args, char **envp)
 		{
 			if (execve(cmd_paths[i], args, envp) == -1)
 			{
-				free_2d_array(cmd_paths);
-				free_2d_array(args);
+				free_2d_arrays(cmd_paths, args);
 				error(cmd, "command execution failed", 1);
 			}
 		}
 		else
 			i++;
 	}
-	free_2d_array(args);
-	free_2d_array(cmd_paths);
+	free_2d_arrays(cmd_paths, args);
 	error(cmd, "command not found", 1);
 	return (-1);
 }

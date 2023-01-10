@@ -1,13 +1,1 @@
-Makefile
-cmd.c
-error.c
-file.c
-ft_split.c
-get_next_line.c
-infile.txt
-outfile.txt
-paths.c
-pipex
-pipex.h
-pipex_main.c
-utils.c
+     127

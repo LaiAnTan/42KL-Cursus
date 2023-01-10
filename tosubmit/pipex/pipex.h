@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 14:13:39 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/10 14:15:07 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 
 # define PIPEX_H
@@ -14,7 +26,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <errno.h>
-# include <wait.h>
+# include <sys/wait.h>
 
 // child processes
 pid_t	infile_cp(char **argv, char **envp, int *pipefd);
@@ -47,7 +59,7 @@ size_t	ft_strlen(const char *str);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(const char *s);
 char	*ft_append(char *s1, char *s2);
-char    *ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 
 #endif

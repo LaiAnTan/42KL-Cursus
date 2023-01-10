@@ -1,21 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 14:13:42 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/10 14:15:11 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-char    *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    char *str;
-	size_t i;
+	char	*str;
+	size_t	i;
 
-    i = -1;
-    str = (char *) malloc(sizeof(char) * len + 1);
-    if (str == 0)
-        return (0);
-    while (++i < len && s[start])
-    {
-        str[i] = s[start];
-        start++;
-    }
+	i = -1;
+	str = (char *) malloc(sizeof(char) * len + 1);
+	if (str == 0)
+		return (0);
+	while (++i < len && s[start])
+	{
+		str[i] = s[start];
+		start++;
+	}
 	str[i] = '\0';
-    return (str);
+	return (str);
 }
 
 char	*ft_strdup(const char *s)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   paths.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 14:13:31 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/10 14:19:30 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 char	*get_path_envp(char **envp)
@@ -17,7 +29,7 @@ char	*get_path_envp(char **envp)
 			if (str[j] == '\0' && j == 4)
 			{
 				free(str);
-				return(ft_strdup(envp[i]));
+				return (ft_strdup(envp[i]));
 			}
 		}
 		j = 0;
@@ -49,7 +61,7 @@ char	*trim_path(char *path)
 
 	i = 0;
 	j = 5;
-	len = ft_strlen(path) - 5; // "PATH="
+	len = ft_strlen(path) - 5;
 	trimmed = (char *) malloc (sizeof(char) * (len + 1));
 	while (i < len)
 	{
@@ -57,7 +69,7 @@ char	*trim_path(char *path)
 		i++;
 		j++;
 	}
-	trimmed[i] ='\0';
+	trimmed[i] = '\0';
 	free(path);
 	return (trimmed);
 }
@@ -78,7 +90,7 @@ void	append_stuff(char **paths, char *cmd)
 		to_append[i++] = cmd[j++];
 	to_append[len + 1] = '\0';
 	i = 0;
-	while(paths[i])
+	while (paths[i])
 	{
 		len = ft_strlen(paths[i]);
 		if (paths[i][len - 1] == '/')

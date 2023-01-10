@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 14:12:51 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/10 14:20:21 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
-
-/*
-types of errors:
-
-cant open file
-command not found
-cant run command
-no access to command
-
-*/
 
 int	error(char *topic, char *msg, int tbool)
 {
@@ -21,12 +23,10 @@ int	error(char *topic, char *msg, int tbool)
 	}
 	else
 		write(STDERR_FILENO, "pipex: ", 7);
-	
 	if (msg)
 		write(STDERR_FILENO, msg, ft_strlen(msg));
 	else
 		write(STDERR_FILENO, strerror(errno), ft_strlen(strerror(errno)));
-	
 	write(STDERR_FILENO, "\n", 1);
 	exit(0);
 }
