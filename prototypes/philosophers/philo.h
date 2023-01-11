@@ -16,13 +16,16 @@ typedef struct s_data
 	pthread_mutex_t		mtx;
 	pthread_t			*threads; // threads
 
+	// death status
+	int					dead;
+	int					thread_index;
+
 	// time in microseconds
-	unsigned int		no_of_philosophers;
-	unsigned int		time_to_eat;
-	unsigned int		time_to_sleep;
-	unsigned int		time_to_die;
-	unsigned int		no_of_eats;
-	unsigned int		death;
+	long unsigned int	no_of_philosophers;
+	long unsigned int	time_to_eat;
+	long unsigned int	time_to_sleep;
+	long unsigned int	time_to_die;
+	long unsigned int	no_of_eats;
 	long unsigned int	start_time;
 	
 	int					*forks; // track fork possesion by a philosopher
@@ -39,9 +42,10 @@ void	p_sleep(t_data *data, int philo_num);
 void	p_leftfork(t_data *data, int philo_num);
 void	p_rightfork(t_data *data, int philo_num);
 void	p_eat(t_data *data, int philo_num);
+int		check_death(t_data *data, int philo_num);
 
 // sim
-void	simulation(t_data *data);
+void	simulation(t_data *data, int curr_thread_index);
 
 // utils
 int					ft_atoi(const char *s);

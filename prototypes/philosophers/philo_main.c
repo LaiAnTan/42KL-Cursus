@@ -5,10 +5,13 @@ void	create_all_threads(t_data *p, void *(*f)(), void *args)
 	int		i;
 
 	i = 0;
-
 	p->threads = (pthread_t *) malloc (sizeof(pthread_t) * p->no_of_philosophers);
 	while (i < p->no_of_philosophers)
-		pthread_create(&p->threads[i++], NULL, f, args);
+	{
+		pthread_create(&p->threads[i], NULL, f, args);
+		p->thread_index = i;
+		i++;
+	}
 }
 
 void	join_all_threads(t_data *p)
@@ -23,12 +26,11 @@ void	join_all_threads(t_data *p)
 int	thread_func(void *args)
 {
 	t_data	*data;
+	int		curr_thread_index;
 
 	data = (t_data *) args;
-
-	pthread_mutex_init(&data->mtx, NULL);
-	simulation(data);
-	pthread_mutex_destroy(&data->mtx);
+	curr_thread_index = data->thread_index;
+	simulation(data, curr_thread_index);
 }
 
 int	main(int argc, char **argv)
@@ -40,8 +42,10 @@ int	main(int argc, char **argv)
 	else if (argc > 6)
 		exit(0);
 	init_struct(&data, argc, argv);
+	pthread_mutex_init(&data.mtx, NULL);
 	create_all_threads(&data, (void *) thread_func,(void *) &data);
 	join_all_threads(&data);
+	pthread_mutex_destroy(&data.mtx);
 
 	return (0);
 }

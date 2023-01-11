@@ -14,36 +14,30 @@ int	check_total_ate(t_data *data)
 	return (1);
 }
 
-void	simulation(t_data *data)
+void	simulation(t_data *data, int curr_thread_index)
 {
-	int	i;
-	int	cycle;
-	int	philo_num;
-	int	total;
+	int	philo_num = data->thread_index + 1;
 	
-	cycle = 1;
-	philo_num = 2;
-	total = data->no_of_philosophers;
-
-	while (1)
+	
+	while (!check_death(data, philo_num))
 	{
 		if (check_total_ate(data))
 			break ;
-		while (philo_num <= total)
+		if (philo_num % 2 == 0)
 		{
-			// p_check_death(data, philo_num);
 			p_leftfork(data, philo_num);
 			p_rightfork(data, philo_num);
 			p_eat(data, philo_num);
 			p_sleep(data, philo_num);
-			philo_num += 2;
 		}
-		if (cycle % 2 != 0)
-			philo_num = 1;
 		else
-			philo_num = 2;
-		cycle++;
-		i++;
+		{
+			p_sleep(data, philo_num);
+			p_leftfork(data, philo_num);
+			p_rightfork(data, philo_num);
+			p_eat(data, philo_num);
+			p_sleep(data, philo_num);
+		}
 	}
 	return ;
 }

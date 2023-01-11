@@ -4,7 +4,7 @@ void	p_sleep(t_data *data, int philo_num)
 {
 	long unsigned int	curr_time;
 
-	if (data->forks[philo_num] == philo_num || data ->forks[philo_num - 1] == philo_num)
+	if (data->forks[philo_num] == philo_num || data ->forks[philo_num - 1] == philo_num || data->dead == 1)
 		return ;
 	curr_time = get_curr_time(data->start_time);
 	printf("%ld %d is sleeping\n", curr_time, philo_num);
@@ -17,6 +17,8 @@ void	p_leftfork(t_data *data, int philo_num)
 {
 	long unsigned int	curr_time;
 
+	if (data->dead == 1)
+		return ;
 	curr_time = get_curr_time(data->start_time);
 	pthread_mutex_lock(&data->mtx);
 	if (data->forks[philo_num - 1] == 0)
@@ -29,6 +31,8 @@ void	p_rightfork(t_data *data, int philo_num)
 {
 	long unsigned int	curr_time;
 
+	if (data->dead == 1)
+		return ;
 	curr_time = get_curr_time(data->start_time);
 	// case: last philosopher
 	pthread_mutex_lock(&data->mtx);
@@ -49,6 +53,8 @@ void	p_eat(t_data *data, int philo_num)
 {
 	long unsigned int	curr_time;
 
+	if (data->dead == 1)
+		return ;
 	if ((data->forks[0] != 0 || data->forks[philo_num] != 0) && (data->forks[philo_num - 1] != 0))
 	{
 		curr_time = get_curr_time(data->start_time);
@@ -65,4 +71,18 @@ void	p_eat(t_data *data, int philo_num)
 		data->last_ate[philo_num - 1] = (int) curr_time;
 		data->eat_count[philo_num -1] += 1;
 	}
+}
+
+int	check_death(t_data *data, int philo_num)
+{
+	long unsigned int	curr_time;
+
+	if (data ->last_ate[philo_num - 1] > (curr_time - data->time_to_die))
+	{
+		curr_time = get_curr_time(data ->start_time);
+		printf("%ld %d is dead\n", curr_time, philo_num);
+		data->dead = 1;
+		return (1);
+	}
+	return (0);
 }
