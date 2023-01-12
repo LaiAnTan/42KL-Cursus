@@ -63,7 +63,7 @@ void	p_eat(t_data *data, int philo_num)
 		// clear left fork
 		if (data->forks[p] != 0)
 			data->forks[p] = 0;
-		data->last_ate[p] = (int) curr_time;
+		data->last_ate[p] = curr_time;
 		data->eat_count[p] += 1;
 	}
 }

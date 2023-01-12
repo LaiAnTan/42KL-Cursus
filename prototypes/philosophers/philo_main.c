@@ -39,11 +39,16 @@ void	destroy_mutex(t_data *p)
 
 int	thread_func(void *args)
 {
+	t_val	tv;
 	t_data	*data;
 	int		curr_thread_index;
 
 	data = (t_data *) args;
 	curr_thread_index = data->thread_index;
+
+	gettimeofday(&tv, NULL);
+	data->start_time = ((tv.tv_sec * 1000000) + tv.tv_usec);
+	data->last_ate[curr_thread_index - 1] = data->start_time;
 	simulation(data, curr_thread_index);
 }
 

@@ -39,6 +39,7 @@ typedef struct s_data
 
 // struct
 void	init_struct(t_data *data, int argc, char **argv);
+void	init_time(t_data *p);
 
 // actions
 void	p_sleep(t_data *data, int philo_num);
