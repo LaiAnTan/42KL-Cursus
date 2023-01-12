@@ -23,6 +23,20 @@ void	join_all_threads(t_data *p)
 		pthread_join(p->threads[i++], NULL);
 }
 
+void	init_mutex(t_data *p)
+{
+	pthread_mutex_init(&p->mtx, NULL);
+	pthread_mutex_init(&p->print_mtx, NULL);
+	pthread_mutex_init(&p->death_mtx, NULL);
+}
+
+void	destroy_mutex(t_data *p)
+{
+	pthread_mutex_destroy(&p->mtx);
+	pthread_mutex_destroy(&p->print_mtx);
+	pthread_mutex_destroy(&p->death_mtx);
+}
+
 int	thread_func(void *args)
 {
 	t_data	*data;
@@ -38,15 +52,14 @@ int	main(int argc, char **argv)
 	t_data data;
 
 	if (argc < 5)
-		exit(0);
+		return (0);
 	else if (argc > 6)
-		exit(0);
+		return (0);
 	init_struct(&data, argc, argv);
-	pthread_mutex_init(&data.mtx, NULL);
+	init_mutex(&data);
 	create_all_threads(&data, (void *) thread_func,(void *) &data);
 	join_all_threads(&data);
-	pthread_mutex_destroy(&data.mtx);
-
+	destroy_mutex(&data);
 	return (0);
 }
 

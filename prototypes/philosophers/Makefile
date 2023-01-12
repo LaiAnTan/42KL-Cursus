@@ -1,5 +1,7 @@
 
-params = 4 1 200 200 7
+# ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+
+params = 4 800 200 200 7
 
 all: compile run
 
@@ -11,8 +13,8 @@ compile :
 debug :
 		gcc -g -O1 *.c -o philo
 
-leaks :
-		valgrind --leak-check=full --show-leak-kinds=all ./philo $(params)
+leaks : compile
+		valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./philo $(params)
 
 run :
 		./philo $(params)

@@ -16,9 +16,9 @@ int	check_total_ate(t_data *data)
 
 void	simulation(t_data *data, int curr_thread_index)
 {
-	int	philo_num = data->thread_index + 1;
-	
-	
+	int	philo_num;
+
+	philo_num = data->thread_index + 1;
 	while (!check_death(data, philo_num))
 	{
 		if (check_total_ate(data))

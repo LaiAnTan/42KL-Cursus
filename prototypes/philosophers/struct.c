@@ -15,7 +15,6 @@ void	init_struct(t_data *p, int argc, char **argv)
 		p->no_of_eats = 0;
 	gettimeofday(&tv, NULL);
 	p->start_time = ((tv.tv_sec * 1000000) + tv.tv_usec);
-	printf("master start time: %ld\n", p->start_time);
 	p->dead = 0;
 	if (p->no_of_philosophers == 0 || p->time_to_die == 0 || p->time_to_eat == 0 || p->time_to_sleep == 0)
 		exit(0);

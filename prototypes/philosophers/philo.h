@@ -14,6 +14,8 @@ typedef struct timeval t_val;
 typedef struct s_data
 {
 	pthread_mutex_t		mtx;
+	pthread_mutex_t		print_mtx;
+	pthread_mutex_t		death_mtx;
 	pthread_t			*threads; // threads
 
 	// death status
@@ -31,7 +33,8 @@ typedef struct s_data
 	int					*forks; // track fork possesion by a philosopher
 	// fork[philo_num] = left fork,  fork[philo_num + 1] = right fork
 	int					*eat_count; // track the no of times each philosopher has ate
-	long unsigned int	*last_ate; // track the time each philosopher last ate in ms
+	long unsigned int	*last_ate;
+	// track the time each philosopher last ate,
 }				t_data;
 
 // struct
@@ -44,11 +47,17 @@ void	p_rightfork(t_data *data, int philo_num);
 void	p_eat(t_data *data, int philo_num);
 int		check_death(t_data *data, int philo_num);
 
+// print action
+void	print_action(t_data *data, long unsigned int curr_time, int philo_num, int action);
+
 // sim
 void	simulation(t_data *data, int curr_thread_index);
 
 // utils
 int					ft_atoi(const char *s);
+size_t				ft_strlen(const char *s);
+char				*ft_itoa(int n);
+char				*ft_strdup(const char *s);
 long unsigned int	get_curr_time(long unsigned int start_time);
 
 # endif
