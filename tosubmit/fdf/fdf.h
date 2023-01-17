@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:32:37 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/17 12:19:50 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:21:43 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 # define BUFFER_SIZE 10000
 
-# define WIDTH 1080
+# define WIDTH 1920
 
-# define HEIGHT 720
+# define HEIGHT 1080
 
 # define WHITE 0x00FFFFFF;
 
@@ -122,7 +122,7 @@ returns 0 on success and -1 on fail
 int		get_map(t_map *map, char *filename);
 int		*count_dimension(char *filename);
 int		get_color(char *str_color);
-void	get_dimension(t_map *map, char *filename);
+int		get_dimension(t_map *map, char *filename);
 void	malloc_map(t_map *map);
 
 // ft_split

@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:40:37 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/17 12:57:52 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:48:38 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,41 +65,44 @@ int	*count_dimension(char *filename)
 	int		*rc;
 
 	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
 	line = get_next_line(fd);
 	rc = (int *) malloc(sizeof(int) * 2);
-	rc[0] = 1;
-	rc[1] = countwords((char *) line, ' ');
-	while (1)
+	rc[0] = 0;
+	rc[1] = countwords((char *) line, ' ') - 1;
+	while (1 && ++rc[0])
 	{
 		free(line);
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (countwords((char *) line, ' ') != rc[1])
+		if (countwords((char *) line, ' ') - 1 != rc[1])
 		{
 			rc[0] = -1;
 			rc[1] = -1;
-			break ;
 		}
-		rc[0]++;
 	}
 	close(fd);
 	return (rc);
 }
 
-void	get_dimension(t_map *map, char *filename)
+int	get_dimension(t_map *map, char *filename)
 {
 	int	*rc;
 
 	rc = count_dimension(filename);
+	if (rc == NULL)
+		return (-1);
 	map ->rows = rc[0];
 	map ->cols = rc[1];
 	free(rc);
+	return (0);
 }
 
 void	malloc_map(t_map *map)
 {
-	int		i;
+	size_t		i;
 
 	i = 0;
 	map ->points = (t_point **) malloc (sizeof(t_point *) * map ->cols);

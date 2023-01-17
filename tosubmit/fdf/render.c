@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:42:35 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/17 11:49:20 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:35:37 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	mlx_img_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x > WIDTH || y > HEIGHT || y < 0)
+	if (x <= 0 || x >= WIDTH || y >= HEIGHT || y <= 0)
 		return ;
 	dst = img ->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
@@ -44,8 +44,8 @@ int	clear_screen(t_data *data)
 
 void	place_points(t_data *data)
 {
-	int				i;
-	int				j;
+	size_t				i;
+	size_t				j;
 
 	i = 0;
 	j = 0;
@@ -70,8 +70,8 @@ process is repeated for all points except the edges
 
 void	draw_horizontal_lines(t_data *data)
 {
-	int		i;
-	int		j;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	j = 0;
@@ -95,8 +95,8 @@ void	draw_horizontal_lines(t_data *data)
 
 void	draw_vertical_lines(t_data *data)
 {
-	int		i;
-	int		j;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	j = 0;

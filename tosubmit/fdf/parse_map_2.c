@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:43:15 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/17 13:23:23 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:41:31 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	free_2d_array(char **arr)
 	free(arr);
 }
 
-void	assign_color(t_point **points, char **splitted, int i, int row)
+void	assign_color(t_point **points, char **split_2, int i, int row)
 {
-	if (splitted[0] != NULL)
-		points[i][row].z = ft_atoi(splitted[0]);
-	if (splitted[1] != NULL)
-		points[i][row].color = get_color(splitted[1]);
+	if (split_2[0] != NULL)
+		points[i][row].z = ft_atoi(split_2[0]);
+	if (split_2[1] != NULL)
+		points[i][row].color = get_color(split_2[1]);
 	else
 		points[i][row].color = WHITE;
 }
@@ -61,12 +61,13 @@ void	extract_insert_data(t_point	**points, char *line, int row, int col)
 
 int	get_map(t_map *map, char *filename)
 {	
-	int		i;
+	size_t	i;
 	int		fd;
 	char	*line;
 
-	get_dimension(map, filename);
-	if (map ->rows == -1 && map ->cols == -1)
+	if (get_dimension(map, filename) == -1)
+		return (-1);
+	if ((int) map ->rows == -1 && (int) map ->cols == -1)
 		return (-1);
 	malloc_map(map);
 	i = 0;

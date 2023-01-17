@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 11:33:51 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/17 11:56:46 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/17 18:41:17 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	assign_xy(t_map *map, int distance, int x_offset, int y_offset)
 {
-	int		x;
-	int		y;
+	size_t		x;
+	size_t		y;
 
 	x = 0;
 	y = 0;
@@ -26,6 +26,8 @@ void	assign_xy(t_map *map, int distance, int x_offset, int y_offset)
 			map ->points[x][y].x = x * distance + x_offset;
 			map ->points[x][y].y = y * distance + y_offset;
 			map ->points[x][y].z = map ->points[x][y].z * (distance / 10);
+			map ->points[x][y].x_proj = 0;
+			map ->points[x][y].y_proj = 0;
 			x++;
 		}
 		x = 0;
@@ -36,8 +38,8 @@ void	assign_xy(t_map *map, int distance, int x_offset, int y_offset)
 
 void	translate(t_map *map, int x_offset, int y_offset)
 {
-	int		x;
-	int		y;
+	size_t		x;
+	size_t		y;
 
 	x = 0;
 	y = 0;
@@ -57,8 +59,8 @@ void	translate(t_map *map, int x_offset, int y_offset)
 
 void	zoom(t_map *map, float zoom)
 {
-	int	x;
-	int	y;
+	size_t	x;
+	size_t	y;
 
 	x = 0;
 	y = 0;
@@ -78,9 +80,9 @@ void	zoom(t_map *map, float zoom)
 
 void	iso_project(t_map *map, float cos_angle, float sin_angle)
 {
-	int	i;
-	int	j;
-	int	coords[3];
+	size_t	i;
+	size_t	j;
+	int		coords[3];
 
 	i = 0;
 	j = 0;

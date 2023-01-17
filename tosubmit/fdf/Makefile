@@ -27,7 +27,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -lmlx -framework OpenGL -fsanitize=address -g3 -framework AppKit -o $(NAME)
 
 %.o : %.c
-	@$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 clean :
 	@rm -rf *.o
