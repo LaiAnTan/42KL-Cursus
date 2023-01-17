@@ -1,7 +1,7 @@
 SRCS = fdf_main.c				\
-		events.c				\
 		render.c				\
 		parse_map.c				\
+		parse_map_2.c			\
 		get_next_line.c			\
 		ft_split.c				\
 		utils.c					\
@@ -9,7 +9,8 @@ SRCS = fdf_main.c				\
 		utils_gnl.c				\
 		bresenham.c				\
 		coordinates.c			\
- 
+		color.c					\
+
 OBJ = $(SRCS:.c=.o)
 
 NAME = fdf
@@ -23,11 +24,8 @@ CFLAGS = -Wall -Wextra -Werror
 all : $(NAME) clean
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) $(OBJ) -lmlx -framework OpenGL -fsanitize=address -g3 -framework AppKit -o $(NAME)
 
-a_san:
-	 -fsanitize=address
-	
 %.o : %.c
 	@$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 

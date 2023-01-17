@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 14:00:30 by tlai-an           #+#    #+#             */
-/*   Updated: 2022/12/23 16:10:59 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/17 11:52:13 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		countwords(char const *s, char c)
+int	countwords(char const *s, char c)
 {
 	int	count;
 	int	i;
@@ -72,7 +72,6 @@ static char	**insertwords(char **strs, const char *s, char c, int wordcount)
 	}
 	return (strs);
 }
-
 
 static char	**ft_singlevalues(void)
 {

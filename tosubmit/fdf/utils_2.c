@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:42:39 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/17 11:46:30 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 static int	overflow_check(int val, char lastdigit, int sign)
@@ -6,7 +18,8 @@ static int	overflow_check(int val, char lastdigit, int sign)
 		return (0);
 	else
 	{
-		if (val >= 214748364 && ((lastdigit > '7' && sign == 1) || (lastdigit > '8' && sign == -1)))
+		if (val >= 214748364 && ((lastdigit > '7' && sign == 1)
+				|| (lastdigit > '8' && sign == -1)))
 			return (-1);
 		return (0);
 	}
@@ -32,7 +45,7 @@ int	ft_atoi(const char *s)
 	while (*str != '\0')
 	{
 		if (*str < '0' || *str > '9')
-			return(-1);
+			return (-1);
 		if (overflow_check(rtval, *str, sign) == -1)
 			return (-1);
 		rtval = (rtval * 10) + (*str - '0');
@@ -40,7 +53,6 @@ int	ft_atoi(const char *s)
 	}
 	return ((int)(rtval * sign));
 }
-
 
 int	ft_strcmp(char *s1, char *s2)
 {
