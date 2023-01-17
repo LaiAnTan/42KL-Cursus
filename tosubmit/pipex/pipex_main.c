@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:13:34 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/12 11:50:40 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/16 16:18:54 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	int		pipefd[2];
 	pid_t	pid[2];
-
+	
 	if (argc != 5)
 		return (0);
 	if (pipe(pipefd) == -1)

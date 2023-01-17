@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+         #
+#    By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/07 16:33:49 by tlai-an           #+#    #+#              #
-#    Updated: 2023/01/10 14:36:09 by tlai-an          ###   ########.fr        #
+#    Updated: 2023/01/16 16:06:58 by tlai-an          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAG = -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror -fsanitize=address
 
 NAME = pipex
 

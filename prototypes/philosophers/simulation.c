@@ -1,27 +1,14 @@
 #include "philo.h"
 
-int	check_total_ate(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->no_of_philosophers)
-	{
-		if (data->eat_count[i] < data->no_of_eats)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 void	simulation(t_data *data, int curr_thread_index)
 {
 	int	philo_num;
 
+	data->stop = 0;
 	philo_num = data->thread_index + 1;
-	while (!check_death(data, philo_num))
+	while (1)
 	{
-		if (check_total_ate(data))
+		if (data->dead == 1)
 			break ;
 		if (philo_num % 2 == 0)
 		{

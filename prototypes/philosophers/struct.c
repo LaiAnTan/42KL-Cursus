@@ -1,6 +1,6 @@
 #include "philo.h"
 
-void	init_struct(t_data *p, int argc, char **argv)
+int	init_struct(t_data *p, int argc, char **argv)
 {
 	int			i;
 	t_val		tv;
@@ -15,7 +15,7 @@ void	init_struct(t_data *p, int argc, char **argv)
 		p->no_of_eats = 0;
 	p->dead = 0;
 	if (p->no_of_philosophers == 0 || p->time_to_die == 0 || p->time_to_eat == 0 || p->time_to_sleep == 0)
-		exit(0);
+		return (-1);
 	p->forks = (int *) malloc (sizeof(int) * p->no_of_philosophers);
 	p->eat_count = (int *) malloc (sizeof(int) * p->no_of_philosophers);
 	p->last_ate = (long unsigned int *) malloc (sizeof(long unsigned int) * p->no_of_philosophers);

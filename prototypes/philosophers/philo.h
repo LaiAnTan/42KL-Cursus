@@ -20,6 +20,7 @@ typedef struct s_data
 
 	// death status
 	int					dead;
+	int					stop;
 	int					thread_index;
 
 	// time in microseconds
@@ -37,9 +38,16 @@ typedef struct s_data
 	// track the time each philosopher last ate,
 }				t_data;
 
+// pthread
+int		thread_func(void *args);
+void	create_all_threads(t_data *p, void *(*f)(), void *args);
+void	join_all_threads(t_data *p);
+void	init_mutex(t_data *p);
+void	destroy_mutex(t_data *p);
+
+
 // struct
-void	init_struct(t_data *data, int argc, char **argv);
-void	init_time(t_data *p);
+int		init_struct(t_data *data, int argc, char **argv);
 
 // actions
 void	p_sleep(t_data *data, int philo_num);
