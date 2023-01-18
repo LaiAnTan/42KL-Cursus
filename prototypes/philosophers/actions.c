@@ -4,7 +4,7 @@ void	p_sleep(t_data *data, int philo_num)
 {
 	long unsigned int	curr_time;
 
-	if (data->dead || data->stop)
+	if (data->stop)
 		return ;
 	curr_time = get_curr_time(data);
 	print_action(data, curr_time, philo_num, 1);
@@ -17,8 +17,9 @@ void	p_leftfork(t_data *data, int philo_num)
 {
 	int					p;
 	long unsigned int	curr_time;
+	
 
-	if (data->dead || data->stop)
+	if (data->stop)
 		return ;
 	p = philo_num - 1;
 	curr_time = get_curr_time(data);
@@ -30,7 +31,7 @@ void	p_rightfork(t_data *data, int philo_num)
 {
 	long unsigned int	curr_time;
 
-	if (data->dead || data->stop)
+	if (data->stop)
 		return ;
 	curr_time = get_curr_time(data);
 	if (philo_num == data->no_of_philosophers)
@@ -45,7 +46,7 @@ void	p_eat(t_data *data, int philo_num)
 	int					p;
 	long unsigned int	curr_time;
 	
-	if (data->dead || data->stop)
+	if (data->stop)
 		return ;
 	curr_time = get_curr_time(data);
 	p = philo_num - 1;

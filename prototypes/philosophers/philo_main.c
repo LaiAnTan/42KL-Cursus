@@ -51,7 +51,7 @@ int	thread_func(void *args)
 	data->last_ate[curr_thread_index] = data->start_time / 1000;	//milli
 	pthread_mutex_unlock(&data->time_mtx);
 	simulation(data, curr_thread_index);
-	unlock_all_mutex(data, curr_thread_index);
+	unlock_all_mutex(data, curr_thread_index + 1);
 }
 
 int	main(int argc, char **argv)

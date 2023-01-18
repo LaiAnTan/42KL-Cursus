@@ -55,17 +55,16 @@ void	destroy_mutex(t_data *p)
 	pthread_mutex_destroy(&p->index_mtx);
 }
 
-void	unlock_all_mutex(t_data *data, int index)
+void	unlock_all_mutex(t_data *data, int philo_num)
 {
-	if (index == data->no_of_philosophers)
+	if (philo_num == data->no_of_philosophers)
 		pthread_mutex_unlock(&data->forks[0]);
 	else
-		pthread_mutex_unlock(&data->forks[index]);
-	pthread_mutex_unlock(&data->forks[index - 1]);
+		pthread_mutex_unlock(&data->forks[philo_num]);
+	pthread_mutex_unlock(&data->forks[philo_num - 1]);
 
-	// pthread_mutex_unlock(&data->pa_mtx);
-	// pthread_mutex_unlock(&data->pd_mtx);
-	// pthread_mutex_unlock(&data->time_mtx);
-	// pthread_mutex_unlock(&data->action_mtx);
-	// pthread_mutex_unlock(&data->death_mtx);
+	pthread_mutex_unlock(&data->eat_mtx);
+	pthread_mutex_unlock(&data->time_mtx);
+	pthread_mutex_unlock(&data->write_mtx);
+	pthread_mutex_unlock(&data->death_mtx);
 }
