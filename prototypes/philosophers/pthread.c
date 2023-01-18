@@ -62,7 +62,6 @@ void	unlock_all_mutex(t_data *data, int thread_index)
 	else
 		pthread_mutex_unlock(&data->forks[thread_index + 1]);
 	pthread_mutex_unlock(&data->forks[thread_index]);
-
 	pthread_mutex_unlock(&data->eat_mtx);
 	pthread_mutex_unlock(&data->time_mtx);
 	pthread_mutex_unlock(&data->write_mtx);

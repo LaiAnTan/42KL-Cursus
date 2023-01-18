@@ -20,7 +20,6 @@ void	simulation(t_data *data, int curr_thread_index)
 		p_eat(data, philo_num);
 		p_sleep(data, philo_num);
 	}
-	printf("Simulation ended");
 	return ;
 }
 
