@@ -37,6 +37,56 @@ int	ft_atoi(const char *s)
 	return ((int)(rtval));
 }
 
+static int	countchar(int n)
+{
+	int				count;
+	unsigned int	num;
+
+	count = 0;
+	num = n;
+	if (n < 0)
+	{
+		count++;
+		num = -num;
+	}
+	while (num >= 0)
+	{
+		num = num / 10;
+		count++;
+		if (num == 0)
+			break ;
+	}
+	return (count);
+}
+
+char	*ft_itoa(int n)
+{
+	int				digit;
+	int				i;
+	unsigned int	num;
+	char			*str;
+
+	digit = countchar(n);
+	i = -1;
+	str = (char *) malloc((digit + 1) * sizeof(char));
+	if (!str)
+		return (0);
+	str[digit] = '\0';
+	num = n;
+	if (n < 0)
+	{
+		str[0] = '-';
+		num *= -1;
+		i = 0;
+	}
+	while (--digit != i)
+	{
+		str[digit] = (char)((num % 10) + '0');
+		num /= 10;
+	}
+	return (str);
+}
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
@@ -45,33 +95,4 @@ size_t	ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
-}
-
-char	*ft_strdup(const char *s)
-{
-	int		i;
-	char	*str;
-	char	*dest;
-
-	i = 0;
-	str = (char *) s;
-	dest = (char *) malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (dest == 0)
-		return (0);
-	while (str[i] != '\0')
-	{
-		dest[i] = str[i];
-		i++;
-	}
-	if (str[i] == '\0')
-		dest[i] = '\0';
-	return (dest);
-}
-
-long unsigned int get_curr_time(long unsigned int start_time)
-{
-	t_val		tv;
-
-	gettimeofday(&tv, NULL);
-	return (((tv.tv_sec * 1000000) + tv.tv_usec - start_time) / 1000);
 }
