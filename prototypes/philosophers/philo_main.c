@@ -2,6 +2,7 @@
 
 void	simulation(t_data *data, int curr_thread_index)
 {
+	int					stop;
 	int					philo_num;
 	long unsigned int	curr_time;
 
@@ -12,15 +13,14 @@ void	simulation(t_data *data, int curr_thread_index)
 		print_action(data, curr_time, philo_num, 3);
 		usleep(data->time_to_eat);
 	}
-	while (1)
+	while (!data->stop)
 	{
-		if (data->dead || data->stop)
-			break ;
 		p_leftfork(data, philo_num);
 		p_rightfork(data, philo_num);
 		p_eat(data, philo_num);
 		p_sleep(data, philo_num);
 	}
+	printf("Simulation ended");
 	return ;
 }
 
@@ -45,13 +45,14 @@ int	thread_func(void *args)
 	curr_thread_index = data->thread_index;
 	pthread_mutex_unlock(&data->index_mtx);
 	while (!wait_for_start(data)) {}
+	
 	pthread_mutex_lock(&data->time_mtx);
 	gettimeofday(&tv, NULL);
 	data->start_time = ((tv.tv_sec * 1000000) + tv.tv_usec);		//micro
 	data->last_ate[curr_thread_index] = data->start_time / 1000;	//milli
 	pthread_mutex_unlock(&data->time_mtx);
 	simulation(data, curr_thread_index);
-	unlock_all_mutex(data, curr_thread_index + 1);
+	unlock_all_mutex(data, curr_thread_index);
 }
 
 int	main(int argc, char **argv)
