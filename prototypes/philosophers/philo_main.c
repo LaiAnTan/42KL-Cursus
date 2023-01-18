@@ -65,9 +65,6 @@ int	main(int argc, char **argv)
 	if (init_struct(&data, argc, argv) == -1)
 		return (0);
 	init_mutex(&data);
-	pthread_mutex_lock(&data.start_mtx);
-	data.start = FALSE;
-	pthread_mutex_unlock(&data.start_mtx);
 	create_all_threads(&data, (void *) thread_func,(void *) &data);
 	pthread_mutex_lock(&data.start_mtx);
 	data.start = TRUE;

@@ -3,17 +3,16 @@
 int	check_total_ate(t_data *data)
 {
 	int	i;
+	int	eat_count;
 
 	i = 0;
 	while (i < data->no_of_philosophers)
 	{
 		pthread_mutex_lock(&data->eat_mtx);
-		if (data->eat_count[i] < data->no_of_eats)
-		{
-			pthread_mutex_unlock(&data->eat_mtx);
-			return (FALSE);
-		}
+		eat_count = data->eat_count[i];
 		pthread_mutex_unlock(&data->eat_mtx);
+		if (eat_count < data->no_of_eats)
+			return (FALSE);
 		i++;
 	}
 	return (TRUE);

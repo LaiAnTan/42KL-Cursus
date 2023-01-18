@@ -20,14 +20,13 @@ typedef struct s_data
 	pthread_t			*threads;
 
 	// mutexes
-	pthread_mutex_t		pa_mtx;
-	pthread_mutex_t		pd_mtx;
 	pthread_mutex_t		eat_mtx;
 	pthread_mutex_t		time_mtx;
+	pthread_mutex_t		write_mtx;
 	pthread_mutex_t		death_mtx;
 	pthread_mutex_t		start_mtx;
 	pthread_mutex_t		index_mtx;
-	pthread_mutex_t		action_mtx;
+
 	// track fork possesion by a philosopher, fork[philo_num] = left fork,  fork[philo_num + 1] = right fork
 	pthread_mutex_t		*forks;
 

@@ -51,7 +51,6 @@ void	p_eat(t_data *data, int philo_num)
 	p = philo_num - 1;
 	print_action(data, curr_time, philo_num, 2);
 	usleep(data->time_to_eat);
-
 	if (philo_num == data->no_of_philosophers)
 		pthread_mutex_unlock(&data->forks[0]);
 	else

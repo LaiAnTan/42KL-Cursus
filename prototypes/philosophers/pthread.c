@@ -32,14 +32,12 @@ void	init_mutex(t_data *p)
 	i = 0;
 	while (i < p->no_of_philosophers)
 		pthread_mutex_init(&p->forks[i++], NULL);
-	pthread_mutex_init(&p->pa_mtx, NULL);
-	pthread_mutex_init(&p->pd_mtx, NULL);
 	pthread_mutex_init(&p->eat_mtx, NULL);
 	pthread_mutex_init(&p->time_mtx, NULL);
+	pthread_mutex_init(&p->write_mtx, NULL);
 	pthread_mutex_init(&p->start_mtx, NULL);
 	pthread_mutex_init(&p->death_mtx, NULL);
 	pthread_mutex_init(&p->index_mtx, NULL);
-	pthread_mutex_init(&p->action_mtx, NULL);
 }
 
 void	destroy_mutex(t_data *p)
@@ -49,14 +47,12 @@ void	destroy_mutex(t_data *p)
 	i = 0;
 	while (i < p->no_of_philosophers)
 		pthread_mutex_destroy(&p->forks[i++]);
-	pthread_mutex_destroy(&p->pa_mtx);
-	pthread_mutex_destroy(&p->pd_mtx);
 	pthread_mutex_destroy(&p->eat_mtx);
 	pthread_mutex_destroy(&p->time_mtx);
+	pthread_mutex_destroy(&p->write_mtx);
 	pthread_mutex_destroy(&p->start_mtx);
 	pthread_mutex_destroy(&p->death_mtx);
 	pthread_mutex_destroy(&p->index_mtx);
-	pthread_mutex_destroy(&p->action_mtx);
 }
 
 void	unlock_all_mutex(t_data *data, int index)

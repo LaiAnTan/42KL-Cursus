@@ -14,6 +14,7 @@ int	init_struct(t_data *p, int argc, char **argv)
 	else
 		p->no_of_eats = 0;
 	p->dead = 0;
+	p->start = 0;
 	p->stop = 0;
 	if (p->no_of_philosophers == 0 || p->time_to_die == 0 || p->time_to_eat == 0 || p->time_to_sleep == 0)
 		return (-1);
