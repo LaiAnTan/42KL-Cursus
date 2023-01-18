@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   coordinates.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:33:51 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/17 11:56:46 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	assign_xy(t_map *map, int distance, int x_offset, int y_offset)
@@ -19,7 +31,7 @@ void	assign_xy(t_map *map, int distance, int x_offset, int y_offset)
 		x = 0;
 		y++;
 	}
-	return;
+	return ;
 }
 
 void	translate(t_map *map, int x_offset, int y_offset)
@@ -40,13 +52,13 @@ void	translate(t_map *map, int x_offset, int y_offset)
 		x = 0;
 		y++;
 	}
-	return;
+	return ;
 }
 
 void	zoom(t_map *map, float zoom)
 {
-		int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -61,15 +73,14 @@ void	zoom(t_map *map, float zoom)
 		x = 0;
 		y++;
 	}
-	return;
+	return ;
 }
 
 void	iso_project(t_map *map, float cos_angle, float sin_angle)
 {
-	int		i;
-	int		j;
-	int		coords[3]; // x,y,z
-
+	int	i;
+	int	j;
+	int	coords[3];
 
 	i = 0;
 	j = 0;
@@ -80,8 +91,10 @@ void	iso_project(t_map *map, float cos_angle, float sin_angle)
 			coords[0] = map ->points[i][j].x;
 			coords[1] = map ->points[i][j].y;
 			coords[2] = map ->points[i][j].z;
-			map ->points[i][j].x_proj = (coords[0] - coords[1]) * cos(cos_angle);
-			map ->points[i][j].y_proj = (coords[0] + coords[1]) * sin(sin_angle) - coords[2];
+			map ->points[i][j].x_proj = (coords[0] - coords[1])
+				* cos(cos_angle);
+			map ->points[i][j].y_proj = (coords[0] + coords[1])
+				* sin(sin_angle) - coords[2];
 			i++;
 		}
 		i = 0;

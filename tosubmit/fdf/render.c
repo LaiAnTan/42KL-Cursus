@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:42:35 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/17 11:49:20 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	mlx_img_put(t_img *img, int x, int y, int color)
@@ -5,9 +17,9 @@ void	mlx_img_put(t_img *img, int x, int y, int color)
 	char	*dst;
 
 	if (x < 0 || x > WIDTH || y > HEIGHT || y < 0)
-		return;
+		return ;
 	dst = img ->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 int	clear_screen(t_data *data)
@@ -41,18 +53,21 @@ void	place_points(t_data *data)
 	{
 		while (i < data ->map.cols)
 		{
-			mlx_img_put(&data ->img, data ->map.points[i][j].x, data ->map.points[i][j].y, data ->map.points[i][j].color);
+			mlx_img_put(&data ->img, data ->map.points[i][j].x,
+				data ->map.points[i][j].y, data ->map.points[i][j].color);
 			i++;
 		}
 		i = 0;
 		j++;
 	}
 }
+
 /*
 function that draws two lines from a point to its adjacent points
 lines drawn are right and downwards
 process is repeated for all points except the edges
 */
+
 void	draw_horizontal_lines(t_data *data)
 {
 	int		i;
@@ -104,15 +119,4 @@ void	draw_vertical_lines(t_data *data)
 		j = 0;
 		i++;
 	}
-}
-
-
-int	render(t_data *data)
-{
-	clear_screen(data);
-	draw_horizontal_lines(data);
-	draw_vertical_lines(data);
-	if (data ->win_ptr && data ->mlx_ptr && data ->img.img_ptr)
-		mlx_put_image_to_window(data ->mlx_ptr, data ->win_ptr, data ->img.img_ptr, 0, 0);
-	return (0);
 }

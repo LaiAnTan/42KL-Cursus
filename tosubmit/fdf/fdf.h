@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/17 11:32:37 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/17 12:19:50 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 
 # define FDF_H
 
-#  define BUFFER_SIZE 10000
+# define BUFFER_SIZE 10000
 
-# define WIDTH 1920
+# define WIDTH 1080
 
-# define HEIGHT 1080
+# define HEIGHT 720
 
 # define WHITE 0x00FFFFFF;
 
@@ -16,27 +28,26 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <mlx.h>
-# include <X11/X.h>
 # include <stdint.h>
 
 typedef struct s_point
 {
-	int			x;
-	int			y;
-	int			z;
-	float		x_proj;
-	float		y_proj;
+	int				x;
+	int				y;
+	int				z;
+	float			x_proj;
+	float			y_proj;
 	unsigned int	color;
 }				t_point;
 
 typedef struct s_line
 {
-	float		x0;
-	float		y0;
-	float		x1;
-	float		y1;
-	unsigned int color0;
-	unsigned int color1;
+	float			x0;
+	float			y0;
+	float			x1;
+	float			y1;
+	unsigned int	color0;
+	unsigned int	color1;
 }				t_line;
 
 typedef struct s_map
@@ -57,7 +68,6 @@ typedef struct s_img
 
 typedef struct s_data
 {
-
 	void		*mlx_ptr;
 	void		*win_ptr;
 
@@ -73,6 +83,12 @@ puts that pixel on the screen
 */
 void	mlx_img_put(t_img *img, int x, int y, int color);
 
+// render
+void	draw_vertical_lines(t_data *data);
+void	draw_horizontal_lines(t_data *data);
+void	place_points(t_data *data);
+int		clear_screen(t_data *data);
+
 // events
 int		keypress_event(int key_symbol, t_data *data);
 
@@ -80,7 +96,6 @@ int		keypress_event(int key_symbol, t_data *data);
 void	assign_xy(t_map *map, int distance, int x_offset, int y_offset);
 void	translate(t_map *map, int x_offset, int y_offset);
 void	zoom(t_map *map, float zoom);
-void	rotate(t_map *map);
 void	iso_project(t_map *map, float cos_angle, float sin_angle);
 
 // line drawing
@@ -88,6 +103,11 @@ void	iso_project(t_map *map, float cos_angle, float sin_angle);
 void	bressenham(t_data *data);
 // edge case for bresenhams line drawing algorithm
 void	vertical(t_data *data);
+
+// color stuff
+int		encode_trgb(int transparency, int red, int green, int blue);
+int		*dec_to_rgb(int rgb[3], unsigned int dec);
+int		get_gradient(t_line *line, float x, float y);
 
 // render
 int		render(t_data *data);
@@ -100,6 +120,10 @@ inputs them into the struct t_map
 returns 0 on success and -1 on fail
 */
 int		get_map(t_map *map, char *filename);
+int		*count_dimension(char *filename);
+int		get_color(char *str_color);
+void	get_dimension(t_map *map, char *filename);
+void	malloc_map(t_map *map);
 
 // ft_split
 char	**ft_split(char const *s, char c);
@@ -124,6 +148,6 @@ char	*ft_strdup(char *str);
 char	*trim_nl(char *line);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 
-void	clean_exit(t_data *data);
+int		clean_exit(t_data *data);
 
 #endif
