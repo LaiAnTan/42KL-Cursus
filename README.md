@@ -8,7 +8,8 @@
 |Born2beRoot|100  |
 |Push_swap|109|
 |Pipex|100|
-|FDF|pending grade|
-|philo|in progress|
+|FDF|115|
+|philo|pending grade|
+|cpp|00 in progress|
 
 
