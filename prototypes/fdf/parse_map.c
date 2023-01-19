@@ -57,7 +57,7 @@ int		*count_dimension(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	line = get_next_line(fd);
-	col_len = countwords((char *) line, ' ');
+	col_len = countwords((char *) line, ' ') - 1;
 	row_len = 1;
 	rc = (int *) malloc (sizeof(int) * 2);
 	free(line);
@@ -66,7 +66,7 @@ int		*count_dimension(char *filename)
 		line = get_next_line(fd);
 		if (!line)
 			break;
-		if (countwords((char *) line, ' ') != col_len)
+		if (countwords((char *) line, ' ') - 1 != col_len)
 		{
 			row_len = -1;
 			col_len = -1;

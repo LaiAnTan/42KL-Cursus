@@ -4,7 +4,7 @@ void	mlx_img_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x > WIDTH || y > HEIGHT || y < 0)
+	if (x <= 0 || x >= WIDTH || y >= HEIGHT || y <= 0)
 		return;
 	dst = img ->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;

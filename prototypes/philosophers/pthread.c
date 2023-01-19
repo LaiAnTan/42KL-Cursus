@@ -9,7 +9,6 @@ void	create_all_threads(t_data *p, void *(*f)(), void *args)
 	while (i < p->no_of_philosophers)
 	{
 		pthread_create(&p->threads[i], NULL, f, args);
-		p->thread_index = i;
 		i++;
 	}
 }
@@ -25,29 +24,44 @@ void	join_all_threads(t_data *p)
 
 void	init_mutex(t_data *p)
 {
-	pthread_mutex_init(&p->mtx, NULL);
-	pthread_mutex_init(&p->print_mtx, NULL);
+	int	i;
+
+	i = 0;
+	while (i < p->no_of_philosophers)
+		pthread_mutex_init(&p->forks[i++], NULL);
+	pthread_mutex_init(&p->eat_mtx, NULL);
+	pthread_mutex_init(&p->time_mtx, NULL);
+	pthread_mutex_init(&p->write_mtx, NULL);
+	pthread_mutex_init(&p->start_mtx, NULL);
+	pthread_mutex_init(&p->stop_mtx, NULL);
 	pthread_mutex_init(&p->death_mtx, NULL);
 }
 
 void	destroy_mutex(t_data *p)
 {
-	pthread_mutex_destroy(&p->mtx);
-	pthread_mutex_destroy(&p->print_mtx);
+	int	i;
+
+	i = 0;
+	while (i < p->no_of_philosophers)
+		pthread_mutex_destroy(&p->forks[i++]);
+	pthread_mutex_destroy(&p->eat_mtx);
+	pthread_mutex_destroy(&p->time_mtx);
+	pthread_mutex_destroy(&p->write_mtx);
+	pthread_mutex_destroy(&p->start_mtx);
+	pthread_mutex_destroy(&p->stop_mtx);
 	pthread_mutex_destroy(&p->death_mtx);
 }
 
-int	thread_func(void *args)
+void	unlock_all_mutex(t_data *data, int thread_index)
 {
-	t_val	tv;
-	t_data	*data;
-	int		curr_thread_index;
-
-	data = (t_data *) args;
-	curr_thread_index = data->thread_index;
-
-	gettimeofday(&tv, NULL);
-	data->start_time = ((tv.tv_sec * 1000000) + tv.tv_usec);
-	data->last_ate[curr_thread_index - 1] = data->start_time;
-	simulation(data, curr_thread_index);
+	if (thread_index + 1 == data->no_of_philosophers)
+		pthread_mutex_unlock(&data->forks[0]);
+	else
+		pthread_mutex_unlock(&data->forks[thread_index + 1]);
+	pthread_mutex_unlock(&data->forks[thread_index]);
+	// pthread_mutex_unlock(&data->eat_mtx);
+	// pthread_mutex_unlock(&data->time_mtx);
+	// pthread_mutex_unlock(&data->write_mtx);
+	// pthread_mutex_unlock(&data->death_mtx);
+	// pthread_mutex_unlock(&data->stop_mtx);
 }
