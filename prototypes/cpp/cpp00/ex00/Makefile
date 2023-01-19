@@ -2,7 +2,9 @@ SRCS = megaphone.cpp
 
 NAME = megaphone
 
-PARAMS = 
+PARAMS = "shhhhh... I think the students are asleep..."
+
+#  Damnit " ! " "Sorry students, I thought this thing was off."
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
