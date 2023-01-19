@@ -9,9 +9,6 @@ void	create_all_threads(t_data *p, void *(*f)(), void *args)
 	while (i < p->no_of_philosophers)
 	{
 		pthread_create(&p->threads[i], NULL, f, args);
-		pthread_mutex_lock(&p->index_mtx);
-		p->thread_index = i;
-		pthread_mutex_unlock(&p->index_mtx);
 		i++;
 	}
 }
@@ -36,8 +33,8 @@ void	init_mutex(t_data *p)
 	pthread_mutex_init(&p->time_mtx, NULL);
 	pthread_mutex_init(&p->write_mtx, NULL);
 	pthread_mutex_init(&p->start_mtx, NULL);
+	pthread_mutex_init(&p->stop_mtx, NULL);
 	pthread_mutex_init(&p->death_mtx, NULL);
-	pthread_mutex_init(&p->index_mtx, NULL);
 }
 
 void	destroy_mutex(t_data *p)
@@ -51,8 +48,8 @@ void	destroy_mutex(t_data *p)
 	pthread_mutex_destroy(&p->time_mtx);
 	pthread_mutex_destroy(&p->write_mtx);
 	pthread_mutex_destroy(&p->start_mtx);
+	pthread_mutex_destroy(&p->stop_mtx);
 	pthread_mutex_destroy(&p->death_mtx);
-	pthread_mutex_destroy(&p->index_mtx);
 }
 
 void	unlock_all_mutex(t_data *data, int thread_index)
@@ -62,8 +59,9 @@ void	unlock_all_mutex(t_data *data, int thread_index)
 	else
 		pthread_mutex_unlock(&data->forks[thread_index + 1]);
 	pthread_mutex_unlock(&data->forks[thread_index]);
-	pthread_mutex_unlock(&data->eat_mtx);
-	pthread_mutex_unlock(&data->time_mtx);
-	pthread_mutex_unlock(&data->write_mtx);
-	pthread_mutex_unlock(&data->death_mtx);
+	// pthread_mutex_unlock(&data->eat_mtx);
+	// pthread_mutex_unlock(&data->time_mtx);
+	// pthread_mutex_unlock(&data->write_mtx);
+	// pthread_mutex_unlock(&data->death_mtx);
+	// pthread_mutex_unlock(&data->stop_mtx);
 }

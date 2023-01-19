@@ -49,7 +49,9 @@ int	check_status(t_data *data)
 		{
 			if (check_death(data, philo_num) || check_total_ate(data))
 			{
+				pthread_mutex_lock(&data->stop_mtx);
 				data->stop = 1;
+				pthread_mutex_unlock(&data->stop_mtx);
 				return (philo_num);
 			}
 			philo_num++;

@@ -16,6 +16,7 @@ int	init_struct(t_data *p, int argc, char **argv)
 	p->dead = 0;
 	p->start = 0;
 	p->stop = 0;
+	p->thread_index = 0;
 	if (p->no_of_philosophers == 0 || p->time_to_die == 0 || p->time_to_eat == 0 || p->time_to_sleep == 0)
 		return (-1);
 	p->forks = (pthread_mutex_t *) malloc (sizeof(pthread_mutex_t) * p->no_of_philosophers);
