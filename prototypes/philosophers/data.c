@@ -25,6 +25,7 @@ int	init_struct(t_data *p, int argc, char **argv)
 	i = -1;
 	while (++i < p->no_of_philosophers)
 		p->eat_count[i] = 0;
+	return (0);
 }
 
 long unsigned int get_curr_time(t_data *data)

@@ -4,26 +4,33 @@ void	simulation(t_data *data, int curr_thread_index)
 {
 	int					stop_sig;
 	int					philo_num;
+	int					has_forks;
 	long unsigned int	curr_time;
 
 	philo_num = curr_thread_index + 1;
+	has_forks = 0;
 	if (philo_num % 2 != 0)
 	{
 		curr_time = get_curr_time(data);
 		print_action(data, curr_time, philo_num, 3);
 		usleep(data->time_to_eat);
 	}
-	while (1)
+	while (!stop_sig)
 	{
 		pthread_mutex_lock(&data->stop_mtx);
 		stop_sig = data->stop;
 		pthread_mutex_unlock(&data->stop_mtx);
-		if (stop_sig)
-			break;
-		p_leftfork(data, philo_num);
-		p_rightfork(data, philo_num);
-		p_eat(data, philo_num);
-		p_sleep(data, philo_num);
+		if (has_forks == 0)
+		{
+			p_leftfork(data, philo_num, &has_forks);
+			p_rightfork(data, philo_num, &has_forks);
+		}
+		if (has_forks == 2)
+		{
+			p_eat(data, philo_num);
+			p_sleep(data, philo_num);
+			has_forks = 0;
+		}
 	}
 	return ;
 }
@@ -57,6 +64,7 @@ int	thread_func(void *args)
 	pthread_mutex_unlock(&data->time_mtx);
 	simulation(data, curr_thread_index);
 	unlock_all_mutex(data, curr_thread_index);
+	return (0);
 }
 
 int	main(int argc, char **argv)

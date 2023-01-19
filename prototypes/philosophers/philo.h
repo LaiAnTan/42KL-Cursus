@@ -12,7 +12,7 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef struct timeval t_val;
+typedef struct timeval	t_val;
 
 typedef struct s_data
 {
@@ -51,8 +51,6 @@ typedef struct s_data
 	long unsigned int	*last_ate;
 }				t_data;
 
-
-
 // thread main
 int		thread_func(void *args);
 
@@ -66,16 +64,15 @@ void	init_mutex(t_data *p);
 void	destroy_mutex(t_data *p);
 void	unlock_all_mutex(t_data *data, int index);
 
-
 // data
-int					init_struct(t_data *data, int argc, char **argv);
-long unsigned int	get_curr_time(t_data *data);
+int		init_struct(t_data *data, int argc, char **argv);
 
+long unsigned int	get_curr_time(t_data *data);
 
 // actions
 void	p_sleep(t_data *data, int philo_num);
-void	p_leftfork(t_data *data, int philo_num);
-void	p_rightfork(t_data *data, int philo_num);
+void	p_leftfork(t_data *data, int philo_num, int *forks);
+void	p_rightfork(t_data *data, int philo_num, int *forks);
 void	p_eat(t_data *data, int philo_num);
 
 // checks
@@ -83,7 +80,8 @@ int		check_status(t_data *data);
 int		check_death(t_data *data, int philo_num);
 
 // print action
-void	print_action(t_data *data, long unsigned int curr_time, int philo_num, int action);
+void	print_action(t_data *data, long unsigned int curr_time,
+			int philo_num, int action);
 void	print_death(t_data *data, long unsigned int curr_time, int philo_num);
 
 // utils
