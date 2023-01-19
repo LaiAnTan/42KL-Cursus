@@ -2,9 +2,12 @@
 
 void	print_action(t_data *data, long unsigned int curr_time, int philo_num, int action)
 {
+
 	char	*num;
 	char	*time;
 
+	if (data->stop)
+		return ;
 	num = ft_itoa(philo_num);
 	time = ft_itoa(curr_time);
 	pthread_mutex_lock(&data->write_mtx);

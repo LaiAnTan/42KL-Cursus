@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo_main.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 14:44:45 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/19 14:44:46 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	simulation(t_data *data, int curr_thread_index)
@@ -32,7 +44,6 @@ void	simulation(t_data *data, int curr_thread_index)
 			has_forks = 0;
 		}
 	}
-	return ;
 }
 
 int	wait_for_start(t_data *data)
@@ -56,11 +67,13 @@ int	thread_func(void *args)
 	curr_thread_index = data->thread_index;
 	data->thread_index++;
 	pthread_mutex_unlock(&data->write_mtx);
-	while (!wait_for_start(data)) {}
+	while (!wait_for_start(data))
+	{
+	}
 	pthread_mutex_lock(&data->time_mtx);
 	gettimeofday(&tv, NULL);
-	data->start_time = ((tv.tv_sec * 1000000) + tv.tv_usec);		//micro
-	data->last_ate[curr_thread_index] = data->start_time / 1000;	//milli
+	data->start_time = ((tv.tv_sec * 1000000) + tv.tv_usec);
+	data->last_ate[curr_thread_index] = data->start_time / 1000;
 	pthread_mutex_unlock(&data->time_mtx);
 	simulation(data, curr_thread_index);
 	unlock_all_mutex(data, curr_thread_index);

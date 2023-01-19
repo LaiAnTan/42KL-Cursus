@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   data.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 14:44:56 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/01/19 14:45:24 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	init_struct(t_data *p, int argc, char **argv)
@@ -17,11 +29,14 @@ int	init_struct(t_data *p, int argc, char **argv)
 	p->start = 0;
 	p->stop = 0;
 	p->thread_index = 0;
-	if (p->no_of_philosophers == 0 || p->time_to_die == 0 || p->time_to_eat == 0 || p->time_to_sleep == 0)
+	if (p->no_of_philosophers == 0 || p->time_to_die == 0
+		|| p->time_to_eat == 0 || p->time_to_sleep == 0)
 		return (-1);
-	p->forks = (pthread_mutex_t *) malloc (sizeof(pthread_mutex_t) * p->no_of_philosophers);
+	p->forks = (pthread_mutex_t *) malloc (sizeof(pthread_mutex_t) 
+			* p->no_of_philosophers);
 	p->eat_count = (int *) malloc (sizeof(int) * p->no_of_philosophers);
-	p->last_ate = (long unsigned int *) malloc (sizeof(long unsigned int) * p->no_of_philosophers);
+	p->last_ate = (long unsigned int *) malloc (sizeof(long unsigned int) 
+			* p->no_of_philosophers);
 	i = -1;
 	while (++i < p->no_of_philosophers)
 		p->eat_count[i] = 0;
@@ -37,5 +52,5 @@ long unsigned int get_curr_time(t_data *data)
 	gettimeofday(&tv, NULL);
 	time = ((tv.tv_sec * 1000000) + tv.tv_usec - data->start_time) / 1000;
 	pthread_mutex_unlock(&data->time_mtx);
-	return (time);	//milli
+	return (time);
 }
