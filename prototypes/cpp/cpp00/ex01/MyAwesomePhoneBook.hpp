@@ -3,6 +3,7 @@
 #define MY_AWESOME_PHONE_BOOK_HPP
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 class Contact
@@ -22,10 +23,12 @@ class Contact
 class PhoneBook
 {
 	public:
-		void		AddContact(std::string FirstName, std::string LastName, std::string Nickname, std::string DarkestSecret, std::string PhoneNumber);	
+		void		setIndex(int i);
+		void		displayContact(int i);
+		void		addContact(std::string FirstName, std::string LastName, std::string Nickname, std::string DarkestSecret, std::string PhoneNumber);	
 	private:
 		int		index;
-		Contact	Contact[8];
+		Contact	contact[8];
 };
 
 #endif

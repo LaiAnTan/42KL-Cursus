@@ -27,9 +27,9 @@ std::string	Contact::getPhoneNumber()
 
 void		Contact::setContact(std::string FirstName, std::string LastName, std::string Nickname, std::string DarkestSecret, std::string PhoneNumber)
 {
-	this->first = FirstName;
-	this->last = LastName;
-	this->nick = Nickname;
-	this->secret = DarkestSecret;
-	this->num = PhoneNumber;
+	this->first.assign(FirstName);
+	this->last.assign(LastName);
+	this->nick.assign(Nickname);
+	this->secret.assign(DarkestSecret);
+	this->num.assign(PhoneNumber);
 }

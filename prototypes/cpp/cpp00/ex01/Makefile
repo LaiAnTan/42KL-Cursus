@@ -1,5 +1,6 @@
 SRCS_CPP =	Contact.cpp		\
 			PhoneBook.cpp	\
+			main.cpp		\
 
 SRCS_H = MyAwesomePhonebook.hpp
 
