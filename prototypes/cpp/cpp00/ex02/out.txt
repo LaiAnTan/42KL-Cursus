@@ -1,0 +1,23 @@
+18,25c18,25
+< [19920104_091532] index:0;p_amount:42;deposits:5;amount:47;nb_deposits:1
+< [19920104_091532] index:1;p_amount:54;deposits:765;amount:819;nb_deposits:1
+< [19920104_091532] index:2;p_amount:957;deposits:564;amount:1521;nb_deposits:1
+< [19920104_091532] index:3;p_amount:432;deposits:2;amount:434;nb_deposits:1
+< [19920104_091532] index:4;p_amount:1234;deposits:87;amount:1321;nb_deposits:1
+< [19920104_091532] index:5;p_amount:0;deposits:23;amount:23;nb_deposits:1
+< [19920104_091532] index:6;p_amount:754;deposits:9;amount:763;nb_deposits:1
+< [19920104_091532] index:7;p_amount:16576;deposits:20;amount:16596;nb_deposits:1
+---
+> [19920104_091532] index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
+> [19920104_091532] index:1;p_amount:54;deposit:765;amount:819;nb_deposits:1
+> [19920104_091532] index:2;p_amount:957;deposit:564;amount:1521;nb_deposits:1
+> [19920104_091532] index:3;p_amount:432;deposit:2;amount:434;nb_deposits:1
+> [19920104_091532] index:4;p_amount:1234;deposit:87;amount:1321;nb_deposits:1
+> [19920104_091532] index:5;p_amount:0;deposit:23;amount:23;nb_deposits:1
+> [19920104_091532] index:6;p_amount:754;deposit:9;amount:763;nb_deposits:1
+> [19920104_091532] index:7;p_amount:16576;deposit:20;amount:16596;nb_deposits:1
+59c59
+< [19920104_091532] index:7;amount:8942;closed
+---
+> [19920104_091532] index:7;amount:8942;closed
+\ No newline at end of file
