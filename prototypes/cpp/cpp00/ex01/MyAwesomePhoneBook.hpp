@@ -10,11 +10,11 @@
 class Contact
 {
 	public:
-		std::string		getFirstName();
-		std::string		getLastName();
-		std::string		getNickname();
-		std::string		getDarkestSecret();
-		std::string		getPhoneNumber();
+		std::string		getFirstName(void);
+		std::string		getLastName(void);
+		std::string		getNickname(void);
+		std::string		getDarkestSecret(void);
+		std::string		getPhoneNumber(void);
 		void			setContact(std::string FirstName, std::string LastName, std::string Nickname, std::string DarkestSecret, std::string PhoneNumber);
 		
 	private:
@@ -24,10 +24,10 @@ class Contact
 class PhoneBook
 {
 	public:
-		void		cmdADD();
-		void		cmdSEARCH();
+		void		cmdADD(void);
+		void		cmdSEARCH(void);
 		void		setIndex(int i);
-		void		displayContactTable();
+		void		displayContactTable(void);
 		void		displayContact(int i);
 		void		addContact(std::string FirstName, std::string LastName, std::string Nickname, std::string DarkestSecret, std::string PhoneNumber);	
 	private:

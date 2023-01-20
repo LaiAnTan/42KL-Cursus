@@ -7,7 +7,7 @@ std::string	trunc_str(std::string str)
 	return (str);
 }
 
-void	PhoneBook::cmdADD()
+void	PhoneBook::cmdADD(void)
 {
 	std::string	first, last, nick, secret, num;
 
@@ -26,7 +26,7 @@ void	PhoneBook::cmdADD()
 	return ;
 }
 
-void	PhoneBook::cmdSEARCH()
+void	PhoneBook::cmdSEARCH(void)
 {
 	std::string	index;
 
@@ -42,7 +42,7 @@ void		PhoneBook::setIndex(int i)
 	this->index = i;
 }
 
-void		PhoneBook::displayContactTable()
+void		PhoneBook::displayContactTable(void)
 {
 	std::cout << "|" << std::setw(10) << "Index";
 	std::cout << "|" << std::setw(10) << "First Name";

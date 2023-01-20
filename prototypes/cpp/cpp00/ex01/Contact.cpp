@@ -1,26 +1,26 @@
 #include "MyAwesomePhoneBook.hpp"
 
-std::string	Contact::getFirstName()
+std::string	Contact::getFirstName(void)
 {
 	return (first);
 }
 
-std::string	Contact::getLastName()
+std::string	Contact::getLastName(void)
 {
 	return (last);
 }
 
-std::string	Contact::getNickname()
+std::string	Contact::getNickname(void)
 {
 	return (nick);
 }
 
-std::string	Contact::getDarkestSecret()
+std::string	Contact::getDarkestSecret(void)
 {
 	return (secret);
 }
 
-std::string	Contact::getPhoneNumber()
+std::string	Contact::getPhoneNumber(void)
 {
 	return (num);
 }
