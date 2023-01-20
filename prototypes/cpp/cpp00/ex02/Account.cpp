@@ -45,7 +45,6 @@ Account::Account( int initial_deposit )
 	_nbDeposits = 0;
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created" << std::endl;
-
 }
 
 Account::~Account( void )
