@@ -12,34 +12,28 @@ void	PhoneBook::cmdADD()
 	std::string	first, last, nick, secret, num;
 
 	std::cout << "Enter your information: " << std::endl;
-
 	std::cout << "First name: ";
 	std::getline(std::cin, first);
-
 	std::cout << "Last name: ";
 	std::getline(std::cin, last);
-
 	std::cout << "Nickname: ";
 	std::getline(std::cin, nick);
-
 	std::cout << "Darkest Secret: ";
 	std::getline(std::cin, secret);
-
 	std::cout << "Phone Number: ";
 	std::getline(std::cin, num);
-
 	addContact(first, last, nick ,secret, num);
 	return ;
 }
 
 void	PhoneBook::cmdSEARCH()
 {
-	int	index;
+	std::string	index;
 
 	displayContactTable();
 	std::cout << "Enter an index of the entry to be displayed: ";
-	std::cin >> index;
-	displayContact(index);
+	std::getline(std::cin, index);
+	displayContact(std::atoi(index.c_str()));
 	return ;
 }
 
