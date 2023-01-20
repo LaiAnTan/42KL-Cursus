@@ -23,7 +23,10 @@ class Contact
 class PhoneBook
 {
 	public:
+		void		cmdADD();
+		void		cmdSEARCH();
 		void		setIndex(int i);
+		void		displayContactTable();
 		void		displayContact(int i);
 		void		addContact(std::string FirstName, std::string LastName, std::string Nickname, std::string DarkestSecret, std::string PhoneNumber);	
 	private:

@@ -4,7 +4,7 @@ SRCS_CPP =	Contact.cpp		\
 
 SRCS_H = MyAwesomePhonebook.hpp
 
-NAME = MyAwesomePhonebook
+NAME = phonebook
 
 PARAMS =
 
