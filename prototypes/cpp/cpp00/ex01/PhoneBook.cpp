@@ -64,7 +64,7 @@ void		PhoneBook::displayContactTable(void)
 void		PhoneBook::displayContact(int i)
 {
 	
-	if (i < 1 || i > 9)
+	if (i < 1 || i > 8)
 	{
 		std::cout << "Index not found" << std::endl;
 		return ;
