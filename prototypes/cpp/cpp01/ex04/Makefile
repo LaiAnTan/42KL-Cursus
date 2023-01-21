@@ -2,7 +2,7 @@ SRCS = main.cpp			\
 
 NAME = sedisforlosers
 
-PARAMS = test.txt "test" "among us"
+PARAMS = test.txt "occur" "replace"
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
