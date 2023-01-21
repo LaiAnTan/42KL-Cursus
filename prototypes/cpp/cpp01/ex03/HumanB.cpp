@@ -21,7 +21,7 @@ void	HumanB::attack(void)
 	cout << name << " attacks with their " << wp->getType() << endl;
 }
 
-void	HumanB::setWeapon(Weapon weapon)
+void	HumanB::setWeapon(Weapon &weapon)
 {
 	wp = &weapon;
 }

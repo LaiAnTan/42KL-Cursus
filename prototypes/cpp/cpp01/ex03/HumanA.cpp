@@ -5,7 +5,7 @@
 using std::cout;
 using std::endl;
 
-HumanA::HumanA(string name, Weapon weapon): wp(weapon)
+HumanA::HumanA(string name, Weapon &weapon): wp(weapon)
 {
 	this->name = name;
 	cout << name << " was constructed" << endl;

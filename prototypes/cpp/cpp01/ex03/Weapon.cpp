@@ -7,7 +7,7 @@ using	std::endl;
 
 Weapon::Weapon(string type)
 {
-	this->type = type;
+	setType(type);
 	cout << type << " was constructed" << endl;
 }
 
@@ -18,7 +18,7 @@ Weapon::~Weapon()
 
 const string	Weapon::getType()
 {
-	string	&typeRef = type;
+	const string	&typeRef = this->type;
 	return (typeRef);
 }
 
