@@ -1,6 +1,9 @@
 SRCS = main.cpp			\
+		HumanA.cpp		\
+		HumanB.cpp		\
+		Weapon.cpp		\
 
-NAME = HITHISISBRAIN
+NAME = weapons
 
 PARAMS = 
 

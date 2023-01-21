@@ -5,16 +5,15 @@
 using std::cout;
 using std::endl;
 
-HumanA::HumanA(string name, Weapon weapon)
+HumanA::HumanA(string name, Weapon weapon): wp(weapon)
 {
 	this->name = name;
-	wp = weapon;
-	cout << name << "was constructed" << endl;
+	cout << name << " was constructed" << endl;
 }
 
 HumanA::~HumanA(void)
 {
-	cout << name << "was destroyed" << endl;
+	cout << name << " was destroyed" << endl;
 }
 
 void	HumanA::attack(void)

@@ -7,7 +7,8 @@ using	std::endl;
 
 Weapon::Weapon(string type)
 {
-	setType(type);
+	this->type = type;
+	cout << type << " was constructed" << endl;
 }
 
 Weapon::~Weapon()

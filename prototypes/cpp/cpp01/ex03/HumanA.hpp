@@ -13,7 +13,7 @@ class	HumanA
 		void	attack(void);
 	private:
 		string	name;
-		Weapon	wp;
+		Weapon	&wp;
 };
 
 #endif
