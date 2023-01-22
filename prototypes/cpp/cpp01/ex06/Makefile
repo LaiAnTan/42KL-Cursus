@@ -1,9 +1,9 @@
 SRCS = main.cpp			\
 		Harl.cpp		\
 
-NAME = harl2.0
+NAME = harlFilter
 
-PARAMS =
+PARAMS = "WARNING";
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 

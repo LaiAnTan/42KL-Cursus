@@ -3,6 +3,7 @@
 #include <string>
 
 using	std::cout;
+using	std::cerr;
 using	std::endl;
 using	std::getline;
 using	std::fstream;
@@ -42,13 +43,13 @@ int main(int argc, char **argv)
 
 	if (argc != 4)
 	{
-		cout << "Wrong number of arguments" << endl;
+		cerr << "Wrong number of arguments" << endl;
 		return (-1);
 	}
 	readFile.open(argv[1], fstream::in);
 	if (!readFile.is_open())
 	{
-		cout << "File could not be opened";
+		cerr << "File could not be opened" << endl;
 		return (-1);
 	}
 	writeFile.open(string(argv[1]).append(".replace").c_str(), fstream::out);
