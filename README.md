@@ -10,6 +10,7 @@
 |Pipex|100|
 |FDF|115|
 |philo|pending grade|
-|cpp|01 in progress|
+|minishell|procrastinating|
+|cpp|02 in progress|
 
 
