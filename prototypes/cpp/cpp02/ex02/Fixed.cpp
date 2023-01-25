@@ -45,6 +45,26 @@ ostream &operator << (ostream &outs, const Fixed &fixed)
 	return (outs);
 }
 
+bool &Fixed::operator < (const Fixed &fixed) const
+{
+	return (this->rawVal < fixed.getRawBits());
+}
+
+bool &Fixed::operator >= (const Fixed &fixed);
+bool &Fixed::operator <= (const Fixed &fixed);
+bool &Fixed::operator == (const Fixed &fixed);
+bool &Fixed::operator != (const Fixed &fixed);
+
+Fixed &operator + (const Fixed &fixed);
+Fixed &operator - (const Fixed &Fixed);
+Fixed &operator * (const Fixed &fixed);
+Fixed &operator / (const Fixed &fixed);
+
+Fixed &operator ++ ();
+Fixed &operator ++ (int);
+Fixed &operator -- ();
+Fixed &operator -- (int);
+
 Fixed::~Fixed()
 {
 	cout << "Destructor called" << endl;
