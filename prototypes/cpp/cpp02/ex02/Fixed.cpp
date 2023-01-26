@@ -8,31 +8,26 @@ using	std::endl;
 
 Fixed::Fixed()
 {
-	cout << "Default constructor called" << endl;
 	this->rawVal = 0;
 }
 
 Fixed::Fixed(const int num)
 {
-	cout << "Int constructor called" << endl;
 	this->rawVal = num;
 }
 
 Fixed::Fixed(const float num)
 {
-	cout << "Float constructor called" << endl;
 	this->rawVal = roundf(num * (1 << fBits));
 }
 
 Fixed::Fixed(const Fixed &toCopy)
 {
-	cout <<  "Copy constructor called" << endl;
 	*this = toCopy;
 }
 
 Fixed	&Fixed::operator = (const Fixed &toCopy)
 {
-	cout << "Copy assignment operator called" << endl;
 	if (this == &toCopy)
 		return (*this);
 	this->rawVal = toCopy.getRawBits();
@@ -69,28 +64,28 @@ bool Fixed::operator != (const Fixed &fixed) const
 	return (this->rawVal != fixed.rawVal);
 }
 
-Fixed &Fixed::operator + (const Fixed &fixed)
+Fixed Fixed::operator + (const Fixed &fixed)
 {
-	this->rawVal += fixed.rawVal;
-	return (*this);
+	return (this->rawVal + fixed.rawVal);
 }
 
-Fixed &Fixed::operator - (const Fixed &fixed)
+Fixed Fixed::operator - (const Fixed &fixed)
 {
-	this->rawVal -= fixed.rawVal;
-	return (*this);
+	return (this->rawVal - fixed.rawVal);
 }
 
-Fixed &Fixed::operator * (const Fixed &fixed)
+Fixed Fixed::operator * (const Fixed &fixed)
 {
-	this->rawVal *= fixed.rawVal;
-	return (*this);
+	float n1 = toFloat();
+	float n2 = fixed.toFloat();
+	return (n1 * n2);
 }
 
-Fixed &Fixed::operator / (const Fixed &fixed)
+Fixed Fixed::operator / (const Fixed &fixed)
 {
-	this->rawVal /= fixed.rawVal;
-	return (*this);
+	float n1 = toFloat();
+	float n2 = fixed.toFloat();
+	return (n1 / n2);
 }
 
 
@@ -122,18 +117,15 @@ Fixed Fixed::operator -- (int)
 
 Fixed::~Fixed()
 {
-	cout << "Destructor called" << endl;
 }
 
 int	Fixed::getRawBits(void) const
 {
-	cout << "getRawBits member function called" << endl;
 	return (this->rawVal);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	cout << "setRawBits member function called" << endl;
 	this->rawVal = raw;
 }
 
