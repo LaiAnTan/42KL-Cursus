@@ -39,12 +39,6 @@ Fixed	&Fixed::operator = (const Fixed &toCopy)
 	return (*this);
 }
 
-ostream &operator << (ostream &outs, const Fixed &fixed)
-{
-	outs << fixed.toFloat();
-	return (outs);
-}
-
 Fixed::~Fixed()
 {
 	cout << "Destructor called" << endl;
@@ -70,4 +64,10 @@ float	Fixed::toFloat(void) const
 int		Fixed::toInt(void) const
 {
 	return ((int) this->rawVal >> this->fBits);
+}
+
+ostream &operator << (ostream &outs, const Fixed &fixed)
+{
+	outs << fixed.toFloat();
+	return (outs);
 }

@@ -39,31 +39,86 @@ Fixed	&Fixed::operator = (const Fixed &toCopy)
 	return (*this);
 }
 
-ostream &operator << (ostream &outs, const Fixed &fixed)
+bool Fixed::operator > (const Fixed &fixed) const
 {
-	outs << fixed.toFloat();
-	return (outs);
+	return (this->rawVal > fixed.rawVal);
 }
 
-bool &Fixed::operator < (const Fixed &fixed) const
+bool Fixed::operator < (const Fixed &fixed) const
 {
-	return (this->rawVal < fixed.getRawBits());
+	return (this->rawVal < fixed.rawVal);
 }
 
-bool &Fixed::operator >= (const Fixed &fixed);
-bool &Fixed::operator <= (const Fixed &fixed);
-bool &Fixed::operator == (const Fixed &fixed);
-bool &Fixed::operator != (const Fixed &fixed);
+bool Fixed::operator >= (const Fixed &fixed) const
+{
+	return (this->rawVal >= fixed.rawVal);
+}
 
-Fixed &operator + (const Fixed &fixed);
-Fixed &operator - (const Fixed &Fixed);
-Fixed &operator * (const Fixed &fixed);
-Fixed &operator / (const Fixed &fixed);
+bool Fixed::operator <= (const Fixed &fixed) const
+{
+	return (this->rawVal <= fixed.rawVal);
+}
 
-Fixed &operator ++ ();
-Fixed &operator ++ (int);
-Fixed &operator -- ();
-Fixed &operator -- (int);
+bool Fixed::operator == (const Fixed &fixed) const
+{
+	return (this->rawVal == fixed.rawVal);
+}
+
+bool Fixed::operator != (const Fixed &fixed) const
+{
+	return (this->rawVal != fixed.rawVal);
+}
+
+Fixed &Fixed::operator + (const Fixed &fixed)
+{
+	this->rawVal += fixed.rawVal;
+	return (*this);
+}
+
+Fixed &Fixed::operator - (const Fixed &fixed)
+{
+	this->rawVal -= fixed.rawVal;
+	return (*this);
+}
+
+Fixed &Fixed::operator * (const Fixed &fixed)
+{
+	this->rawVal *= fixed.rawVal;
+	return (*this);
+}
+
+Fixed &Fixed::operator / (const Fixed &fixed)
+{
+	this->rawVal /= fixed.rawVal;
+	return (*this);
+}
+
+
+Fixed &Fixed::operator ++ ()
+{
+	++this->rawVal;
+	return (*this);
+}
+
+Fixed Fixed::operator ++ (int)
+{
+	Fixed temp(*this);
+	++this->rawVal;
+	return (temp);
+}
+
+Fixed &Fixed::operator -- ()
+{
+	--this->rawVal;
+	return (*this);
+}
+
+Fixed Fixed::operator -- (int)
+{
+	Fixed temp(*this);
+	++this->rawVal;
+	return (temp);
+}
 
 Fixed::~Fixed()
 {
@@ -90,4 +145,42 @@ float	Fixed::toFloat(void) const
 int		Fixed::toInt(void) const
 {
 	return ((int) this->rawVal >> this->fBits);
+}
+
+Fixed &Fixed::min(Fixed &fp1, Fixed &fp2)
+{
+	if (fp1.rawVal < fp2.rawVal)
+		return (fp1);
+	else
+		return (fp2);
+}
+
+Fixed Fixed::min(const Fixed &fp1, const Fixed &fp2)
+{
+	if (fp1.rawVal < fp2.rawVal)
+		return (fp1);
+	else
+		return (fp2);
+}
+
+Fixed &Fixed::max(Fixed &fp1, Fixed &fp2)
+{
+	if (fp1.rawVal > fp2.rawVal)
+		return (fp1);
+	else
+		return (fp2);
+}
+
+Fixed Fixed::max(const Fixed &fp1, const Fixed &fp2)
+{
+	if (fp1.rawVal > fp2.rawVal)
+		return (fp1);
+	else
+		return (fp2);
+}
+
+ostream &operator << (ostream &outs, const Fixed &fixed)
+{
+	outs << fixed.toFloat();
+	return (outs);
 }

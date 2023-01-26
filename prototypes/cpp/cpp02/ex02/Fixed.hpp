@@ -16,21 +16,25 @@ class	Fixed
 
 		Fixed &operator = (const Fixed &fixed);
 
-		bool &operator > (const Fixed &fixed) const;
-		bool &operator < (const Fixed &fixed) const;
-		bool &operator >= (const Fixed &fixed) const;
-		bool &operator <= (const Fixed &fixed) const;
-		bool &operator == (const Fixed &fixed) const;
-		bool &operator != (const Fixed &fixed) const;
+		bool operator > (const Fixed &fixed) const;
+		bool operator < (const Fixed &fixed) const;
+		bool operator >= (const Fixed &fixed) const;
+		bool operator <= (const Fixed &fixed) const;
+		bool operator == (const Fixed &fixed) const;
+		bool operator != (const Fixed &fixed) const;
 
 		Fixed &operator + (const Fixed &fixed);
 		Fixed &operator - (const Fixed &Fixed);
 		Fixed &operator * (const Fixed &fixed);
 		Fixed &operator / (const Fixed &fixed);
 
+		// pre ++a;
 		Fixed &operator ++ ();
-		Fixed &operator ++ (int);
 		Fixed &operator -- ();
+
+		// post a++;
+		Fixed operator ++ (int);
+		Fixed operator -- (int);
 
 		~Fixed();
 		
@@ -38,6 +42,12 @@ class	Fixed
 		void	setRawBits(int const raw);
 		float	toFloat(void) const;
 		int		toInt(void) const;
+
+		static Fixed &min(Fixed &fp1, Fixed &fp2);
+		static Fixed min(const Fixed &fp1, const Fixed &fp2);
+		static Fixed &max(Fixed &fp1, Fixed &fp2);
+		static Fixed max(const Fixed &fp1, const Fixed &fp2);
+
 	private:
 		int					rawVal;
 		static const int	fBits = 8;
