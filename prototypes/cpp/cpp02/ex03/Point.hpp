@@ -22,4 +22,6 @@ class Point
 		Fixed const	y;
 };
 
+ostream &operator << (ostream &outs, const Point &point);
+
 #endif

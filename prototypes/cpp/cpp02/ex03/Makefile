@@ -1,11 +1,15 @@
 SRCS = main.cpp			\
 		Fixed.cpp		\
+		bsp.cpp			\
+		Point.cpp		\
 
-NAME = fixed
+NAME = bsp
 
 PARAMS =
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+#-Wall -Wextra -Werror
+
+FLAGS =  -std=c++98
 
 all : compile run
 

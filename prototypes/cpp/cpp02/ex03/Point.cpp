@@ -17,6 +17,7 @@ Point::Point(const Point &point)
 Point &Point::operator = (const Point &point)
 {
 	// shits const bruh
+	return (*this);
 }
 
 Point::~Point() {}
@@ -29,4 +30,12 @@ Fixed const	&Point::getX() const
 Fixed const &Point::getY() const
 {
 	return (y);
+}
+
+ostream &operator << (ostream &outs, const Point &point)
+{
+	outs << point.getX().toFloat();
+	outs << ", ";
+	outs << point.getY().toFloat();
+	return (outs);
 }
