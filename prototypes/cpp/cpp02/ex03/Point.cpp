@@ -21,12 +21,12 @@ Point &Point::operator = (const Point &point)
 
 Point::~Point() {}
 
-Fixed const	&Point::getX()
+Fixed const	&Point::getX() const
 {
 	return (x);
 }
 
-Fixed const &Point::getY()
+Fixed const &Point::getY() const
 {
 	return (y);
 }
