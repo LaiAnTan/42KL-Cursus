@@ -14,10 +14,12 @@ class Point
 		Point &operator = (const Point &point);
 
 		~Point();
-	private:
-		Fixed const x;
-		Fixed const y;
-}
 
+		Fixed const &getX();
+		Fixed const &getY();
+	private:
+		Fixed const	x;
+		Fixed const	y;
+};
 
 #endif

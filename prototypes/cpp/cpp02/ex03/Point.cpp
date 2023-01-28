@@ -5,16 +5,9 @@
 using	std::cout;
 using	std::endl;
 
-Point::Point()
-{
-	this->x(0);
-	this->y(0);
-}
+Point::Point(): x(0), y(0) {}
 
-Point::Point(const float x, const float y)
-{
-	
-}
+Point::Point(const float x, const float y): x(x), y(y) {}
 
 Point::Point(const Point &point)
 {
@@ -23,14 +16,17 @@ Point::Point(const Point &point)
 
 Point &Point::operator = (const Point &point)
 {
-	if (this == &point)
-		return (*this);
-	this->x.setRawBits(point.x.getRawBits());
-	this->y.setRawBits(point.y.getRawBits());
-	return (*this);
+	// shits const bruh
 }
 
-Point::~Point()
-{
+Point::~Point() {}
 
+Fixed const	&Point::getX()
+{
+	return (x);
+}
+
+Fixed const &Point::getY()
+{
+	return (y);
 }
