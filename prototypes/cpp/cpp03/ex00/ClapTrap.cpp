@@ -35,8 +35,19 @@ ClapTrap::~ClapTrap()
 
 void	ClapTrap::attack(const string &target)
 {
-
+	energyPoints -= 1;
+	cout << "ClapTrap " << name << " attacks " << target << ", dealing " << attackDamage << " points of damage!" << endl;
 }
 
-void	takeDamage(unsigned int amount);
-void	beRepaired(unsigned int amount);
+void	ClapTrap::takeDamage(unsigned int amount)
+{
+	hitPoints -= amount;
+	cout << "ClapTrap " << name << " was hit for " << amount << "points of damage!" << endl;
+}
+
+void	ClapTrap::beRepaired(unsigned int amount)
+{
+	energyPoints -= 1;
+	hitPoints += amount;
+	cout << "ClapTrap " << name << " repairs itself for " << amount << " points of health!" << endl;
+}
