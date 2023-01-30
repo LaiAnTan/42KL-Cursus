@@ -9,6 +9,7 @@ using	std::string;
 class ClapTrap
 {
 	public:
+		ClapTrap();
 		ClapTrap(string name);
 		ClapTrap(const ClapTrap &claptrap);
 		ClapTrap &operator = (const ClapTrap &claptrap);

@@ -5,6 +5,11 @@
 using	std::cout;
 using	std::endl;
 
+ClapTrap::ClapTrap()
+{
+	cout << "Default constructor called" << endl;
+}
+
 ClapTrap::ClapTrap(string name): name(name), hitPoints(10), energyPoints(10), attackDamage(0)
 {
 	cout << "Constructor called" << endl;
@@ -42,7 +47,7 @@ void	ClapTrap::attack(const string &target)
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	hitPoints -= amount;
-	cout << "ClapTrap " << name << " was hit for " << amount << "points of damage!" << endl;
+	cout << "ClapTrap " << name << " was hit for " << amount << " points of damage!" << endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
