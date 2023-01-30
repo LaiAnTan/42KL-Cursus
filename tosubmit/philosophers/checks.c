@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:57:46 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/01/19 17:02:33 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/30 15:24:16 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_total_ate(t_data *data)
 	int	eat_count;
 
 	i = 0;
+	if (data->no_of_eats == 0)
+		return (FALSE);
 	while (i < data->no_of_philosophers)
 	{
 		pthread_mutex_lock(&data->eat_mtx);

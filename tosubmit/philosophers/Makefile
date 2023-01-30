@@ -1,6 +1,6 @@
 # ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 
-params = 4 410 200 200 5
+params = 2 200 200 200
 
 all: compile run
 
