@@ -18,7 +18,7 @@ ScavTrap::ScavTrap(string name): ClapTrap(name, 100, 50, 20)
 	cout << "ScavTrap: Constructor called" << endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &scavtrap)
+ScavTrap::ScavTrap(const ScavTrap &scavtrap): ClapTrap(scavtrap)
 {
 	cout << "ScavTrap: Copy constructor called" << endl;
 	*this = scavtrap;

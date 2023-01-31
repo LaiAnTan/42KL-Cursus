@@ -2,7 +2,7 @@ SRCS = main.cpp			\
 		ClapTrap.cpp	\
 		ScavTrap.cpp	\
 
-NAME = fixed
+NAME = scavtrap
 
 PARAMS =
 
