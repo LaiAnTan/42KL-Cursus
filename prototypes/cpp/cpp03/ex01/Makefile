@@ -1,7 +1,7 @@
 SRCS = main.cpp			\
 		ClapTrap.cpp	\
 
-NAME = claptrap
+NAME = fixed
 
 PARAMS =
 
