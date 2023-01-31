@@ -11,6 +11,7 @@ class ClapTrap
 	public:
 		ClapTrap();
 		ClapTrap(string name);
+		ClapTrap(string name, int hitPoints, int energyPoints, int attackDamage);
 		ClapTrap(const ClapTrap &claptrap);
 		ClapTrap &operator = (const ClapTrap &claptrap);
 		~ClapTrap();
@@ -18,7 +19,7 @@ class ClapTrap
 		virtual void	attack(const string &target);
 		virtual void	takeDamage(unsigned int amount);
 		virtual void	beRepaired(unsigned int amount);
-	private:
+	protected:
 		string	name;
 		int		hitPoints;
 		int		energyPoints;

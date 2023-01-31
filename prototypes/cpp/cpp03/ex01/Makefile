@@ -1,5 +1,6 @@
 SRCS = main.cpp			\
 		ClapTrap.cpp	\
+		ScavTrap.cpp	\
 
 NAME = fixed
 
