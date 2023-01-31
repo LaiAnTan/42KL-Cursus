@@ -13,6 +13,9 @@ class ScavTrap : public ClapTrap
 	public:
 		ScavTrap();
 		ScavTrap(string name);
+		ScavTrap(const ScavTrap &scavtrap);
+		ScavTrap &operator = (const ScavTrap &scavtrap);
+		~ScavTrap();
 
 		void	attack(const string &target);
 		void	takeDamage(unsigned int amount);

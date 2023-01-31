@@ -7,28 +7,28 @@ using	std::endl;
 
 ClapTrap::ClapTrap()
 {
-	cout << "Default constructor called" << endl;
+	cout << "ClapTrap: Default constructor called" << endl;
 }
 
 ClapTrap::ClapTrap(string name): name(name), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-	cout << "Constructor called" << endl;
+	cout << "ClapTrap: Constructor called" << endl;
 }
 
 ClapTrap::ClapTrap(string name, int hitPoints, int energyPoints, int attackDamage): name(name), hitPoints(hitPoints), energyPoints(energyPoints), attackDamage(attackDamage)
 {
-	cout << "Constructor called" << endl;
+	cout << "ClapTrap: Constructor called" << endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &claptrap)
 {
-	cout << "Copy constructor called" << endl;
+	cout << "ClapTrap: Copy constructor called" << endl;
 	*this = claptrap;
 }
 
 ClapTrap &ClapTrap::operator = (const ClapTrap &claptrap)
 {
-	cout << "Copy assignment operator called" << endl;
+	cout << "ClapTrap: Copy assignment operator called" << endl;
 	if (this == &claptrap)
 		return (*this);
 	this->name = claptrap.name;
@@ -40,7 +40,7 @@ ClapTrap &ClapTrap::operator = (const ClapTrap &claptrap)
 
 ClapTrap::~ClapTrap()
 {
-	cout << "Destructor called" << endl;
+	cout << "ClapTrap: Destructor called" << endl;
 }
 
 void	ClapTrap::attack(const string &target)
