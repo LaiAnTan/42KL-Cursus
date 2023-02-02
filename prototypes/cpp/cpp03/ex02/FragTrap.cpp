@@ -5,15 +5,23 @@
 using	std::cout;
 using	std::endl;
 
-FragTrap::FragTrap()
+FragTrap::FragTrap(): ClapTrap()
 {
 	cout << "FragTrap: Default Constructor Called" << endl;
+	this->hitPoints = 100;
+	this->energyPoints = 100;
+	this->attackDamage = 30;
 }
 
-FragTrap::FragTrap(string name): ClapTrap(name , 100, 100, 30)
+FragTrap::FragTrap(string name): ClapTrap(name)
 {
 	cout << "FragTrap: Constructor Called" << endl;
+	this->name = name;
+	this->hitPoints = 100;
+	this->energyPoints = 100;
+	this->attackDamage = 30;
 }
+
 
 FragTrap::FragTrap(const FragTrap &fragtrap): ClapTrap(fragtrap)
 {

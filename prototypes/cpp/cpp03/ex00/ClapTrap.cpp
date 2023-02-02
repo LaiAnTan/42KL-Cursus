@@ -7,8 +7,12 @@ using	std::endl;
 
 ClapTrap::ClapTrap()
 {
-	cout << "Default constructor called" << endl;
+	cout << "ClapTrap: Default constructor called" << endl;
+	this->hitPoints = 10;
+	this->energyPoints = 10;
+	this->attackDamage = 0;
 }
+
 
 ClapTrap::ClapTrap(string name): name(name), hitPoints(10), energyPoints(10), attackDamage(0)
 {

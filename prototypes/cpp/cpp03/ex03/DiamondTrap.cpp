@@ -44,7 +44,7 @@ DiamondTrap::~DiamondTrap()
 
 void	DiamondTrap::whoAmI(void)
 {
-	cout << "DiamondTrap: Name - " << name << " ClapTrap name - " << ClapTrap::name << endl;
+	cout << "DiamondTrap: Name - " << name << " | ClapTrap name - " << ClapTrap::name << endl;
 }
 
 void	DiamondTrap::getStats(void)
