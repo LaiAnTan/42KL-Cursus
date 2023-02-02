@@ -16,9 +16,9 @@ class ClapTrap
 		ClapTrap &operator = (const ClapTrap &claptrap);
 		~ClapTrap();
 
-		virtual void	attack(const string &target);
-		virtual void	takeDamage(unsigned int amount);
-		virtual void	beRepaired(unsigned int amount);
+		void	attack(const string &target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
 	protected:
 		string	name;
 		int		hitPoints;

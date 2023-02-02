@@ -18,12 +18,12 @@ class DiamondTrap: public ScavTrap, public FragTrap
 		DiamondTrap &operator = (const DiamondTrap &diamondtrap);
 		~DiamondTrap();
 
-		using	FragTrap::hitPoints;
-		using	ScavTrap::energyPoints;
-		using	FragTrap::attackDamage;
 		using	ScavTrap::attack;
 
 	private:
+		using	FragTrap::hitPoints;
+		using	ScavTrap::energyPoints;
+		using	FragTrap::attackDamage;
 		string name;
 };
 

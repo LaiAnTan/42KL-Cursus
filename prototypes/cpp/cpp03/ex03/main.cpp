@@ -1,9 +1,9 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void)
 {
-	FragTrap	amogus("Sus");
-	FragTrap	sus;
+	DiamondTrap	amogus("Sus");
+	DiamondTrap	sus;
 	
 	sus = amogus;
 

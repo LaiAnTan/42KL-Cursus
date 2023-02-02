@@ -13,9 +13,13 @@ DiamondTrap::DiamondTrap()
 DiamondTrap::DiamondTrap(string name)
 {
 	cout << "DiamondTrap: Counstructor Called" << endl;
+	this->name = name;
+	this->hitPoints = FragTrap::hitPoints;
+	this->energyPoints = ScavTrap::energyPoints;
+	this->attackDamage = FragTrap::attackDamage;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &diamondtrap)
+DiamondTrap::DiamondTrap(const DiamondTrap &diamondtrap): ClapTrap(diamondtrap), ScavTrap(diamondtrap), FragTrap(diamondtrap)
 {
 	*this = diamondtrap;
 }
@@ -24,7 +28,7 @@ DiamondTrap &DiamondTrap::operator = (const DiamondTrap &diamondtrap)
 {
 	if (this == &diamondtrap)
 		return (*this);
-		this->name = diamondtrap.name;
+	this->name = diamondtrap.name;
 	this->hitPoints = diamondtrap.hitPoints;
 	this->energyPoints = diamondtrap.energyPoints;
 	this->attackDamage = diamondtrap.attackDamage;
