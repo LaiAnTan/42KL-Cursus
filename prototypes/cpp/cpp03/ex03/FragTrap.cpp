@@ -44,19 +44,6 @@ void	FragTrap::attack(const string &target)
 	cout << "FragTrap " << name << " attacks " << target << ", dealing " << attackDamage << " points of damage!" << endl;
 }
 
-void	FragTrap::takeDamage(unsigned int amount)
-{
-	hitPoints -= amount;
-	cout << "FragTrap " << name << " was hit for " << amount << " points of damage!" << endl;
-}
-
-void	FragTrap::beRepaired(unsigned int amount)
-{
-	energyPoints -= 1;
-	hitPoints += amount;
-	cout << "FragTrap " << name << " repairs itself for " << amount << " points of health!" << endl;
-}
-
 void	FragTrap::highFivesGuys(void)
 {
 	cout << "FragTrap wants to high five!" << endl;

@@ -19,8 +19,6 @@ class ScavTrap : public ClapTrap
 		~ScavTrap();
 
 		virtual void	attack(const string &target);
-		virtual void	takeDamage(unsigned int amount);
-		virtual void	beRepaired(unsigned int amount);
 
 		void	guardGate(void);
 

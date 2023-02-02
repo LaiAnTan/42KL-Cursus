@@ -20,6 +20,8 @@ class DiamondTrap: public ScavTrap, public FragTrap
 
 		using	ScavTrap::attack;
 
+		void	whoAmI(void);
+
 	private:
 		using	FragTrap::hitPoints;
 		using	ScavTrap::energyPoints;

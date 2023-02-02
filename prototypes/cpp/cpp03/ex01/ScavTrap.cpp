@@ -47,20 +47,7 @@ void	ScavTrap::attack(const string &target)
 	cout << "ScavTrap " << name << " attacks " << target << ", dealing " << attackDamage << " points of damage!" << endl;
 }
 
-void	ScavTrap::takeDamage(unsigned int amount)
-{
-	hitPoints -= amount;
-	cout << "ScavTrap " << name << " was hit for " << amount << " points of damage!" << endl;
-}
-
-void	ScavTrap::beRepaired(unsigned int amount)
-{
-	energyPoints -= 1;
-	hitPoints += amount;
-	cout << "ScavTrap " << name << " repairs itself for " << amount << " points of health!" << endl;
-}
-
 void	ScavTrap::guardGate(void)
 {
-	cout << "ScavTrap is now in Gate Keeper mode!" << endl;
+	cout << "ScavTrap " << name << " is now in Gate Keeper mode!" << endl;
 }

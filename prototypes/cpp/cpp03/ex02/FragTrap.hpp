@@ -19,8 +19,6 @@ class FragTrap : public ClapTrap
 		~FragTrap();
 
 		void	attack(const string &target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
 
 		void	highFivesGuys(void);
 		void	getStats(void); //testing purposes

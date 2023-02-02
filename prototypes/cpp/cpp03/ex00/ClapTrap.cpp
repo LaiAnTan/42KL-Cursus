@@ -47,12 +47,12 @@ void	ClapTrap::attack(const string &target)
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	hitPoints -= amount;
-	cout << "ClapTrap " << name << " was hit for " << amount << " points of damage!" << endl;
+	cout << name << " was hit for " << amount << " points of damage!" << endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
 	energyPoints -= 1;
 	hitPoints += amount;
-	cout << "ClapTrap " << name << " repairs itself for " << amount << " points of health!" << endl;
+	cout << name << " repairs itself for " << amount << " points of health!" << endl;
 }

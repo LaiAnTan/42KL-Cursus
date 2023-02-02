@@ -8,7 +8,7 @@ int main(void)
 	sus = amogus;
 
 	sus.attack("Jones");
-	sus.takeDamage(5);
-	sus.beRepaired(5);
-	sus.highFivesGuys();
+	sus.takeDamage(20);
+	sus.beRepaired(10);
+	sus.whoAmI();
 }
