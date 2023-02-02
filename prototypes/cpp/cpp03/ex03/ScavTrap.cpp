@@ -8,14 +8,21 @@ using	std::string;
 using	std::cout;
 using	std::endl;
 
-ScavTrap::ScavTrap(void)
+ScavTrap::ScavTrap(void): ClapTrap()
 {
 	cout << "ScavTrap: Default Constructor called" << endl;
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(string name): ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(string name): ClapTrap(name)
 {
 	cout << "ScavTrap: Constructor called" << endl;
+	this->name = name;
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &scavtrap): ClapTrap(scavtrap)

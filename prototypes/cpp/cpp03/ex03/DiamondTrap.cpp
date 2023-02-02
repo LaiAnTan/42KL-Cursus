@@ -20,7 +20,7 @@ DiamondTrap::DiamondTrap(string name)
 	this->attackDamage = FragTrap::attackDamage;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &diamondtrap): ClapTrap(diamondtrap), ScavTrap(diamondtrap), FragTrap(diamondtrap)
+DiamondTrap::DiamondTrap(const DiamondTrap &diamondtrap): ClapTrap(), ScavTrap(), FragTrap()
 {
 	*this = diamondtrap;
 }

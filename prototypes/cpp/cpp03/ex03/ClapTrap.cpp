@@ -15,11 +15,6 @@ ClapTrap::ClapTrap(string name): name(name), hitPoints(10), energyPoints(10), at
 	cout << "ClapTrap: Constructor called" << endl;
 }
 
-ClapTrap::ClapTrap(string name, int hitPoints, int energyPoints, int attackDamage): name(name), hitPoints(hitPoints), energyPoints(energyPoints), attackDamage(attackDamage)
-{
-	cout << "ClapTrap: Constructor called" << endl;
-}
-
 ClapTrap::ClapTrap(const ClapTrap &claptrap)
 {
 	cout << "ClapTrap: Copy constructor called" << endl;
