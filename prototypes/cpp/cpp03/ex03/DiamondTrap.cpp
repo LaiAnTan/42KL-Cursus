@@ -46,3 +46,8 @@ void	DiamondTrap::whoAmI(void)
 {
 	cout << "DiamondTrap: Name - " << name << " ClapTrap name - " << ClapTrap::name << endl;
 }
+
+void	DiamondTrap::getStats(void)
+{
+	cout << name << ": HP - " << hitPoints << " ATK - " << attackDamage << " EP - " << energyPoints << endl; 
+}

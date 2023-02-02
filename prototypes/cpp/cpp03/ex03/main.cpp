@@ -11,4 +11,5 @@ int main(void)
 	sus.takeDamage(20);
 	sus.beRepaired(10);
 	sus.whoAmI();
+	sus.getStats();
 }
