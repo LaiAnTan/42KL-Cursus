@@ -6,7 +6,7 @@
 /*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:03 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/02/06 15:41:14 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/01/19 17:02:08 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,12 @@ static int	countchar(int n)
 		count++;
 		num = -num;
 	}
-	while (num != 0)
+	while (num >= 0)
 	{
 		num = num / 10;
 		count++;
+		if (num == 0)
+			break ;
 	}
 	return (count);
 }
