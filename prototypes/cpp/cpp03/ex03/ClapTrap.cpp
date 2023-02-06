@@ -13,21 +13,20 @@ ClapTrap::ClapTrap()
 	this->attackDamage = 0;
 }
 
-
 ClapTrap::ClapTrap(string name): name(name), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-	cout << "Constructor called" << endl;
+	cout << "ClapTrap: Constructor called" << endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &claptrap)
 {
-	cout << "Copy constructor called" << endl;
+	cout << "ClapTrap: Copy constructor called" << endl;
 	*this = claptrap;
 }
 
 ClapTrap &ClapTrap::operator = (const ClapTrap &claptrap)
 {
-	cout << "Copy assignment operator called" << endl;
+	cout << "ClapTrap: Copy assignment operator called" << endl;
 	if (this == &claptrap)
 		return (*this);
 	this->name = claptrap.name;
@@ -39,7 +38,7 @@ ClapTrap &ClapTrap::operator = (const ClapTrap &claptrap)
 
 ClapTrap::~ClapTrap()
 {
-	cout << "Destructor called" << endl;
+	cout << "ClapTrap: Destructor called" << endl;
 }
 
 void	ClapTrap::attack(const string &target)
@@ -51,12 +50,12 @@ void	ClapTrap::attack(const string &target)
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	hitPoints -= amount;
-	cout << name << " was hit for " << amount << " points of damage!" << endl;
+	cout <<  this->name << " was hit for " << amount << " points of damage!" << endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
 	energyPoints -= 1;
 	hitPoints += amount;
-	cout << name << " repairs itself for " << amount << " points of health!" << endl;
+	cout << this->name << " repairs itself for " << amount << " points of health!" << endl;
 }

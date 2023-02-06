@@ -1,11 +1,14 @@
 SRCS = main.cpp			\
 		ClapTrap.cpp	\
+		ScavTrap.cpp	\
+		FragTrap.cpp	\
+		DiamondTrap.cpp	\
 
-NAME = claptrap
+NAME = diamondtrap
 
 PARAMS =
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -Wno-shadow -std=c++98
 
 all : compile run
 

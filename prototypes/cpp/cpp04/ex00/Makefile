@@ -1,7 +1,11 @@
 SRCS = main.cpp			\
-		ClapTrap.cpp	\
+		Animal.cpp		\
+		Cat.cpp			\
+		Dog.cpp			\
+		WrongAnimal.cpp	\
+		WrongCat.cpp	\
 
-NAME = claptrap
+NAME = animal
 
 PARAMS =
 
