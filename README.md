@@ -9,8 +9,8 @@
 |Push_swap|109|
 |Pipex|100|
 |FDF|115|
-|philo|pending grade|
-|minishell|procrastinating|
-|cpp|04 in progress|
+|philo|100|
+|minishell|in progress|
+|cpp|04 pause|
 
 
