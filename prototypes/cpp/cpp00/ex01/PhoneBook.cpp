@@ -18,10 +18,10 @@ void	PhoneBook::cmdADD(void)
 	std::getline(std::cin, last);
 	std::cout << "Nickname: ";
 	std::getline(std::cin, nick);
-	std::cout << "Darkest Secret: ";
-	std::getline(std::cin, secret);
 	std::cout << "Phone Number: ";
 	std::getline(std::cin, num);
+	std::cout << "Darkest Secret: ";
+	std::getline(std::cin, secret);
 	addContact(first, last, nick ,secret, num);
 	return ;
 }
@@ -73,8 +73,9 @@ void		PhoneBook::displayContact(int i)
 	std::cout << "First name: " << contact[i].getFirstName() << std::endl;
 	std::cout << "Last name: " << contact[i].getLastName() << std::endl;
 	std::cout << "Nickname: " << contact[i].getNickname() << std::endl;
-	std::cout << "Darkest Secret: " << contact[i].getDarkestSecret() << std::endl;
 	std::cout << "Phone Number: " << contact[i].getPhoneNumber() << std::endl;
+	std::cout << "Darkest Secret: " << contact[i].getDarkestSecret() << std::endl;
+
 	return ;
 }
 
