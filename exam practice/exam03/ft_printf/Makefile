@@ -4,7 +4,7 @@ NAME = ft_printf
 
 PARAMS =
 
-FLAGS = 
+FLAGS = -Wall -Wextra -Werror
 
 all : compile run
 

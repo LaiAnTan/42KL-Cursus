@@ -119,7 +119,6 @@ char	*get_next_line(int fd)
 		buffer[bytes] = '\0';
 		line = append(buffer, line);
 	}
-
 	if (!line)
 		return (NULL);
 	ret_str = get_nl_str(line);
@@ -127,7 +126,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = skip(line);
 	return (ret_str);
-
 }
 
 int main(void)
