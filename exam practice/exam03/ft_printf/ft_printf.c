@@ -21,7 +21,7 @@ int	putstr(char *s)
 	return (i);
 }
 
-int	putnbr(long long int nbr, int base, int *count)
+void	putnbr(long long int nbr, int base, int *count)
 {
 	char *b = "0123456789abcdef";
 
@@ -34,7 +34,6 @@ int	putnbr(long long int nbr, int base, int *count)
 	if (nbr >= base)
 		putnbr(nbr / base, base, count);
 	*count += write(1, &b[nbr % base], 1);
-	return (count);
 }
 
 int	ft_printf(const char *s, ...)
@@ -72,13 +71,11 @@ int	ft_printf(const char *s, ...)
 	return (rv);
 }
 
+
+#include <stdio.h>
+
 int main(void)
 {
-	int	num = 42;
-	char *empty = NULL;
-	char *s1 = "foo";
-	char *s2 = "bar";
-	char *s3 = "baz";
 	printf("%d\n", printf("%xehehehhe\n", 69));
 
 	printf("%d ", ft_printf("%xehehehhe\n", 69));
