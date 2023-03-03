@@ -67,14 +67,15 @@ char	*get_nl_str(char *line)
 
 	if (!line)
 		return (NULL);
-	str = malloc (sizeof(char) * (j + 1));
-	while (line[i] != '\n' && line[i] != '\0')
+	if (j == -1)
+		return (line);
+	str = malloc (sizeof(char) * (j + 2)); // 1 byte for \n 1 byte for \0
+	while (i <= j)
 	{
 		str[i] = line[i];
 		i++;
 	}
-	str[i] = '\n';
-	str[i + 1] = '\0';
+	str[i] = '\0';
 	return (str);
 }
 
@@ -133,21 +134,11 @@ int main(void)
 {
 	int fd = open("test.txt", O_RDWR);
 	char	*line;
-	line = get_next_line(fd);
-	printf("str: %s", line);
-	line = get_next_line(fd);
-	printf("str: %s", line);
-	line = get_next_line(fd);
-	printf("str: %s", line);
-	line = get_next_line(fd);
-	printf("str: %s", line);
-	line = get_next_line(fd);
-	printf("str: %s", line);
-	line = get_next_line(fd);
-	printf("str: %s", line);
-	line = get_next_line(fd);
-	printf("str: %s", line);
-	line = get_next_line(fd);
-	printf("str: %s", line);
-	free(line);
+	for (int i = 0; i < 7; i++)
+	{
+		line = get_next_line(fd);
+		printf("str: %s", line);
+		free(line);
+	}
+	
 }
