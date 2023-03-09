@@ -1,5 +1,7 @@
 # laian's 42KL-Cursus projects
 
+[![tlai-an's 42 stats](https://badge42.vercel.app/api/v2/cleqyjybj00110gmu3g3si2xn/stats?cursusId=21&coalitionId=182)](https://github.com/JaeSeoKim/badge42)
+
 |Projects | Score |
 |---------|-------|
 |Libft    |125    |
