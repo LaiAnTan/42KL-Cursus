@@ -37,7 +37,7 @@ char	*append(char *src, char *dest)
 	char	*str;
 	
 	str = malloc(sizeof(char) * (ft_strlen(src) + ft_strlen(dest) + 1));
-	if (dest != NULL)
+	if (dest != NULL) // remember to check for null
 	{
 		while (dest[i] != '\0')
 		{
