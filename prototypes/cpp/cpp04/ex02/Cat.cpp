@@ -7,14 +7,14 @@ using	std::string;
 using	std::cout;
 using	std::endl;
 
-Cat::Cat(): Animal()
+Cat::Cat(): AAnimal()
 {
 	cout << "Cat: Default constructor called" << endl;
 	this->type = "Cat";
 	this->brain = new Brain();
 }
 
-Cat::Cat(const Cat &cat): Animal(cat)
+Cat::Cat(const Cat &cat): AAnimal(cat)
 {
 	cout << "Cat: Copy constructor called" << endl;
 	*this = cat;

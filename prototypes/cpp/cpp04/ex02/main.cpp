@@ -1,4 +1,4 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 
@@ -14,15 +14,15 @@ using	std::string;
 int main()
 {
 	// test 1 (singular animal)
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const AAnimal* j = new Dog();
+	const AAnimal* i = new Cat();
 
 	delete j;//should not create a leak
 	delete i;
 
 	// test 2
 
-	Animal* animals[100];
+	AAnimal* animals[100];
 
 	for (int i = 0; i < 50; i++)
 		animals[i] = new Dog();
