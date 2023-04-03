@@ -20,7 +20,7 @@ class AMateria
 		AMateria(string const & type);
 		AMateria(const AMateria &materia);
 		AMateria &operator = (const AMateria &materia); 
-		~AMateria();
+		virtual ~AMateria();
 
 		string const &getType() const; // returns the Materia type
 

@@ -8,13 +8,14 @@ using std::endl;
 MateriaSource::MateriaSource()
 {
 	cout << "MateriaSource: Constructor called" << endl;
+	for (int i = 0; i < 4; i++)
+		this->mem[i] = NULL;
 }
 
 MateriaSource::MateriaSource(const MateriaSource &materiasource)
 {
 	cout << "MateriaSoucre: Copy constructor called" << endl;
 	*this = materiasource;
-
 }
 
 MateriaSource &MateriaSource::operator = (const MateriaSource &materiasource)
@@ -30,18 +31,19 @@ MateriaSource &MateriaSource::operator = (const MateriaSource &materiasource)
 MateriaSource::~MateriaSource()
 {
 	cout << "MateriaSouce: Destructor called" << endl;
+	for (int i = 0; i < 4; i++)
+		delete this->mem[i];
 }
 
 void MateriaSource::learnMateria(AMateria* type)
 {
-	int	i = -1;
-
-	while(++i < 4)
+	for (int i = 0; i < 4; i++)
 	{
-		if (this->mem[i] != 0)
-			continue;
-		this->mem[i] = type;
-		return ;
+		if (this->mem[i] == NULL)
+		{
+			this->mem[i] = type;
+			return ;
+		}
 	}
 	cout << "MateriaSource: No space left in memory" << endl;
 }

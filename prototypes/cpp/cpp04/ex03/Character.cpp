@@ -8,11 +8,15 @@ using std::endl;
 Character::Character()
 {
 	cout << "Character: Default constructor called" << endl;
+	for (int i = 0; i < 4; i++)
+		this->inventory[i] = NULL;
 }
 
 Character::Character(string name): name(name)
 {
 	cout << "Character: Constructor called" << endl;
+	for (int i = 0; i < 4; i++)
+		this->inventory[i] = NULL;
 }
 
 Character::Character(const Character &character)
@@ -35,6 +39,8 @@ Character &Character::operator = (const Character &character)
 Character::~Character()
 {
 	cout << "Character: Destructor called" << endl;
+	for (int i = 0; i < 4; i++)
+		delete this->inventory[i];
 }
 
 string const & Character::getName() const
