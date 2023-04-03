@@ -41,8 +41,3 @@ string	AAnimal::getType(void) const
 {
 	return (this->type);
 }
-
-void	AAnimal::makeSound(void) const
-{
-	cout << "Animal: * animal noises *" << endl;
-}

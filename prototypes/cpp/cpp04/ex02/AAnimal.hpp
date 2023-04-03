@@ -9,7 +9,6 @@ using	std::string;
 class AAnimal
 {
 	public:
-
 		AAnimal &operator = (const AAnimal &animal);
 		virtual			~AAnimal();
 		string			getType(void) const;

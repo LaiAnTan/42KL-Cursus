@@ -1,6 +1,11 @@
-SRCS = main.cpp			\
+SRCS =	main.cpp		\
+		AMateria.cpp	\
+		Character.cpp	\
+		Cure.cpp		\
+		Ice.cpp			\
+		MateriaSource.cpp
 
-NAME = brain
+NAME = AMateria
 
 PARAMS =
 
