@@ -13,6 +13,9 @@
 |FDF|115|
 |philo|100|
 |minishell|in progress|
-|cpp|04 pause|
+|cpp part 1|done|
+|netpractice|not done|
+|cub3d|not done|
+|cpp part 2|05 in progress|
 
 
