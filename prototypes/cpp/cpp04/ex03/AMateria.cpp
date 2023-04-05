@@ -38,10 +38,10 @@ AMateria::~AMateria()
 	cout << "AMateria: Destructor called" << endl;
 }
 
-string const &AMateria::getType() const
-{
-	return (this->type);
-}
+// string const &AMateria::getType() const
+// {
+// 	return (this->type);
+// }
 
 void AMateria::use(ICharacter& target)
 {

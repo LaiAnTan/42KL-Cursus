@@ -9,6 +9,7 @@ using std::endl;
 Cure::Cure(): AMateria("cure")
 {
 	cout << "Cure: Constructor called" << endl;
+	this->type = "cure";
 }
 
 Cure::Cure(const Cure &cure): AMateria()

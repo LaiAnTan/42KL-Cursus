@@ -1,6 +1,7 @@
 #include "Character.hpp"
 
 #include <iostream>
+#include <string>
 
 using std::cout;
 using std::endl;
@@ -64,12 +65,22 @@ AMateria* Character::unequip(int idx)
 {
 	AMateria*	dropMateria;
 
+	if (this->inventory[idx] == NULL)
+	{
+		cout << "Character: " << this->getName() << "cant unequip item from slot" << idx << endl;
+		return (NULL);
+	}
 	dropMateria = this->inventory[idx];
 	this->inventory[idx] = NULL;
+
+	cout << "Character: " << this->getName() << " unequipped " << dropMateria->getType() << " from slot " << idx << endl;	return (dropMateria);
 	return (dropMateria);
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	return (inventory[idx]->use(target));
+	if (inventory[idx] != NULL)
+		return (inventory[idx]->use(target));
+	cout << "Character: " << this->getName() << " cant use item from slot " << idx << endl;
+	return ;
 }

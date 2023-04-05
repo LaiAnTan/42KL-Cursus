@@ -9,6 +9,7 @@ using std::endl;
 Ice::Ice(): AMateria("ice")
 {
 	cout << "Ice: Constructor called" << endl;
+	this->type = "ice";
 }
 
 Ice::Ice(const Ice &ice): AMateria()
