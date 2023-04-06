@@ -1,9 +1,11 @@
 #include "Bureaucrat.hpp"
 
 # include <iostream>
+# include <exception>
 
 using std::cout;
 using std::endl;
+using std::exception;
 
 int main(void)
 {
@@ -11,22 +13,32 @@ int main(void)
 	{
 		Bureaucrat *d = new Bureaucrat();
 		Bureaucrat *bob = new Bureaucrat("bob", 69);
-		Bureaucrat *error = new Bureaucrat("bob", 200);
 
 		cout << *d << endl;
 		cout << *bob << endl;
-		cout << *error << endl;
+
+		d = bob;
+
+		cout << *d << endl;
+		cout << *bob << endl;
+
+		bob->incrementGrade(20);
+		cout << *bob << endl;
+		bob->decrementGrade(1);
+		cout << *bob << endl;
+
+		//GradeTooHighException
+		// bob->incrementGrade(200);
+
+		// GradeTooLowException
+		d->decrementGrade(200);
 
 		delete d;
 		delete bob;
 	}
-	catch (const GradeTooHigh &err)
+	catch (const exception &err)
 	{
-		cout << "Exception caught" << endl;
-	}
-	catch (const GradeTooLow *err)
-	{
-		cout << "Exception caught" << endl;
+		cout << err.what() << endl;
 	}
 	return (0);
 }
