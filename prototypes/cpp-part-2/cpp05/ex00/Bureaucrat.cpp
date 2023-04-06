@@ -14,9 +14,9 @@ Bureaucrat::Bureaucrat(string name, int grade): name(name)
 {
 	cout << "Bureaucrat: Constructor called" << endl;
 	if (grade <= 0)
-		throw (Bureaucrat::gradetoohigh->what());
+		throw (Bureaucrat::GradeTooHighException);
 	else if  (grade >= 150)
-		throw (Bureaucrat::gradetoolow->what());
+		throw (Bureaucrat::GradeTooLowException);
 	else
 		this->grade = grade;
 }
@@ -56,11 +56,9 @@ void	Bureaucrat::incrementGrade(int value)
 {
 	this->grade -= value;
 	if (grade <= 0)
-		throw (Bureaucrat::gradetoohigh->what());
+		throw (Bureaucrat::GradeTooHighException);
 	else if  (grade >= 150)
-		throw (Bureaucrat::gradetoolow->what());
-	else
-		this->grade = grade;
+		throw (Bureaucrat::GradeTooLowException);
 	cout << "Bureaucrat: Incremented " << this->getName() << "'s grade to " << this->getGrade() << endl; 
 }
 
@@ -68,11 +66,9 @@ void	Bureaucrat::decrementGrade(int value)
 {
 	this->grade += value;
 	if (grade <= 0)
-		throw (Bureaucrat::gradetoohigh->what());
+		throw (Bureaucrat::GradeTooHighException);
 	else if  (grade >= 150)
-		throw (Bureaucrat::gradetoolow->what());
-	else
-		this->grade = grade;
+		throw (Bureaucrat::GradeTooLowException);
 	cout << "Bureaucrat: Decremented " << this->getName() << "'s grade to " << this->getGrade() << endl;
 
 }
@@ -83,12 +79,12 @@ ostream &operator << (ostream &outs, const Bureaucrat &bureaucrat)
 	return (outs);
 }
 
-const char* GradeTooHighException::what() const throw()
+const char* GradeTooHigh::what() const throw()
 {
 	return ("GradeTooHighException: Grade is too high");
 }
 
-const char* GradeTooLowException::what() const throw()
+const char* GradeTooLow::what() const throw()
 {
 	return ("GradeTooLowException: Grade is too low");
 }

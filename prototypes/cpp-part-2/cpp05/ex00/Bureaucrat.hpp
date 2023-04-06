@@ -12,13 +12,13 @@ using std::string;
 using std::exception;
 using std::ostream;
 
-class GradeTooHighException: public exception
+class GradeTooHigh: public exception
 {
 	public:
 		const char* what() const throw();
 };
 
-class GradeTooLowException: public exception
+class GradeTooLow: public exception
 {
 	public:
 		const char* what() const throw();
@@ -42,11 +42,11 @@ class	Bureaucrat
 	private:
 		string	name;
 		int		grade;
-		GradeTooHighException* gradetoohigh;
-		GradeTooLowException* gradetoolow;
+		GradeTooHigh	*GradeTooHighException;
+		GradeTooLow		*GradeTooLowException;
+
 };
 
 ostream &operator << (ostream &outs, const Bureaucrat &bureaucrat);
-
 
 #endif
