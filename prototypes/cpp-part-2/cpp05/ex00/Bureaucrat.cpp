@@ -1,0 +1,94 @@
+#include "Bureaucrat.hpp"
+
+using std::cout;
+using std::endl;
+
+Bureaucrat::Bureaucrat()
+{
+	cout << "Bureaucrat: Default constructor called" << endl;
+	name = "default";
+	grade = 1;
+}
+
+Bureaucrat::Bureaucrat(string name, int grade): name(name)
+{
+	cout << "Bureaucrat: Constructor called" << endl;
+	if (grade <= 0)
+		throw (Bureaucrat::gradetoohigh->what());
+	else if  (grade >= 150)
+		throw (Bureaucrat::gradetoolow->what());
+	else
+		this->grade = grade;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
+{
+	cout << "Bureaucrat: Copy constructor called" << endl;
+	*this = bureaucrat;
+}
+
+Bureaucrat &Bureaucrat::operator = (const Bureaucrat &bureaucrat)
+{
+	cout << "Bureaucrat: Copy assignment operator called" << endl; 
+	if (this == &bureaucrat)
+		return (*this);
+	this->name = bureaucrat.getName();
+	this->grade = bureaucrat.getGrade();
+	return (*this);
+}
+
+Bureaucrat::~Bureaucrat()
+{
+	cout << "Bureaucrat: Destructor called" << endl;
+}
+
+string const Bureaucrat::getName() const
+{
+	return (name);
+}
+
+int Bureaucrat::getGrade() const
+{
+	return (grade);
+}
+
+void	Bureaucrat::incrementGrade(int value)
+{
+	this->grade -= value;
+	if (grade <= 0)
+		throw (Bureaucrat::gradetoohigh->what());
+	else if  (grade >= 150)
+		throw (Bureaucrat::gradetoolow->what());
+	else
+		this->grade = grade;
+	cout << "Bureaucrat: Incremented " << this->getName() << "'s grade to " << this->getGrade() << endl; 
+}
+
+void	Bureaucrat::decrementGrade(int value)
+{
+	this->grade += value;
+	if (grade <= 0)
+		throw (Bureaucrat::gradetoohigh->what());
+	else if  (grade >= 150)
+		throw (Bureaucrat::gradetoolow->what());
+	else
+		this->grade = grade;
+	cout << "Bureaucrat: Decremented " << this->getName() << "'s grade to " << this->getGrade() << endl;
+
+}
+
+ostream &operator << (ostream &outs, const Bureaucrat &bureaucrat)
+{
+	outs << "Bureaucrat: " << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+	return (outs);
+}
+
+const char* GradeTooHighException::what() const throw()
+{
+	return ("GradeTooHighException: Grade is too high");
+}
+
+const char* GradeTooLowException::what() const throw()
+{
+	return ("GradeTooLowException: Grade is too low");
+}

@@ -26,7 +26,7 @@ class Character: public ICharacter
 		void		use(int idx, ICharacter& target);
 	
 	private:
-		string name;
+		string name;D
 		AMateria *inventory[4];
 };
 
