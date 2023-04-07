@@ -72,6 +72,11 @@ void	Bureaucrat::decrementGrade()
 	cout << "Bureaucrat: Decremented " << this->getName() << "'s grade to " << this->getGrade() << endl;
 }
 
+void	Bureaucrat::signForm(Form &form)
+{
+	
+}
+
 ostream &operator << (ostream &outs, const Bureaucrat &bureaucrat)
 {
 	outs << "Bureaucrat: " << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();

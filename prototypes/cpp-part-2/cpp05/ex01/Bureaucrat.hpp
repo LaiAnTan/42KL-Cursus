@@ -4,6 +4,8 @@
 
 #define BUREAUCRAT_HPP
 
+#include "Form.hpp"
+
 #include <string>
 #include <iostream>
 #include <exception>
@@ -38,6 +40,8 @@ class	Bureaucrat
 
 		void			incrementGrade();
 		void			decrementGrade();
+
+		void			signForm(Form &form);
 
 	private:
 		string	name;

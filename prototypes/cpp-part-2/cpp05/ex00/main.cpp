@@ -11,34 +11,32 @@ int main(void)
 {
 	try
 	{
-		Bureaucrat *d = new Bureaucrat();
+		Bureaucrat *william = new Bureaucrat("child predator", 150);
 		Bureaucrat *bob = new Bureaucrat("bob", 69);
+		Bureaucrat *dave = new Bureaucrat("dave", 1);
 
-		cout << *d << endl;
+		cout << *william << endl;
+		cout << *bob << endl;
+		cout << *dave << endl;
+
+		bob->incrementGrade();
+		cout << *bob << endl;
+		bob->decrementGrade();
 		cout << *bob << endl;
 
-		d = bob;
+		//GradeTooLowException
+		// william->decrementGrade();
 
-		cout << *d << endl;
-		cout << *bob << endl;
+		// GradeTooHighException
+		// bob->incrementGrade();
 
-		bob->incrementGrade(20);
-		cout << *bob << endl;
-		bob->decrementGrade(1);
-		cout << *bob << endl;
-
-		//GradeTooHighException
-		// bob->incrementGrade(200);
-
-		// GradeTooLowException
-		d->decrementGrade(200);
-
-		delete d;
+		delete william;
 		delete bob;
+		delete dave;
 	}
 	catch (const exception &err)
 	{
-		cout << err.what() << endl;
+		std::cerr << err.what() << endl;
 	}
 	return (0);
 }
