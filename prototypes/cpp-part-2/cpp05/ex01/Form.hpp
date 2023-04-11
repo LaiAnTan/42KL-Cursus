@@ -7,8 +7,15 @@
 #include "Bureaucrat.hpp"
 
 #include <string>
+#include <exception>
 
 using std::string;
+using std::ostream;
+
+class Bureaucrat;
+
+class GradeTooHigh;
+class GradeTooLow;
 
 class Form
 {
@@ -20,18 +27,17 @@ class Form
 		~Form();
 
 		string const	getName() const;
-		bool const		getSignedBool() const;
-		int const		getGradeToSign() const;
+		bool getSigned() const;
+		int getGrade() const;
 
 		void	beSigned(Bureaucrat &bureaucrat);
 
 	private:
 		string			name;
 		bool			signedBool;
-		int				gradeToSign;
+		int				grade;
 		GradeTooHigh	GradeTooHighException;
 		GradeTooLow		GradeTooLowException;
-
 };
 
 ostream &operator << (ostream &outs, const Form &form);
