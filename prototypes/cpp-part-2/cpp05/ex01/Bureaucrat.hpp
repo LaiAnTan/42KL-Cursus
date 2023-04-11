@@ -14,6 +14,8 @@ using std::string;
 using std::exception;
 using std::ostream;
 
+class Form;
+
 class GradeTooHigh: public exception
 {
 	public:
