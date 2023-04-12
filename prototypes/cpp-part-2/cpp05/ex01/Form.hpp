@@ -6,38 +6,49 @@
 
 #include "Bureaucrat.hpp"
 
-#include <string>
 #include <exception>
+#include <string>
 
 using std::string;
 using std::ostream;
+using std::exception;
 
 class Bureaucrat;
-
-class GradeTooHigh;
-class GradeTooLow;
 
 class Form
 {
 	public:
 		Form();
-		Form(const string name, const int grade);
+		Form(const string name, const int signGrade, const int execGrade);
 		Form(const Form &form);
 		Form &operator = (const Form &form);
 		~Form();
 
 		string const	getName() const;
 		bool getSigned() const;
-		int getGrade() const;
+		int getSignGrade() const;
+		int getExecGrade() const;
 
 		void	beSigned(Bureaucrat &bureaucrat);
+
+		class GradeTooHighException: public exception
+		{
+			public:
+				const char* what() const throw();
+		};
+
+		class GradeTooLowException: public exception
+		{
+			public:
+				const char* what() const throw();
+		};
 
 	private:
 		string			name;
 		bool			signedBool;
-		int				grade;
-		GradeTooHigh	GradeTooHighException;
-		GradeTooLow		GradeTooLowException;
+		int				signGrade;
+		int				execGrade;
+
 };
 
 ostream &operator << (ostream &outs, const Form &form);

@@ -10,16 +10,31 @@ int main(void)
 {
 	try
 	{
-		Form	*formA = new Form("legalisation of child labor", 10);
-		Form	*formB = new Form("abolish womens rights", 50);
+		Bureaucrat	*workerA = new Bureaucrat("William", 5);
+		Bureaucrat	*workerB = new Bureaucrat("Chia", 99);
 
-		// error
-		Form	*formC = new Form("william for president", 727);
+		cout << *workerA << endl;
+		cout << *workerB << endl;
 
+		Form	*formA = new Form("legalisation of child labor", 10, 25);
+		Form	*formB = new Form("abolish womens rights", 50, 100);
+
+		// throws exception
+		// Form	*formC = new Form("william for president", 727);
+
+		workerB->signForm(*formA);
+		workerA->signForm(*formA);
+		workerB->signForm(*formB);
+
+		cout << *formA << endl;
+		cout << *formB << endl;
+
+		delete workerA;
+		delete workerB;
 
 		delete formA;
 		delete formB;
-		delete formC;
+		// delete formC;
 	}
 	catch(const std::exception& err)
 	{

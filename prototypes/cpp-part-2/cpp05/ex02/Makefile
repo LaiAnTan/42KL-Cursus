@@ -1,8 +1,11 @@
-SRCS =	main.cpp		\
-		Bureaucrat.cpp	\
-		Form.cpp		\
+SRCS =	main.cpp					\
+		Bureaucrat.cpp				\
+		AForm.cpp					\
+		PresidentialPardonForm.cpp	\
+		RobotomyRequestForm.cpp		\
+		ShrubberyCreationForm.cpp	\
 
-NAME = Form
+NAME = MoreForms
 
 PARAMS =
 

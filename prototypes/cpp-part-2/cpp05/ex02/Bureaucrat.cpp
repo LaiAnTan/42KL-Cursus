@@ -72,7 +72,7 @@ void	Bureaucrat::decrementGrade()
 	cout << "Bureaucrat: Decremented " << this->getName() << "'s grade to " << this->getGrade() << endl;
 }
 
-void	Bureaucrat::signForm(Form &form)
+void	Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
@@ -83,12 +83,31 @@ void	Bureaucrat::signForm(Form &form)
 		}
 		form.beSigned(*this);
 	}
-	catch (const Form::GradeTooLowException &err)
+	catch (const AForm::GradeTooLowException &err)
 	{
-		cout << "Bureaucrat: " << this->getName() << " could not sign form: " << form.getName() << " because grade was too low" << endl;
+		cout << "Bureaucrat: " << this->getName() << " could not sign " << form.getName() << " because grade was too low" << endl;
 	}
 	if (form.getSigned() == true)
 			cout << "Bureaucrat: " << this->getName() << " signed " << form.getName() << endl;
+}
+
+void Bureaucrat::executeForm(AForm &form)
+{
+	try
+	{
+		form.execute(*this);
+	}
+	catch (const AForm::NotSignedException &err)
+	{
+		cout << "Bureaucrat: " << getName() << " could not execute " << form.getName() << " because it was not signed" << endl;
+		return ;
+	}
+	catch (const AForm::GradeTooLowException &err)
+	{
+		cout << "Bureaucrat: " << getName() << " could not execute " << form.getName() <<  " because grade was too low" << endl;
+		return ;
+	}
+	cout << "Bureaucrat: " << getName() << " executed " << form.getName() << endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
