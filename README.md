@@ -2,23 +2,21 @@
 
 [![tlai-an's 42 stats](https://badge42.vercel.app/api/v2/cleqyjybj00110gmu3g3si2xn/stats?cursusId=21&coalitionId=182)](https://github.com/JaeSeoKim/badge42)
 
-|Projects | Score |
-|---------|-------|
-|Libft    |125    |
-|Printf   |110    |
-|get_next_line|112|
-|Born2beRoot|100  |
-|Push_swap|109|
-|Pipex|100|
-|FDF|115|
-|philo|100|
-|minishell|in progress|
-|cpp part 1|done|
-|netpractice|not done|
-|cub3d / minirt|not done|
-|cpp part 2|06 in progress|
-|inception|not done|
-|webserv|not done|
-|ft_transcendence|not done|
-
-
+|Projects         |Status            |Score   |
+|-----------------|------------------|--------|
+|libft            |:white_check_mark:|125     |
+|printf           |:white_check_mark:|110     |
+|get_next_line    |:white_check_mark:|112     |
+|Born2beRoot      |:white_check_mark:|100     |
+|push_swap        |:white_check_mark:|109     |
+|pipex            |:white_check_mark:|100     |
+|FDF              |:white_check_mark:|115     |
+|philo            |:white_check_mark:|100     |
+|minishell        |:exclamation:     |pending |
+|cpp part 1       |:white_check_mark:|done    |
+|netpractice      |:x:               |not done|
+|cub3d/minirt     |:x:               |not done|
+|cpp part 2       |:exclamation:     |pending |
+|inception        |:x:               |not done|
+|webserv          |:x:               |not done|
+|ft_transcendence |:x:               |not done|
