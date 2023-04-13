@@ -15,7 +15,10 @@
 |minishell|in progress|
 |cpp part 1|done|
 |netpractice|not done|
-|cub3d|not done|
+|cub3d / minirt|not done|
 |cpp part 2|06 in progress|
+|inception|not done|
+|webserv|not done|
+|ft_transcendence|not done|
 
 
