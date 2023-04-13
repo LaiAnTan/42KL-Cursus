@@ -16,6 +16,6 @@
 |cpp part 1|done|
 |netpractice|not done|
 |cub3d|not done|
-|cpp part 2|05 in progress|
+|cpp part 2|06 in progress|
 
 
