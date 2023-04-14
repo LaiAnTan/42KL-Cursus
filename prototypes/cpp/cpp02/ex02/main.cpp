@@ -23,3 +23,6 @@ int main( void )
 
 	return 0;
 }
+
+// Fixed (0) = int (0 + 1 / 256)
+// divide by 256 (2 power of 8) because bit shift 8 times;

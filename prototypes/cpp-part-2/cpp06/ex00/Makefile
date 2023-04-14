@@ -1,5 +1,6 @@
-SRCS =	main.cpp					\
-
+SRCS =	main.cpp			\
+		ScalarConverter.cpp	\
+		convertHelpers.cpp	\
 
 NAME = ScalarConverter
 
@@ -7,7 +8,7 @@ PARAMS =
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-all : compile run
+all : re
 
 compile :
 	@g++ $(FLAGS) $(SRCS) -o $(NAME)
@@ -20,3 +21,5 @@ clean:
 
 leaks:
 	@valgrind --leak-check=full ./$(NAME) $(PARAMS)
+
+re: compile
