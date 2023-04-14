@@ -61,6 +61,14 @@ bool	checkDouble(string str)
 		return (false);
 }
 
+/*
+for lexer
+check float (has . and f at the back) (+inff, -inff, nanf)
+check double (has . btwn 2 numbers) (+inf, -inf, nan)
+check int (only numbers) 
+check char (str len 1, isprintable)
+*/
+
 int		getType(string str)
 {
 	bool	(*func_ptr[4])(string) = {&checkChar, &checkFloat, &checkDouble, &checkInt};
@@ -74,51 +82,37 @@ int		getType(string str)
 	return (-1);
 }
 
+
+
+// double is used for all checks because it can store the largest value among all 4 datatypes
 void	printConverted(char	c, int i, float f, double d)
 {
-	if (d > CHAR_MAX || d < CHAR_MIN)
+	// checks for char
+	if (std::isnan(d) == true)
 		cout << "Char: impossible" << endl;
-	else if (c <= 31 || c == 127)
-		cout << "Char: not displayable" << endl;
-	else
+	else if (std::isprint(c) == true)
 		cout << "Char: '" << c << "'" << endl;
+	else
+		cout << "Char: not displayable" << endl;
+
+	// checks for int
+	if (std::isnan(d) == true || d > std::numeric_limits<int>::max() || d < std::numeric_limits<int>::min())
+		cout << "Int: impossible" << endl;
+	else
+		cout << "Int: " << i << endl;
+
+	// checks for float
+	if (std::isnan(d) == true || d > std::numeric_limits<float>::max() || d < std::numeric_limits<float>::min())
+		cout << "Float: impossible" << endl;
+	else
+		cout << "Float: "<< std::fixed << std::setprecision(1) << f << "f" << endl;
 	
-	cout << "Int: " << i << endl;
-
-	cout << "Float: " << f << endl;
-	cout << "Double: " << d << endl;
+	// checks for double
+	if (std::isnan(d) == true || d > std::numeric_limits<double>::max() || d < std::numeric_limits<double>::min())
+		cout << "Double: impossible" << endl;
+	else
+		cout << "Double: " << std::fixed << std::setprecision(1) << d << endl;
 }
-
-// #include <iomanip>
-
-// void printConverted(char cval, int ival, float fval, double dval)
-// {
-// 	if (dval < CHAR_MAX)
-// 	{
-// 		if (isprint(cval))
-// 			std::cout << "char : '" << cval << "'" << std::endl;
-// 		else
-// 			std::cout << "char : \"Non displayable\"" << std::endl;
-// 	}
-// 	else
-// 		std::cout << "char : yeah bud no" << std::endl;
-
-// 	if (dval <= INT_MAX && dval >= INT_MIN)
-// 		std::cout << "int : " << ival << std::endl;
-// 	else
-// 		std::cout << "int : yeah bud no" << std::endl;
-
-// 	if (dval == (double) ival && ival < 1000000)
-// 	{
-// 		std::cout << "float : " << std::fixed << std::setprecision(1) << fval << "f" << std::endl;
-// 		std::cout << "double : " << std::fixed << std::setprecision(1) << dval << std::endl;
-// 	}
-// 	else
-// 	{
-// 		std::cout << "float : " << fval << "f" << std::endl;
-// 		std::cout << "double : " << dval << std::endl;
-// 	}
-// }
 
 void	fromChar(char inputValue)
 {

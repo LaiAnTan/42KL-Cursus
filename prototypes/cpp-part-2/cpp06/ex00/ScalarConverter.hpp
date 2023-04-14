@@ -9,6 +9,7 @@
 #include <limits>
 #include <climits>
 #include <cmath>
+#include <iomanip>
 
 using std::string;
 using std::endl;
@@ -25,19 +26,20 @@ class ScalarConverter
 		static void	convert(string inputValue);
 };
 
+// lexer
 int		getType(string str);
 bool	checkChar(string str);
 bool	checkInt(string str);
 bool	checkFloat(string str);
 bool	checkDouble(string str);
 
+// converters
 void	fromChar(char inputValue);
 void	fromInt(int inputValue);
 void	fromFloat(float inputValue);
 void	fromDouble(double inputValue);
 
+// print
 void	printConverted(char	c, int i, float f, double d);
-
-// void printConverted(char cval, int ival, float fval, double dval);
 
 #endif

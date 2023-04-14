@@ -25,13 +25,6 @@ ScalarConverter::~ScalarConverter()
 	cout << "ScalarConverter: Destructor called" << endl;
 }
 
-/*
-check float (has . and f at the back) (+inff, -inff, nanf)
-check double (has . btwn 2 numbers) (+inf, -inf, nan)
-check int (only numbers) 
-check char (str len 1, isprintable)
-*/
-
 void	ScalarConverter::convert(string inputValue)
 {
 	switch (getType(inputValue))
