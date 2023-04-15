@@ -1,8 +1,12 @@
 #pragma once
 
-#ifndef ARRAY_TPP
+#ifndef ARRAY_HPP
 
-#define ARRAY_TPP
+#define ARRAY_HPP
+
+#include <exception>
+
+using std::exception;
 
 template <typename T>
 class Array
@@ -16,12 +20,21 @@ class Array
 
 		T	&operator [] (unsigned int index);
 
-		unsigned int	getSize() const;
+		unsigned int	size() const;
+
+		class IndexOutOfBoundsException: public exception
+		{
+			public:
+				const char* what() const throw();
+		};
 
 	private:
 		T				*ptr;
-		unsigned int	size;
+		unsigned int	arraySize;
 
 };
+
+// .tpp files are usually included after the template defenition
+#include "Array.tpp"
 
 #endif
