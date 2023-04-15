@@ -48,7 +48,6 @@ Array<T>::~Array()
 {
 	cout << "Array: Destructor called" << endl;
 	delete []ptr;
-	
 }
 
 /*
