@@ -13,7 +13,7 @@ void	assign_xy(t_map *map, int distance, int x_offset, int y_offset)
 		{
 			map ->points[x][y].x = x * distance + x_offset;
 			map ->points[x][y].y = y * distance + y_offset;
-			map ->points[x][y].z = map ->points[x][y].z * (distance / 10);
+			map ->points[x][y].z = map ->points[x][y].z * (distance / 10); // change value to change z scaling multiplier
 			x++;
 		}
 		x = 0;

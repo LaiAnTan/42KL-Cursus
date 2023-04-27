@@ -15,7 +15,6 @@ class ICharacter;
 class AMateria
 {
 	public:
-
 		AMateria();
 		AMateria(string const & type);
 		AMateria(const AMateria &materia);

@@ -8,16 +8,14 @@ const char* NotFoundException::what() const throw()
 }
 
 template <typename T>
-typename T::iterator	easyfind(T container, int toFind)
+typename T::iterator	easyfind(T &container, int toFind)
 {
 	typename T::iterator	iterBegin = container.begin();
 	typename T::iterator	iterEnd = container.end();
 
 	for (; iterBegin != iterEnd; ++iterBegin)
-	{
 		if (*iterBegin == toFind)
 			return (iterBegin);
-	}
 	throw(NotFoundException());
 }
 
