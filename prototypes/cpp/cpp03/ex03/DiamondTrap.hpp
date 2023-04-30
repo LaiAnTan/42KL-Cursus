@@ -22,11 +22,13 @@ class DiamondTrap: public ScavTrap, public FragTrap
 
 		void	whoAmI(void);
 		void	getStats(void); //testing purposes
+
 	private:
-		using	FragTrap::hitPoints;
-		using	ScavTrap::energyPoints;
-		using	FragTrap::attackDamage;
-		string name;
+		string	name;
+		int		hitPoints;
+		int		energyPoints;
+		int		attackDamage;
+		
 };
 
 #endif

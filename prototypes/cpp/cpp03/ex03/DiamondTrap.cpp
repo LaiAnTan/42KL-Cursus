@@ -8,6 +8,9 @@ using	std::endl;
 DiamondTrap::DiamondTrap()
 {
 	cout << "DiamondTrap: Default Construtor Called" << endl;
+	this->hitPoints = FragTrap::hitPoints;
+	this->energyPoints = ScavTrap::energyPoints;
+	this->attackDamage = FragTrap::attackDamage;
 }
 
 DiamondTrap::DiamondTrap(string name)

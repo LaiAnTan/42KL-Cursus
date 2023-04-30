@@ -21,6 +21,11 @@ class ScavTrap : virtual public ClapTrap
 
 		void	guardGate(void);
 
+	protected:
+		int		hitPoints;
+		int		energyPoints;
+		int		attackDamage;
+
 };
 
 #endif
