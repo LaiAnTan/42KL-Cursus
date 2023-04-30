@@ -14,7 +14,7 @@
 |philo            |:white_check_mark:|100     |
 |minishell        |:exclamation:     |pending |
 |cpp part 1       |:white_check_mark:|done    |
-|netpractice      |:x:               |not done|
+|netpractice      |:exclamation:     |pending |
 |cub3d/minirt     |:x:               |not done|
 |cpp part 2       |:exclamation:     |pending |
 |inception        |:x:               |not done|
