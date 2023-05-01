@@ -21,7 +21,11 @@ class FragTrap : virtual public ClapTrap
 		void	attack(const string &target);
 
 		void	highFivesGuys(void);
-
+	
+	protected:
+		int		hitPoints;
+		int		energyPoints;
+		int		attackDamage;
 };
 
 #endif
