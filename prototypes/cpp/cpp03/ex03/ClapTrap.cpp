@@ -8,7 +8,7 @@ using	std::endl;
 ClapTrap::ClapTrap()
 {
 	cout << "ClapTrap: Default constructor called" << endl;
-	this->hitPoints = 10;
+	hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDamage = 0;
 }

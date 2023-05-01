@@ -25,9 +25,6 @@ class DiamondTrap: public ScavTrap, public FragTrap
 
 	private:
 		string	name;
-		int		hitPoints;
-		int		energyPoints;
-		int		attackDamage;
 		
 };
 

@@ -8,9 +8,9 @@ using	std::endl;
 DiamondTrap::DiamondTrap()
 {
 	cout << "DiamondTrap: Default Construtor Called" << endl;
-	this->hitPoints = FragTrap::hitPoints;
-	this->energyPoints = ScavTrap::energyPoints;
-	this->attackDamage = FragTrap::attackDamage;
+	ClapTrap::hitPoints = FragTrap::hitPoints;
+	ClapTrap::energyPoints = ScavTrap::energyPoints;
+	ClapTrap::attackDamage = FragTrap::attackDamage;
 }
 
 DiamondTrap::DiamondTrap(string name)
@@ -18,9 +18,9 @@ DiamondTrap::DiamondTrap(string name)
 	cout << "DiamondTrap: Counstructor Called" << endl;
 	this->name = name;
 	ClapTrap::name = name.append("_clap_name");
-	this->hitPoints = FragTrap::hitPoints;
-	this->energyPoints = ScavTrap::energyPoints;
-	this->attackDamage = FragTrap::attackDamage;
+	ClapTrap::hitPoints = FragTrap::hitPoints;
+	ClapTrap::energyPoints = ScavTrap::energyPoints;
+	ClapTrap::attackDamage = FragTrap::attackDamage;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &diamondtrap): ClapTrap(), ScavTrap(), FragTrap()
@@ -34,9 +34,9 @@ DiamondTrap &DiamondTrap::operator = (const DiamondTrap &diamondtrap)
 		return (*this);
 	this->ClapTrap::name = diamondtrap.ClapTrap::name;
 	this->name = diamondtrap.name;
-	this->hitPoints = diamondtrap.hitPoints;
-	this->energyPoints = diamondtrap.energyPoints;
-	this->attackDamage = diamondtrap.attackDamage;
+	ClapTrap::hitPoints = diamondtrap.ClapTrap::hitPoints;
+	ClapTrap::energyPoints = diamondtrap.ClapTrap::energyPoints;
+	ClapTrap::attackDamage = diamondtrap.ClapTrap::attackDamage;
 	return (*this);
 }
 
@@ -52,5 +52,5 @@ void	DiamondTrap::whoAmI(void)
 
 void	DiamondTrap::getStats(void)
 {
-	cout << name << ": HP - " << hitPoints << " ATK - " << attackDamage << " EP - " << energyPoints << endl; 
+	cout << name << ": HP - " << ClapTrap:: hitPoints << " ATK - " << ClapTrap::attackDamage << " EP - " << ClapTrap::energyPoints << endl; 
 }
