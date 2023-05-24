@@ -2,8 +2,8 @@
 
 std::string	trunc_str(std::string str)
 {
-	if (str.length() > 9)
-		return (str.substr(0, 8).append("."));
+	if (str.length() > 10)
+		return (str.substr(0, 9).append("."));
 	return (str);
 }
 
