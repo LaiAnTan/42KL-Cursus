@@ -23,4 +23,4 @@ clean :
 
 re : clean all 
 
-.PHONY: all compile run clean fclean re $(NAME)
+.PHONY: all compile run clean re $(NAME)
