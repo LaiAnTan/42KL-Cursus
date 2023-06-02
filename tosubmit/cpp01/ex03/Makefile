@@ -1,4 +1,4 @@
-SRCS = main.cpp			\
+SRCS =	main.cpp		\
 		HumanA.cpp		\
 		HumanB.cpp		\
 		Weapon.cpp		\

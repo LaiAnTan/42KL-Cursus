@@ -1,4 +1,4 @@
-SRCS = main.cpp			\
+SRCS =	main.cpp		\
 		Zombie.cpp		\
 		zombieHorde.cpp	\
 
@@ -13,7 +13,7 @@ all : $(NAME)
 $(NAME) : compile
 
 compile :
-	@g++ $(FLAGS) $(SRCS) -o $(NAME)
+	@g++ $(FLAGS) $(SRCS) -o $(NAME) -fsanitize=address
 
 run :
 	@./$(NAME) $(PARAMS)

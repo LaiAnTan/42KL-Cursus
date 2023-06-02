@@ -1,6 +1,6 @@
-SRCS = main.cpp			\
+SRCS =	main.cpp	\
 
-NAME = HITHISISBRAIN
+NAME = hithisisbrain
 
 PARAMS = 
 
