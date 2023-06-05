@@ -2,7 +2,7 @@
 
 #define FRAGTRAP_HPP
 
-#include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 
 #include <string>
 
