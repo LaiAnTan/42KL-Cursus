@@ -14,7 +14,7 @@ all : $(NAME)
 $(NAME) : compile
 
 compile :
-	@g++ $(FLAGS) $(SRCS) -o $(NAME)
+	@g++ $(FLAGS) $(SRCS) -o $(NAME) -fsanitize=address
 
 run :
 	@./$(NAME) $(PARAMS)

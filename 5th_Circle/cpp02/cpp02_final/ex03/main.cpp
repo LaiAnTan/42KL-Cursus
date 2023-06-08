@@ -11,7 +11,7 @@ int main( void )
 	Point	a;
 	Point	b(5, 5);
 	Point	c(0, 10);
-	Point	x(2, 3);
+	Point	x(3, 8);
 
 	cout << "Point 1: " << a << endl;
 	cout << "Point 2: " << b << endl;

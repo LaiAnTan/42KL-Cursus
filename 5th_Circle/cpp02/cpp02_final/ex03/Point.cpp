@@ -16,7 +16,10 @@ Point::Point(const Point &point)
 
 Point &Point::operator = (const Point &point)
 {
-	(void) point;
+	if (this == &point)
+		return (*this);
+	this->x = point.getX();
+	this->y = point.getY();
 	return (*this);
 }
 

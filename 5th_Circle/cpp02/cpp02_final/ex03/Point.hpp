@@ -18,8 +18,8 @@ class Point
 		Fixed const &getX() const;
 		Fixed const &getY() const;
 	private:
-		Fixed const	x;
-		Fixed const	y;
+		Fixed	x;
+		Fixed	y;
 };
 
 ostream &operator << (ostream &outs, const Point &point);

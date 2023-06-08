@@ -15,7 +15,7 @@ bool	isEqual(Point const &a, Point const &b)
 bool	bsp(Point const a, Point const b, Point const c, Point const point)
 {
 	if (isEqual(a, point) == true || isEqual(b, point) == true || isEqual(c, point) == true)
-		return (true);
+		return (false);
 	
 	Fixed	i(((b.getY() - c.getY()) * (point.getX() - c.getX()) + (c.getX() - b.getX()) * (point.getY() - c.getY())) / ((b.getY() - c.getY()) * (a.getX() - c.getX()) + (c.getX() - b.getX()) * (a.getY() - c.getY())));
 	Fixed	j(((c.getY() - a.getY()) * (point.getX() - c.getX()) + (a.getX() - c.getX()) * (point.getY() - c.getY())) / ((b.getY() - c.getY()) * (a.getX() - c.getX()) + (c.getX() - b.getX()) * (a.getY() - c.getY())));
