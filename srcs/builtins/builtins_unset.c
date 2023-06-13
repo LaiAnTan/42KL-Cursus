@@ -1,12 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins_unset.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:32:03 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:48:07 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
-
-/*
-function for the unset command in bash
-locates the variable specified and then deletes it from the linked list of env variables
-handles "_" not being able to be unset
-*/
-int builtin_unset(char **args, t_data *data)
+int	builtin_unset(char **args, t_data *data)
 {
 	int		i;
 	t_list	*node;
@@ -19,7 +25,7 @@ int builtin_unset(char **args, t_data *data)
 		if (ft_strcmp(args[i], "_") == 0)
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		node = find_var(lst, args[i]);
 		if (node != NULL)

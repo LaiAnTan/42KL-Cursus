@@ -1,11 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirection_helpers.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:37:03 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:58:33 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
-/*
-function to check to if a string is a redirection symbol
-*/
-int		is_redirect(char *arg)
+int	is_redirect(char *arg)
 {
-	if (ft_strcmp(arg, ">") == 0 || ft_strcmp(arg, ">>") == 0 
+	if (ft_strcmp(arg, ">") == 0 || ft_strcmp(arg, ">>") == 0
 		|| ft_strcmp(arg, "<") == 0 || ft_strcmp(arg, "<<") == 0)
 	{
 		return (1);
@@ -13,10 +22,7 @@ int		is_redirect(char *arg)
 	return (0);
 }
 
-/*
-function to check if a command (array of stringsg) contains a redirection symbol
-*/
-int		contains_redirect(char **args)
+int	contains_redirect(char **args)
 {
 	int	i;
 
@@ -30,10 +36,7 @@ int		contains_redirect(char **args)
 	return (0);
 }
 
-/*
-function to get the type of redirection that is passed into it
-*/
-int		get_redirect_type(char *arg)
+int	get_redirect_type(char *arg)
 {
 	if (!is_redirect(arg))
 		return (0);

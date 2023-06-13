@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_string_1.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:26 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:55:03 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
 int	is_numeric(char *str)
 {
-
 	while (*str != '\0')
 	{
-		if ((*str < '0' || *str > '9'))
+		if (*str < '0' || *str > '9')
 			return (0);
 		str++;
 	}
@@ -29,10 +40,9 @@ int	ft_strcmp(char *s1, char *s2)
 	int		i;
 
 	i = 0;
-	// maybe i should include a failswitch as well~
 	if (!s1 || !s2)
 		return (!(!s1 && !s2));
-	while ((s1[i] == s2[i]))
+	while (s1[i] == s2[i])
 	{
 		if (s1[i] == '\0')
 			return (0);
@@ -43,17 +53,16 @@ int	ft_strcmp(char *s1, char *s2)
 
 // s1 IS THE FULL STRING, s2 IS TO MATCH
 // s1 IS PATH=ABCDEF, s2 is $PATH
+
 int	ft_strcmp_equals(char *s1, char *s2)
 {
 	int		i;
 
 	i = 0;
 	while ((s1[i] == s2[i]) && s1[i] && s2[i])
-	{
 		++i;
-	}
 	if (s1[i] == '=' && s2[i] == '\0')
-		return 0;
+		return (0);
 	return (s1[i] - s2[i]);
 }
 

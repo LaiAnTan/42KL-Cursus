@@ -1,12 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cshi-xia <cshi-xia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:30:54 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 17:34:27 by cshi-xia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
 
-/*
-initializes the data structure that stores all the data required by the program
-converts the environment variables into a linked list and stores it
-tores the current working directory
-intializes 2 termios structures for later use
-*/
-int init_data(t_data *data, char **envp)
+int	init_data(t_data *data, char **envp)
 {
 	data->stdin_backup = dup(STDIN_FILENO);
 	data->stdout_backup = dup(STDOUT_FILENO);
@@ -17,14 +23,10 @@ int init_data(t_data *data, char **envp)
 	data->attr = malloc(sizeof(struct termios) * 2);
 	data->last_exit = 0;
 	tcgetattr(STDIN_FILENO, &data->attr->def_attributes);
-	tcgetattr(STDIN_FILENO, &data->attr->mod_attributes);
 	rebuild_envp(data);
 	return (1);
 }
 
-/*
-function that handles reading user input and history
-*/
 int	handle_line(t_data *data)
 {
 	char	*line;
@@ -44,16 +46,13 @@ int	handle_line(t_data *data)
 		return (1);
 	}
 	else
-		exit(0); // handle ctrl + D
+		exit(reset_and_exit(&data->attr->def_attributes, 0));
 }
 
-/*
-debug function for printing commands
-*/
 void	print_parsed(t_list *amogus)
 {
-	t_list *iter;
 	int		iter_count;
+	t_list	*iter;
 
 	iter_count = 1;
 	iter = amogus;
@@ -61,7 +60,8 @@ void	print_parsed(t_list *amogus)
 	{
 		printf("<Cmd %d>\n", iter_count);
 		for (int i = 0; iter->cmd.cmd[i]; ++i)
-			printf("%d | %s | %d\n", i, iter->cmd.cmd[i], ft_strlen(iter->cmd.cmd[i]));
+			printf("%d | %s | %d\n", i,
+				iter->cmd.cmd[i], ft_strlen(iter->cmd.cmd[i]));
 		iter = iter->next;
 		++iter_count;
 	}
@@ -75,40 +75,41 @@ void	print_double(char **stuff)
 	}
 }
 
-void	replace_dollar(t_data *data);
-
-int main(int argc, char **argv, char **envp)
+void	cleanup(t_data *data)
 {
-	(void) argv;
-	t_data data;
+	dup2(data->stdin_backup, STDIN_FILENO);
+	dup2(data->stdout_backup, STDOUT_FILENO);
+	if (data->cmds)
+		ft_lstfree(&data->cmds);
+	if (data->line)
+		free(data->line);
+}
 
+int	main(int argc, char **argv, char **envp)
+{
+	t_data			data;
+
+	(void)argv;
 	if (argc != 1)
 		return (0);
 	init_data(&data, envp);
-	modify_attr(&data);
+	tcgetattr(STDOUT_FILENO, &data.attr->mod_attributes);
+	data.attr->mod_attributes.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &data.attr->mod_attributes);
 	while (1)
 	{
 		signal(SIGINT, new_line_handler);
 		signal(SIGQUIT, SIG_IGN);
 		if (!handle_line(&data))
-			continue;
+			continue ;
 		replace_dollar(&data);
-
 		lexer(&data);
-		print_double(data.tokens);
-
 		parser(&data);
-		print_parsed(data.cmds);
-
-		run_cmd(&data);
-		dup2(data.stdin_backup, STDIN_FILENO);
-		dup2(data.stdout_backup, STDOUT_FILENO);
 		if (data.cmds)
-			ft_lstfree(&data.cmds);
-		if (data.line)
-			free(data.line);
+			run_cmd(&data);
+		cleanup(&data);
 	}
 	if (data.vars)
 		ft_lstfree(&data.vars);
-	return (0);
+	return (reset_and_exit(&data.attr->def_attributes, 0));
 }

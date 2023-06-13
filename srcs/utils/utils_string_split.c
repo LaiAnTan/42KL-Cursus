@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_string_split.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:41 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:54:19 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
 int	countwords(char *s, char c)
@@ -51,7 +63,7 @@ char	**insertwords(char **strs, char *s, char c, int wordcount)
 			|| ((s[start] == c) && (s[start - 1] == c)) || (s[start] == c))
 		{
 			start++;
-			if ((s[start] == '\0'))
+			if (s[start] == '\0')
 				return (strs);
 		}
 		strs[j] = ft_substr(s, start, start + countletters(s, c, start) - 1);
@@ -60,7 +72,6 @@ char	**insertwords(char **strs, char *s, char c, int wordcount)
 	}
 	return (strs);
 }
-
 
 static char	**ft_singlevalues(void)
 {
@@ -88,4 +99,3 @@ char	**ft_split(char *s, char c)
 	strs[words] = NULL;
 	return (strs);
 }
-

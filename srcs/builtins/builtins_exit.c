@@ -1,13 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins_exit.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cshi-xia <cshi-xia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:52 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 17:32:13 by cshi-xia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
-/*
-function for the exit command in bash
-handles more than 2 arguments
-handles no arguments exiting with code 0
-handles non numeric arguments
-handles arguments with values larger than 255 (max exit code)
-*/
-int builtin_exit(char **args)
+extern struct termios	saved;
+
+int	reset_and_exit(struct termios *saved, int exit_code)
+{
+	reset_attr(saved);
+	exit(exit_code);
+}
+
+int	builtin_exit(t_data *data, char **args)
 {
 	int		exit_code;
 
@@ -28,6 +41,5 @@ int builtin_exit(char **args)
 	while (exit_code >= 256)
 		exit_code = exit_code - 256;
 	printf("process exited with code %d\n", exit_code);
-	exit(exit_code);
-	return (exit_code);
+	return (reset_and_exit(&data->attr->def_attributes, exit_code));
 }

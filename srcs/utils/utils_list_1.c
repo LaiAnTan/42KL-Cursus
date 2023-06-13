@@ -1,20 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_list_1.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:20 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:50:05 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
-t_list *ft_lstnew_env(char *var)
+t_list	*ft_lstnew_env(char *var)
 {
-	t_list *list = (t_list *) malloc (sizeof(t_list));
+	t_list	*list;
+
+	list = (t_list *) malloc (sizeof(t_list));
 	list ->env.str = var;
 	list ->env.printed = 0;
-	list ->cmd.cmd= NULL;
+	list ->cmd.cmd = NULL;
 	list ->next = NULL;
 	list->in_fd = -1;
 	list->out_fd = -1;
 	return (list);
 }
 
-t_list *ft_lstnew_cmd(char **cmd)
+t_list	*ft_lstnew_cmd(char **cmd)
 {
-	t_list *list = (t_list *) malloc (sizeof(t_list));
+	t_list	*list;
+
+	list = (t_list *) malloc (sizeof(t_list));
 	list ->env.str = NULL;
 	list ->env.printed = 0;
 	list ->cmd.cmd = cmd;
@@ -42,14 +58,14 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 	else
 	{
-		ft_lstlast(*lst) -> next = new;
+		ft_lstlast(*lst)-> next = new;
 	}
 }
 
 void	ft_lstprint_env(t_list *lst)
 {
-	t_list *node;
-	
+	t_list	*node;
+
 	node = lst;
 	while (node != NULL)
 	{
@@ -57,4 +73,3 @@ void	ft_lstprint_env(t_list *lst)
 		node = node->next;
 	}
 }
-

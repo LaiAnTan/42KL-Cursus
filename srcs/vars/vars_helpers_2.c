@@ -1,8 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vars_helpers_2.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:13 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:52:39 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
-/*
-function that converts the linked list of env variables into a 2d array inside data
-*/
 void	rebuild_envp(t_data *data)
 {
 	int		i;
@@ -27,15 +36,11 @@ void	rebuild_envp(t_data *data)
 	lst = head;
 }
 
-/*
-function that converts the envp array of strings into a linked list
-*/
 t_list	*set_env(char **envp)
 {
 	int		i;
 	t_list	*vars;
 	t_list	*node;
-
 
 	i = 0;
 	vars = NULL;

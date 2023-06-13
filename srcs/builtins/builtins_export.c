@@ -1,12 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins_export.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:55 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:46:29 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
-/*
-function to print an env variable but with "declare -x" in front
-*/
-void	display_export_line(t_list *node)
+static void	display_export_line(t_list *node)
 {
-	int i;
-	int equal_pos;
+	int		i;
+	int		equal_pos;
 
 	i = 0;
 	equal_pos = get_equal_pos(node);
@@ -24,11 +33,7 @@ void	display_export_line(t_list *node)
 		write(1, node->env.str, ft_strlen(node->env.str));
 }
 
-/*
-function to handle when export is called without arguments
-prints env variables in ascending order
-*/
-void	print_asc_export(t_list *lst)
+static void	print_asc_export(t_list *lst)
 {
 	int		lst_size;
 	t_list	*curr_node;
@@ -49,7 +54,8 @@ void	print_asc_export(t_list *lst)
 			smallest_node = smallest_node->next;
 		while (curr_node != NULL)
 		{
-			if ((curr_node->env.str[0] < smallest_node->env.str[0]) && curr_node->env.printed == 0)
+			if ((curr_node->env.str[0] < smallest_node->env.str[0])
+				&& curr_node->env.printed == 0)
 				smallest_node = curr_node;
 			curr_node = curr_node->next;
 		}
@@ -59,10 +65,7 @@ void	print_asc_export(t_list *lst)
 	}
 }
 
-/*
-function to check if the argument is a valid assignment statement in the form of "<name>=<value>""
-*/
-int	valid_assign(char *str)
+static int	valid_assign(char *str)
 {
 	if (str == NULL || *str == '=')
 		return (0);
@@ -76,10 +79,7 @@ int	valid_assign(char *str)
 	return (0);
 }
 
-/*
-function to get the variable name from an assignment statement
-*/
-char	*get_var_name(char *str)
+static char	*get_var_name(char *str)
 {
 	int		i;
 	int		j;
@@ -89,7 +89,7 @@ char	*get_var_name(char *str)
 	j = 0;
 	while (str[i] != '=')
 		i++;
-	if (i == ft_strlen(str)) //failsafe
+	if (i == ft_strlen(str))
 		return (NULL);
 	var_name = (char *) malloc (sizeof(char) * (i + 1));
 	while (j < i)
@@ -101,15 +101,9 @@ char	*get_var_name(char *str)
 	return (var_name);
 }
 
-/*
-function for the export command in bash
-locates the variable and then either adds it to the end of the linked list of env variables
-or updates the value of an existing variable
-handles no arguments
-*/
 int	builtin_export(char **args, t_data *data)
 {
-	int i;
+	int		i;
 	char	*var_name;
 	t_list	*lst;
 	t_list	*node;

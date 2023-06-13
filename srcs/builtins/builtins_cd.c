@@ -1,19 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins_cd.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:45 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:57:34 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
-/*
-thou shall regret asking me to do documentation
-
-function for the cd command in bash
-handles the changing in directory and 
-  - symbol => is broken, cd - is broken 
-  ~ symbol => goes back to the directory stated in $HOME
-*/
 int	builtin_cd(char **args, t_data *data)
 {
-	t_list		*node;
-
 	int			size;
 	char		*cd_path;
+	t_list		*node;
 
 	size = count_2d_array(args);
 	cd_path = NULL;
@@ -25,7 +28,7 @@ int	builtin_cd(char **args, t_data *data)
 		if (node != NULL)
 			cd_path = ft_strdup(get_val(node));
 	}
-	else if (args[1][0] == '-') // wrong
+	else if (args[1][0] == '-')
 	{
 		cd_path = access_var(data, "OLDPWD");
 		if (ft_strlen(cd_path) == 0)
@@ -37,7 +40,6 @@ int	builtin_cd(char **args, t_data *data)
 	}
 	else
 		cd_path = ft_strdup(args[1]);
-
 	if (chdir(cd_path) == 0)
 	{
 		node = find_var(data->vars, "OLDPWD");
