@@ -13,9 +13,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 
 all : $(NAME)
 
-$(NAME) : compile
-
-compile :
+$(NAME) :
 	@g++ $(FLAGS) $(SRCS) -o $(NAME)
 
 run :
@@ -26,4 +24,4 @@ clean :
 
 re : clean all
 
-.PHONY: all compile run clean re $(NAME)
+.PHONY: all compile run clean re
