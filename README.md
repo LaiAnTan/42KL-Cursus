@@ -13,10 +13,10 @@
 |FDF              |:white_check_mark:|115     |
 |philo            |:white_check_mark:|100     |
 |minishell        |:white_check_mark:|pending |
-|cpp part 1       |:white_check_mark:|done    |
+|cpp part 1       |:white_check_mark:|100     |
 |netpractice      |:exclamation:     |pending |
 |minirt           |:exclamation:     |pending |
 |cpp part 2       |:exclamation:     |pending |
-|inception        |:x:               |not done|
 |webserv          |:x:               |not done|
+|inception        |:x:               |not done|
 |ft_transcendence |:x:               |not done|
