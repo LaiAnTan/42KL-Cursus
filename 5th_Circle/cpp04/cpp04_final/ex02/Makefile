@@ -12,12 +12,14 @@ PARAMS =
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
+FSAN = -fsanitize=address
+
 all : $(NAME)
 
 $(NAME) : compile
 
 compile :
-	@g++ $(FLAGS) $(SRCS) -o $(NAME)
+	@g++ $(FLAGS) $(SRCS) -o $(NAME) $(FSAN)
 
 run :
 	@./$(NAME) $(PARAMS)
