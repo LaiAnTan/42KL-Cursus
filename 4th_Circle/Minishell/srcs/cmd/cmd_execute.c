@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_execute.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:34:03 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:58:50 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
-/*
-function that runs a single command in the node cmds
-goes through builtin commands first and then tries to exec it 
-*/
 int	single_command(t_data *data, t_list *cmds)
 {
 	int		exit_status;
@@ -23,10 +31,7 @@ int	single_command(t_data *data, t_list *cmds)
 	return (exit_status);
 }
 
-/*
-gets the number of commands in the cmd linked list
-*/
-int		get_command_count(t_data *data)
+int	get_command_count(t_data *data)
 {
 	t_list	*counter;
 	int		ret;
@@ -41,9 +46,6 @@ int		get_command_count(t_data *data)
 	return (ret);
 }
 
-/*
-gets the exit code of the last exited command
-*/
 int	get_exit_code(t_data *data, int exit_status)
 {
 	if (WIFEXITED(exit_status))
@@ -56,24 +58,10 @@ int	get_exit_code(t_data *data, int exit_status)
 	return (data->last_exit);
 }
 
-/*
-function that handles the execution of multiple commands, simulating the behaviour of piping
-
-1. the in_fd and out_fd of each command is set up
-- if the command is the first one being executed, the command output is the pipe input
-- if the command is the last one being executed, the command input is the previous pipe output
-- if the command is in between, command input is previous pipe output and command output is current pipe input
-
-2. a child process is forked and redirections are handled, and the input and output are redirected
-
-3. the parent process cleans up unused file descriptors and moves on to the next iteration of the loop
-
-4. waiting for death (apparently) of all child processes
-*/
 void	multiple_commands(t_data *data)
 {
-	t_list	*curr; // make it 7
-	int		dispatched; // shit 6 variables
+	t_list	*curr;
+	int		dispatched;
 	int		cmd_count;
 	int		pipe_storage[2];
 	int		prev_pipe;
@@ -105,7 +93,8 @@ void	multiple_commands(t_data *data)
 			signal(SIGQUIT, SIG_DFL);
 			if (!(dispatched == cmd_count - 1))
 				close(pipe_storage[0]);
-			if (handle_redirect(curr->cmd.cmd, &curr->in_fd, &curr->out_fd, data->stdin_backup) == -1)
+			if (handle_redirect(curr->cmd.cmd, &curr->in_fd,
+					&curr->out_fd, data->stdin_backup) == -1)
 				exit (1);
 			curr->cmd.cmd = get_cmd_args_without_redirect(curr->cmd.cmd);
 			dup2(curr->in_fd, STDIN_FILENO);
@@ -114,7 +103,7 @@ void	multiple_commands(t_data *data)
 		}
 		else
 		{
-			if (!dispatched) 
+			if (!dispatched)
 			{
 				close(pipe_storage[1]);
 				prev_pipe = pipe_storage[0];
@@ -143,30 +132,24 @@ void	multiple_commands(t_data *data)
 	}
 }
 
-/*
-function that handles the execution of one or many commands
-*/
 void	run_cmd(t_data *data)
 {
 	if (data->cmds->next)
 		multiple_commands(data);
 	else
 	{
-		if (handle_redirect(data->cmds->cmd.cmd, &data->cmds->in_fd, &data->cmds->out_fd, data->stdin_backup) == -1)
+		if (handle_redirect(data->cmds->cmd.cmd, &data->cmds->in_fd,
+				&data->cmds->out_fd, data->stdin_backup) == -1)
 		{
 			data->last_exit = 1;
 			return ;
 		}
-		data->cmds->cmd.cmd = get_cmd_args_without_redirect(data->cmds->cmd.cmd);
+		data->cmds->cmd.cmd = get_cmd_args_without_redirect
+			(data->cmds->cmd.cmd);
 		data->last_exit = single_command(data, data->cmds);
 	}
 }
 
-/*
-function that executes commands
-first gets all the potential paths, then checks if the process can access said path
-after that, the command is executed
-*/
 int	exec_cmd(t_data *data, char **cmd_paths, char **args, char *cmd)
 {
 	int		i;

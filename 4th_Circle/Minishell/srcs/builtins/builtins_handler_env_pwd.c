@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtins_handler_env_pwd.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:59 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:47:30 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
-/*
-function for the pwd command in bash
-prints the current working directory
-*/
 int	builtin_pwd(t_data *data)
 {
 	write(1, data->cwd, ft_strlen(data->cwd));
@@ -11,20 +19,12 @@ int	builtin_pwd(t_data *data)
 	return (0);
 }
 
-/*
-function for the env command in bash
-prints the linked list of env variables
-*/
-int builtin_env(t_data *data)
+int	builtin_env(t_data *data)
 {
 	ft_lstprint_env(data->vars);
 	return (0);
 }
 
-
-/*
-handler function for all builtin commands
-*/
 int	handle_builtins(char *cmd, char **args, t_data *data)
 {
 	if (!args || !*args)
@@ -42,7 +42,7 @@ int	handle_builtins(char *cmd, char **args, t_data *data)
 	else if (ft_strcmp(cmd, "env") == 0)
 		return (builtin_env(data));
 	else if (ft_strcmp(cmd, "exit") == 0)
-		return (builtin_exit(args));
+		return (builtin_exit(data, args));
 	else
 		return (-1);
 }

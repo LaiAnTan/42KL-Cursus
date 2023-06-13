@@ -17,6 +17,7 @@ Features:
 ## Dependencies
 - gcc with the readline library
 - GNU make
+
 ## Installation
 
 1. ```git clone https://github.com/LaiAnTan/42KL-Minishell``` to clone this repository
@@ -29,7 +30,11 @@ Features:
 - cshi-xia (@SphagettiCodes)
 - tlai-an (Myself)
 
+## Documentation
+Documentation can be found at https://hackmd.io/@laian/B1A0_LSPn
+
 ## Known issues
 
 1.	variables inside variables currently does not work, will not fix in the forseeable future
 	> ```export A="hi" export B="$A"``` and then ```echo $B``` 
+

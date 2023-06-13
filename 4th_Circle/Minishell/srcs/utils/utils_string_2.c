@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_string_2.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:32 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:56:33 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
 char	*ft_strdup(char *str)
@@ -7,7 +19,7 @@ char	*ft_strdup(char *str)
 
 	i = 0;
 	if (str == NULL)
-		return NULL;
+		return (NULL);
 	dest = (char *) malloc(sizeof(char) * (ft_strlen(str) + 1));
 	if (dest == NULL)
 		return (0);
@@ -76,11 +88,13 @@ char	*ft_append(char *s1, char *s2)
 char	*ft_trimstr(char *source, char to_trim)
 {
 	char	*ret;
-	int		start = 0;
-	int		end = ft_strlen(source) - 1;
+	int		start;
+	int		end;
 
 	if (!source)
-		return NULL;
+		return (NULL);
+	start = 0;
+	end = ft_strlen(source) - 1;
 	while (source[start] && source[start] == to_trim)
 		++start;
 	if (source[start] == '\0')
@@ -93,4 +107,18 @@ char	*ft_trimstr(char *source, char to_trim)
 	}
 	free(source);
 	return (ret);
+}
+
+int	search_symbol(char *line, int to_find)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == to_find)
+			return (i);
+		++i;
+	}
+	return (-1);
 }

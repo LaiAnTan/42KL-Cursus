@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:30:58 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:57:07 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
 
 int	find_next_cmd(char **tokens, int *index_pair)
@@ -8,16 +20,14 @@ int	find_next_cmd(char **tokens, int *index_pair)
 		return (0);
 	if (ft_strcmp(tokens[index_pair[1]], "|") == 0)
 		++index_pair[1];
-
 	index_pair[0] = index_pair[1];
 	i = index_pair[1];
-
 	while (tokens[i] != NULL)
 	{
 		if (ft_strcmp(tokens[i], "|") == 0)
 		{
 			index_pair[1] = i;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -25,15 +35,12 @@ int	find_next_cmd(char **tokens, int *index_pair)
 	return (0);
 }
 
-/*
-this will trim off the bunny ears in all of the tokens
-*/
 int	remove_ears(char **string)
 {
 	int	ret_val;
 	int	i;
 
-	ret_val = (*string)[0] == '\"' || (*string)[0] == '\'';
+	ret_val = ((*string)[0] == '\"' || (*string)[0] == '\'');
 	i = 0;
 	if ((*string)[0] == '\"')
 		(*string) = ft_trimstr((*string), '\"');
@@ -43,18 +50,9 @@ int	remove_ears(char **string)
 	return (ret_val);
 }
 
-/*
-this function extracts the command based on the index pair
-
-it will first append all the tokens found into a buffer
-then when it meets a space token --> ""
-
-im too lazy to write documentation already
-*/
 char	**extract_cmd(char **tokens, int *index_pair)
 {
 	int		j;
-	int		filled;
 	char	**cmd;
 	char	*str;
 
@@ -63,22 +61,19 @@ char	**extract_cmd(char **tokens, int *index_pair)
 	str = NULL;
 	cmd = malloc (sizeof(char *));
 	cmd[0] = NULL;
-	filled = 0;
 	while (j < index_pair[1])
 	{
-		if (ft_strlen(tokens[j]) == 0 && filled)
+		if (ft_strlen(tokens[j]) == 0)
 		{
 			cmd = realloc_append(cmd, str);
 			free(str);
 			str = NULL;
-			filled = 0;
 		}
 		else
 		{
 			if (remove_ears(&tokens[j]) == 0)
 				tokens[j] = ft_trimstr(tokens[j], ' ');
 			str = ft_append(str, tokens[j]);
-			filled = 1;
 		}
 		++j;
 	}
@@ -90,15 +85,6 @@ char	**extract_cmd(char **tokens, int *index_pair)
 	return (cmd);
 }
 
-/*
-this function will do two things
-
-1. seperate the token list according to the pipe token | 
-2. remove the space token --> ""
-
-it will then reconstruct a "command list" and return the list
-which is the final command that would be ran
-*/
 int	parser(t_data *data)
 {
 	int		index_pair[2];

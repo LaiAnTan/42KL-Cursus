@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_2d_array.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:18 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:54:28 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
 void	free_2d_array(char ***arr)
@@ -33,7 +45,7 @@ char	**realloc_append(char **src, char *str)
 	i = 0;
 	len = 0;
 	if (!str)
-		return src;
+		return (src);
 	while (src[len] != NULL)
 		len++;
 	new = (char **) malloc (sizeof(char *) * (len + 2));

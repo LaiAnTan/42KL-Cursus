@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_list_2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/13 10:31:23 by tlai-an           #+#    #+#             */
+/*   Updated: 2023/06/13 11:50:24 by tlai-an          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/minishell.h"
 
 void	ft_lst_nodefree(t_list *node)
 {
 	if (node->env.str != NULL)
 		free(node->env.str);
-	if(node->cmd.cmd != NULL)
+	if (node->cmd.cmd != NULL)
 		free_2d_array(&node->cmd.cmd);
 	free(node);
 }
@@ -44,9 +56,9 @@ void	ft_lstdel_env(t_list **lst, t_list *node)
 	return ;
 }
 
-int		ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (lst != NULL)
