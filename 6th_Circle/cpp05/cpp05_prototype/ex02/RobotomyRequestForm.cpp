@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 using std::cout;
 using std::endl;
@@ -43,5 +44,10 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void	RobotomyRequestForm::action()
 {
-	cout << "RobotomyRequestForm: " << getTarget() << " has been robotomized 50% of the time" << endl;
+	int random = std::rand() % 2;
+	
+	if (random == 1)
+		cout << "RobotomyRequestForm: " << getTarget() << " has been succesfully robotomized" << endl;
+	else
+		cout << "RobotomyRequestForm: Robotomization of " << getTarget() << " has failed" << endl;
 }

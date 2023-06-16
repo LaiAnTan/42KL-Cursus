@@ -33,6 +33,8 @@ int main(void)
 		workerA->executeForm(*formA);
 
 		workerB->signForm(*formB);
+		workerA->signForm(*formB);
+		workerA->executeForm(*formB);
 		workerA->executeForm(*formB);
 
 		workerA->signForm(*formC);
