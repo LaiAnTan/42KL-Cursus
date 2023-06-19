@@ -4,3 +4,4 @@ obj/*
 minishell
 .vscode
 .gitignore
+debug.txt

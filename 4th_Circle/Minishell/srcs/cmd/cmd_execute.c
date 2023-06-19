@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_execute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:34:03 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/06/13 11:58:50 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/06/19 20:09:29 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,12 @@ int	single_command(t_data *data, t_list *cmds)
 	{
 		cmd_paths = get_cmd_path(data, cmd);
 		exit_status = exec_cmd(data, cmd_paths, cmds->cmd.cmd, cmd);
-		free_2d_array(&cmd_paths);
+		if (cmd_paths)
+			free_2d_array(&cmd_paths);
 	}
 	if (cmd)
 		free(cmd);
 	return (exit_status);
-}
-
-int	get_command_count(t_data *data)
-{
-	t_list	*counter;
-	int		ret;
-
-	ret = 0;
-	counter = data->cmds;
-	while (counter)
-	{
-		++ret;
-		counter = counter->next;
-	}
-	return (ret);
 }
 
 int	get_exit_code(t_data *data, int exit_status)
@@ -58,90 +44,43 @@ int	get_exit_code(t_data *data, int exit_status)
 	return (data->last_exit);
 }
 
-void	multiple_commands(t_data *data)
+int	check_valid_pipes(t_data *data)
 {
-	t_list	*curr;
-	int		dispatched;
-	int		cmd_count;
-	int		pipe_storage[2];
-	int		prev_pipe;
-	int		status;
-	int		last_child_pid;
+	t_list	*cur;
 
-	dispatched = 0;
-	cmd_count = get_command_count(data);
-	curr = data->cmds;
-	while (dispatched < cmd_count)
+	cur = data->cmds;
+	while (cur)
 	{
-		if (!dispatched)
+		if (!cur->cmd.cmd)
 		{
-			pipe(pipe_storage);
-			curr->out_fd = pipe_storage[1];
+			data->last_exit = error_msg("minishell", NULL,
+					"syntax error near unexpected token", 2);
+			return (0);
 		}
-		else if (dispatched == cmd_count - 1)
-			curr->in_fd = prev_pipe;
-		else
-		{
-			curr->in_fd = prev_pipe;
-			pipe(pipe_storage);
-			curr->out_fd = pipe_storage[1];
-		}
-		last_child_pid = fork();
-		if (last_child_pid == 0)
-		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
-			if (!(dispatched == cmd_count - 1))
-				close(pipe_storage[0]);
-			if (handle_redirect(curr->cmd.cmd, &curr->in_fd,
-					&curr->out_fd, data->stdin_backup) == -1)
-				exit (1);
-			curr->cmd.cmd = get_cmd_args_without_redirect(curr->cmd.cmd);
-			dup2(curr->in_fd, STDIN_FILENO);
-			dup2(curr->out_fd, STDOUT_FILENO);
-			exit (single_command(data, curr));
-		}
-		else
-		{
-			if (!dispatched)
-			{
-				close(pipe_storage[1]);
-				prev_pipe = pipe_storage[0];
-			}
-			else if (dispatched == cmd_count - 1)
-				close(prev_pipe);
-			else
-			{
-				close(prev_pipe);
-				close(pipe_storage[1]);
-				prev_pipe = pipe_storage[0];
-			}
-			++dispatched;
-			curr = curr->next;
-		}
+		cur = cur->next;
 	}
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-	while (cmd_count)
-	{
-		waitpid(last_child_pid, &status, 0);
-		if (last_child_pid)
-			get_exit_code(data, status);
-		last_child_pid = 0;
-		--cmd_count;
-	}
+	return (1);
 }
 
 void	run_cmd(t_data *data)
 {
+	int	exit_status;
+
+	exit_status = 0;
 	if (data->cmds->next)
-		multiple_commands(data);
+	{
+		if (check_valid_pipes(data))
+			multiple_commands(data);
+	}
 	else
 	{
-		if (handle_redirect(data->cmds->cmd.cmd, &data->cmds->in_fd,
-				&data->cmds->out_fd, data->stdin_backup) == -1)
+		if (!data->cmds->cmd.cmd)
+			return ;
+		exit_status = handle_redirect(data->cmds->cmd.cmd,
+				data->cmds, data->stdin_backup);
+		if (exit_status == 1)
 		{
-			data->last_exit = 1;
+			data->last_exit = exit_status;
 			return ;
 		}
 		data->cmds->cmd.cmd = get_cmd_args_without_redirect
@@ -153,44 +92,26 @@ void	run_cmd(t_data *data)
 int	exec_cmd(t_data *data, char **cmd_paths, char **args, char *cmd)
 {
 	int		i;
-	int		status;
+	int		childpid;
 
 	i = 0;
 	rebuild_envp(data);
 	if (!cmd_paths)
-	{
-		printf("%s: No such file or directotry\n", cmd);
-		return (127);
-	}
+		return (error_msg(NULL, cmd, "No such file or directory", 127));
 	while (cmd_paths[i] != NULL)
 	{
 		if (args[0] != NULL)
 			free(args[0]);
 		args[0] = ft_strdup(cmd_paths[i]);
-		status = access(args[0], X_OK);
-		if (!status)
+		if (!(access(args[0], X_OK)))
 		{
-			if (!fork())
-			{
-				signal(SIGINT, SIG_DFL);
-				signal(SIGQUIT, SIG_DFL);
-				if (execve(cmd_paths[i], args, data->my_envp) == -1)
-				{
-					free_2d_array(&cmd_paths);
-					free_2d_array(&args);
-					exit(errno);
-				}
-			}
+			childpid = fork();
+			if (!childpid)
+				exec_child(cmd_paths[i], args, data->my_envp);
 			else
-			{
-				signal(SIGINT, SIG_IGN);
-				signal(SIGQUIT, SIG_IGN);
-				waitpid(-1, &status, 0);
-				return (get_exit_code(data, status));
-			}
+				return (exec_parent(data, childpid));
 		}
 		i++;
 	}
-	printf("%s: command not found\n", cmd);
-	return (127);
+	return (error_msg(NULL, cmd, "No such file or directory", 127));
 }

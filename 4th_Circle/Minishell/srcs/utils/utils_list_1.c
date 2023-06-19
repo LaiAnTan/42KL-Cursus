@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:31:20 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/06/13 11:50:05 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:04:52 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	ft_lstprint_env(t_list *lst)
 	node = lst;
 	while (node != NULL)
 	{
-		printf("%s\n", node->env.str);
+		if (get_equal_pos(node) != -1)
+			printf("%s\n", node->env.str);
 		node = node->next;
 	}
 }
