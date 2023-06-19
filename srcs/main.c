@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshi-xia <cshi-xia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:30:54 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/06/13 17:34:27 by cshi-xia         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:11:02 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,29 @@ int	init_data(t_data *data, char **envp)
 	return (1);
 }
 
+int	check_ears(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->line[i])
+	{
+		if (data->line[i] == '\"' || data->line[i] == '\'')
+		{
+			i = bunny_ears(data->line, i, data->line[i]);
+			if (i == -1)
+			{
+				data->last_exit = 2;
+				free(data->line);
+				return (error_msg("syntax error", NULL,
+						"unexpected EOF while looking for matching symbol", 0));
+			}
+		}
+		++i;
+	}
+	return (1);
+}
+
 int	handle_line(t_data *data)
 {
 	char	*line;
@@ -43,46 +66,37 @@ int	handle_line(t_data *data)
 		rl_redisplay();
 		data->line = ft_strdup(line);
 		free(line);
-		return (1);
+		return (check_ears(data));
 	}
 	else
 		exit(reset_and_exit(&data->attr->def_attributes, 0));
 }
 
-void	print_parsed(t_list *amogus)
+int	valid_cmds(t_data *data)
 {
-	int		iter_count;
-	t_list	*iter;
+	int		i;
+	t_list	*curr;
 
-	iter_count = 1;
-	iter = amogus;
-	while (iter)
+	i = 0;
+	curr = data->cmds;
+	while (curr)
 	{
-		printf("<Cmd %d>\n", iter_count);
-		for (int i = 0; iter->cmd.cmd[i]; ++i)
-			printf("%d | %s | %d\n", i,
-				iter->cmd.cmd[i], ft_strlen(iter->cmd.cmd[i]));
-		iter = iter->next;
-		++iter_count;
+		while (curr->cmd.cmd && curr->cmd.cmd[i] != NULL)
+		{
+			if (is_redirect(curr->cmd.cmd[i]) == 1
+				&& (is_redirect(curr->cmd.cmd[i + 1]) == 1
+					|| curr->cmd.cmd[i + 1] == NULL))
+			{
+				data->last_exit = 2;
+				return (error_msg(NULL, "minishell",
+						"syntax error near unexpected token", 2));
+			}
+			++i;
+		}
+		i = 0;
+		curr = curr->next;
 	}
-}
-
-void	print_double(char **stuff)
-{
-	for (int i = 0; stuff[i]; ++i)
-	{
-		printf("%s - len = %d\n", stuff[i], ft_strlen(stuff[i]));
-	}
-}
-
-void	cleanup(t_data *data)
-{
-	dup2(data->stdin_backup, STDIN_FILENO);
-	dup2(data->stdout_backup, STDOUT_FILENO);
-	if (data->cmds)
-		ft_lstfree(&data->cmds);
-	if (data->line)
-		free(data->line);
+	return (0);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -105,7 +119,7 @@ int	main(int argc, char **argv, char **envp)
 		replace_dollar(&data);
 		lexer(&data);
 		parser(&data);
-		if (data.cmds)
+		if (valid_cmds(&data) == 0)
 			run_cmd(&data);
 		cleanup(&data);
 	}

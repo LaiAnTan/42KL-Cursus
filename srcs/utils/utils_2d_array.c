@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2d_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:31:18 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/06/13 11:54:28 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/06/19 16:33:35 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_2d_array(char ***arr)
 	int	i;
 
 	i = 0;
+	if (*arr == NULL)
+		return ;
 	while ((*arr)[i] != NULL)
 	{
 		free((*arr)[i]);
@@ -31,6 +33,8 @@ int	count_2d_array(char **e)
 	int	i;
 
 	i = 0;
+	if (!e)
+		return (0);
 	while (e[i])
 		++i;
 	return (i);
@@ -46,8 +50,7 @@ char	**realloc_append(char **src, char *str)
 	len = 0;
 	if (!str)
 		return (src);
-	while (src[len] != NULL)
-		len++;
+	len = count_2d_array(src);
 	new = (char **) malloc (sizeof(char *) * (len + 2));
 	if (!new)
 		return (NULL);

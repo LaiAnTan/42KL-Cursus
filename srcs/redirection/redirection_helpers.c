@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_helpers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlai-an <tlai-an@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:37:03 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/06/13 11:58:33 by tlai-an          ###   ########.fr       */
+/*   Updated: 2023/06/19 16:35:39 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,26 @@ int	get_redirect_type(char *arg)
 	if (ft_strcmp(arg, "<<") == 0)
 		return (4);
 	return (-1);
+}
+
+int	count_args_without_redirect(char **args)
+{
+	int		i;
+	int		len;
+	int		count;
+
+	i = 0;
+	len = count_2d_array(args);
+	count = 0;
+	while (i < len)
+	{
+		if (is_redirect(args[i]))
+			i += 2;
+		else
+		{
+			++i;
+			++count;
+		}
+	}
+	return (count);
 }

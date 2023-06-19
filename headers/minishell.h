@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cshi-xia <cshi-xia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tlai-an <tlai-an@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:07:03 by tlai-an           #+#    #+#             */
-/*   Updated: 2023/06/13 17:34:52 by cshi-xia         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:35:55 by tlai-an          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 # define MINISHELL_H
 
+# include <stdio.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <sys/wait.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
@@ -82,31 +82,44 @@ typedef struct s_data
 
 void	replace_dollar(t_data *data);
 
+int		is_token(char c);
 int		lexer(t_data *data);
 int		parser(t_data *data);
-
-int		is_token(char c);
+int		bunny_ears(char *line, int stop, int to_match);
 
 /* Redirection */
 
 int		is_redirect(char *arg);
 int		get_redirect_type(char *arg);
 int		contains_redirect(char **args);
-int		handle_redirect(char **args, int *in_fd, int *out_fd, int std_in);
+int		count_args_without_redirect(char **args);
+int		handle_redirect(char **args, t_list *cur, int std_in);
 
 int		handle_redir_input(char *filename, int *in_fd);
 int		handle_redir_output(char *filename, int *out_fd);
-int		handle_redir_input_heredoc(char *delimiter, int *in_fd, int std_in);
 int		handle_redir_output_append(char *filename, int *out_fd);
+int		handle_redir_input_heredoc(char *delimiter, int *in_fd, int std_in);
 
 char	**get_cmd_args_without_redirect(char **args);
 
 /* Command Processing */
 
 void	run_cmd(t_data *data);
+void	multiple_commands(t_data *data);
+void	exec_child(char *cmd_path, char **args, char **my_envp);
+
+int		exec_parent(t_data *data, int pid);
+int		get_command_count(t_data *data);
+int		single_command(t_data *data, t_list *cmds);
+int		get_exit_code(t_data *data, int exit_status);
+int		exec_cmd(t_data *data, char **cmd_paths, char **args, char *cmd);
+
+/* Command Path Handling */
+
 void	append_stuff(char **paths, char *cmd);
 
-int		exec_cmd(t_data *data, char **cmd_paths, char **args, char *cmd);
+int		is_absolute(char *str);
+int		is_executable(char *str);
 
 char	*trim_path(char *path);
 char	*get_path_envp(t_data *data);
@@ -131,6 +144,8 @@ void	reset_attr(struct termios *saved);
 void	new_line_handler(int sig_code);
 
 /* Builtin command functions */
+
+int		print_asc_export(t_list *lst);
 
 int		builtin_echo(char **args);
 int		builtin_pwd(t_data *data);
@@ -175,7 +190,11 @@ char	*ft_substr(char *s, unsigned int start, unsigned int end);
 char	**ft_split(char *s, char c);
 char	**realloc_append(char **src, char *str);
 
-/* Exit */
+/* Exit & Errors */
+
+void	cleanup(t_data *data);
+
+int		error_msg(char *cmd, char *context, char *msg, int code);
 
 int		reset_and_exit(struct termios *saved, int exit_code);
 
