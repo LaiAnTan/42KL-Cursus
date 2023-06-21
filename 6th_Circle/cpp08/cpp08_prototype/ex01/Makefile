@@ -1,7 +1,7 @@
 SRCS =	main.cpp	\
 		Span.cpp	\
 
-NAME = easyfind
+NAME = span
 
 PARAMS =
 
