@@ -9,15 +9,15 @@
 #include <iterator>
 #include <algorithm>
 
-template <typename T, class container = std::deque<T> > // default = deque (if unspecified)
-class MutantStack: public std::stack<T, container> //inheriting overload of stack to specify underlying container
+template <typename T>
+class MutantStack: public std::stack<T>
 {
 	public:
-		typedef typename container::iterator iterator;
+		typedef typename std::stack<T>::container_type::iterator iterator; //container_type specifies the type of underlying container in stack
 
 		MutantStack();
-		MutantStack(const MutantStack<T, container> &mutantstack);
-		MutantStack<T, container> &operator = (const MutantStack<T, container> &mutantstack);
+		MutantStack(const MutantStack<T> &mutantstack);
+		MutantStack<T> &operator = (const MutantStack<T> &mutantstack);
 		~MutantStack();
 
 		iterator	begin(void);

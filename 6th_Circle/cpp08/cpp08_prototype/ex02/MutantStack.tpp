@@ -6,21 +6,21 @@
 using std::cout;
 using std::endl;
 
-template <typename T, typename container>
-MutantStack<T, container>::MutantStack()
+template <typename T>
+MutantStack<T>::MutantStack()
 {
 	cout << "MutantStack: Default constructor called" << endl;
 }
 
-template <typename T, typename container>
-MutantStack<T, container>::MutantStack(const MutantStack<T, container> &mutantstack)
+template <typename T>
+MutantStack<T>::MutantStack(const MutantStack<T> &mutantstack)
 {
 	cout << "MutantStack: Copy constructor called" << endl;
 	*this = mutantstack;
 }
 
-template <typename T, typename container>
-MutantStack<T, container> &MutantStack<T, container>::operator = (const MutantStack<T, container> &mutantstack)
+template <typename T>
+MutantStack<T> &MutantStack<T>::operator = (const MutantStack<T> &mutantstack)
 {
 	cout << "MutantStack: Copy assignment operator called" << endl;
 	if (this == &mutantstack)
@@ -29,22 +29,22 @@ MutantStack<T, container> &MutantStack<T, container>::operator = (const MutantSt
 	return (*this);
 }
 
-template <typename T, typename container>
-MutantStack<T, container>::~MutantStack<T, container>()
+template <typename T>
+MutantStack<T>::~MutantStack<T>()
 {
 	cout << "MutantStack: Destructor called" << endl;
 }
 
 // returns iterator to the top of the stack
-template <typename T, typename container>
-typename container::iterator	MutantStack<T, container>::begin(void)
+template <typename T>
+typename std::stack<T>::container_type::iterator	MutantStack<T>::begin(void)
 {
 	return (this->c.begin());
 }
 
 // returns iterator to bottom of stack
-template <typename T, typename container>
-typename container::iterator	MutantStack<T, container>::end(void)
+template <typename T>
+typename std::stack<T>::container_type::iterator	MutantStack<T>::end(void)
 {
 	return (this->c.end());
 }
