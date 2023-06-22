@@ -36,18 +36,25 @@ void	resetExpression(t_expression &expr)
 
 int	parseExpression(RPN &rpn, char *line)
 {
+
 	std::string							s;
 	std::stringstream					l(line);
+
 	std::deque<std::string>				strings;
+
 	std::deque<std::string>::iterator	it1;
 	std::deque<std::string>::iterator	it2;
+
 	t_expression						expr;
 
-	while (std::getline(l, s, ' '))
+	bool								flag;
+
+	while (std::getline(l, s, ' ')) // split into tokens
 		strings.push_back(s);
 
-	it1 = strings.begin();
+	it1 = strings.begin(); // setup
 	it2 = it1 + 1;
+	flag = false;
 
 	while (it1 != strings.end()) // fucking tokenizer
 	{
@@ -58,6 +65,7 @@ int	parseExpression(RPN &rpn, char *line)
 			return (-1);
 		if (isValidNumber(*it2) == true)
 		{
+			flag = true;
 			expr.num2 = std::strtol((*it2).c_str(), NULL, 10);
 			expr.has_2_numbers = true;
 			++it2;
@@ -78,6 +86,8 @@ int	parseExpression(RPN &rpn, char *line)
 			return (-1);
 		rpn.insertExpression(expr);
 	}
+	if (!flag) // flag to check if the mandatory 2 numbers are present at the start of the sequence
+		return (-1);
 	return (0);
 }
 

@@ -30,8 +30,4 @@ class RPN
 		std::deque<t_expression>	expr_list;
 };
 
-t_expression	initExpressionStruct(int expr_type, int num1, int num2, bool has_2_numbers);
-
-
-
 #endif
