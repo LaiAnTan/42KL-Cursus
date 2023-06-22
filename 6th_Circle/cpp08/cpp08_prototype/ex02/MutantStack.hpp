@@ -4,33 +4,24 @@
 
 #define MUTANTSTACK_HPP
 
-#include <vector>
+#include <stack>
+#include <deque>
+#include <iterator>
 #include <algorithm>
 
-template <typename T, typename Iter>
-class MutantStack
+template <typename T, class container = std::deque<T> > // default = deque (if unspecified)
+class MutantStack: public std::stack<T, container> //inheriting overload of stack to specify underlying container
 {
 	public:
-		MutantStack(void);
-		MutantStack(const MutantStack &mutantstack);
-		MutantStack &operator = (const MutantStack &mutantstack);
+		typedef typename container::iterator iterator;
+
+		MutantStack();
+		MutantStack(const MutantStack<T, container> &mutantstack);
+		MutantStack<T, container> &operator = (const MutantStack<T, container> &mutantstack);
 		~MutantStack();
 
-		T		top(void);
-		void	empty(void);
-		size_t	size(void);
-
-		void	push(T element);
-		void	emplace(T element);
-		void	push_range(Iter &begin, Iter &end);
-		void	pop(void);
-		void	swap(MutantStack &toswap);
-
-		Iter	begin(void);
-		Iter	end(void);
-
-	private:
-		std::vector<T>	stack;
+		iterator	begin(void);
+		iterator	end(void);
 };
 
 #include "MutantStack.tpp"

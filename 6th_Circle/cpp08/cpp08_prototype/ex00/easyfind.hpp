@@ -15,7 +15,7 @@ class	NotFoundException: public exception
 		const char* what() const throw();
 };
 
-template <typename T> typename T::iterator	easyfind(T &container, int toFind);
+template <typename T, typename container> typename T::iterator	easyfind(T &container, int toFind);
 
 #include "easyfind.tpp"
 

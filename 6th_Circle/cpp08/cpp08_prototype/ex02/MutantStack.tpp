@@ -1,87 +1,50 @@
 #include "MutantStack.hpp"
 
-#include <vector>
+#include <iostream>
+#include <iterator>
 
-template <typename T, typename Iter>
-MutantStack<T, Iter>::MutantStack()
+using std::cout;
+using std::endl;
+
+template <typename T, typename container>
+MutantStack<T, container>::MutantStack()
 {
-
+	cout << "MutantStack: Default constructor called" << endl;
 }
 
-template <typename T, typename Iter>
-MutantStack<T, Iter>::MutantStack(const MutantStack &mutantstack)
+template <typename T, typename container>
+MutantStack<T, container>::MutantStack(const MutantStack<T, container> &mutantstack)
 {
-
+	cout << "MutantStack: Copy constructor called" << endl;
+	*this = mutantstack;
 }
 
-template <typename T, typename Iter>
-MutantStack<T, Iter> &MutantStack<T, Iter>::operator = (const MutantStack<T, Iter> &mutantstack)
+template <typename T, typename container>
+MutantStack<T, container> &MutantStack<T, container>::operator = (const MutantStack<T, container> &mutantstack)
 {
-	
+	cout << "MutantStack: Copy assignment operator called" << endl;
+	if (this == &mutantstack)
+		return (*this);
+	this = mutantstack;
+	return (*this);
 }
 
-template <typename T, typename Iter>
-MutantStack<T, Iter>::~MutantStack()
+template <typename T, typename container>
+MutantStack<T, container>::~MutantStack<T, container>()
 {
-
+	cout << "MutantStack: Destructor called" << endl;
 }
 
-template <typename T, typename Iter>
-T		MutantStack<T, Iter>::top(void)
+// returns iterator to the top of the stack
+template <typename T, typename container>
+typename container::iterator	MutantStack<T, container>::begin(void)
 {
-
+	return (this->c.begin());
 }
 
-template <typename T, typename Iter>
-void	MutantStack<T, Iter>::empty(void)
+// returns iterator to bottom of stack
+template <typename T, typename container>
+typename container::iterator	MutantStack<T, container>::end(void)
 {
-
-}
-
-template <typename T, typename Iter>
-size_t	MutantStack<T, Iter>::size(void)
-{
-
-}
-
-template <typename T, typename Iter>
-void	MutantStack<T, Iter>::push(T element)
-{
-
-}
-
-template <typename T, typename Iter>
-void	MutantStack<T, Iter>::emplace(T element)
-{
-
-}
-
-template <typename T, typename Iter>
-void	MutantStack<T, Iter>::push_range(Iter &begin, Iter &end)
-{
-
-}
-
-template <typename T, typename Iter>
-void	MutantStack<T, Iter>::pop(void)
-{
-
-}
-
-template <typename T, typename Iter>
-void	MutantStack<T, Iter>::swap(MutantStack &toswap)
-{
-
-}
-
-template <typename T, typename Iter>
-Iter	MutantStack<T, Iter>::begin(void)
-{
-
-}
-
-template <typename T, typename Iter>
-Iter	MutantStack<T, Iter>::end(void)
-{
-
+	return (this->c.end());
 }
