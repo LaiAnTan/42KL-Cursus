@@ -27,9 +27,16 @@ int	parseRates(BitcoinExchange &btc)
 	while (std::getline(data, line))
 	{
 		date = line.substr(0, 10);
-		value = line.substr(line.rfind(',') + 1);
-		if (isValidDate(date) 
-			&& isValidRate(value))
+		try
+		{
+			value = line.substr(line.rfind(',') + 1);
+		}
+		catch (const std::out_of_range &e)
+		{
+			std::cerr << "Error: No amount" << endl;
+			continue ;
+		}
+		if (isValidDate(date) && isValidRate(value))
 			btc.addRate(date, std::strtof(value.c_str(), NULL));
 	}
 	data.close();
@@ -65,10 +72,11 @@ int	parseInput(BitcoinExchange &btc, char *filename)
 			std::cerr << "Error: No amount" << endl;
 			continue ;
 		}
-		if (isValidDate(date) 
-			&& isValidAmount(value))
+		if (isValidDate(date) && isValidAmount(value))
 		{
 			price = btc.calculatePrice(date, std::strtof(value.c_str(), NULL));
+			if (price == -1)
+				continue ;
 			cout << date << " => " << value << " = " << price << endl;
 		}
 	}
