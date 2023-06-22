@@ -9,11 +9,6 @@
 using std::cout;
 using std::endl;
 
-bool strIsDigits(std::string str)
-{
-	return (str.find_first_not_of("0123456789") == std::string::npos);
-}
-
 int	parseRates(BitcoinExchange &btc)
 {
 	std::string		date;
