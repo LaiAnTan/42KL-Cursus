@@ -1,8 +1,10 @@
 #include "PmergeMe.hpp"
 
+#include <ctime>
 #include <vector>
-#include <iostream>
 #include <cstdlib>
+#include <iomanip>
+#include <iostream>
 
 using std::cerr;
 using std::cout;
@@ -37,8 +39,9 @@ int main(int argc, char **argv)
 		}
 	}
 	pm.insertNumbers(nums.begin(), nums.end());
-	cout << pm.getVec() << endl;
+	cout << "Before: " << pm.getVec() << endl;
+
 	pm.performFordJohnsonVec();
-	cout << pm.getVec() << endl;
-	
+	cout << "After:  " << pm.getVec() << endl;
+
 }
