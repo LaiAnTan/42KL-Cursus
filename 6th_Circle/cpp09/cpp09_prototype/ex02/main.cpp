@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-#include <ctime>
+#include <sys/time.h>
 #include <vector>
 #include <cstdlib>
 #include <iomanip>
@@ -17,6 +17,9 @@ bool	isValidNumber(std::string num)
 
 int main(int argc, char **argv)
 {
+	struct timeval	start;
+	struct timeval	end;
+
 	std::string			str;
 	std::vector<int>	nums;
 
@@ -39,10 +42,20 @@ int main(int argc, char **argv)
 		}
 	}
 	pm.insertNumbers(nums.begin(), nums.end());
-	cout << "Before: " << pm.getVec() << endl;
 
+	gettimeofday(&start, NULL);
 	pm.performFordJohnsonVec();
+	gettimeofday(&end, NULL);
+	pm.setElapsedVec((end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec));
+
+	// gettimeofday(&start, NULL);
+	// pm.performFordJohnsonLst();
+	// gettimeofday(&end, NULL);
+	// pm.setElapsedLst((end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec));
+
+	cout << "Before: " << nums << endl;
 	cout << "After:  " << pm.getVec() << endl;
-	cout << pm.isSortedVec() << endl;
+	cout << "Time to process a range of " << nums.size() << " elements with std::vector: " << pm.getElapsedVec() << " µs" << endl;
+	cout << "Time to process a range of " << nums.size() << " elements with std::list: " << pm.getElapsedLst() << " µs" << endl;
 
 }

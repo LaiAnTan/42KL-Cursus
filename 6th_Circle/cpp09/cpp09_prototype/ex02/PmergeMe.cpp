@@ -56,6 +56,26 @@ const std::list<int>	&PmergeMe::getLst(void)
 	return (lst);
 }
 
+void	PmergeMe::setElapsedVec(double time)
+{
+	elapsed_vec = time;
+}
+
+void	PmergeMe::setElapsedLst(double time)
+{
+	elapsed_lst = time;
+}
+
+double	PmergeMe::getElapsedVec(void)
+{
+	return (elapsed_vec);
+}
+
+double	PmergeMe::getElapsedLst(void)
+{
+	return (elapsed_lst);
+}
+
 bool	PmergeMe::isSortedVec(void)
 {
 	if (std::binary_search(vec.begin(), vec.end(), vec.front()) == true 
@@ -71,6 +91,8 @@ bool	PmergeMe::isSortedLst(void)
 		return (true);
 	return (false);
 }
+
+/*-------------------------Sorting---------------------------------------*/
 
 static void swap(std::pair<int, int> &pair)
 {
@@ -166,7 +188,7 @@ the number of elements is 2^(n) and when it is 2^(n+1) −1
 - therefore we can minimise the comparisons used by building an optimal binary insertion sequence
 - elements which do not match any jacobsthal number are put to the end to be inserted normally
 
-8) use binary sort to insert elements in the optimally sequenced smaller chain into the larger chain
+8) use binary search to insert elements in the optimally sequenced smaller chain into the larger chain
 9) done
 
 fml
@@ -190,15 +212,18 @@ void	PmergeMe::performFordJohnsonVec(void)
 	int		leftover = 0;
 	bool	has_leftover = false;
 
+	if (vec.size() == 1)
+		return ;
+
 	// handle leftover value in odd numbered sequence
 	if (vec.size() % 2 == 1) 
 	{
 		has_leftover = true;
-		leftover = *vec.end();
+		leftover = *(vec.end() - 1);
 		vec.pop_back();
 	}
 
-	// categorize into pairs & sort the pairs so that pair.first = smaller value && pair.second = larger value
+	// categorize into pairs & sort the pairs so that pair = (smaller, larger)
 	for (it1 = vec.begin(); it1 < vec.end(); it1 += 2)
 	{
 		pair = std::pair<int, int>(*it1, *(it1 + 1));
@@ -211,7 +236,7 @@ void	PmergeMe::performFordJohnsonVec(void)
 	sortPairs(pairs);
 	vec.clear();
 
-	// place all largest elements in s && smallest elements in pend
+	// place all largest elements in main chain && smallest elements in pend chain
 	for (it_pair = pairs.begin(); it_pair != pairs.end(); ++it_pair)
 	{
 		vec.push_back((*it_pair).second);
@@ -237,16 +262,18 @@ void	PmergeMe::performFordJohnsonVec(void)
 		++it2;
 	}
 
-	// binary search insert optimally sequenced pend into s
+	// binary search to insert optimally sequenced pend
 	for (it1 = pend.begin(); it1 < pend.end(); ++it1)
 		vec.insert(std::lower_bound(vec.begin(), vec.end(), *it1), *it1);
 
-	// binary search insert leftover into s
+	// binary search to insert leftover
 	if (has_leftover == true)
 		vec.insert(std::lower_bound(vec.begin(), vec.end(), leftover), leftover);
 
 	return ;
 }
+
+/*---------------------------End---------------------------------*/
 
 std::ostream &operator << (std::ostream &outs, std::vector<int> vec)
 {
