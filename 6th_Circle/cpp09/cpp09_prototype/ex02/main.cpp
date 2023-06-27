@@ -43,5 +43,6 @@ int main(int argc, char **argv)
 
 	pm.performFordJohnsonVec();
 	cout << "After:  " << pm.getVec() << endl;
+	cout << pm.isSortedVec() << endl;
 
 }

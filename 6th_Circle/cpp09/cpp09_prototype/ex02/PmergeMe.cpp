@@ -56,6 +56,22 @@ const std::list<int>	&PmergeMe::getLst(void)
 	return (lst);
 }
 
+bool	PmergeMe::isSortedVec(void)
+{
+	if (std::binary_search(vec.begin(), vec.end(), vec.front()) == true 
+			&& std::binary_search(vec.begin(), vec.end(), vec.back()) == true)
+		return (true);
+	return (false);
+}
+
+bool	PmergeMe::isSortedLst(void)
+{
+	if (std::binary_search(lst.begin(), lst.end(), lst.front()) == true 
+			&& std::binary_search(lst.begin(), lst.end(), lst.back()) == true)
+		return (true);
+	return (false);
+}
+
 static void swap(std::pair<int, int> &pair)
 {
 	int	temp;
@@ -118,81 +134,117 @@ static void	sortPairs(std::vector<std::pair<int, int> > &pairs)
 	return ;
 }
 
+static int	jacobsthal(int n)
+{
+	if (n == 0)
+		return (0);
+	if (n == 1)
+		return (1);
+	return (jacobsthal(n - 1) + (2 * jacobsthal(n - 2)));
+}
+
+/*
+Ford-Johnson's Merge-Insertion Sort
+
+Steps:
+1) check if the sequence is odd, if yes, save the leftover value and make the sequence even
+2) split elements into pairs of 2
+3) sort the pairs internally so that the it is in the form <smaller, larger>
+4) sort the pairs externally by their largest value (either recursively or non-recursively)
+5) split the pairs, inserting the smaller and larger values into different chains
+6) insert the first element of smaller chain into first spot of larger chain because it is always smaller
+7) build the optimal binary insertion sequence of the smaller chain using relevant jacobsthal numbers
+
+- jacobsthal number corresponds to the order in which elements should be inserted
+- eg. (first 3 ignored because irrelevant), 3, 5, 11
+- which means the 3rd element in the sequence should be inserted first, followed by the 5th, 11th and so on ...
+- this takes advantage of a property of binary search where:
+
+the maximal number of comparisons needed to perform a binary search on a sorted sequence is the same when 
+the number of elements is 2^(n) and when it is 2^(n+1) −1
+
+- therefore we can minimise the comparisons used by building an optimal binary insertion sequence
+- elements which do not match any jacobsthal number are put to the end to be inserted normally
+
+8) use binary sort to insert elements in the optimally sequenced smaller chain into the larger chain
+9) done
+
+fml
+*/
 void	PmergeMe::performFordJohnsonVec(void)
 {
-	
-	std::pair<int, int>					pair;
-	std::vector<std::pair<int, int> >	pairs;
+	typedef typename std::vector<std::pair<int, int> >::iterator	pair_iter;
+	typedef typename std::vector<std::pair<int, int> >				pair_vector;
 
-	std::vector<int>::iterator					it;
-	std::vector<std::pair<int, int> >::iterator	it_pair;
+	pair_vector	pairs;
+	std::pair<int, int>				pair;
 
-	std::vector<int>					s; // final vector
-	std::vector<int>					pend; // auxiliary vector
+	pair_iter	it_pair;
+	std::vector<int>::iterator		it1;
+	std::vector<int>::iterator		it2;
 
-	bool	has_leftover;
-	int		leftover;
+	std::vector<int>				pend;
 
-	leftover = 0;
-	has_leftover = false;
+	int		n = 2;
+	int		jacob = 0;
+	int		leftover = 0;
+	bool	has_leftover = false;
 
-	if (std::binary_search(vec.begin(), vec.end(), vec.front()) == true 
-			&& std::binary_search(vec.begin(), vec.end(), vec.back()) == true)
-		return ;
-
-	// check for leftover
+	// handle leftover value in odd numbered sequence
 	if (vec.size() % 2 == 1) 
 	{
 		has_leftover = true;
 		leftover = *vec.end();
 		vec.pop_back();
-		// cout << "leftover found: " << leftover << endl;
 	}
 
-	// categorize into pairs & sort the pairs
-	it = vec.begin();
-	while (it < vec.end())
+	// categorize into pairs & sort the pairs so that pair.first = smaller value && pair.second = larger value
+	for (it1 = vec.begin(); it1 < vec.end(); it1 += 2)
 	{
-		pair = std::pair<int, int>(*it, *(it + 1));
+		pair = std::pair<int, int>(*it1, *(it1 + 1));
 		if (pair.first > pair.second)
 			swap(pair);
-		// cout << "Pair: " << pair.first << " & " << pair.second << endl;
 		pairs.push_back(pair);
-		it += 2;
 	}
 
-	// do recursive merge sort to sort pairs by their largest value in ascending order
+	// sort pairs by their largest value
 	sortPairs(pairs);
+	vec.clear();
 
-	// place all largest elements in s
-	it_pair = pairs.begin();
-	while (it_pair < pairs.end()) 
+	// place all largest elements in s && smallest elements in pend
+	for (it_pair = pairs.begin(); it_pair != pairs.end(); ++it_pair)
 	{
-		s.push_back((*it_pair).second);
+		vec.push_back((*it_pair).second);
 		pend.push_back((*it_pair).first);
-		++it_pair;
 	}
-	// cout << "S: " << s << endl;
-	// cout << "Pend: " << pend << endl;
+
 	// place first element in pend into s because it is always smaller
-	s.insert(s.begin(), pend.at(0));
+	vec.insert(vec.begin(), pend.front());
 	pend.erase(pend.begin());
 
-	// ! TODO: implement sequence binary insertion
-
-	// binary search insert pend -> s
-	it = pend.begin();
-	while (it < pend.end())
+	// build optimal binary insertion sequence
+	it2 = pend.begin();
+	while (true)
 	{
-		s.insert(std::lower_bound(s.begin(), s.end(), *it), *it);
-		++it;
+		it1 = pend.begin();
+		jacob = jacobsthal(n);
+		if (jacob >= static_cast<int> (pend.size()))
+			break ;
+		std::advance(it1, jacob - 1);
+		pend.insert(it2, *it1);
+		pend.erase(it1 + 1);
+		++n;
+		++it2;
 	}
-	// cout << s << endl;
-	// binary search insert leftover -> s
-	if (has_leftover == true)
-		s.insert(std::lower_bound(s.begin(), s.end(), leftover), leftover);
 
-	vec = s;
+	// binary search insert optimally sequenced pend into s
+	for (it1 = pend.begin(); it1 < pend.end(); ++it1)
+		vec.insert(std::lower_bound(vec.begin(), vec.end(), *it1), *it1);
+
+	// binary search insert leftover into s
+	if (has_leftover == true)
+		vec.insert(std::lower_bound(vec.begin(), vec.end(), leftover), leftover);
+
 	return ;
 }
 

@@ -23,6 +23,9 @@ class PmergeMe
 		const std::vector<int>	&getVec(void);
 		const std::list<int>	&getLst(void);
 
+		bool	isSortedVec();
+		bool	isSortedLst();
+
 		void	performFordJohnsonVec(void);
 		// void	performFordJohnsonLst(void);
 
