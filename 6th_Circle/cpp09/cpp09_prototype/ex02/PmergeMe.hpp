@@ -36,7 +36,7 @@ class PmergeMe
 
 		// sorters for vector and list
 		void	performFordJohnsonVec(void);
-		// void	performFordJohnsonLst(void);
+		void	performFordJohnsonLst(void);
 
 	private:
 

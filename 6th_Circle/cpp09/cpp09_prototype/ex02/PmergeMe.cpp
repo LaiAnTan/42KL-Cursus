@@ -104,7 +104,16 @@ static void swap(std::pair<int, int> &pair)
 	return ;
 }
 
-static void	merge(std::vector<std::pair<int, int> > &left, std::vector<std::pair<int, int> > &right, std::vector<std::pair<int, int> > &res)
+static int	jacobsthal(int n)
+{
+	if (n == 0)
+		return (0);
+	if (n == 1)
+		return (1);
+	return (jacobsthal(n - 1) + (2 * jacobsthal(n - 2)));
+}
+
+static void	mergeVec(std::vector<std::pair<int, int> > &left, std::vector<std::pair<int, int> > &right, std::vector<std::pair<int, int> > &res)
 {
 	std::vector<std::pair<int, int> >::iterator		it1 = left.begin();
 	std::vector<std::pair<int, int> >::iterator		it2 = right.begin();
@@ -139,30 +148,22 @@ static void	merge(std::vector<std::pair<int, int> > &left, std::vector<std::pair
 }
 
 // recursive merge sort
-static void	sortPairs(std::vector<std::pair<int, int> > &pairs)
+static void	sortPairsVec(std::vector<std::pair<int, int> > &pairs)
 {
 	if (pairs.size() <= 1)
 		return ;
 	
-	std::vector<std::pair<int, int> >::iterator	mid = pairs.begin() + pairs.size() / 2;
+	std::vector<std::pair<int, int> >::iterator	mid = pairs.begin();
+	std::advance(mid, pairs.size() / 2);
 	std::vector<std::pair<int, int> >			left(pairs.begin(), mid);
 	std::vector<std::pair<int, int> >			right(mid, pairs.end());
 
-	sortPairs(left);
-	sortPairs(right);
+	sortPairsVec(left);
+	sortPairsVec(right);
 
 	pairs.clear();
-	merge(left, right, pairs);
+	mergeVec(left, right, pairs);
 	return ;
-}
-
-static int	jacobsthal(int n)
-{
-	if (n == 0)
-		return (0);
-	if (n == 1)
-		return (1);
-	return (jacobsthal(n - 1) + (2 * jacobsthal(n - 2)));
 }
 
 /*
@@ -233,7 +234,7 @@ void	PmergeMe::performFordJohnsonVec(void)
 	}
 
 	// sort pairs by their largest value
-	sortPairs(pairs);
+	sortPairsVec(pairs);
 	vec.clear();
 
 	// place all largest elements in main chain && smallest elements in pend chain
@@ -269,6 +270,142 @@ void	PmergeMe::performFordJohnsonVec(void)
 	// binary search to insert leftover
 	if (has_leftover == true)
 		vec.insert(std::lower_bound(vec.begin(), vec.end(), leftover), leftover);
+
+	return ;
+}
+
+static void	mergeLst(std::list<std::pair<int, int> > &left, std::list<std::pair<int, int> > &right, 
+	std::list<std::pair<int, int> > &res)
+{
+	std::list<std::pair<int, int> >::iterator		it1 = left.begin();
+	std::list<std::pair<int, int> >::iterator		it2 = right.begin();
+
+	// append the smaller
+	while (it1 != left.end() && it2 != right.end())
+	{
+		if ((*it1).second < (*it2).second)
+		{
+			res.push_back(*it1);
+			++it1;
+		}
+		else
+		{
+			res.push_back(*it2);
+			++it2;
+		}
+	}
+
+	// append remaining
+	while (it1 != left.end())
+	{
+		res.push_back(*it1);
+		++it1;
+	}
+	while (it2 != right.end())
+	{
+		res.push_back(*it2);
+		++it2;
+	}
+	return ;
+}
+
+// recursive merge sort
+static void	sortPairsLst(std::list<std::pair<int, int> > &pairs)
+{
+	if (pairs.size() <= 1)
+		return ;
+	
+	std::list<std::pair<int, int> >::iterator	mid = pairs.begin();
+	std::advance(mid, std::distance(pairs.begin(), pairs.end()) / 2);
+
+	std::list<std::pair<int, int> >			left(pairs.begin(), mid);
+	std::list<std::pair<int, int> >			right(mid, pairs.end());
+
+	sortPairsLst(left);
+	sortPairsLst(right);
+
+	pairs.clear();
+	mergeLst(left, right, pairs);
+	return ;
+}
+
+void	PmergeMe::performFordJohnsonLst(void)
+{
+	typedef typename std::list<std::pair<int, int> >::iterator		pair_iter;
+	typedef typename std::list<std::pair<int, int> >				pair_list;
+
+	pair_list						pairs;
+	std::pair<int, int>				pair;
+
+	pair_iter						it_pair;
+	std::list<int>::iterator		it1;
+	std::list<int>::iterator		it2;
+
+	std::list<int>				pend;
+
+	int		n = 2;
+	int		jacob = 0;
+	int		leftover = 0;
+	bool	has_leftover = false;
+
+	if (lst.size() == 1)
+		return ;
+
+	// handle leftover value in odd numbered sequence
+	if (lst.size() % 2 == 1) 
+	{
+		has_leftover = true;
+		leftover = *(--lst.end());
+		lst.pop_back();
+	}
+
+	// categorize into pairs & sort the pairs so that pair = (smaller, larger)
+	it1 = lst.begin();
+	for(it1 = lst.begin(); it1 != lst.end(); std::advance(it1, 2))
+	{
+		pair = std::make_pair(*it1, *++it1);
+		if (pair.first > pair.second)
+			swap(pair);
+		pairs.push_back(pair);
+	}
+
+	// sort pairs by their largest value
+	sortPairsLst(pairs);
+	lst.clear();
+
+	// place all largest elements in main chain && smallest elements in pend chain
+	for (it_pair = pairs.begin(); it_pair != pairs.end(); ++it_pair)
+	{
+		lst.push_back((*it_pair).second);
+		pend.push_back((*it_pair).first);
+	}
+
+	// place first element in pend into s because it is always smaller
+	lst.insert(lst.begin(), pend.front());
+	pend.erase(pend.begin());
+
+	// build optimal binary insertion sequence
+	it2 = pend.begin();
+	while (true)
+	{
+		it1 = pend.begin();
+		jacob = jacobsthal(n);
+		if (jacob >= static_cast<int> (pend.size()))
+			break ;
+		std::advance(it1, jacob - 1);
+		pend.insert(it2, *it1);
+		pend.erase(++it1);
+		++n;
+		++it2;
+	}
+
+	// binary search to insert optimally sequenced pend
+	for (it1 = pend.begin(); it1 != pend.end(); ++it1)
+		lst.insert(std::lower_bound(lst.begin(), lst.end(), *it1), *it1);
+
+	// binary search to insert leftover
+	if (has_leftover == true)
+		lst.insert(std::lower_bound(lst.begin(), lst.end(), leftover), leftover);
 
 	return ;
 }

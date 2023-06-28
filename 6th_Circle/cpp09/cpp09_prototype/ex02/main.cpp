@@ -48,10 +48,10 @@ int main(int argc, char **argv)
 	gettimeofday(&end, NULL);
 	pm.setElapsedVec((end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec));
 
-	// gettimeofday(&start, NULL);
-	// pm.performFordJohnsonLst();
-	// gettimeofday(&end, NULL);
-	// pm.setElapsedLst((end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec));
+	gettimeofday(&start, NULL);
+	pm.performFordJohnsonLst();
+	gettimeofday(&end, NULL);
+	pm.setElapsedLst((end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec));
 
 	cout << "Before: " << nums << endl;
 	cout << "After:  " << pm.getVec() << endl;
