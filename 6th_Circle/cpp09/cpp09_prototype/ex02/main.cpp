@@ -52,10 +52,20 @@ int main(int argc, char **argv)
 	pm.performFordJohnsonLst();
 	gettimeofday(&end, NULL);
 	pm.setElapsedLst((end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec));
+	
+	cout << "Before : " << nums << endl;
+	cout << "After  : " << pm.getVec() << endl;
 
-	cout << "Before: " << nums << endl;
-	cout << "After:  " << pm.getVec() << endl;
-	cout << "Time to process a range of " << nums.size() << " elements with std::vector: " << pm.getElapsedVec() << " µs" << endl;
-	cout << "Time to process a range of " << nums.size() << " elements with std::list: " << pm.getElapsedLst() << " µs" << endl;
+	cout << "Time to process a range of " << nums.size() << " elements with std::vector : "
+		<< pm.getElapsedVec() << " µs / "
+		<< pm.getElapsedVec() / 1000 << " ms / "
+		<< pm.getElapsedVec() / 1e+6 << " s"
+		<< endl;
+
+	cout << "Time to process a range of " << nums.size() << " elements with std::list   : "
+		<< pm.getElapsedLst() << " µs / "
+		<< pm.getElapsedLst() / 1000 << " ms / "
+		<< pm.getElapsedLst() / 1e+6 << " s"
+		<< endl;
 
 }
