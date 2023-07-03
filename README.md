@@ -12,7 +12,7 @@
 |3        |pipex            |:white_check_mark:|100     |
 |3        |FDF              |:white_check_mark:|115     |
 |4        |Philosophers     |:white_check_mark:|100     |
-|4        |minishell        |:white_check_mark:|grading |
+|4        |minishell        |:white_check_mark:|100     |
 |5        |cpp00 - cpp04    |:white_check_mark:|100     |
 |5        |netpractice      |:exclamation:     |pending |
 |5        |minirt           |:exclamation:     |pending |
