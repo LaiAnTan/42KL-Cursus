@@ -3,9 +3,11 @@
 #include <deque>
 #include <string>
 #include <iostream>
+#include <sstream>
 
 using std::cout;
 using std::endl;
+using std::string;
 
 RPN::RPN()
 {
@@ -23,7 +25,7 @@ RPN	&RPN::operator = (const RPN &tocopy)
 	cout << "RPN: Copy assignment operator called" << endl;
 	if (this == &tocopy)
 		return (*this);
-	this->expr_list = tocopy.expr_list;
+	this->rpn_stack = tocopy.rpn_stack;
 	return (*this);
 }
 
@@ -32,46 +34,81 @@ RPN::~RPN()
 	cout << "RPN: Destructor called" << endl;
 }
 
-void	RPN::insertExpression(t_expression expr)
+std::ostream &operator << (std::ostream &out, std::deque<int> dq)
 {
-	expr_list.push_back(expr);
+	for (std::deque<int>::iterator it = dq.begin(); it != dq.end(); ++it)
+		out << *it << " ";
+	return (out);
 }
 
-static int	calculateResult(int num1, int num2, int expr_type)
+bool	isValidNumber(std::string num)
 {
-	switch (expr_type)
+	return (num.length() == 1 && num.find_first_not_of("0123456789") == std::string::npos);
+}
+
+bool	isValidOperation(std::string op)
+{
+	return (op.length() == 1 && op.find_first_not_of("+-*/") == std::string::npos);
+}
+
+int	RPN::insertExpression(char *line)
+{
+	string	s;
+	std::stringstream	ss(line);
+
+	while (std::getline(ss, s, ' ')) // split into tokens
 	{
-	case (1): // +
-		return (num1 + num2);
-	case (2): // -
-		return (num1 - num2);
-	case (3): // *
-		return (num1 * num2);
-	case (4): // /
-		return (num1 / num2);
-	default:
-		return (0);
+		if (isValidNumber(s) || isValidOperation(s))
+			rpn_expr.push_back(s);
+		else
+			return (-1);
 	}
 	return (0);
 }
 
+static int stringToInt(string str)
+{
+	int n = 0;
+	std::stringstream ss(str);
+
+	ss >> n;
+	return (n);
+}
+
 int		RPN::evalExpression(void)
 {
-	int									result;
-	std::deque<t_expression>::iterator	it;
+	int		num1;
+	int		num2;
+	std::deque<string>::iterator		it;
 
-	result = 0;
-	it = expr_list.begin();
-	while (it != expr_list.end())
+	num1 = 0;
+	num2 = 0;
+	for (it = rpn_expr.begin(); it != rpn_expr.end(); ++it)
 	{
-		if (it->has_2_numbers == false)
+		if (isValidOperation(*it))
 		{
-			it->num2 = it->num1;
-			it->num1 = result;
+			num1 = rpn_stack.back();
+			rpn_stack.pop_back();
+			num2 = rpn_stack.back();
+			rpn_stack.pop_back();
+			cout << num1 << " " << num2 << ": " << *it << endl;
+			if (*it == "+")
+				rpn_stack.push_back(num1 + num2);
+			else if (*it == "-")
+				rpn_stack.push_back(num2 - num1);
+			else if (*it == "*")
+				rpn_stack.push_back(num1 * num2);
+			else if (*it == "/")
+				rpn_stack.push_back(num1 / num2);
+			else
+			{
+				cout << "Error" << endl;
+				return (-1);
+			}
 		}
-		cout << "Doing: " << it->num1 << " " << it->op_type << " " << it->num2 << endl;
-		result = calculateResult(it->num1, it->num2, it->op_type);
-		++it;
+		else
+			rpn_stack.push_back(stringToInt(*it));
+		cout << rpn_stack << endl;
 	}
-	return (result);
+	return (*rpn_stack.begin());
 }

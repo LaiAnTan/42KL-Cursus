@@ -4,16 +4,8 @@
 
 #define RPN_HPP
 
+#include <string>
 #include <deque>
-
-typedef struct s_expression
-{
-	int		op_type;
-	int		num1;
-	int		num2;
-
-	bool	has_2_numbers;
-}			t_expression;
 
 class RPN
 {
@@ -23,11 +15,19 @@ class RPN
 		RPN	&operator = (const RPN &tocopy);
 		~RPN();
 
-		void	insertExpression(t_expression expr);
+		bool	isValidNotation(void);
+
+		int		insertExpression(char *line);
 		int		evalExpression(void);
 
 	private:
-		std::deque<t_expression>	expr_list;
+		std::deque<std::string>	rpn_expr;
+		std::deque<int>	rpn_stack;
 };
+
+std::ostream &operator << (std::ostream &out, std::deque<int> dq);
+
+bool	isValidNumber(std::string num);
+bool	isValidOperation(std::string op);
 
 #endif

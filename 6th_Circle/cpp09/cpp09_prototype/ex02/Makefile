@@ -6,7 +6,7 @@ NAME = PmergeMe
 PARAMS = 1 4 18 7 26 91 64 58 12 67
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-# FSAN = -fsanitize=address
+FSAN = -fsanitize=address
 
 all : $(NAME)
 
