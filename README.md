@@ -15,8 +15,8 @@
 |4        |minishell        |:white_check_mark:|100     |
 |5        |cpp00 - cpp04    |:white_check_mark:|100     |
 |5        |netpractice      |:exclamation:     |pending |
-|5        |minirt           |:exclamation:     |pending |
+|5        |minirt           |:white_check_mark:|submitting|
 |6        |cpp05 - cpp09    |:white_check_mark:|done    |
-|6        |webserv          |:x:               |not done|
+|6        |webserv          |:exclamation:     |pending |
 |6        |inception        |:x:               |not done|
 |7        |ft_transcendence |:x:               |not done|
