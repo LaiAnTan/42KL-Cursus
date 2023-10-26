@@ -20,9 +20,7 @@ bool	checkFloat(string str)
 	int		len = str.length();
 	int		decimalPoints = 0;
 
-	if (str[len - 1] != 'f')
-		return (false);
-	if (str[0] == '.' || str[len - 2] == '.')
+	if (str[len - 1] != 'f' || str[0] == '.')
 		return (false);
 	if (str.compare("nanf") == 0 || str.compare("+inff") == 0 || str.compare("-inff") == 0)
 		return (true);
@@ -33,10 +31,7 @@ bool	checkFloat(string str)
 		if (str[i] == '.')
 			decimalPoints += 1;
 	}
-	if (decimalPoints == 1)
-		return (true);
-	else
-		return (false);
+	return decimalPoints == 1 ? true : false;
 }
 
 bool	checkDouble(string str)
@@ -73,11 +68,10 @@ int		getType(string str)
 {
 	bool	(*func_ptr[4])(string) = {&checkChar, &checkFloat, &checkDouble, &checkInt};
 
-	for (int i = 0; i < 4;)
+	for (int i = 0; i < 4; i++)
 	{
 		if ((*func_ptr[i])(str) == true)
 			return (i);
-		i++;
 	}
 	return (-1);
 }
@@ -90,7 +84,7 @@ void	printConverted(char	c, int i, float f, double d)
 	// checks for char
 	if (std::isnan(d) == true)
 		cout << "Char: impossible" << endl;
-	else if (std::isprint(c) == true)
+	else if (std::isprint(c) != 0)
 		cout << "Char: '" << c << "'" << endl;
 	else
 		cout << "Char: not displayable" << endl;
@@ -102,16 +96,16 @@ void	printConverted(char	c, int i, float f, double d)
 		cout << "Int: " << i << endl;
 
 	// checks for float
-	if (std::isnan(d) == true || d > std::numeric_limits<float>::max() || d < std::numeric_limits<float>::min())
-		cout << "Float: impossible" << endl;
-	else
-		cout << "Float: "<< std::fixed << std::setprecision(1) << f << "f" << endl;
+	// if (std::isnan(d) == true || d > std::numeric_limits<float>::max() || d < std::numeric_limits<float>::min())
+	// 	cout << "Float: impossible" << endl;
+	// else
+	cout << "Float: "<< std::fixed << std::setprecision(1) << f << "f" << endl;
 	
 	// checks for double
-	if (std::isnan(d) == true || d > std::numeric_limits<double>::max() || d < std::numeric_limits<double>::min())
-		cout << "Double: impossible" << endl;
-	else
-		cout << "Double: " << std::fixed << std::setprecision(1) << d << endl;
+	// if (std::isnan(d) == true || d > std::numeric_limits<double>::max() || d < std::numeric_limits<double>::min())
+	// 	cout << "Double: impossible" << endl;
+	// else
+	cout << "Double: " << std::fixed << std::setprecision(1) << d << endl;
 }
 
 void	fromChar(char inputValue)
