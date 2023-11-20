@@ -15,7 +15,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(): AForm()
 	cout << "ShrubberyCreationForm: Default constructor called" << endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(string target): AForm("shrubbery creation", target, 147, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(string target): AForm("shrubbery creation", target, 145, 137)
 {
 	cout << "ShrubberyCreationForm: Constructor called" << endl;
 }
@@ -29,13 +29,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf): 
 ShrubberyCreationForm &ShrubberyCreationForm::operator = (const ShrubberyCreationForm &scf)
 {
 	cout << "ShrubberyCreationForm: Copy assignment operator called" << endl;
-	if (this == &scf)
-		return (*this);
-	this->name = scf.getName();
-	this->target = scf.getTarget();
-	this->signedBool = scf.getSigned();
-	this->signGrade = 145;
-	this->execGrade = 137;
+	(void) scf;
 	return (*this);
 }
 
@@ -64,4 +58,3 @@ AForm	*ShrubberyCreationForm::factory(string target)
 {
 	return (new ShrubberyCreationForm(target));
 }
-

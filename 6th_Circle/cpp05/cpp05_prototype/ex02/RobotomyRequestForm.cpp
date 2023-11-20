@@ -27,13 +27,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf): AForm(
 RobotomyRequestForm &RobotomyRequestForm::operator = (const RobotomyRequestForm &rrf)
 {
 	cout << "RobotomyRequestForm: Copy assignment operator called" << endl;
-	if (this == &rrf)
-		return (*this);
-	this->name = rrf.getName();
-	this->target = rrf.getTarget();
-	this->signedBool = rrf.getSigned();
-	this->signGrade = 72;
-	this->execGrade = 45;
+	(void) rrf;
 	return (*this);
 }
 

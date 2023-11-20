@@ -54,12 +54,11 @@ class AForm
 		AForm(const string name, const string target, const int signGrade, const int execGrade);
 		AForm(const AForm &form);
 
-		string			name;
+		const string	name;
 		string			target;
+		const int		signGrade;
+		const int		execGrade;
 		bool			signedBool;
-		int				signGrade;
-		int				execGrade;
-
 };
 
 ostream &operator << (ostream &outs, const AForm &form);

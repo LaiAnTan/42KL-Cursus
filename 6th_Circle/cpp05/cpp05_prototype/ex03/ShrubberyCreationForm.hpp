@@ -18,7 +18,7 @@ class ShrubberyCreationForm: public AForm
 		~ShrubberyCreationForm();
 
 		void	action();
-		static AForm	*factory(string target);
+		static AForm*	factory(string target);
 };
 
 #endif

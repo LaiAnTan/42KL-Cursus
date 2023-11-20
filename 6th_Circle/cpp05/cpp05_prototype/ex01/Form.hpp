@@ -44,10 +44,10 @@ class Form
 		};
 
 	private:
-		string			name;
+		const string	name;
+		const int		signGrade;
+		const int		execGrade;
 		bool			signedBool;
-		int				signGrade;
-		int				execGrade;
 
 };
 

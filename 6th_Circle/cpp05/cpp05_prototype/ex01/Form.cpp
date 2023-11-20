@@ -9,34 +9,23 @@ using std::endl;
 using std::string;
 using std::ostream;
 
-Form::Form()
+Form::Form(): name("default"), signGrade(1), execGrade(1), signedBool(false)
 {
 	cout << "Form: Default constructor called" << endl;
-	name = "default";
-	signGrade = 1;
-	execGrade = 1;
-	signedBool = false;
 }
 
-Form::Form(const string name, const int signGrade, const int execGrade): name(name)
+Form::Form(const string name, const int signGrade, const int execGrade): name(name), signGrade(signGrade), execGrade(execGrade), signedBool(false)
 {
 	cout << "Form: Constructor called" << endl;
 	if (signGrade < 1 || execGrade < 1)
 		throw (Form::GradeTooHighException());
 	else if  (signGrade > 150 || execGrade > 150)
 		throw (Form::GradeTooLowException());
-	else
-	{
-		this->signGrade = signGrade;
-		this->execGrade = execGrade;
-	}
-	signedBool = false;
 }
 
-Form::Form(const Form &form)
+Form::Form(const Form &form): name(form.getName()), signGrade(form.getSignGrade()), execGrade(form.getExecGrade()), signedBool(form.getSigned())
 {
 	cout << "Form: Copy constructor called" << endl;
-	*this = form;
 }
 
 Form &Form::operator = (const Form &form)
@@ -44,10 +33,7 @@ Form &Form::operator = (const Form &form)
 	cout << "Form: Copy assignment operator called" << endl;
 	if (this == &form)
 		return (*this);
-	this->name = form.getName();
-	this->signGrade = form.getSignGrade();
-	this->execGrade = form.getExecGrade();
-	this->signedBool = form.getSigned();
+	*this = Form(form);
 	return (*this);
 }
 

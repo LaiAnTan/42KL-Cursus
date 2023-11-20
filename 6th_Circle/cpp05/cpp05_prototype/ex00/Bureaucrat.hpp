@@ -40,8 +40,8 @@ class	Bureaucrat
 		void			decrementGrade();
 
 	private:
-		string	name;
-		int		grade;
+		const string	name;
+		int				grade;
 		GradeTooHigh	GradeTooHighException;
 		GradeTooLow		GradeTooLowException;
 

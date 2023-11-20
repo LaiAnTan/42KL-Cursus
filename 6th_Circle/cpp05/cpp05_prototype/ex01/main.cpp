@@ -19,8 +19,15 @@ int main(void)
 		Form	*formA = new Form("legalisation of child labor", 10, 25);
 		Form	*formB = new Form("abolish womens rights", 50, 100);
 
-		// throws exception
-		// Form	*formC = new Form("william for president", 727);
+		try
+		{
+			Form	*formC = new Form("william for president", 727, 727);
+			delete formC;
+		}
+		catch (const Form::GradeTooLowException& err)
+		{
+			cout << err.what() << endl;
+		}
 
 		workerB->signForm(*formA);
 		workerA->signForm(*formA);

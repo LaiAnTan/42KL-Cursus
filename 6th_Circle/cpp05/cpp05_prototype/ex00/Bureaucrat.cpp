@@ -3,10 +3,9 @@
 using std::cout;
 using std::endl;
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat(): name("default")
 {
 	cout << "Bureaucrat: Default constructor called" << endl;
-	name = "default";
 	grade = 1;
 }
 
@@ -29,10 +28,9 @@ Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
 
 Bureaucrat &Bureaucrat::operator = (const Bureaucrat &bureaucrat)
 {
-	cout << "Bureaucrat: Copy assignment operator called" << endl; 
+	cout << "Bureaucrat: Copy assignment operator called" << endl;
 	if (this == &bureaucrat)
 		return (*this);
-	this->name = bureaucrat.getName();
 	this->grade = bureaucrat.getGrade();
 	return (*this);
 }

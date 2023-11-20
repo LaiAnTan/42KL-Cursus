@@ -18,7 +18,7 @@ class RobotomyRequestForm: public AForm
 		~RobotomyRequestForm();
 
 		void	action();
-		static AForm	*factory(string target);
+		static AForm*	factory(string target);
 };
 
 #endif

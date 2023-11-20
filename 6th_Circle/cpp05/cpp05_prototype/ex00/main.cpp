@@ -9,34 +9,42 @@ using std::exception;
 
 int main(void)
 {
+	Bureaucrat *william = new Bureaucrat("child predator", 150);
+	Bureaucrat *bob = new Bureaucrat("bob", 69);
+	Bureaucrat *dave = new Bureaucrat("dave", 1);
+
+	cout << *william << endl;
+	cout << *bob << endl;
+	cout << *dave << endl;
+
+	bob->incrementGrade();
+	cout << *bob << endl;
+	bob->decrementGrade();
+	cout << *bob << endl;
+
+	// GradeTooLowException
 	try
 	{
-		Bureaucrat *william = new Bureaucrat("child predator", 150);
-		Bureaucrat *bob = new Bureaucrat("bob", 69);
-		Bureaucrat *dave = new Bureaucrat("dave", 1);
-
-		cout << *william << endl;
-		cout << *bob << endl;
-		cout << *dave << endl;
-
-		bob->incrementGrade();
-		cout << *bob << endl;
-		bob->decrementGrade();
-		cout << *bob << endl;
-
-		//GradeTooLowException
-		// william->decrementGrade();
-
-		// GradeTooHighException
-		// bob->incrementGrade();
-
-		delete william;
-		delete bob;
-		delete dave;
+		william->decrementGrade();
 	}
-	catch (const exception &err)
+	catch (const GradeTooLow &e)
 	{
-		std::cerr << err.what() << endl;
+		std::cerr << e.what() << endl;
 	}
+
+	// GradeTooHighException
+	try
+	{
+		dave->incrementGrade();
+	}
+	catch (const GradeTooHigh &e)
+	{
+		std::cerr << e.what() << endl;
+	}
+
+	delete william;
+	delete bob;
+	delete dave;
+
 	return (0);
 }

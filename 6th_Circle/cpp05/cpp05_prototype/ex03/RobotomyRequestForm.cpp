@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 using std::cout;
 using std::endl;
@@ -26,13 +27,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf): AForm(
 RobotomyRequestForm &RobotomyRequestForm::operator = (const RobotomyRequestForm &rrf)
 {
 	cout << "RobotomyRequestForm: Copy assignment operator called" << endl;
-	if (this == &rrf)
-		return (*this);
-	this->name = rrf.getName();
-	this->target = rrf.getTarget();
-	this->signedBool = rrf.getSigned();
-	this->signGrade = 72;
-	this->execGrade = 45;
+	(void) rrf;
 	return (*this);
 }
 
@@ -43,7 +38,12 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 void	RobotomyRequestForm::action()
 {
-	cout << "RobotomyRequestForm: " << getTarget() << " has been robotomized 50% of the time" << endl;
+	int random = std::rand() % 2;
+	
+	if (random == 1)
+		cout << "RobotomyRequestForm: " << getTarget() << " has been succesfully robotomized" << endl;
+	else
+		cout << "RobotomyRequestForm: Robotomization of " << getTarget() << " has failed" << endl;
 }
 
 AForm	*RobotomyRequestForm::factory(string target)

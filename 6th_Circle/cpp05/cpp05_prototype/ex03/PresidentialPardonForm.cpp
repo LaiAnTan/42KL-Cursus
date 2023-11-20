@@ -26,13 +26,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &ppf
 PresidentialPardonForm &PresidentialPardonForm::operator = (const PresidentialPardonForm &ppf)
 {
 	cout << "PresidentialPardonForm: Copy assignment operator called" << endl;
-	if (this == &ppf)
-		return (*this);
-	this->name = ppf.getName();
-	this->target = ppf.getTarget();
-	this->signedBool = ppf.getSigned();
-	this->signGrade = 25;
-	this->execGrade = 5;
+	(void) ppf;
 	return (*this);
 }
 
