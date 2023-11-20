@@ -31,7 +31,7 @@ bool	checkFloat(string str)
 	if (str[0] == '-')
 		i = 1;
 
-	if (str[len - 1] != 'f' || str[0] == '.')
+	if (str[len - 1] != 'f' || str[i] == '.' || str[len - 2] == '.')
 		return (false);
 	if (str.compare("nanf") == 0 || str.compare("+inff") == 0 || str.compare("-inff") == 0)
 		return (true);
