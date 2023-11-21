@@ -32,7 +32,14 @@ int main()
 
 	std::stack<int> s(mstack);
 
-	// needs more tests
+	MutantStack<int>	s2(mstack);
+
+	for (MutantStack<int>::iterator i = s2.begin(); i != s2.end(); i++)
+		cout << *i << endl;
+	for (MutantStack<int>::iterator i = s2.begin(); i != s2.end(); i++)
+		*i = 1;
+	for (MutantStack<int>::iterator i = s2.begin(); i != s2.end(); i++)
+		cout << *i << endl;
 
 	return 0;
 }

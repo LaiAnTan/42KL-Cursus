@@ -13,7 +13,7 @@ MutantStack<T>::MutantStack()
 }
 
 template <typename T>
-MutantStack<T>::MutantStack(const MutantStack<T> &mutantstack)
+MutantStack<T>::MutantStack(const MutantStack<T> &mutantstack): std::stack<int, std::deque<int, std::allocator<int> > >(mutantstack)
 {
 	cout << "MutantStack: Copy constructor called" << endl;
 	*this = mutantstack;
@@ -25,7 +25,7 @@ MutantStack<T> &MutantStack<T>::operator = (const MutantStack<T> &mutantstack)
 	cout << "MutantStack: Copy assignment operator called" << endl;
 	if (this == &mutantstack)
 		return (*this);
-	this = mutantstack;
+	this->c = mutantstack.c;
 	return (*this);
 }
 
