@@ -2,6 +2,7 @@
 
 #include <iterator>
 #include <iostream>
+#include <list>
 
 int main()
 {
