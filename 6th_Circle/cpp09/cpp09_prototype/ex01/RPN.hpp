@@ -15,8 +15,6 @@ class RPN
 		RPN	&operator = (const RPN &tocopy);
 		~RPN();
 
-		bool	isValidNotation(void);
-
 		int		insertExpression(char *line);
 		int		evalExpression(void);
 

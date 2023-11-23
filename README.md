@@ -15,6 +15,6 @@
 |5        |netpractice      |:exclamation:     |pending |
 |5        |minirt           |:white_check_mark:|115     |
 |6        |cpp05 - cpp09    |:white_check_mark:|done    |
-|6        |webserv          |:exclamation:     |pending |
+|6        |webserv          |:white_check_mark:|100     |
 |6        |inception        |:x:               |not done|
 |7        |ft_transcendence |:x:               |not done|
