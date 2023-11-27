@@ -91,7 +91,6 @@ int		RPN::evalExpression(void)
 			rpn_stack.pop_back();
 			num2 = rpn_stack.back();
 			rpn_stack.pop_back();
-			cout << num1 << " " << num2 << ": " << *it << endl;
 			if (*it == "+")
 				rpn_stack.push_back(num1 + num2);
 			else if (*it == "-")
@@ -99,7 +98,7 @@ int		RPN::evalExpression(void)
 			else if (*it == "*")
 				rpn_stack.push_back(num1 * num2);
 			else if (*it == "/")
-				rpn_stack.push_back(num1 / num2);
+				rpn_stack.push_back(num2 / num1);
 			else
 			{
 				cout << "Error" << endl;
@@ -108,7 +107,6 @@ int		RPN::evalExpression(void)
 		}
 		else
 			rpn_stack.push_back(stringToInt(*it));
-		cout << rpn_stack << endl;
 	}
 	return (*rpn_stack.begin());
 }
