@@ -53,6 +53,7 @@ std::map<std::string, float>::iterator	BitcoinExchange::getLowerBoundRate(std::s
 
 float	BitcoinExchange::calculatePrice(std::string date, float amount)
 {
+	// reverse iterator inits 1 element behind normal iterator
 	std::map<std::string, float>::reverse_iterator	pair(getLowerBoundRate(date));
 
 	if (pair == exchangeRates.rend())
