@@ -53,13 +53,14 @@ std::map<std::string, float>::iterator	BitcoinExchange::getLowerBoundRate(std::s
 
 float	BitcoinExchange::calculatePrice(std::string date, float amount)
 {
-	std::map<std::string, float>::iterator	pair = getLowerBoundRate(date);
+	std::map<std::string, float>::reverse_iterator	pair(getLowerBoundRate(date));
 
-	if (pair == exchangeRates.end())
+	if (pair == exchangeRates.rend())
 	{
 		std::cerr << "Error: Date out of range => " << date << endl;
 		return (-1);
 	}
+	
 	return (pair->second * amount);
 }
 
