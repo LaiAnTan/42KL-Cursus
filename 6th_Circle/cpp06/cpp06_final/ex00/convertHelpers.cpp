@@ -48,7 +48,8 @@ bool	checkFloat(string str)
 bool	checkDouble(string str)
 {
 	double check = strtod(str.c_str(), 0);
-
+	if (str.compare("nan")  == 0)
+		return (true);
 	if (check > std::numeric_limits<int>::max() || check < std::numeric_limits<int>::min() || str.find('.') != std::string::npos)
 		return (true);
 	return (false);
