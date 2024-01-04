@@ -50,4 +50,21 @@ class PmergeMe
 std::ostream &operator << (std::ostream &outs, std::vector<int> vec);
 std::ostream &operator << (std::ostream &outs, std::list<int> lst);
 
+/*
+---
+
+Containers used: std::vector and std::list
+
+Reason:
+To compare between containers as std::vector has random access iterators,
+as the underlying data structure is a dynamic array
+std::list has has no random access iterator as the underlying data structure is a linked list,
+so std::list has to iterate through the whole list when std::vector can just jump to that location because of
+the sequential nature of memory in std::vector.
+
+Functions that benefit from random access are:
+- std::advance
+- std::lower_bound
+*/
+
 #endif

@@ -29,4 +29,17 @@ bool	isValidDate(std::string &date);
 bool	isValidRate(std::string &rate);
 bool	isValidAmount(std::string &amount);
 
+/*
+---
+
+Container used: std::map
+
+Reason:
+The underlying data structure is a red - black tree
+
+- Key - value nature of data
+- Map is ordered, so the dates are automatically sorted for us
+
+*/
+
 #endif

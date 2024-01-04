@@ -28,4 +28,16 @@ std::ostream &operator << (std::ostream &out, std::deque<int> dq);
 bool	isValidNumber(std::string num);
 bool	isValidOperation(std::string op);
 
+/*
+---
+Container used: std::deque (stack)
+
+Should have used stack but stack is just a container adaptor so it doesnt really matter
+
+Reason:
+The nature of the RPN expression is that of a stack, as elements are processed in a
+Last-In-First-Out (LIFO) manner.
+
+*/
+
 #endif
