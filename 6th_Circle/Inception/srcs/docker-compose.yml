@@ -4,17 +4,33 @@ services:
   nginx:
     
     build: ./requirements/nginx/
+    container_name: nginx
     ports:
       - 127.0.0.1:443:443
     working_dir: /requirements/nginx
-    
+    restart: always
 
-#   mariadb:
+  mariadb:
 
-#     build: ./requirements/mariadb/
-  
+    build: ./requirements/mariadb/
+    container_name: mariadb
+    # ports:
+    #   - 127.0.0.1:3306:3306
+    working_dir: /requirements/mariadb
+    restart: always
+    # volumes:
+    #   - mariadb:
+    env_file:
+      - .env
+
+
 #   wordpress:
 
 #     build: ./requirements/wordpress/
+#     container_name: wordpress
 
-# volumes:
+volumes:
+  mariadb:
+
+networks:
+  inception:
