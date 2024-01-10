@@ -6,31 +6,51 @@ services:
     build: ./requirements/nginx/
     container_name: nginx
     ports:
-      - 127.0.0.1:443:443
+      - 127.0.0.1:443:443 # diff between ports & expose; ports -> host machine and beyond; expose -> between containers
+    expose:
+      - 9000
     working_dir: /requirements/nginx
     restart: always
+    volumes:
+      - wordpress_files:/requirements/wordpress/wpf
+    networks:
+      - inception
 
   mariadb:
 
     build: ./requirements/mariadb/
     container_name: mariadb
-    # ports:
-    #   - 127.0.0.1:3306:3306
+    expose:
+      - 3306
     working_dir: /requirements/mariadb
     restart: always
-    # volumes:
-    #   - mariadb:
+    networks:
+      - inception
+    volumes:
+      - wordpress_db:/var/lib/mysql # this is the directory in the container
     env_file:
       - .env
 
 
-#   wordpress:
+  wordpress:
 
-#     build: ./requirements/wordpress/
-#     container_name: wordpress
+    build: ./requirements/wordpress/
+    container_name: wordpress
+    expose:
+      - 3306
+      - 9000
+    working_dir: /requirements/wordpress
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - wordpress_files:/requirements/wordpress/wpf
+    env_file:
+      - .env
 
 volumes:
-  mariadb:
+  wordpress_db:
+  wordpress_files:
 
 networks:
   inception:
