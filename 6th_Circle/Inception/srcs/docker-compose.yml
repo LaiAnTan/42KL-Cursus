@@ -12,9 +12,11 @@ services:
     working_dir: /requirements/nginx
     restart: always
     volumes:
-      - wordpress_fs:/requirements/wordpress/wpf
+      - wordpress_fs:/var/www/html/wordpress
     networks:
       - inception
+    env_file:
+      - .env
 
   mariadb:
 
@@ -43,7 +45,7 @@ services:
     networks:
       - inception
     volumes:
-      - wordpress_fs:/requirements/wordpress/wpf
+      - wordpress_fs:/var/www/html/wordpress
     env_file:
       - .env
 

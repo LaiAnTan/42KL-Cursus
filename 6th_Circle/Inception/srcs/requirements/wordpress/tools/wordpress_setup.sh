@@ -11,26 +11,26 @@ then
 fi
 
 # install and config wordpress
-if [ ! -d "/requirements/wordpress/wpf" ];
+if [ ! -d "/var/www/html/wordpress" ];
 then
 
-	mkdir wpf
-	echo "wpf created"
+	mkdir /var/www/html/wordpress
+	echo "directory created"
 fi
 
-if [ -z "$(ls -A /requirements/wordpress/wpf)" ];
+if [ -z "$(ls -A /var/www/html/wordpress)" ];
 then
 
-	wp core download --path=/requirements/wordpress/wpf --allow-root
+	wp core download --path=/var/www/html/wordpress --allow-root
 	echo "core downloaded"
 
 	#dbhost is actually name of wordpress container
-	wp core config --path=/requirements/wordpress/wpf --dbhost=mariadb --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASS --allow-root
+	wp core config --path=/var/www/html/wordpress --dbhost=mariadb --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASS --allow-root
 	echo "wp-config created"
 
 	chmod 644 /requirements/wordpress/wpf/wp-config.php
 
-	wp core install --path=/requirements/wordpress/wpf --url=localhost --title="Gojo Satoru Is Not Dead" --admin_name=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_EMAIL --allow-root
+	wp core install --path=/var/www/html/wordpress --url=localhost --title="Gojo Satoru Is Not Dead" --admin_name=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_EMAIL --allow-root
 	echo "core installed"
 
 fi

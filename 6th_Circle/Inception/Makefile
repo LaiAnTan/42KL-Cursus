@@ -11,18 +11,30 @@ WORDPRESS_FS_DIR = /wordpress_files
 all: re
 
 build:
-	docker compose -f $(DOCKER_COMPOSE) build
 
-up: build
+	@echo "$(C_CYAN)Creating volume mountpoints...$(C_RESET)"
 
-	if [ ! -d $(MOUNTPOINT)$(WORDPRESS_DB_DIR) ]; then\
+	@if [ ! -d $(MOUNTPOINT)$(WORDPRESS_DB_DIR) ]; then\
 		mkdir -p $(MOUNTPOINT)$(WORDPRESS_DB_DIR);\
 	fi
-	if [ ! -d $(MOUNTPOINT)$(WORDPRESS_FS_DIR) ]; then\
+	@if [ ! -d $(MOUNTPOINT)$(WORDPRESS_FS_DIR) ]; then\
 		mkdir -p $(MOUNTPOINT)$(WORDPRESS_FS_DIR);\
 	fi
 
-	docker compose -f $(DOCKER_COMPOSE) up
+	@echo "$(C_CYAN)Building images...$(C_RESET)"
+
+	docker compose -f $(DOCKER_COMPOSE) build
+
+	@echo "$(C_GREEN)Done!$(C_RESET)"
+
+up: build
+
+
+	@echo "$(C_CYAN)Starting containers...$(C_RESET)"
+
+	docker compose -f $(DOCKER_COMPOSE) up --detach
+
+	@echo "$(C_GREEN)Done!$(C_RESET)"
 
 down:
 	docker compose -f $(DOCKER_COMPOSE) down
