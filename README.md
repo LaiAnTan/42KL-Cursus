@@ -16,5 +16,5 @@
 |5        |minirt           |:white_check_mark:|115     |
 |6        |cpp05 - cpp09    |:white_check_mark:|100     |
 |6        |webserv          |:white_check_mark:|100     |
-|6        |inception        |:exclamation:     |pending |
+|6        |inception        |:white_check_mark:|done    |
 |7        |ft_transcendence |:exclamation:     |pending |
