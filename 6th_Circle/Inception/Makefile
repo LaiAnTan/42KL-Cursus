@@ -4,12 +4,24 @@ C_RESET = \033[0m
 
 DOCKER_COMPOSE := ./srcs/docker-compose.yml
 
+MOUNTPOINT = /home/laian/data
+WORDPRESS_DB_DIR = /wordpress_database
+WORDPRESS_FS_DIR = /wordpress_files
+
 all: re
 
 build:
 	docker compose -f $(DOCKER_COMPOSE) build
 
 up: build
+
+	if [ ! -d $(MOUNTPOINT)$(WORDPRESS_DB_DIR) ]; then\
+		mkdir -p $(MOUNTPOINT)$(WORDPRESS_DB_DIR);\
+	fi
+	if [ ! -d $(MOUNTPOINT)$(WORDPRESS_FS_DIR) ]; then\
+		mkdir -p $(MOUNTPOINT)$(WORDPRESS_FS_DIR);\
+	fi
+
 	docker compose -f $(DOCKER_COMPOSE) up
 
 down:
@@ -24,17 +36,17 @@ clean:
 fclean:
 	@echo "$(C_CYAN)Stopping and deleting containers...$(C_RESET)"
 
-	@-docker stop $(shell docker ps -qa > /dev/null) 2>/dev/null || true
-	@-docker rm $(shell docker ps -qa > /dev/null) 2>/dev/null || true
+	@-docker stop $(shell docker ps -qa) 2>/dev/null || true
+	@-docker rm $(shell docker ps -qa) 2>/dev/null || true
 
 	@echo "$(C_CYAN)Deleting images...$(C_RESET)"
-	@-docker rmi $(shell docker images -qa > /dev/null) 2>/dev/null || true
+	@-docker rmi $(shell docker images -qa) 2>/dev/null || true
 
 	@echo "$(C_CYAN)Deleting volumes...$(C_RESET)"
-	@-docker volume rm $(shell docker volume ls -q > /dev/null) 2>/dev/null || true
+	@-docker volume rm $(shell docker volume ls -q) 2>/dev/null || true
 
 	@echo "$(C_RESET)$(C_CYAN)Deleting networks...$(C_RESET)"
-	@-docker network rm $(shell docker network ls -q > /dev/null) 2>/dev/null || true
+	@-docker network rm $(shell docker network ls -q) 2>/dev/null || true
 
 	@echo "$(C_RESET)$(C_GREEN)Done!$(C_RESET)\n"
 

@@ -12,7 +12,7 @@ services:
     working_dir: /requirements/nginx
     restart: always
     volumes:
-      - wordpress_files:/requirements/wordpress/wpf
+      - wordpress_fs:/requirements/wordpress/wpf
     networks:
       - inception
 
@@ -31,7 +31,6 @@ services:
     env_file:
       - .env
 
-
   wordpress:
 
     build: ./requirements/wordpress/
@@ -44,13 +43,26 @@ services:
     networks:
       - inception
     volumes:
-      - wordpress_files:/requirements/wordpress/wpf
+      - wordpress_fs:/requirements/wordpress/wpf
     env_file:
       - .env
 
 volumes:
   wordpress_db:
-  wordpress_files:
+    name: wordpress_database
+    driver: local # use os driver
+    driver_opts:
+      type: none
+      o: bind # mount type
+      device: /home/laian/data/wordpress_database # mountpoint??
+
+  wordpress_fs:
+    name: wordpress_files
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/laian/data/wordpress_files
 
 networks:
   inception:
