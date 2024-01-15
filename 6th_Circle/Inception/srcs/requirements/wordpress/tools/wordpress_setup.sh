@@ -33,6 +33,10 @@ then
 	wp core install --path=/var/www/html/wordpress --url=localhost --title="Gojo Satoru Is Not Dead" --admin_name=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_EMAIL --allow-root
 	echo "core installed"
 
+	wp user create --path=/var/www/html/wordpress $WP_USER $WP_EMAIL --user_pass=$WP_PASS --role=author --allow-root
+
+	wp install theme twentytwentyfour --activate --allow-root
+
 fi
 
 # config php-fpm
