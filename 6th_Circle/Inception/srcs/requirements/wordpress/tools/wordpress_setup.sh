@@ -35,7 +35,7 @@ then
 
 	wp user create --path=/var/www/html/wordpress $WP_USER $WP_EMAIL --user_pass=$WP_PASS --role=author --allow-root
 
-	wp install theme twentytwentyfour --activate --allow-root
+	wp install theme twentytwentytwo --activate --allow-root
 
 fi
 
